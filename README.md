@@ -1,146 +1,139 @@
-# EC-CUBE 4開発ドキュメント
+# Tài liệu phát triển EC-CUBE 4
 
-[EC-CUBE 4開発ドキュメント](https://doc4.ec-cube.net/)のリポジトリです。
+Đây là kho lưu trữ của [Tài liệu phát triển EC-CUBE 4](https://thanpd-ptit.github.io/doc4-ec-cube-vn/).
 
-EC-CUBE 4 の仕様や手順、開発Tipsに関するドキュメントを掲載しています。
+Trang này cung cấp tài liệu về đặc tả, quy trình, và các mẹo phát triển liên quan đến EC-CUBE 4.
 
-修正や追記、新規ドキュメントの作成をいただく場合、
+Nếu bạn muốn sửa đổi, bổ sung hoặc tạo tài liệu mới,
+vui lòng gửi Pull Request đến kho lưu trữ này.
 
-本リポジトリへPullRequestをお送りください。
 
+## Về việc hợp tác phát triển
 
-## 開発協力に関して
+Khi bạn đóng góp mã nguồn, bổ sung, sửa đổi hoặc hợp tác phát triển "EC-CUBE" (bao gồm gửi Issue, Pull Request, hoạt động trên GitHub),
+vui lòng đọc và đồng ý với [Chính sách bản quyền của EC-CUBE](https://github.com/EC-CUBE/ec-cube/wiki/EC-CUBE%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%88%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC).
 
-コードの提供・追加、修正・変更その他「EC-CUBE」への開発の御協力（Issue投稿、PullRequest投稿など、GitHub上での活動）を行っていただく場合には、
-[EC-CUBEのコピーライトポリシー](https://github.com/EC-CUBE/ec-cube/wiki/EC-CUBE%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%88%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC)をご理解いただき、ご了承いただく必要がございます。
+Khi gửi Pull Request, bạn được xem là đã đồng ý với chính sách bản quyền của EC-CUBE.
 
-PullRequestを送信する際は、EC-CUBEのコピーライトポリシーに同意したものとみなします。
+## Công cụ xây dựng trang tài liệu này
 
-## 本ドキュメントサイトの構成ツールについて
+Tài liệu phát triển EC-CUBE 4 được host trên [github pages](https://pages.github.com/).
 
-EC-CUBE 4 開発者向けドキュメントは[github pages](https://pages.github.com/)でホスティングされています。
+Ngoài ra, sử dụng theme [Minimal Mistakes Jekyll theme](https://mmistakes.github.io/minimal-mistakes/) của [Jekyll](http://jekyllrb-ja.github.io/).
 
-また、[Jekyll](http://jekyllrb-ja.github.io/)の[Minimal Mistakes Jekyll theme](https://mmistakes.github.io/minimal-mistakes/)というテーマを利用しています。
+## Cách gửi Pull Request
 
-## PullRequestの送信方法
+Hãy tạo tài khoản Github và gửi Pull Request từ kho lưu trữ của bạn.
 
-Githubアカウントを作成し、自身のリポジトリよりPullRequestを作成してください。
+### Fork doc4.ec-cube.net
 
-### doc4.ec-cube.netをForkする
+Fork kho lưu trữ doc4.ec-cube.net về tài khoản Github của bạn.
 
-doc4.ec-cube.netのリポジトリをご自身のGithubリポジトリにForkします。
+### Clone về thư mục tuỳ ý
 
-### 任意のディレクトリにクローンする
-
-Forkしたご自身のリポジトリからソースを、`git clone` コマンドで自身のPCにコピーします。
+Clone mã nguồn từ kho của bạn về máy tính bằng lệnh `git clone`.
 
 ```
-$ git clone https://github.com/[ご自身のアカウント名]/doc4.ec-cube.net.git
+$ git clone https://github.com/[tên-tài-khoản-của-bạn]/doc4.ec-cube.net.git
 ```
 
-### リモートリポジトリに本家のリポジトリを登録する
+### Đăng ký kho lưu trữ gốc làm remote
 
-本家のリポジトリの名前を`upstream`（任意）で登録します。
+Đăng ký kho lưu trữ gốc với tên `upstream` (hoặc tên tuỳ ý).
 
 ```
 $ cd doc4.ec-cube.net/
 $ git remote add upstream https://github.com/EC-CUBE/doc4.ec-cube.net.git
 ```
 
-### ローカルのブランチを最新し、修正用のブランチを作成する
+### Cập nhật branch local và tạo branch sửa đổi
 ```
 $ git pull upstream master
-$ git checkout -b [任意のブランチ名]
+$ git checkout -b [tên-branch-tuỳ-chọn]
 ```
 
-### ドキュメント編集について
+### Chỉnh sửa tài liệu
 
-#### 本文の編集
+#### Chỉnh sửa nội dung
 
-_pages/以下のディレクトリにある.mdファイルを変更することで、ページの編集が可能です。
+Bạn có thể chỉnh sửa các file .md trong thư mục _pages/ để thay đổi nội dung trang.
 
-#### サイドバーの編集
+#### Chỉnh sửa sidebar
 
-_data/navigation.ymlに設定項目を追加します。
+Thêm mục vào _data/navigation.yml để chỉnh sửa sidebar.
 
-#### 設定ファイル
+#### File cấu hình
 
-_config.ymlはサイト全体に適用されている設定ファイルです。
+_config.yml là file cấu hình áp dụng cho toàn bộ trang.
 
-### 自身のリポジトリに修正内容を反映する
+### Đẩy thay đổi lên kho của bạn
 
 ```
-$ git add [修正したファイル]
-$ git commit -m "[コメント]"
-$ git push origin [ブランチ名]
+$ git add [file đã sửa]
+$ git commit -m "[Nội dung commit]"
+$ git push origin [tên-branch]
 ```
 
-その後、本家のリポジトリに自身のGithubリポジトリよりPullRequestを作成してください。
+Sau đó, hãy tạo Pull Request từ kho của bạn lên kho gốc.
 
 
+## Kiểm tra tài liệu đã sửa trên môi trường local
 
-## 修正したドキュメントをローカル環境で確認するには
+Bạn có thể kiểm tra tài liệu đã sửa trên máy tính cá nhân bằng cách xây dựng môi trường phát triển local.
 
-ローカル開発環境を構築することにより、
+### Sử dụng Docker
 
-ドキュメントを修正した場合際に、ローカルPCで変更箇所を確認することができます。
-
-### Dockerを利用する
-
-[Docker Compose](http://docs.docker.jp/compose/toc.html) がインストールされていればより簡単な方法でドキュメントを生成できます。
-コマンドを実行後、 ブラウザで `http://localhost:4000` にアクセスしてください。
+Nếu đã cài đặt [Docker Compose](http://docs.docker.jp/compose/toc.html), bạn có thể dễ dàng tạo môi trường phát triển. Sau khi chạy lệnh, truy cập `http://localhost:4000` trên trình duyệt.
 
 ```bash
-# ディレクトリ移動
+# Di chuyển vào thư mục dự án
 $ cd doc4.ec-cube.net
 
-# サーバを起動します。(初回)
-# * 起動するまでに多少時間がかかります。ご注意ください。
-# * マークダウンファイルを編集すれば数秒後にHTMLの再生成が行われます。
+# Khởi động server (lần đầu)
+# * Có thể mất một chút thời gian để khởi động.
+# * Khi chỉnh sửa file markdown, HTML sẽ được tạo lại sau vài giây.
 $ docker-compose up
 
-# サーバを停止します。
+# Dừng server
 $ docker-compose stop
 
-# サーバを起動します。(二回目以降)
+# Khởi động lại server (từ lần thứ hai trở đi)
 $ docker-compose start
 ```
 
-Windows、Macの環境で動作確認済みです。
+Đã kiểm tra hoạt động trên cả Windows và Mac.
 
-### ローカルのRuby環境を利用する
+### Sử dụng môi trường Ruby local
 
-#### 前提条件
+#### Yêu cầu
 
-1. ローカル環境にruby(バージョン：2.4.0以上)がインストールされている必要があります。
-2. Windows環境の場合、Git Bash等のターミナルを利用して下さい。
-3. ご自身のGithubアカウントが必要になります。
+1. Máy tính đã cài ruby (phiên bản 2.4.0 trở lên).
+2. Nếu dùng Windows, nên sử dụng terminal như Git Bash.
+3. Cần có tài khoản Github.
 
-※ Rubyのバージョン確認方法
+※ Kiểm tra phiên bản Ruby
 
 ```
 $ ruby -v
 ruby 2.4.5p335 (2018-10-18 revision 65137) [x64-mingw32]
 ```
 
-#### gem（rubyのライブラリ）のインストールを行う
+#### Cài đặt gem (thư viện ruby)
 
-`bundle install`により、gemfile.lockを元にgemのインストールを行います。
+Cài đặt gem dựa trên gemfile.lock bằng lệnh `bundle install`.
 
 ```
 $ bundle install
 ```
 
-※ Windows環境では、gemfile.lockが更新されてしまいますが、
-
-git管理から除外（コミット対象から除外する）するように下さい。
+※ Trên Windows, gemfile.lock có thể bị thay đổi, hãy loại khỏi commit.
 
 ```
 eventmachine (1.2.7-x64-mingw32)
 ```
-#### ローカルサーバーでサイトを立ち上げる
+#### Khởi động site bằng server local
 
-以下のコマンドでサイトが立ち上がります。
+Chạy lệnh sau để khởi động site.
 
 ```
 $ bundle exec jekyll serve
@@ -149,5 +142,4 @@ Server address: http://localhost:4000
 Server running... press ctrl-c to stop.
 ```
 
-http://localhost:4000 にブラウザのURLでアクセスすると、
-EC-CUBE 4開発ドキュメントのページが表示されます。
+Truy cập http://localhost:4000 trên trình duyệt để xem trang tài liệu phát triển EC-CUBE 4. 
