@@ -1,43 +1,41 @@
 ---
-title: 4.2系でプラグインがインストールできない問題の対応策
-keywords: weakness
+title: Giải pháp cho vấn đề không thể cài đặt plugin trên phiên bản 4.2
+keywords: điểm yếu
 tags: [quickstart, plugin]
 permalink: quickstart/trouble-shooting-for-plugin-install
 folder: security-guideline
 ---
 
-## 事象
-EC-CUBE4.2.0において、一部レンタルサーバー等でプラグインがインストールできない。
+## Hiện tượng
+Không thể cài đặt plugin trên một số máy chủ cho thuê với EC-CUBE4.2.0.
 
-## 対象
+## Đối tượng
 
-### 本体
-EC-CUBE 4.2系
+### Phiên bản chính
+EC-CUBE 4.2
 
-### 対象プラグイン
-すべて
+### Plugin đối tượng
+Tất cả
 
-## 原因
+## Nguyên nhân
 
-PHP7.2以降で標準で追加されている PHP-sodium 拡張ライブラリがない場合に起こる現象です。
-特定のレンタルサーバ等で発生する事象と認識しております。
-(EC-CUBE4.2のシステム要件はPHP7.4以降となっています。)
+Hiện tượng xảy ra khi không có thư viện mở rộng PHP-sodium, được thêm vào mặc định từ PHP7.2 trở đi. Đây là hiện tượng xảy ra trên một số máy chủ cho thuê cụ thể. (Yêu cầu hệ thống của EC-CUBE4.2 là PHP7.4 trở lên.)
 
-## 根本対応
-PHP-sodium 拡張ライブラリをインストールする。
+## Giải pháp gốc
+Cài đặt thư viện mở rộng PHP-sodium.
 
-→こちらの対応が難しい場合は、以下の**回避方法**をお試し下さい。
+→Nếu gặp khó khăn với giải pháp này, hãy thử **phương pháp tránh** dưới đây.
 
-## 回避方法
-WebAPIプラグインをアンインストールする
+## Phương pháp tránh
+Gỡ cài đặt plugin WebAPI
 
-→WebAPIプラグインをアンインストールすることで、プラグインのインストールができるようになります。
+→Bằng cách gỡ cài đặt plugin WebAPI, có thể cài đặt plugin.
 
-## EC-CUBE 4.2.1 以降の仕様
+## Đặc điểm của EC-CUBE 4.2.1 trở lên
 
-EC-CUBE 4.2.1 にて、sodium拡張がインストールされていない環境の場合、WebインストーラでWebAPIプラグインがアンインストールされるようになりました。
+Từ EC-CUBE 4.2.1, nếu không có mở rộng sodium, plugin WebAPI sẽ được gỡ cài đặt trong trình cài đặt Web.
 
-詳しくは以下をご確認ください。
+Xem chi tiết tại các liên kết dưới đây.
 
 - [EC-CUBE#5912](https://github.com/EC-CUBE/ec-cube/issues/5912#issuecomment-1420335054)
 - [EC-CUBE#5934](https://github.com/EC-CUBE/ec-cube/pull/5934)

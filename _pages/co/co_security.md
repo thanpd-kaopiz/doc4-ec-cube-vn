@@ -1,66 +1,63 @@
 ---
-title: ec-cube.co セキュリティ対策について
-keywords: co ec-cube.co クラウド版 セキュリティ対策
+title: ec-cube.co Về các biện pháp bảo mật
+keywords: co ec-cube.co Cloud version Biện pháp bảo mật
 tags: [co, ec-cube.co]
 permalink: co/co_security
 folder: co
 ---
 
-
 ---
 
-ec-cube.coのセキュリティ対策については、[情報セキュリティ方針](https://www.ec-cube.net/policy/securitypolicy.php){:target="_blank"} を元に、以下を実施しております。  
-利用規約に関しましては、[ec-cube.co 利用規約](https://www.ec-cube.co/pdf/term.pdf){:target="_blank"} を参照してください。
+Về các biện pháp bảo mật của ec-cube.co, dựa trên [Chính sách bảo mật thông tin](https://www.ec-cube.net/policy/securitypolicy.php){:target="_blank"}, chúng tôi thực hiện các biện pháp sau. Về điều khoản sử dụng, vui lòng tham khảo [Điều khoản sử dụng ec-cube.co](https://www.ec-cube.co/pdf/term.pdf){:target="_blank"}.
 
-## アプリケーションセキュリティ対策
+## Biện pháp bảo mật ứng dụng
 
-### 監視・モニタリング
+### Giám sát & Monitoring
 
-以下の監視・モニタリングを行っております。
+Chúng tôi thực hiện các biện pháp giám sát sau:
+- Giám sát hoạt động (kiểm tra site có hoạt động không)
+- Giám sát lỗi (kiểm tra ứng dụng hoạt động bình thường không)
+- Giám sát tài nguyên (bộ nhớ, CPU, ...)
 
-- 外形監視 (サイトが動作しているか)
-- エラー監視 (アプリケーションが正常に動作しているか)
-- リソースのモニタリング(メモリ、CPUなど)
+### Khi phát sinh sự cố
 
-### 障害発生時
+Khi phát hiện sự cố nghiêm trọng như không thể truy cập site, quản trị viên hệ thống sẽ được thông báo và tiến hành xử lý.
 
-サイト閲覧が出来ない等の緊急度の高い障害検知時はシステム管理者に通知、対応にあたります。
+### Backup
 
-### バックアップ
+Thực hiện backup định kỳ file ứng dụng và DB dump.
 
-アプリケーションファイル、DBダンプのバックアップを定期的に実施しています。
+### Bảo trì định kỳ
 
-### 定期メンテナンス
+- Bảo trì hàng tuần: cập nhật mã nguồn EC-CUBE mà không dừng dịch vụ.
+- Bảo trì hàng tháng: có thể dừng dịch vụ để cập nhật hạ tầng, middleware, ...
+- Bảo trì khẩn cấp: thực hiện khi có sự cố hoặc khi EC-CUBE đánh giá cần thiết.
 
-- 週次メンテナンスでは、サービスは停止せずにEC-CUBE本体の最新ソースコードなどを反映します。
-- 月次メンテナンスでは、サービスを停止しインフラ・ミドルウェアなどの更新を行います。
-- 緊急メンテナンスは、緊急事態発生時やイーシーキューブ社が必要と判断した場合に実施します。
+## Biện pháp bảo mật mạng
 
-## ネットワークセキュリティ対策
+### Chống truy cập trái phép, tấn công, phá hoại
 
-### 不正アクセスや攻撃・改ざん対策
+Sử dụng WAF để phát hiện tấn công vào ứng dụng web, chặn truy cập từ kẻ tấn công và bảo vệ site.
 
-WAFによりWebアプリケーションへの攻撃を検知し、攻撃者からのサイトアクセスを遮断し保護しています。
+## Biện pháp cho phát triển
 
-## 開発としての対策
+### Xử lý thông tin cá nhân
+Tham khảo [Chính sách bảo vệ thông tin cá nhân](https://www.ec-cube.net/policy/privacy.php){:target="_blank"} và [Về xử lý thông tin cá nhân](https://www.ec-cube.net/policy/){:target="_blank"}.
 
-### 個人情報の取り扱い
-[個人情報保護方針](https://www.ec-cube.net/policy/privacy.php){:target="_blank"}、並びに[個人情報の取扱いについて](https://www.ec-cube.net/policy/){:target="_blank"} を参照してください。
+### Thiết bị phát triển/vận hành
 
-### 開発・運用端末
+Áp dụng phần mềm bảo mật cho thiết bị phát triển/vận hành, luôn cập nhật mới nhất và thực hiện quét virus định kỳ.
 
-開発・運用端末へのウィルスソフトを導入しており、常に最新化、定期的にウィルススキャンを実施しております。
+## Biện pháp để sử dụng an toàn
 
-## 安全にご利用いただく為の対策
+### Mã hoá truyền dữ liệu
 
-### データ通信の暗号化
+Sử dụng SSL để mã hoá truyền dữ liệu, ngăn chặn nghe lén và sửa đổi dữ liệu.
 
-SSLにより通信を暗号化し、データの盗聴や改ざんを防いでいます。
+### Kiểm soát truy cập
 
-### アクセス制御
+Có thể giới hạn IP truy cập vào màn hình quản trị.
 
-管理画面に対するIP制限機能で実現可能です。
+### Thông tin thanh toán
 
-### 決済情報
-
-[オーナーズストア](https://www.ec-cube.net/owners/){:target="_blank"} で提供されている決済プラグインは、クレジットカード情報の非保持化対応済です。
+Các plugin thanh toán cung cấp trên [Owner's Store](https://www.ec-cube.net/owners/){:target="_blank"} đều hỗ trợ không lưu trữ thông tin thẻ tín dụng.

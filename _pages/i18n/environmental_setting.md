@@ -1,5 +1,5 @@
 ---
-title: 環境設定
+title: Thiết lập môi trường
 keywords: debug
 tags: [debug, env]
 permalink: environmental_setting
@@ -7,68 +7,61 @@ folder: i18n
 
 ---
 
+## Tổng quan
 
-## 概要
+Mở file .env ở thư mục gốc dự án ec-cube, bạn sẽ thấy biến APP_ENV.
 
-ec-cubeプロジェクトのルートにある.envファイルを開くと、APP_ENVという定数があります。
+Thay đổi giá trị APP_ENV để thiết lập các cấu hình khác nhau cho từng môi trường.
 
-APP_ENVの設定値を変更することで、環境毎に異なる設定を行うことが出来ます。
+Khi bật chế độ phát triển bằng biến môi trường, bạn sẽ có nhiều chức năng hỗ trợ phát triển, nhưng thông tin nội bộ sẽ hiển thị khi truy cập từ trình duyệt. Chỉ nên sử dụng chế độ phát triển khi làm local, khi public lên internet phải chuyển sang chế độ production.
 
-環境変数の設定で開発モードを有効にすると開発に便利な機能を利用できますが、ブラウザでアクセスをすると内部の情報が確認できる状態となります。
-開発モードの利用はローカルでの開発のみに限定し、サイトをインターネット上で公開される際は必ずプロダクションモードを利用してください。
-
-## 設定例
+## Ví dụ thiết lập
 
 
-### 本番環境
+### Môi trường production
 
-本番環境では、以下のように設定します。
+Thiết lập như sau cho môi trường production:
 
 ```
 APP_ENV=prod
 ```
 
 
-### 開発環境
+### Môi trường phát triển
 
-開発環境では以下のように設定します。
-
+Thiết lập như sau cho môi trường phát triển:
 
 ```
 APP_ENV=dev
 ```
 
 
-### テスト環境
+### Môi trường test
 
-テスト環境では以下のように設定します。
+Thiết lập như sau cho môi trường test:
 
 ```
 APP_ENV=test
 ```
 
 
-## 設定ファイルの場所
+## Vị trí file cấu hình
 
-app/config/eccube/packages/配下に環境ごとの設定ファイルがあります。
-
-
-## プロファイラの表示
-
-`APP_ENV=dev` の場合には、
+Các file cấu hình cho từng môi trường nằm trong thư mục app/config/eccube/packages/.
 
 
-symfonyのプロファイラを表示することができます。
+## Hiển thị profiler
 
-![デバッグツールバーの位置](/images/environmental_setting/debug_toolbar1.png)
+Khi `APP_ENV=dev`,
 
-symfonyのアイコンをクリックすると、
+bạn có thể hiển thị thanh công cụ profiler của symfony.
 
-以下のように画面下に表示されます。
+![Vị trí thanh debug toolbar](/images/environmental_setting/debug_toolbar1.png)
 
-![デバッグツールバーを開いた状態](/images/environmental_setting/debug_toolbar2.png)
+Nhấn vào icon symfony,
 
+sẽ hiển thị thanh công cụ ở dưới cùng màn hình như sau:
 
-実行されたSQLや、リクエストの内容、
+![Mở thanh debug toolbar](/images/environmental_setting/debug_toolbar2.png)
 
-表示速度など多くの情報がブラウザ上で確認できるようになります。
+Bạn có thể kiểm tra SQL đã thực thi, nội dung request, tốc độ hiển thị và nhiều thông tin khác ngay trên trình duyệt.

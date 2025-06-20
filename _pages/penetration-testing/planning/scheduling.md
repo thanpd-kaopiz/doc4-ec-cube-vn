@@ -1,23 +1,23 @@
 ---
-Title: スケジューリングの目安
+Title: Dự kiến lập lịch kiểm thử
 permalink: /penetration-testing/planning/scheduling
 ---
-EC-CUBEのペネトレーションテストを実施する上で、EC-CUBE に関する知識と、セキュリティに関する専門知識が重要になってきます。
+Khi thực hiện kiểm thử xâm nhập EC-CUBE, kiến thức về EC-CUBE và bảo mật chuyên sâu là rất quan trọng.
 
-一部、特殊な遷移をする機能があったり、ファイルアップロードや、 Ajax で実現している機能などがあり、セキュリティテストの難易度を上げる要因となります。
+Một số chức năng có chuyển trang đặc biệt, upload file, hoặc thực hiện bằng Ajax, v.v. sẽ làm tăng độ khó của kiểm thử bảo mật.
 
-このドキュメントで、できる限り補足をし、セキュリティテストの敷居を下げていきたいと思いますが、以下を目安にスケジュールを策定すると良いと思います。
+Tài liệu này sẽ cố gắng bổ sung tối đa, giúp hạ thấp rào cản kiểm thử bảo mật, nhưng bạn nên tham khảo lịch trình dưới đây để lập kế hoạch kiểm thử hợp lý.
 
-*もちろんテスト担当者のスキルにより、必要な工数は前後します*
+*Dĩ nhiên, số ngày công thực tế sẽ thay đổi tuỳ vào kỹ năng của người kiểm thử*
 
-- テストについての概要把握と環境構築 - 1〜2人日
-- 管理画面側テストの実施 - 2〜3人日
-- フロント側(ログイン)テストの実施 - 2〜3人日
-- フロント側(ゲスト)テストの実施 - 2〜3人日
-- ファイルアップロード等、特殊な機能のテスト実施 - 1〜2人日
-- レポートの精査、テスト報告資料の作成 - 2〜3人日
+- Nắm tổng quan kiểm thử và xây dựng môi trường: 1~2 ngày công
+- Kiểm thử phía quản trị: 2~3 ngày công
+- Kiểm thử phía frontend (login): 2~3 ngày công
+- Kiểm thử phía frontend (guest): 2~3 ngày công
+- Kiểm thử upload file, chức năng đặc biệt: 1~2 ngày công
+- Kiểm tra báo cáo, lập tài liệu báo cáo kiểm thử: 2~3 ngày công
 
-必要に応じて、テスト計画のフェーズや、脅威モデリング等といったテスト設計を含めると、さらに工数は膨らみます。
+Tùy theo nhu cầu, nếu bổ sung các pha như thiết kế kiểm thử, mô hình hoá mối đe doạ, số ngày công sẽ tăng thêm.
 
-ペネトレーションテストは、開発工程の最終段階に実施されることが多いです。
-スケジュールが圧迫され、疎かにならないよう余裕を持ってスケジューリングしましょう。
+Kiểm thử xâm nhập thường thực hiện ở giai đoạn cuối quy trình phát triển.
+Hãy lập lịch kiểm thử dư dả để tránh bị dồn ép tiến độ.

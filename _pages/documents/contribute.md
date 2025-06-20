@@ -1,23 +1,19 @@
 ---
-title: ドキュメントの投稿
+title: Đóng góp tài liệu
 keywords: 
 tags: [guideline]
 permalink: documents/contribute
 folder: document
-description: ドキュメントの投稿方法を記載します。
-description: ドキュメントの投稿方法を記載します。
+description: Hướng dẫn cách đóng góp tài liệu.
 ---
 
-開発ドキュメントの内容は、GitHub上で管理されています。
-EC-CUBE本体と同様に、追記や内容の修正はGitHubへPullRequestをお送りください。
+Nội dung tài liệu phát triển được quản lý trên GitHub.
+Tương tự như mã nguồn EC-CUBE, hãy gửi PullRequest để bổ sung hoặc chỉnh sửa nội dung.
 
-## 開発にあたり
+## Khi tham gia phát triển
 
-[GitHubのREADME.md](https://github.com/EC-CUBE/doc4.ec-cube.net#ec-cube-4開発ドキュメント){:target="_blank"}にて、開発に参加するにあたりご了承いただきたい事項や、
-環境構築について記載しております。  
-PullRequestをお送りいただく際は、必ずご一読ください。
+Vui lòng đọc kỹ [README.md trên GitHub](https://github.com/EC-CUBE/doc4.ec-cube.net#ec-cube-4開発ドキュメント){:target="_blank"} để nắm các lưu ý và hướng dẫn về môi trường phát triển trước khi gửi PullRequest.
 
-## PullRequestの送信方法
+## Cách gửi PullRequest
 
-本体へPullRequestをお送りする[手順](https://github.com/EC-CUBE/doc4.ec-cube.net#pullrequestの送信方法){:target="_blank"}を参考に、
-[こちら](https://github.com/EC-CUBE/doc4.ec-cube.net/pulls){:target="_blank"}へPullRequestをお送りください。
+Tham khảo [hướng dẫn gửi PullRequest](https://github.com/EC-CUBE/doc4.ec-cube.net#pullrequestの送信方法){:target="_blank"} và gửi PullRequest tại [đây](https://github.com/EC-CUBE/doc4.ec-cube.net/pulls){:target="_blank"}.

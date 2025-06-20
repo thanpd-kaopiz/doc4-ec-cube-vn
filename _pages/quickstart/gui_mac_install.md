@@ -1,15 +1,15 @@
 ---
-title: Mac環境でMAMPを使用したインストール方法
-keywords: install MAMP
+title: Hướng dẫn cài đặt bằng MAMP trên Mac
+keywords: cài đặt MAMP
 tags: [quickstart, install, gui]
 permalink: quickstart/gui_mac_install
 folder: quickstart
-description: EC-CUBE4系をMAMPを使用してMacのローカル環境へインストールする方法を解説します。
+description: EC-CUBE4系 được cài đặt trên môi trường Mac bằng MAMP.
 ---
 
-## インストールの前に
-MAMPを使用してMacのローカル環境へインストールする方法を解説します。  
-この記事の構築環境は以下の通りです。  
+## Trước khi cài đặt
+Hướng dẫn cài đặt EC-CUBE trên môi trường Mac bằng MAMP.  
+Cấu hình môi trường được mô tả như sau.  
 ```
 // サンプルの構築環境
 MacOS 10.15.5(Catalina)
@@ -18,198 +18,193 @@ MAMP 5.7
 ```
 
 
-## MAMPをダウンロード、インストール
-まずはMAMPを準備します。  
+## MAMP được tải về và cài đặt
+Đầu tiên, chuẩn bị MAMP.  
 
-[MAMP公式サイト](https://www.mamp.info/en/mac/){:target='_blank'}へアクセスし、  
-「Free Download」からダウンロードページへ移動します。  
-「MAMP&MAMP PRO」の最新バージョンをダウンロードします。（この記事では5.7）  
+Truy cập [trang tải xuống của MAMP](https://www.mamp.info/en/mac/){:target='_blank'} và di chuyển đến trang tải xuống. Tải xuống phiên bản mới nhất của "MAMP&MAMP PRO" (trong bài này là 5.7).  
 
-インストールすると、アプリケーションの中にMAMPとMAMP PRO、2つのソフトがインストールされます。  
-こちらの解説ではMAMPを使用します。  
+Sau khi cài đặt, hai phần mềm MAMP và MAMP PRO sẽ được cài đặt trong ứng dụng.  
+Trong hướng dẫn này, chúng tôi sẽ sử dụng MAMP.  
 
 
-## EC-CUBEをダウンロード
-続いて、EC-CUBEをダウンロードします。  
-[EC-CUBE公式サイトのダウンロードページ](https://www.ec-cube.net/download/){:target='_blank'}から最新版のEC-CUBEをダウンロードします。(この記事では4.0.3)  
-※ ダウンロードには会員登録が必要です。  
+## EC-CUBE được tải về
+Tiếp theo, tải về EC-CUBE.  
+Từ [trang tải xuống của EC-CUBE](https://www.ec-cube.net/download/){:target='_blank'}, tải xuống phiên bản mới nhất của EC-CUBE (trong bài này là 4.0.3)  
+※ Để tải xuống, bạn cần phải đăng nhập.  
 
-ダウンロードしたら解凍します。  
+Sau khi tải xuống, giải nén.  
 
 
 
-## MAMPにEC-CUBEを配置
-解凍したEC-CUBEをMAMPのhtdocsディレクトリ（フォルダ）に配置します。  
+## MAMP được cấu hình EC-CUBE
+Giải nén EC-CUBE và đặt vào thư mục htdocs (thư mục) của MAMP.  
 
-**配置したディレクトリの構造でショップのトップページURLが決まります。**  
-`http://localhost:8888/{htdocsの中に作成したディレクトリ名}/`  
+**Cấu trúc thư mục để xác định URL của trang chủ cửa hàng:**  
+`http://localhost:8888/{tên thư mục trong htdocs}/`  
 
 
 ```
-例:eccube-4.0.3というディレクトリ名をshopに変更しhtdocsの中に配置した場合
-■ ディレクトリ構造
+Ví dụ: nếu bạn đặt tên thư mục là eccube-4.0.3 và đặt vào thư mục htdocs của shop, thì:
+■ Cấu trúc thư mục
 /Applications/MAMP/htdocs/shop/
 
-■ ショップのトップページURL
+■ URL của trang chủ cửa hàng
 http://localhost:8888/shop/
 ```
-※ まだEC-CUBEをインストールしていないので、ショップURLにアクセスしてもサイトは表示されません。  
+※ Ở thời điểm này, EC-CUBE chưa được cài đặt, vì vậy không thể truy cập trang chủ cửa hàng.  
 
 
-## phpバージョンの設定
-EC-CUBE4.0.3は、**php7.1 〜7.3**で動作確認しています。  
-MAMPの環境設定から該当のphpバージョンに変更します。
+## Cấu hình phiên bản php
+EC-CUBE4.0.3 được kiểm tra hoạt động với **php7.1 〜7.3**.  
+Thay đổi phiên bản php trong cấu hình môi trường của MAMP.
 
-MAMPを起動します。  
+Khởi động MAMP.  
 
-Macの左上のメニューから「MAMP」→「Preferences」をクリックします。  
+Nhấp vào "MAMP" ở góc trên bên trái của Mac và chọn "Preferences".  
 ![MAMP](/images/install/gui-mac/02.png)  
 
 
 ![MAMP](/images/install/gui-mac/03.png)  
   
-設定画面が開くので「PHP」の項目から「7.3.9」にチェックをして「OK」をクリックします。  
+Màn hình cấu hình sẽ xuất hiện. Nhấp vào "PHP" trong mục "PHP" và kiểm tra "7.3.9", sau đó nhấp "OK".  
 
 
-## データベース作成
-MAMPからサーバーを立ち上げます。  
+## Tạo cơ sở dữ liệu
+Khởi động máy chủ từ MAMP.  
 
 ![MAMP](/images/install/gui-mac/07.png)  
   
-「Start Server」をクリックします。  
+Nhấp vào "Start Server".  
 
-MAMPのトップページが表示されます。  
+Màn hình trang chủ của MAMP sẽ xuất hiện.  
 ![MAMP](/images/install/gui-mac/04.png)  
   
-ヘッダーメニューの「TOOLS」から「PHPMYADMIN」をクリックします。  
+Nhấp vào "TOOLS" ở thanh menu và chọn "PHPMYADMIN".  
 
-phpMyAdminが開きます。  
+phpMyAdmin sẽ xuất hiện.  
   
 ![phpMyAdmin](/images/install/gui-mac/05.png)  
   
-「New」をクリックしてデータベース名を入力し、データベースを作成します。  
-※データベース名は外部から予測されにくい名前にしてください。  
+Nhấp vào "New" và nhập tên cơ sở dữ liệu, sau đó tạo cơ sở dữ liệu.  
+※ Hãy đảm bảo rằng tên cơ sở dữ liệu không dễ dàng được dự đoán từ bên ngoài.  
 ```
-例
-データベース名
+Ví dụ
+Tên cơ sở dữ liệu
 `eccube123_`
 
-照合順序はutf8mb4_general_ciのままで問題ありません。
+Thứ tự phục vụ là utf8mb4_general_ci, không có vấn đề gì.
 ``` 
 
-MAMPにはデータベースアカウントが標準で入っており、そちらを使用してEC-CUBEをインストールします。  
-もし、アカウントを作成する場合は、メニューの「User accounts」から作成してください。
+MAMP có tài khoản cơ sở dữ liệu mặc định, chúng ta sẽ sử dụng tài khoản đó để cài đặt EC-CUBE.  
+Nếu bạn muốn tạo tài khoản, hãy làm theo mục "User accounts" ở thanh menu.
 
-※ 本番環境としてデータベースを作成する場合、ユーザーアカウントを作成してください。  データベースの接続情報（データベース名、アカウント情報等）が外部に漏れると、個人情報の漏洩などの原因になります。  管理にはご注意ください。
+※ Đối với môi trường sản xuất, hãy tạo tài khoản người dùng. Thông tin kết nối cơ sở dữ liệu (tên cơ sở dữ liệu, thông tin tài khoản, v.v.) có thể bị rò rỉ ngoài ý muốn, gây ra hậu quả nghiêm trọng như lộ thông tin cá nhân, v.v. Hãy chú ý khi quản lý.
 
 
-## EC-CUBEのインストール
+## Cài đặt EC-CUBE
 
-ブラウザから以下のURLにアクセスします。  
-`http://localhost:8888/{EC-CUBEをアップロードしたディレクトリ名}/`  
+Nhấp vào URL sau từ trình duyệt:  
+`http://localhost:8888/{tên thư mục EC-CUBE được tải lên}/`  
 ```
-例
+Ví dụ
 http://localhost:8888/shop/
 ``` 
 ![install step2](/images/install/step1.png)  
-インストール画面が表示されます。  
-「次へ進む」をクリックします。  
+Màn hình cài đặt sẽ xuất hiện. Nhấp vào "Tiếp theo" để tiếp tục.  
 
 ![install step2](/images/install/step2.png)
-「次へ進む」をクリックします。
+Nhấp vào "Tiếp theo" để tiếp tục.
 
 
-### サイトの設定
+### Cấu hình trang web
 
 ![install step3](/images/install/step3.png)
 
-#### 店舗の基本情報
+#### Thông tin cơ bản cửa hàng
 
-- **あなたの店名**
-  - 店名を入力してください。日本語でも問題ありません。
-- **メールアドレス**
-  - ここで指定するメールアドレス宛に注文通知メールなどが送信されます。
-- **管理画面ログインID**
-  - 管理画面にログインする際に利用する管理者のログインIDです。一番権限の強いスーパーユーザーなので、「admin」などの推測されやすいIDは不正アクセスや情報漏洩の元になるので避けてください。  適当な意味を持たない文字列が良いです。
-- **管理画面パスワード**
-  - 上記の管理者がログインする際に使用するパスワードを指定します。  ここで指定するパスワードを忘れると**管理画面にログインできなくなる**ので必ず控えてください。  
-  EC-CUBEには**管理者のパスワード再発行機能は実装されていません。**  
-  管理者ログインIDと同様に意味を持たない複雑なパスワードにしてください。  
-  「test1234」や「password」などは**絶対避けてください**  
-- **管理画面のディレクトリ名**  
-  - 管理画面にアクセスする場合のURLになります。  
-  http://localhost:8888/{EC-CUBEをインストールしたディレクトリ}/{管理画面のディレクトリ名}/ でアクセスする事になります。  
-  こちらのディレクトリ名も「admin」や「dashboard」など推測されやすい文字列を指定すると危険です。  
-  適当な意味を持たない文字列を指定してください。
-- **サイトのアクセスをSSL経由に強制します**  
-  - ローカル環境では入力しないでください。
-- **管理画面へのアクセスを、以下のIPに制限します**
-  - 管理画面へのアクセスを特定のIPアドレスに固定します。  
-  ローカル環境では特に指定しなくて大丈夫です。  
-  こちらにIPアドレスを指定すると、指定したIPアドレスのみ管理画面にアクセスできます。  
-  指定した方がセキュリティは強くなりますが、スマートフォンの公衆回線からアクセスできなくなるなど、利便性は損ないます。  
-  固定IPをお持ちでない方は指定しないでください。
+- **Tên cửa hàng**
+  - Nhập tên cửa hàng của bạn. Bạn có thể nhập tiếng Nhật.
+- **Email**
+  - Email này sẽ được sử dụng để gửi thông báo đặt hàng, v.v.
+- **ID đăng nhập trang quản lý**
+  - ID đăng nhập để đăng nhập trang quản lý. Đây là người quản lý có quyền lớn nhất, vì vậy hãy tránh sử dụng ID dễ dự đoán như "admin" v.v. Để tránh tối đa rủi ro bất hợp pháp truy cập và lộ thông tin, hãy sử dụng chuỗi ký tự không có ý nghĩa.  
+- **Mật khẩu đăng nhập trang quản lý**
+  - Nhập mật khẩu để người quản lý đăng nhập. Nếu bạn quên mật khẩu đăng nhập trang quản lý, bạn sẽ **không thể đăng nhập trang quản lý** vì vậy hãy ghi chú để sử dụng.  
+  EC-CUBE không có **chức năng phục hồi lại mật khẩu quản lý**.  
+  Hãy tạo mật khẩu phức tạp và không có ý nghĩa để người quản lý đăng nhập.  
+  Không sử dụng "test1234" hoặc "password" v.v. **ĐỘC LẬP**  
+- **Tên thư mục trang quản lý**  
+  - Đây là URL để truy cập trang quản lý.  
+  http://localhost:8888/{tên thư mục EC-CUBE được cài đặt}/{tên thư mục trang quản lý}/  để truy cập.  
+  Hãy không chỉ định tên thư mục này là "admin" hoặc "dashboard" v.v. Để tránh rủi ro, hãy chỉ định tên thư mục không có ý nghĩa.
+- **Buộc trang web truy cập qua SSL**  
+  - Không cần nhập trong môi trường cục bộ.
+- **Giới hạn truy cập trang quản lý đến IP sau**
+  - Giới hạn truy cập trang quản lý đến IP cố định.  
+  Trong môi trường cục bộ, không cần chỉ định.  
+  Nếu bạn chỉ định IP này, chỉ có IP được chỉ định mới có thể truy cập trang quản lý.  
+  Nếu bạn không có IP cố định, hãy không chỉ định.
 
-*※ 管理画面のアクセス情報が漏洩すると個人情報の漏洩や詐欺に利用されるなど甚大な被害が発生します。取り扱いには充分にご注意ください。*
+*※ Thông tin đăng nhập trang quản lý bị rò rỉ có thể dẫn đến rủi ro lộ thông tin cá nhân và các hậu quả nghiêm trọng khác. Hãy chú ý khi quản lý.*
 
-#### メール設定
-ローカル環境では特に指定しなくて問題ありません。
+#### Cấu hình email
+Trong môi trường cục bộ, không cần chỉ định.
 
 
-### データベースの設定入力 
+### Nhập thông tin cơ sở dữ liệu 
 ![install step 4](/images/install/gui-win/step5.png)  
   
-データベースの情報を入力します。  
-**今回はMAMPに標準で用意されているデータベースアカウントを使用します。**  
+Nhập thông tin cơ sở dữ liệu.  
+**Trong bài này, chúng ta sẽ sử dụng tài khoản cơ sở dữ liệu mặc định của MAMP.**  
   
-**MAMPのデータベースアカウントの確認方法**
+**Cách xác định thông tin tài khoản cơ sở dữ liệu của MAMP**
 
-MAMPを開き、「Open WebStart page」をクリックしてMAMPトップページを立ち上げます。
+Mở MAMP và nhấp vào "Open WebStart page" để khởi động trang chủ của MAMP.
 ![Open WebStart page](/images/install/gui-mac/01.png)  
   
-スクロールするとデータベースアカウント情報が記載された項目があります。  
+Cuộn xuống, bạn sẽ thấy mục thông tin tài khoản cơ sở dữ liệu được ghi chú.  
 ![MySQL account](/images/install/gui-mac/06.png)  
 
   
-こちらのアカウント情報を見ながら入力していきます。
+Hãy nhập thông tin này theo hướng dẫn.
 
-- **データベースの種類**
-  - 今回はMySQLを使用します。
-- **データベースのホスト名**
-  - localhostになります。
-- **データベースのポート番号**
+- **Loại cơ sở dữ liệu**
+  - Trong bài này, chúng ta sẽ sử dụng MySQL.
+- **Tên máy chủ cơ sở dữ liệu**
+  - localhost.
+- **Cổng cơ sở dữ liệu**
   - 8889
-- **データベース名**
-  - 準備したデータベース名を指定してください。  サンプルでは「eccube123_」です。
-- **ユーザー名**
-  - rootになります。
-- **パスワード**
-  - rootになります。
+- **Tên cơ sở dữ liệu**
+  - Hãy chỉ định tên cơ sở dữ liệu đã chuẩn bị. Trong ví dụ, đó là "eccube123_".
+- **Tên người dùng**
+  - root.
+- **Mật khẩu**
+  - root.
 
-※ユーザー名やパスワードは本番環境では独自に作成してください。
+※ Tên người dùng và mật khẩu phải được tạo riêng cho môi trường sản xuất.
 
-一通り入力したら「次へ進む」をクリックします。  
-
-
+Sau khi nhập hết, nhấp vào "Tiếp theo" để tiếp tục.  
 
 
-### データベースの初期化
+
+
+### Khởi tạo cơ sở dữ liệu
 ![install step 6](/images/install/step6.png)
 
-データベースに初期データを登録します。
+Đăng ký dữ liệu khởi tạo cơ sở dữ liệu.
 
-「次へ進む」をクリックします。
+Nhấp vào "Tiếp theo" để tiếp tục.
 
 
-### インストール完了
+### Hoàn thành cài đặt
 ![install step 6](/images/install/step7.png)
 
-**おめでとうございます！**  
-この画面が表示されたらインストール完了です。  
+**Chúc mừng bạn!**  
+Nếu bạn thấy màn hình này, cài đặt đã hoàn thành.  
 
-管理画面の使い方は[こちら](https://www.ec-cube.net/manual/ec-cube4/){:target="_blank"}。
+Hướng dẫn sử dụng trang quản lý [tại đây](https://www.ec-cube.net/manual/ec-cube4/){:target="_blank"}。
 
-*管理画面を表示*をクリックすると、管理画面のログイン画面に遷移します。  
-[店舗の基本情報](#店舗の基本情報)で入力した管理者の情報で管理画面にログインしてください。  
+Nhấp vào "Hiển thị trang quản lý" để chuyển hướng đến trang đăng nhập trang quản lý.  
+[Thông tin cơ bản cửa hàng](#Thông tin cơ bản cửa hàng) để đăng nhập trang quản lý.  
 
-もし、ここでログインできない場合は、管理者のパスワードやログインIDを間違えて控えた可能性が高いので、インストールしたディレクトリの .envを削除し、データベースを空にして再度インストール手順を行ってください。
+Nếu bạn không thể đăng nhập, có khả năng bạn đã nhập sai ID đăng nhập hoặc mật khẩu, vì vậy hãy xóa .env của thư mục cài đặt và xóa cơ sở dữ liệu để thực hiện lại quy trình cài đặt.

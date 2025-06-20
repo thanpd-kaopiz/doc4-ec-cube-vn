@@ -1,46 +1,46 @@
 ---
-title: デザインテンプレートの基礎
-keywords: design template search
-tags: [design]
+title: Cơ bản về template thiết kế
+keywords: thiết kế template tìm kiếm
+tags: [thiết kế]
 permalink: design_template
-summary: デザインテンプレートの基本ルールについて説明します。
+summary: Giải thích về các quy tắc cơ bản của template thiết kế.
 ---
 
-## デフォルトのテンプレートファイルの配置場所
+## Vị trí lưu file template mặc định
 
-EC-CUBEがインストールされているディレクトリを `ECCUBEROOT` とします。  
-本体の標準のTwigファイルは以下のディレクトリに配置されています。
+Giả sử thư mục cài đặt EC-CUBE là `ECCUBEROOT`.  
+Các file Twig mặc định của hệ thống được lưu tại các thư mục sau:
 
-- フロント画面の標準ディレクトリ  
+- Thư mục mặc định cho giao diện người dùng (frontend)  
 `ECCUBEROOT/src/Eccube/Resource/template/default`
 
-- 管理画面の標準ディレクトリ  
+- Thư mục mặc định cho trang quản trị  
 `ECCUBEROOT/src/Eccube/Resource/template/admin`
 
-- インストール画面の標準ディレクトリ  
+- Thư mục mặc định cho trang cài đặt  
 `ECCUBEROOT/src/Eccube/Resource/template/install`
 
-## デザインカスタマイズ時のファイル配置
+## Vị trí lưu file khi tuỳ chỉnh thiết kế
 
-EC-CUBEでは、デフォルトのディレクトリとは別に、オリジナルのデザインテンプレートを配置可能です。  
+Trong EC-CUBE, ngoài thư mục mặc định, bạn có thể lưu template thiết kế riêng của mình.  
 
-新規にデザインを作成する場合、デフォルトのテンプレートを触るとバージョンアップで上書きされたりする恐れがあるため、デフォルトのテンプレートを直接触ることは推奨していません。  
+Khi tạo thiết kế mới, không nên chỉnh sửa trực tiếp template mặc định vì có thể bị ghi đè khi nâng cấp phiên bản.  
 
-- オリジナルのデザインテンプレート配置時の標準ディレクトリ  
+- Thư mục mặc định khi lưu template thiết kế riêng  
 `ECCUBEROOT/app/template/[template_code]`  
-→ [template_code]とは、テンプレートを識別するためのコード。  
-標準ではフロントの場合「default」、管理画面の場合「admin」が定義されている。
+→ [template_code] là mã nhận diện template.  
+Mặc định với frontend là "default", với admin là "admin".
 
-このディレクトリはデザインテンプレートを利用するときに適用されるためのディレクトリとなります。
-デザインテンプレートはこのディレクトリ配下に保存されています。  
+Thư mục này sẽ được sử dụng khi áp dụng template thiết kế.  
+Các file template thiết kế sẽ được lưu dưới thư mục này.  
 
-リソースファイルは `ECCUBEROOT/html/template/[template_code]` に配置されます。
+Các file resource sẽ được lưu tại `ECCUBEROOT/html/template/[template_code]`.
 
-## テンプレートの読み出し順序
+## Thứ tự ưu tiên khi gọi template
 
-テンプレートファイルが呼び出される順序は、以下の通りです。
+Thứ tự gọi file template như sau:
 
-- フロント
+- Frontend
 
 ```
 1. ECCUBEROOT/app/template/[template_code]
@@ -48,7 +48,7 @@ EC-CUBEでは、デフォルトのディレクトリとは別に、オリジナ�
 3. ECCUBEROOT/app/Plugin
 ```
 
-- 管理
+- Admin
 
 ```
 1. ECCUBEROOT/app/template/admin
@@ -56,23 +56,23 @@ EC-CUBEでは、デフォルトのディレクトリとは別に、オリジナ�
 3. ECCUBEROOT/app/Plugin
 ```
 
-先にオリジナルのテンプレートが存在するのか確認し、存在しなければデフォルトのテンプレートを呼び出します。
+Sẽ kiểm tra xem có template tuỳ chỉnh không, nếu không có sẽ gọi template mặc định.
 
 
-### 呼び出し例
+### Ví dụ gọi template
 
-* フロントの例  
-template_codeが「MyDesign」のデザインテンプレートを利用しており、Controllerで `@Template("TemplateDir/template_name.twig")` とアノテーション定義されている場合
+* Ví dụ frontend  
+Nếu sử dụng template_code là "MyDesign" và trong Controller có định nghĩa `@Template("TemplateDir/template_name.twig")`
 
 ```
  1. app/template/MyDesign/TemplateDir/template_name.twig
  2. src/Eccube/Resource/template/default/TemplateDir/template_name.twig
  3. app/Plugin/[plugin_code]/Resource/template/TemplateDir/template_name.twig
 ```
-という順番で表示されます。
+Sẽ hiển thị theo thứ tự trên.
 
-* 管理画面の例  
-`@Template("@admin/Product/index.twig")` 商品マスターのテンプレートをapp/template/admin配下に配置した場合、以下の順序で呼び出されます。
+* Ví dụ admin  
+Nếu sử dụng `@Template("@admin/Product/index.twig")` và đã lưu file template vào app/template/admin, thứ tự gọi sẽ là:
 
 ```
  1. app/template/admin/Product/index.twig
@@ -80,12 +80,12 @@ template_codeが「MyDesign」のデザインテンプレートを利用して�
  3. app/Plugin/[plugin_code]/Resource/template/admin/Product/index.twig
 ```
 
-## 管理画面からデザイン編集した時のテンプレートファイルの挙動(ページ編集、ブロック編集)
+## Hành vi của file template khi chỉnh sửa từ trang quản trị (chỉnh sửa trang, block)
 
-* ページ詳細  
-デフォルトの場合、 `ECCUBEROOT/src/Eccube/Resource/template/default` 配下の該当するファイルが表示されます。  
-ページ詳細で修正を行った場合、新たに `ECCUBEROOT/app/template/default/` 配下に保存され、以降は `ECCUBEROOT/app/template/default/` 配下のファイルを修正するようになります。
+* Chi tiết trang  
+Mặc định sẽ hiển thị file tương ứng trong `ECCUBEROOT/src/Eccube/Resource/template/default`.  
+Khi chỉnh sửa từ chi tiết trang, file sẽ được lưu mới vào `ECCUBEROOT/app/template/default/` và từ đó về sau sẽ chỉnh sửa file trong thư mục này.
 
-* ブロック編集  
-デフォルトの場合、 `ECCUBEROOT/src/Eccube/Resource/template/default/Block` 配下の該当するファイルが表示されます。  
-ブロックを新規登録したり編集されたりすると、 `ECCUBEROOT/app/template/default/Block` 配下に保存され、以降は `ECCUBEROOT/app/template/default/Block` 配下のファイルを修正するようになります。
+* Chỉnh sửa block  
+Mặc định sẽ hiển thị file tương ứng trong `ECCUBEROOT/src/Eccube/Resource/template/default/Block`.  
+Khi tạo mới hoặc chỉnh sửa block, file sẽ được lưu vào `ECCUBEROOT/app/template/default/Block` và từ đó về sau sẽ chỉnh sửa file trong thư mục này.

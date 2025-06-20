@@ -1,58 +1,56 @@
 ---
 layout: single
-title: プラグイン開発におけるセキュリティ強化
-keywords: plugin プラグイン セキュリティ
+title: Tăng cường bảo mật khi phát triển plugin
+keywords: plugin plugin bảo mật
 tags: [security-guideline, plugin, security]
 permalink: security-guideline/plugin
 folder: security-guideline
 ---
 
-## プラグイン開発におけるセキュリティ強化について
+## Về tăng cường bảo mật khi phát triển plugin
 
-本ドキュメントは、プラグインの開発のセキュリティを向上させる機能について解説を行っています。
+Tài liệu này giải thích các chức năng giúp tăng cường bảo mật khi phát triển plugin.
 
-プラグイン開発時には、セキュリティ向上のため以下の機能を組み込むことを推奨します。
+Khi phát triển plugin, khuyến nghị tích hợp các chức năng sau để tăng cường bảo mật.
 
-- 重要操作に対するスロットリング
+- Throttling cho các thao tác quan trọng
 
-## 重要操作に対するスロットリング
+## Throttling cho các thao tác quan trọng
 
-EC-CUBE 4.2.1から、EC-CUBE本体に[スロットリング機能](https://doc4.ec-cube.net/customize_throttling){:target="_blank"}が実装されました。
+Từ EC-CUBE 4.2.1, chức năng [throttling](https://doc4.ec-cube.net/customize_throttling){:target="_blank"} đã được tích hợp vào core EC-CUBE.
 
-この機能は、プラグインやCustomizeからも拡張できるように実装されています。
+Chức năng này cũng có thể mở rộng từ plugin hoặc Customize.
 
-プラグインで重要操作を実装する際は、スロットリングの機能を組み込むことを推奨します。
+Khi phát triển plugin có thao tác quan trọng, khuyến nghị tích hợp chức năng throttling.
 
-### 実装方法
+### Cách triển khai
 
-ここでは[サンプル決済プラグイン](https://github.com/EC-CUBE/sample-payment-plugin){:target="_blank"}に機能追加を行う実装を例として解説します。
+Ví dụ dưới đây minh hoạ cách thêm throttling vào chức năng thay đổi thông tin thẻ trong [plugin thanh toán mẫu](https://github.com/EC-CUBE/sample-payment-plugin){:target="_blank"}.
 
-以下は、サンプル決済プラグインのカード情報変更時時に、スロットリングを実行させる際の記述です。
-
-プラグインのservices.yamlに、設定を記載します。
+Thêm cấu hình vào services.yaml của plugin.
 
 app/Plugin/SamplePayment42/Resource/config/services.yaml
 
 ```yaml
-# スロットリングの定義
+# Định nghĩa throttling
 eccube:
   rate_limiter:
     sample_payment_mypage_card_info:
-      # 実行するルーティングを指定します。
+      # Chỉ định route thực thi
       route: sample_payment_mypage_card_info
-      # 実行するmethodを指定します。デフォルトはPOSTです。
+      # Chỉ định method thực thi. Mặc định là POST.
       method: ['POST']
-      # スロットリングの制御方法を設定します。ip・customerを指定できます。
+      # Kiểu kiểm soát throttling. Có thể là ip hoặc customer.
       type: ['ip', 'customer']
-      # 試行回数を設定します。
+      # Số lần thử tối đa
       limit: 5
-      # インターバルを設定します。
+      # Khoảng thời gian
       interval: '60 minutes'
 ```
 
-以上で実装は完了です。
+Như vậy là xong.
 
-試行回数以上アクセスを行い、アクセス拒否されることを確認してください。
+Hãy thử truy cập vượt quá số lần cho phép để xác nhận bị từ chối truy cập.
 
-その他詳細な仕様については、[スロットリング機能](https://doc4.ec-cube.net/customize_throttling){:target="_blank"} を参照してください。
+Tham khảo chi tiết tại [chức năng throttling](https://doc4.ec-cube.net/customize_throttling){:target="_blank"}.
 

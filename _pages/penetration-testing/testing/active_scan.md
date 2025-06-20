@@ -1,88 +1,88 @@
 ---
-title: 動的スキャンの仕方
+title: Cách thực hiện quét động
 permalink: /penetration-testing/testing/active_scan
 ---
-## 動的スキャンの基本
+## Cơ bản về quét động
 
-基本は、以下の流れで動的スキャンを実施します。
+Quy trình cơ bản để thực hiện quét động như sau:
 
-1. 履歴または、サイトタブのURL一覧から、スキャン対象の URL を選択する
-1. **攻撃→動的スキャン** を選択し、実行する
+1. Từ lịch sử hoặc danh sách URL trong tab site, chọn URL cần quét
+1. Chọn **Tấn công→Quét động** và thực thi
 
-![動的スキャンの基本操作](/images/penetration-testing/testing_active_scan.png)
+![Thao tác cơ bản quét động](/images/penetration-testing/testing_active_scan.png)
 
-**Note:** POSTパラメータに設定された CSRF トークンが、 Local Proxes 経由でアクセスしている Firefox のものと一致していることを確認しましょう。
-![CSRFトークンの一致を確認](/images/penetration-testing/testing_active_scan_csrftoken.png)
-CSRFトークンが一致してない場合は、動的スキャンがエラーになってしまい、十分にテストができません。
+**Lưu ý:** Hãy đảm bảo token CSRF được thiết lập trong tham số POST trùng khớp với token của Firefox khi truy cập qua Local Proxes.
+![Xác nhận sự trùng khớp của token CSRF](/images/penetration-testing/testing_active_scan_csrftoken.png)
+Nếu token CSRF không trùng khớp, quét động sẽ bị lỗi và không thể kiểm thử đầy đủ.
 {: .notice--warning}
 
-**Note:** 管理画面の以下の編集機能は、CSRFトークンのパラメータにIDが含まれており、動的に設定されます。
-OWASP ZAP の ツール→オプション→アンチCSRFトークンより都度登録する必要があります。
+**Lưu ý:** Các chức năng chỉnh sửa sau của màn hình quản trị có tham số ID trong token CSRF và được thiết lập động.
+Cần đăng ký từng lần một trong OWASP ZAP tại Công cụ→Tùy chọn→Anti-CSRF Token.
 
- - 規格管理
- - 規格分類管理
- - カテゴリ管理
- - タグ管理
+ - Quản lý quy cách
+ - Quản lý phân loại quy cách
+ - Quản lý danh mục
+ - Quản lý tag
 {: .notice--warning}
 
-## GET でアクセス可能な URL
+## URL có thể truy cập bằng GET
 
-GET でアクセス可能な URL は、 CSRF トークンによる影響を受けませんので、サイトタブの URL 一覧から、ディレクトリを選択し、下位階層をまとめて動的スキャンすることが可能です。
+Các URL có thể truy cập bằng GET không bị ảnh hưởng bởi token CSRF, do đó có thể chọn thư mục trong danh sách URL của tab site và thực hiện quét động cho toàn bộ các tầng con bên dưới.
 
-![下位階層をまとめて動的スキャン可能](/images/penetration-testing/testing_active_scan_get.png)
+![Có thể quét động toàn bộ tầng con](/images/penetration-testing/testing_active_scan_get.png)
 
-## 特殊な遷移パターンのテスト
+## Kiểm thử các pattern chuyển trang đặc biệt
 
-**Note:** まだ書きかけです
+**Lưu ý:** Phần này đang được viết tiếp
 {: .notice}
 
-### 複数画面遷移のテスト
+### Kiểm thử chuyển trang nhiều màn hình
 
-- 日本語入力必須の場合は、1画面ずつ **手動探索→動的スキャン** を繰り返すのが確実
-- 日本語入力が絡まなければ、 sequence アドオンが使用できる可能性
-  - うまくいかない場合もあるため、確実にスキャンできているかよく確認すること
+- Nếu bắt buộc nhập tiếng Nhật, nên lặp lại **Thăm dò thủ công→Quét động** từng màn hình một để đảm bảo
+- Nếu không liên quan đến nhập tiếng Nhật, có thể sử dụng addon sequence
+  - Tuy nhiên, cần kiểm tra kỹ xem đã quét đầy đủ chưa vì có thể không thành công
 
-### コンテンツが削除されてしまう場合
+### Trường hợp nội dung bị xóa
 
-- 画像削除、カートから削除などが該当する
-- 削除のロジックをコメントアウトしたり、DBをロールバックしたりしてテスト可能
-- ただし、削除のロジックに SQL インジェクションが潜んでいた場合など、検出できなくなる可能性がある
+- Áp dụng cho xóa ảnh, xóa khỏi giỏ hàng, v.v.
+- Có thể kiểm thử bằng cách comment out logic xóa hoặc rollback DB
+- Tuy nhiên, nếu có lỗ hổng SQL Injection trong logic xóa thì sẽ không phát hiện được
 
-### POST パラメータで遷移制御している場合
+### Trường hợp điều khiển chuyển trang bằng tham số POST
 
-サイトタブのURL一覧には、 POSTパラメータの値が異なるURLは登録されません。
-(`mode=confirm`, `mode=complete` で画面遷移する場合など)
-イレギュラーな方法ですが、手動送信機能を使って新たにダミーのパラメータを増やしてリクエストすることで動的スキャンが可能です。
+Danh sách URL trong tab site sẽ không đăng ký các URL có giá trị tham số POST khác nhau.
+(Ví dụ: chuyển trang với `mode=confirm`, `mode=complete`)
+Cách làm không chính thống, nhưng có thể sử dụng chức năng gửi thủ công để thêm tham số giả và gửi request, từ đó thực hiện quét động.
 
-*既に `mode=comfirm` のURLが登録されていることを前提とします*
+*Giả định rằng URL với `mode=confirm` đã được đăng ký*
 
-1. 履歴から該当のリクエスト(`mode=complete`)を探す
-2. 右クリック→再送信で、ダミーのパラメータを増やして再送信する(`mode=complete&mode2=dummy` のように、パラメータを手修正して送信する)
-3. サイトタブのURL一覧に `mode=complete` のURLも登録されるので、これに対して動的スキャンを実行する
+1. Tìm request tương ứng (`mode=complete`) trong lịch sử
+2. Chuột phải → Gửi lại, thêm tham số giả và gửi lại (`mode=complete&mode2=dummy`, chỉnh sửa tham số bằng tay)
+3. Lúc này, URL với `mode=complete` cũng sẽ được đăng ký vào danh sách URL của tab site, có thể thực hiện quét động với URL này
 
-**Note:** お問い合わせ画面、会員登録画面などが該当します。
+**Lưu ý:** Áp dụng cho các màn hình như liên hệ, đăng ký thành viên, v.v.
 {: .notice--info}
 
-### セッションでデータの引き継ぎをしている場合
+### Trường hợp truyền dữ liệu qua session
 
-- 確認画面→完了画面ではセッションでデータの引き継ぎをしている場合はテストできない
-  - ZAP Script を組むことでテストできる可能性あり
+- Nếu chuyển từ màn hình xác nhận sang hoàn tất mà dữ liệu được truyền qua session thì không thể kiểm thử
+  - Có thể kiểm thử bằng cách viết ZAP Script
 
-**Note:** 入力画面で入力した情報を、完了画面で表示するカスタマイズや、プラグインを導入している場合は、そこに脆弱性が潜んでいる可能性に注意してください
+**Lưu ý:** Nếu có tuỳ biến hoặc plugin hiển thị thông tin nhập ở màn hình hoàn tất, cần chú ý có thể tiềm ẩn lỗ hổng
 {: .notice--warning}
 
-**Note:** 商品購入完了画面が該当します。
+**Lưu ý:** Áp dụng cho màn hình hoàn tất mua hàng.
 {: .notice--info}
 
-### ファイルアップロードのテスト
+### Kiểm thử upload file
 
-**手動探索でファイルアップロード→動的スキャン** をすることで、ファイルアップロードのテストが可能です。
-大きなサイズのファイルをアップロードすると、多大な時間がかかりますので、できるだけ小さなサイズのファイルでテストすることをおすすめします。
+Có thể kiểm thử upload file bằng cách **thăm dò thủ công rồi quét động**.
+Nên sử dụng file có dung lượng nhỏ để kiểm thử vì upload file lớn sẽ tốn rất nhiều thời gian.
 
-### 削除系機能のテスト
+### Kiểm thử các chức năng xóa
 
-注文や会員を削除するテストは、繰り返し削除のリクエストを送信することができないため、テストが困難です。
+Việc kiểm thử xóa đơn hàng, xóa thành viên là khó khăn vì không thể gửi lặp lại request xóa.
 
-トランザクションをロールバックさせたり、 `EntityManager::flush()` をコメントアウトしたりすることで、削除機能を無効化して、ある程度のテストは可能です。
+Có thể vô hiệu hóa chức năng xóa bằng cách rollback transaction hoặc comment out `EntityManager::flush()`, từ đó kiểm thử được phần nào.
 
-削除機能を無効化すると、SQLインジェクションのテストが難しいことには変わりありませんので、削除時に何らかのパラメータを送信している場合は、パラメータの入力に脆弱性が潜んでないか注意しましょう。
+Tuy nhiên, nếu vô hiệu hóa chức năng xóa thì việc kiểm thử SQL Injection sẽ khó khăn hơn, nên cần chú ý kiểm tra kỹ các tham số gửi khi xóa.

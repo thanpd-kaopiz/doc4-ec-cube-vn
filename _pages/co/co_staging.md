@@ -1,26 +1,25 @@
 ---
-title: ec-cube.co テスト環境の構築
-keywords: co ec-cube.co クラウド版 テスト環境の構築
+title: ec-cube.co Xây dựng môi trường test
+keywords: co ec-cube.co Cloud version Xây dựng môi trường test
 tags: [co, ec-cube.co]
 permalink: co/co_staging
 folder: co
 ---
 
-
 ---
 
-## テスト環境の構築
+## Xây dựng môi trường test
 
-コンソール画面＞テスト環境から、テスト環境の構築ができます。  
-テスト環境の項目から、テスト環境のショップURL、ログインページのアドレスを確認することができます。  
-ログインアカウントは、本番環境で使用しているものと同じになります。  
+Bạn có thể xây dựng môi trường test từ màn hình Console > Test environment.
+Tại mục môi trường test, bạn có thể kiểm tra URL shop test và địa chỉ trang đăng nhập quản trị.
+Tài khoản đăng nhập quản trị giống với môi trường production.
 
 ![console_staging](/images/co/console_staging_01.png)
 
-## 環境の複製
+## Nhân bản môi trường
 
-テスト環境の作成と削除から、現在の本番環境(データベースを含む)を複製します。  
-複製したときに過去のテスト環境がある場合、古いものが破棄されます。  
-作成日時は確認することができます。  
+Từ chức năng tạo/xoá môi trường test, bạn có thể nhân bản toàn bộ môi trường production (bao gồm cả database).
+Nếu đã có môi trường test cũ, môi trường cũ sẽ bị xoá khi nhân bản mới.
+Bạn có thể kiểm tra thời gian tạo môi trường test.
 
 ![console_staging](/images/co/console_staging_02.png)

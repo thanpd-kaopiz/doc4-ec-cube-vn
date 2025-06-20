@@ -1,38 +1,38 @@
 ---
-title: 受注ステータスのカスタマイズ
-keywords: core カスタマイズ 受注ステータス OrderStatus
+title: Tuỳ biến trạng thái đơn hàng
+keywords: core tuỳ biến trạng thái đơn hàng OrderStatus
 tags: [core, OrderStatus]
 permalink: customize_order_state_machine
 folder: customize
 ---
 
-## 受注ステータスの拡張 [#3325](https://github.com/EC-CUBE/ec-cube/pull/3325){:target="_blank"}
+## Mở rộng trạng thái đơn hàng [#3325](https://github.com/EC-CUBE/ec-cube/pull/3325){:target="_blank"}
 
-![受注ステートマシーン図](./images/spec/order-statemachine.png)
+![Sơ đồ trạng thái đơn hàng](./images/spec/order-statemachine.png)
 
-[受注対応状況の流れ](/spec_order)も合わせてご確認ください。
+Vui lòng xem thêm [Luồng xử lý trạng thái đơn hàng](/spec_order).
 
-### 基本の拡張方法
+### Cách mở rộng cơ bản
 
-[Symfony Workflow Component](https://symfony.com/doc/current/components/workflow.html)を利用して実装しています。
+Sử dụng [Symfony Workflow Component](https://symfony.com/doc/current/components/workflow.html) để triển khai.
 
-ステータス遷移時に行う処理を追加するには、ステータス遷移時のイベントを実装します。
-ステータスの遷移は[app/config/eccube/packages/order_state_machine.php](https://github.com/EC-CUBE/ec-cube/blob/4.0/app/config/eccube/packages/order_state_machine.php)に定義しています。
+Để thêm xử lý khi chuyển trạng thái, hãy cài đặt event khi chuyển trạng thái.
+Các trạng thái được định nghĩa tại [app/config/eccube/packages/order_state_machine.php](https://github.com/EC-CUBE/ec-cube/blob/4.0/app/config/eccube/packages/order_state_machine.php).
 
-イベントを実装することで受注の遷移時に任意の処理を追加できます。
+Bằng cách cài đặt event, bạn có thể thêm xử lý tuỳ ý khi chuyển trạng thái đơn hàng.
 
-| 遷移元                     | 遷移先     | イベント                                        |
-|------------------------------|------------|-------------------------------------------------|
-| 新規受付                   | 入金済み   | `workflow.order.transition.pay`                 |
-| 新規受付, 入金済み         | 対応中     | `workflow.order.transition.packing`             |
-| 新規受付, 対応中, 入金済み | キャンセル | `workflow.order.transition.cancel`              |
-| キャンセル                 | 対応中     | `workflow.order.transition.back_to_in_progress` |
-| 新規受付, 対応中, 入金済み | 発送済み   | `workflow.order.transition.ship`                |
-| 発送済み                   | 返品       | `workflow.order.transition.return`              |
-| 返品                       | 発送済み   | `workflow.order.transition.cancel_return`       |
+| Từ trạng thái                | Đến trạng thái | Sự kiện                                        |
+|------------------------------|---------------|------------------------------------------------|
+| Đã nhận mới                  | Đã thanh toán | `workflow.order.transition.pay`                |
+| Đã nhận mới, Đã thanh toán   | Đang xử lý    | `workflow.order.transition.packing`            |
+| Đã nhận mới, Đang xử lý, Đã thanh toán | Huỷ | `workflow.order.transition.cancel`             |
+| Huỷ                         | Đang xử lý    | `workflow.order.transition.back_to_in_progress`|
+| Đã nhận mới, Đang xử lý, Đã thanh toán | Đã giao | `workflow.order.transition.ship`              |
+| Đã giao                     | Trả hàng      | `workflow.order.transition.return`             |
+| Trả hàng                    | Đã giao       | `workflow.order.transition.cancel_return`      |
 
-- 例) 返品時の処理を追加したいとき
-    - `workflow.order.transition.return` イベントを受け取る `EventSubscriberInterface` を実装します。
+- Ví dụ) Thêm xử lý khi trả hàng
+    - Cài đặt `EventSubscriberInterface` để nhận event `workflow.order.transition.return`.
 
 ```php
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -42,7 +42,7 @@ use Symfony\Component\Workflow\Event\Event;
 class SampleTransitionListener implements EventSubscriberInterface
 {
     /**
-     * 返品時の処理.
+     * Xử lý khi trả hàng.
      *
      * @param Event $event
      */
@@ -50,7 +50,7 @@ class SampleTransitionListener implements EventSubscriberInterface
     {
         /* @var Order $Order */
         $Order = $event->getSubject();
-        .... /* 処理を実装する */
+        .... /* Triển khai xử lý */
     }
 
     /**
@@ -63,8 +63,8 @@ class SampleTransitionListener implements EventSubscriberInterface
 }
 ```
 
-### 参考
+### Tham khảo
 
-EC-CUBE のデフォルトのイベントは [src/Eccube/Service/OrderStateMachine.php](https://github.com/EC-CUBE/ec-cube/blob/4.0/src/Eccube/Service/OrderStateMachine.php) に実装されています。
+Các event mặc định của EC-CUBE được triển khai tại [src/Eccube/Service/OrderStateMachine.php](https://github.com/EC-CUBE/ec-cube/blob/4.0/src/Eccube/Service/OrderStateMachine.php).
 
 [Using Events](https://symfony.com/doc/current/workflow/usage.html#using-events){:target="_blank"}

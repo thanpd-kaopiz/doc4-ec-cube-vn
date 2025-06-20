@@ -1,83 +1,80 @@
 ---
-title: 税率設定
+title: Thiết lập thuế suất
 keywords: tax 
 tags: [spec, getting_started]
 permalink: spec_tax
-summary: EC-CUBEでは、税率の設定について、基本税率と商品ごとの商品別税率を設定することができます。
+summary: Trong EC-CUBE, bạn có thể thiết lập thuế suất cơ bản và thuế suất riêng cho từng sản phẩm.
 
 ---
 
-**EC-CUBE4.0.3で商品別税率設定が適用されない不具合が確認されております。
-詳しくは、[こちら](workaround-product-tax-rule)をご確認ください。**
+**Đã xác nhận có lỗi không áp dụng được thuế suất riêng cho từng sản phẩm trên EC-CUBE4.0.3.
+Vui lòng xem chi tiết tại [đây](workaround-product-tax-rule).**
 
-## 標準税率設定
+## Thiết lập thuế suất tiêu chuẩn
 
-`設定 -> 店舗設定 -> 税率設定` で標準税率の設定が可能です。
-標準税率はすべての商品で共通に適用される税率です。
-初期状態では、税率 **8%** が設定されています。
+Tại `Cài đặt -> Cài đặt cửa hàng -> Thiết lập thuế suất`, bạn có thể thiết lập thuế suất tiêu chuẩn.
+Thuế suất tiêu chuẩn sẽ được áp dụng chung cho tất cả sản phẩm.
+Mặc định ban đầu là **8%**.
 
-![標準税率の初期状態](./images/img-tax-01.png)
+![Trạng thái mặc định của thuế suất tiêu chuẩn](./images/img-tax-01.png)
 
-標準税率は、新たに追加することが可能です。
-適用日時および税率を設定することが出来ます。
+Bạn có thể thêm mới thuế suất tiêu chuẩn.
+Có thể thiết lập thời điểm áp dụng và mức thuế suất.
 
-![標準税率の追加](./images/img-tax-02.png)
+![Thêm thuế suất tiêu chuẩn](./images/img-tax-02.png)
 
-標準税率を追加した場合、適用日時以降になると、新税率に自動的に切り替わります。
-適用日時以前の受注情報は、受注時点での税率/税額を保持しているため、過去に遡って変更されることはありません。
+Khi thêm thuế suất tiêu chuẩn, sau thời điểm áp dụng hệ thống sẽ tự động chuyển sang thuế suất mới.
+Thông tin đơn hàng trước thời điểm áp dụng sẽ giữ nguyên thuế suất/tổng thuế tại thời điểm đặt hàng, không bị thay đổi ngược lại.
 
-## 商品別税率設定
+## Thiết lập thuế suất riêng cho từng sản phẩm
 
-**EC-CUBE4.0.3で商品別税率設定が適用されない不具合が確認されております。
-詳しくは、[こちら](workaround-product-tax-rule)をご確認ください。**
+**Đã xác nhận có lỗi không áp dụng được thuế suất riêng cho từng sản phẩm trên EC-CUBE4.0.3.
+Vui lòng xem chi tiết tại [đây](workaround-product-tax-rule).**
 
-`設定 -> 店舗設定 -> 基本設定` の商品別税率機能を有効にすると、商品単位（正確には商品規格単位）で税率が登録できるようになります。
+Khi bật chức năng thuế suất riêng cho từng sản phẩm tại `Cài đặt -> Cài đặt cửa hàng -> Cài đặt cơ bản`, bạn có thể đăng ký thuế suất theo từng sản phẩm (chính xác là từng phân loại sản phẩm).
 
-![商品別税率を有効にする](./images/img-tax-03.png)
+![Bật chức năng thuế suất riêng cho từng sản phẩm](./images/img-tax-03.png)
 
-規格なし商品の登録例
-![規格なし商品の登録例](./images/img-tax-04.png)
+Ví dụ đăng ký sản phẩm không có phân loại
+![Ví dụ đăng ký sản phẩm không có phân loại](./images/img-tax-04.png)
 
-規格あり商品の登録例
-![規格あり商品の登録例](./images/img-tax-05.png)
+Ví dụ đăng ký sản phẩm có phân loại
+![Ví dụ đăng ký sản phẩm có phân loại](./images/img-tax-05.png)
 
-商品別税率設定が有効時、税率を設定している商品はその税率で、未設定の商品は標準税率で税額が計算されます。
+Khi chức năng thuế suất riêng cho từng sản phẩm được bật, sản phẩm có thiết lập thuế suất sẽ tính theo thuế suất đó, sản phẩm chưa thiết lập sẽ tính theo thuế suất tiêu chuẩn.
 
-## 軽減税率対応の注意点
+## Lưu ý khi áp dụng thuế suất giảm nhẹ
 
-2019年10月に、消費税率の10％への引上げ及び軽減税率制度の導入が始まります。
-軽減税率制度が導入された場合、「飲食料品」などの軽減税率対象の品目は通常の品目とは異なった税率を適用する必要があります。
+Từ tháng 10/2019, thuế tiêu thụ tăng lên 10% và bắt đầu áp dụng chế độ thuế suất giảm nhẹ.
+Khi áp dụng chế độ này, các mặt hàng như "thực phẩm, đồ uống" sẽ áp dụng thuế suất khác với các mặt hàng thông thường.
 
-消費税の軽減税率制度について  
+Thông tin về chế độ thuế suất giảm nhẹ:
 [https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/index.htm](https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/index.htm){:target="_blank"}
 
-### 標準税率と軽減税率の推奨設定
+### Khuyến nghị thiết lập thuế suất tiêu chuẩn và thuế suất giảm nhẹ
 
-`設定 -> 店舗設定 -> 税率設定` は標準税率を設定し、商品別税率設定で軽減税率の設定を推奨します。
-飲食料品のみの販売の場合であっても、手数料および送料は標準税率で税の計算が行われるため、上記の設定を推奨します。
+Nên thiết lập thuế suất tiêu chuẩn tại `Cài đặt -> Cài đặt cửa hàng -> Thiết lập thuế suất` và thiết lập thuế suất giảm nhẹ bằng chức năng thuế suất riêng cho từng sản phẩm.
+Ngay cả khi chỉ bán thực phẩm, phí xử lý và phí vận chuyển vẫn tính theo thuế suất tiêu chuẩn, nên khuyến nghị thiết lập như trên.
 
-### 課税値引きと不課税値引きについて
+### Về giảm giá có thuế và không thuế
 
-課税値引きと不課税値引きの２種類の値引きがあります。
+Có hai loại giảm giá: giảm giá có thuế và giảm giá không thuế.
 
-課税値引きは商品から値引きする際に利用します。
-値引き対象の商品の税率によって税込みの割引額が変更となるため、値引きにも税率を設定する必要があります。
+Giảm giá có thuế dùng khi giảm giá trực tiếp trên sản phẩm. Số tiền giảm giá đã bao gồm thuế sẽ thay đổi theo thuế suất của sản phẩm, nên cần thiết lập thuế suất cho giảm giá.
 
-![課税値引き](./images/img-tax-06.png)
+![Giảm giá có thuế](./images/img-tax-06.png)
 
-不課税値引きは値引き額を金券として扱い、支払いの一部を値引き分で支払う際に利用します。
-値引きは金券として利用いたしますので、消費税の対象となりません。
-EC-CUBE標準のポイント機能および公式のクーポンプラグインは不課税値引きの扱いとなります。
+Giảm giá không thuế được coi như phiếu quà tặng, dùng để thanh toán một phần đơn hàng. Số tiền giảm giá này không tính vào thuế tiêu thụ.
+Chức năng điểm thưởng mặc định của EC-CUBE và plugin coupon chính thức đều xử lý giảm giá không thuế.
 
-![不課税値引き](./images/img-tax-07.png)
+![Giảm giá không thuế](./images/img-tax-07.png)
 
-### 内税での運用を行っている場合
+### Trường hợp vận hành theo giá đã bao gồm thuế
 
-内税での運用を行っている場合( `設定 -> 店舗設定 -> 税率設定` で税率を0%に設定している)、区分記載の表示は `税率0%対象：xxx円` と表示されます。
-システム的な制御は行われないため、表示が不要であればテンプレートを修正して頂く必要があります。
+Nếu vận hành theo giá đã bao gồm thuế (thiết lập thuế suất 0% tại `Cài đặt -> Cài đặt cửa hàng -> Thiết lập thuế suất`), hệ thống sẽ hiển thị "Đối tượng thuế suất 0%: xxx yên". Nếu không cần hiển thị, bạn cần chỉnh sửa template.
 
-# 関連課題
+# Vấn đề liên quan
 
-税率機能について、以下のissueが登録されています。合わせてご確認ください。  
+Một số issue liên quan đến chức năng thuế suất đã được đăng ký. Vui lòng kiểm tra thêm:
 
 - [https://github.com/EC-CUBE/ec-cube/issues/4183](https://github.com/EC-CUBE/ec-cube/issues/4183){:target="_blank"}

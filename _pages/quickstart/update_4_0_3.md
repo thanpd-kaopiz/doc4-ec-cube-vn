@@ -1,50 +1,48 @@
 ---
-title: 4.0.3での注意点
-keywords: howto update
-tags: [quickstart, getting_started]
+title: Lưu ý khi cập nhật lên 4.0.3
+keywords: cách cập nhật
 permalink: update/4_0_3
-summary : EC-CUBE本体の4.0.3へのバージョンアップに伴う受注情報の表示の変更について記載します。
+summary : Mô tả về thay đổi hiển thị thông tin đơn hàng khi cập nhật lên EC-CUBE 4.0.3.
 ---
 
 
-## 背景
-- EC-CUBE本体の4.0.2以前のバージョンで、受注に関する計算に不具合がありましたが、4.0.3では修正されています。
-- 不具合の修正に伴い、バージョンアップ後に、受注情報を修正していただく必要があります。
+## Bối cảnh
+- Trong các phiên bản trước 4.0.2 của EC-CUBE, có lỗi trong tính toán liên quan đến đơn hàng, nhưng đã được sửa trong 4.0.3.
+- Do sửa lỗi này, sau khi cập nhật, cần sửa thông tin đơn hàng.
 
-## 影響内容
+## Nội dung ảnh hưởng
 
-### 割引時の合計表示について
+### Về hiển thị tổng khi giảm giá
 
-- ポイント利用などの割引は不課税の割引となるため、正しくは合計額からマイナスされている表記であるため、表示位置が修正されております。
-- 4.0.2以前の合計額に含めて値引きを表示するのではなく、合計額の表記の下に表記しお支払い合計がされるよう修正されております。
-- また、軽減税率への対応のため、合計額の下に税率ごとの合計額が表示されるように変更されています。税率について、詳しくは[こちら](/spec_tax)をご確認ください。
+- Do giảm giá như sử dụng điểm là giảm giá không chịu thuế, nên đúng ra phải được trừ từ tổng số tiền, vì vậy vị trí hiển thị đã được sửa.
+- Thay vì hiển thị giảm giá trong tổng số tiền như trước 4.0.2, đã sửa để hiển thị dưới tổng số tiền và tổng số tiền thanh toán.
+- Ngoài ra, để hỗ trợ thuế suất giảm, đã thay đổi để hiển thị tổng số tiền theo từng thuế suất dưới tổng số tiền. Về thuế suất, xem chi tiết [tại đây](/spec_tax).
 
-|フロント画面 4.0.2以前の合計表示|フロント画面 4.0.3以降の合計表示|
+|Hiển thị tổng trên màn hình trước 4.0.2|Hiển thị tổng trên màn hình từ 4.0.3 trở đi|
 |---|---|
-|![4.0.2以前の合計表示](/images/price_notation_4_0_2.png)|![4.0.3以降の合計表示](/images/price_notation_4_0_3.png)|
+|![Hiển thị tổng trước 4.0.2](/images/price_notation_4_0_2.png)|![Hiển thị tổng từ 4.0.3 trở đi](/images/price_notation_4_0_3.png)|
 
-|管理画面/受注詳細 4.0.2以前の合計表示|管理画面/受注詳細 4.0.3以降の合計表示|
+|Hiển thị tổng trên màn hình quản lý/chi tiết đơn hàng trước 4.0.2|Hiển thị tổng trên màn hình quản lý/chi tiết đơn hàng từ 4.0.3 trở đi|
 |---|---|
-|![管理画面/受注詳細 4.0.2以前の合計表示](/images/admin_price_notation_4_0_2.png)|![管理画面/受注詳細 4.0.3以降の合計表示](/images/admin_price_notation_4_0_3.png)|
+|![Hiển thị tổng trên màn hình quản lý/chi tiết đơn hàng trước 4.0.2](/images/admin_price_notation_4_0_2.png)|![Hiển thị tổng trên màn hình quản lý/chi tiết đơn hàng từ 4.0.3 trở đi](/images/admin_price_notation_4_0_3.png)|
 
-### クーポンプラグインによる割引について
+### Về giảm giá bằng plugin coupon
 
-- バージョン4.0.4以前のクーポンプラグインでクーポンを利用すると、明細の種別として「課税」で「0%」の割引となる不具合がありました。
-- 4.0.4以前のクーポンプラグインをご使用の場合は、お使いのEC-CUBEの「管理画面/プラグイン一覧」からアップデートをお願いします。
-- バージョン4.0.4以前のクーポンプラグインを使用した受注情報に関しては、EC-CUBEの4.0.3へのバージョンアップ後にデータを修正していただく必要があります。
+- Trong plugin coupon trước phiên bản 4.0.4, khi sử dụng coupon, có lỗi hiển thị giảm giá là "chịu thuế" với "0%".
+- Nếu bạn đang sử dụng plugin coupon trước 4.0.4, hãy cập nhật từ "Màn hình quản lý/Plugin" của EC-CUBE.
+- Đối với thông tin đơn hàng sử dụng plugin coupon trước 4.0.4, cần sửa dữ liệu sau khi cập nhật lên EC-CUBE 4.0.3.
 
-|管理画面/受注詳細 バージョン4.0.4以前のクーポンプラグインでの受注詳細|
+|Hiển thị chi tiết đơn hàng với plugin coupon trước 4.0.4 trên màn hình quản lý|
 |---|
-|![管理画面/受注詳細 4.0.4以前のクーポンプラグインでの受注詳細](/images/coupon_order_detail.png)|
+|![Hiển thị chi tiết đơn hàng với plugin coupon trước 4.0.4 trên màn hình quản lý](/images/coupon_order_detail.png)|
 
 
+## Cách sửa chi tiết đơn hàng đã đăng ký với plugin coupon (trước 4.0.4)
 
-## クーポンプラグイン（4.0.4以前）で登録されている受注詳細の修正方法
+- Để sửa chi tiết đã đăng ký với plugin coupon (trước 4.0.4) mà vẫn giữ là chịu thuế, có thể sửa bằng cách thiết lập "thuế suất" cho chi tiết.
+- Trong EC-CUBE 4.0.3, khi thêm chi tiết từ nút "Thêm chi tiết khác" trong chi tiết đơn hàng, có thể đăng ký giảm giá chịu thuế và không chịu thuế.
+- Để sửa thành giảm giá không chịu thuế, hãy xóa chi tiết đã đăng ký bằng coupon, sau đó thêm chi tiết mới từ "Thêm chi tiết khác".
 
-- クーポンプラグイン（4.0.4以前）で登録されている明細を、課税のまま修正する場合は、明細の「税率」を設定していただくことで修正可能です。
-- EC-CUBE本体の4.0.3では、受注詳細から「その他の明細の追加」ボタンから明細を追加する際に、課税の割引と不課税の割引を登録できます。
-- 不課税の割引として修正する場合は、クーポンで登録された明細を一度削除し、「その他の明細を追加」から新たに明細を追加し直してください。
-
-|管理画面/受注詳細 その他の明細を追加|
+|Thêm chi tiết khác trong chi tiết đơn hàng trên màn hình quản lý|
 |---|
-|![管理画面/受注詳細 受注明細の追加](/images/coupon_order_detail_item.png)|
+|![Thêm chi tiết khác trong chi tiết đơn hàng trên màn hình quản lý](/images/coupon_order_detail_item.png)|

@@ -1,47 +1,45 @@
 ---
 layout: single
-title: 各種インストール方法
-keywords: install
-tags: [quickstart, install]
+title: Các phương pháp cài đặt
+keywords: cài đặt
 permalink: quickstart/install
 folder: quickstart
 ---
 
-
 ---
 
-各種インストール手順をまとめました。
+Tổng hợp các phương pháp cài đặt.
 
-## ローカルへインストールする
+## Cài đặt vào máy cục bộ
 
-### GUIでインストールする
+### Cài đặt bằng GUI
 
-[パッケージ版](https://www.ec-cube.net/download/){:target='_blank'}をダウンロードしていただき、Webインストーラ(GUI)を使用してローカルへインストールする方法です。
+Phương pháp cài đặt vào máy cục bộ bằng cách tải [phiên bản gói](https://www.ec-cube.net/download/){:target='_blank'} và sử dụng trình cài đặt Web (GUI).
 
-+ [Windows環境でXAMPPを使用したインストール方法](/quickstart/gui_win_install)
-+ [Mac環境でMAMPを使用したインストール方法](/quickstart/gui_mac_install)
++ [Phương pháp cài đặt sử dụng XAMPP trên môi trường Windows](/quickstart/gui_win_install)
++ [Phương pháp cài đặt sử dụng MAMP trên môi trường Mac](/quickstart/gui_mac_install)
 
-### CUI & GUIでインストールする
+### Cài đặt bằng CUI & GUI
 
-コマンドを実行するとGitHub上にあるデフォルトのEC-CUBE4をダウンロード、その後はWebインストーラ(GUI)を使用してローカルへインストールする方法です。
+Phương pháp cài đặt vào máy cục bộ bằng cách thực hiện lệnh để tải EC-CUBE4 mặc định từ GitHub, sau đó sử dụng trình cài đặt Web (GUI).
 
-+ [ComposerからWebインストーラでインストールする](/quickstart/composer_web_installer)
++ [Cài đặt từ Composer với trình cài đặt Web](/quickstart/composer_web_installer)
 
-### CUIでインストールする
+### Cài đặt bằng CUI
 
-[GitHub](https://github.com/EC-CUBE/ec-cube){:target="_blank"}から任意のEC-CUBE4をcloneしていただき、コマンドを実行しインストールする方法です。
+Phương pháp cài đặt bằng cách clone EC-CUBE4 tùy ý từ [GitHub](https://github.com/EC-CUBE/ec-cube){:target="_blank"} và thực hiện lệnh cài đặt.
 
-+ [symfony/cliを使用してインストールする](https://qiita.com/nanasess/items/de9f5450717cc8ede51a){:target="_blank"}
-+ [Docker Composeを使用してインストールする](/quickstart/docker_compose_install)
-+ [Dockerを使用してインストールする](/quickstart/docker_install)
-+ [コマンドラインからインストールする](/quickstart/command_install)
++ [Cài đặt sử dụng symfony/cli](https://qiita.com/nanasess/items/de9f5450717cc8ede51a){:target="_blank"}
++ [Cài đặt sử dụng Docker Compose](/quickstart/docker_compose_install)
++ [Cài đặt sử dụng Docker](/quickstart/docker_install)
++ [Cài đặt từ dòng lệnh](/quickstart/command_install)
 
-## サーバーへインストールする
+## Cài đặt lên máy chủ
 
-[パッケージ版](https://www.ec-cube.net/download/){:target='_blank'}をダウンロードしていただき、Webインストーラ(GUI)を使用してサーバーへインストールする方法です。
+Phương pháp cài đặt lên máy chủ bằng cách tải [phiên bản gói](https://www.ec-cube.net/download/){:target='_blank'} và sử dụng trình cài đặt Web (GUI).
 
-+ [サーバーへインストールする](/quickstart/web-installer)
++ [Cài đặt lên máy chủ](/quickstart/web-installer)
 
-## Tips
+## Mẹo
 
-+ [コマンドラインインターフェイス](/quickstart/cli)
++ [Giao diện dòng lệnh](/quickstart/cli)

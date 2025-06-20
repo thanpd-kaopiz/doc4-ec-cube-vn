@@ -1,21 +1,20 @@
 ---
-title: セッション情報保存方法の変更
+title: Thay đổi cách lưu thông tin session
 keywords: session_handler
 permalink: session_handler_settings
 folder: i18n
 
 ---
 
-## 概要
+## Tổng quan
 
-初期設定ではファイルシステム上にセッションデータが保存されますが、複数台のWebサーバーで稼働させる場合などにセッション情報の保存方法を変更することができます。
-EC-CUBEではSameSite Cookie対応のために独自のセッションハンドラー(`SameSiteNoneCompatSessionHandler`)を利用しています。セッション情報の保存方法を変更するには `SameSiteNoneCompatSessionHandler` 内で利用するセッションハンドラーを変更します。
+Mặc định, dữ liệu session sẽ được lưu trên file hệ thống. Tuy nhiên, khi chạy trên nhiều web server, bạn có thể thay đổi cách lưu session.
+EC-CUBE sử dụng session handler riêng (`SameSiteNoneCompatSessionHandler`) để hỗ trợ SameSite Cookie. Để thay đổi cách lưu session, hãy thay đổi session handler được sử dụng trong `SameSiteNoneCompatSessionHandler`.
 
+### Lưu vào RDBMS
 
-### RDBMSに保存する
-
-#### 設定例
-EC-CUBEのアプリケーションで利用しているデータベースと同じものを利用するには以下の設定を追加します。
+#### Ví dụ cấu hình
+Để sử dụng cùng database với ứng dụng EC-CUBE, thêm cấu hình sau:
 
 ```
 services:
@@ -30,10 +29,10 @@ services:
       - '@db_session_handler'
 ```
 
-#### テーブルの作成
-設定を有効化するには予めセッションを保存するテーブルを作成しておく必要があります。RDBMSに合わせて以下のDDLを実行してテーブルを作成します。
+#### Tạo bảng
+Trước khi sử dụng, cần tạo bảng lưu session. Chạy DDL phù hợp với RDBMS bạn dùng:
 
-- PostgreSQLの場合
+- PostgreSQL:
 
     ```
     CREATE TABLE sessions (
@@ -46,7 +45,7 @@ services:
     [pdo_session_storage #postgresql](https://symfony.com/doc/3.4/doctrine/pdo_session_storage.html#postgresql){:target="_blank"}
 
 
-- MySQLの場合
+- MySQL:
 
     ```
     CREATE TABLE `sessions` (
@@ -59,14 +58,14 @@ services:
     [pdo_session_storage.html #mysql](https://symfony.com/doc/3.4/doctrine/pdo_session_storage.html#mysql){:target="_blank"}
 
 
-### Memcacheに保存する
+### Lưu vào Memcache
 
-#### 必須ライブラリ
-- [memcached 拡張モジュール](https://www.php.net/manual/ja/book.memcached.php)
+#### Thư viện cần thiết
+- [memcached extension](https://www.php.net/manual/ja/book.memcached.php)
 
-#### 設定例
+#### Ví dụ cấu hình
 
-Memcacheがlocalhostのポート11211番で稼働しているとき以下のような設定になります。
+Nếu Memcache chạy trên localhost port 11211, cấu hình như sau:
 
 ```
 services:
@@ -87,15 +86,15 @@ services:
       - '@memcached_session_handler'
 ```
 
-### MongoDBに保存する
+### Lưu vào MongoDB
 
-#### 必須ライブラリ
-- [MongoDB driver 拡張モジュール](https://www.php.net/manual/ja/set.mongodb.php)
-- [mongodb/mongodb パッケージ](https://github.com/mongodb/mongo-php-library)
+#### Thư viện cần thiết
+- [MongoDB driver extension](https://www.php.net/manual/ja/set.mongodb.php)
+- [mongodb/mongodb package](https://github.com/mongodb/mongo-php-library)
 
-#### 設定
+#### Cấu hình
 
-MongoDBがlocalhostのポート27017番で稼働しているとき以下のような設定になります。
+Nếu MongoDB chạy trên localhost port 27017, cấu hình như sau:
 
 ```
 services:

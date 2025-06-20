@@ -1,71 +1,70 @@
 ---
-title: テストの実施における注意事項
+title: Các lưu ý khi thực hiện kiểm thử
 permalink: /penetration-testing/testing/attention
 ---
-**Attention!!**
-このツールは、サイトを実際に攻撃し、脆弱性が無いかを確認するツールです。
-必ずローカル環境の Docker でのみ使用し、稼動中のサイトには決して使用しないでください。
-意図せずデータが更新されたり、削除される場合があります。<br />
-**テストは自己責任で実施し、株式会社イーシーキューブ及び、関連する開発コミュニティは一切の責任を負いかねますのであらかじめご了承ください。**
+**Chú ý!!**
+Công cụ này thực sự tấn công vào website để kiểm tra xem có lỗ hổng bảo mật hay không.
+Chỉ sử dụng trên môi trường Docker cục bộ, tuyệt đối không sử dụng trên website đang hoạt động.
+Có thể dữ liệu sẽ bị thay đổi hoặc xóa ngoài ý muốn.<br />
+**Bạn tự chịu trách nhiệm khi kiểm thử, Công ty EC-CUBE và cộng đồng phát triển liên quan sẽ không chịu bất kỳ trách nhiệm nào, xin hãy lưu ý trước khi thực hiện.**
 {: .notice--danger}
 
-OWASP ZAP でのテスト実施において、いくつか考慮しなくてはならないことがあります。
-これらの点をしっかり抑えておかないと、 OWASP ZAP の動的スキャンも不十分に終わってしまい、脆弱性を検出できない結果となってしまいます。
+Khi thực hiện kiểm thử với OWASP ZAP, có một số điểm cần lưu ý.
+Nếu không nắm rõ các điểm này, quét động của OWASP ZAP sẽ không đầy đủ và có thể không phát hiện được lỗ hổng.
 
-## プロテクトモードを使用する
+## Sử dụng chế độ Protect Mode
 
-OWASP ZAP を起動したら、まず **プロテクトモード** に設定しましょう。
-プロテクトモードにすることにより、脆弱性に対する検査がコンテキスト内の許可URLに限定されます。
+Sau khi khởi động OWASP ZAP, hãy chuyển sang **Protect Mode**.
+Chế độ này sẽ giới hạn kiểm tra lỗ hổng trong các URL được phép trong context.
 
-![プロテクトモードを使用すること](/images/penetration-testing/quick_start_protect_mode.png)
+![Sử dụng Protect Mode](/images/penetration-testing/quick_start_protect_mode.png)
 
-**Attention!** 標準モード、攻撃モードでは意図せず外部サイトを攻撃してしまう可能性があります。
+**Chú ý!** Nếu dùng chế độ Standard hoặc Attack, có thể vô tình tấn công ra ngoài website.
 {: .notice--danger}
 
-## アンチCSRFトークンの自動生成機能
+## Chức năng tự động sinh token Anti-CSRF
 
-アンチCSRFトークンの自動生成機能は、うまく動作しない場合があります。
-OWASP ZAP でもβ版の機能です。
-CSRFトークンの不一致に関するエラーは、Local Proxes を使用した手動探索時と、動的スキャンは同一セッションを使用することで回避できます。
+Chức năng tự động sinh token Anti-CSRF có thể không hoạt động tốt.
+Ngay cả trên OWASP ZAP cũng chỉ là chức năng beta.
+Lỗi liên quan đến không khớp token CSRF có thể tránh được bằng cách sử dụng cùng một session khi thăm dò thủ công qua Local Proxes và khi quét động.
 
-## 手動探索と、動的スキャンは同一セッションを利用
+## Thăm dò thủ công và quét động phải dùng cùng một session
 
-Local Proxes を使用した手動探索時と、動的スキャン時は同一セッションを使用する必要があります。
-動的スキャンを実施する場合は、有効な CSRF トークンを使用していることを確認し、確実に攻撃が届いていることを確認しましょう。
+Khi thăm dò thủ công qua Local Proxes và khi quét động, cần sử dụng cùng một session.
+Khi thực hiện quét động, hãy đảm bảo token CSRF hợp lệ và xác nhận chắc chắn tấn công đã được thực hiện.
 
-## スパイダーの使用
+## Sử dụng Spider
 
-スパイダーを使用すると、動的スキャン時にセッションを引き継げず、CSRFトークンが変化してしまい、テストが失敗してしまいます。
-スパイダーによる自動探索を使用したテストは、 GET でのリクエストのみ使用可能です。
+Nếu sử dụng Spider, session sẽ không được giữ lại khi quét động, token CSRF sẽ thay đổi và kiểm thử sẽ thất bại.
+Spider chỉ nên dùng để kiểm thử các request GET.
 
-## POST のフォーム
+## Form POST
 
-前述のセッション及び CSRF トークンの課題から、 POST で submit するフォームはすべて手動探索した方が確実です。
+Do vấn đề về session và token CSRF, nên thăm dò thủ công tất cả các form submit bằng POST để đảm bảo.
 
-## 特殊な遷移パターン
+## Pattern chuyển trang đặc biệt
 
-mode=confirm, mode=complete のように、 POST のパラメータで遷移を制御しているURLは、上位階層から、まとめて動的スキャンできません。
-履歴などからパラメータごとに個別に動的スキャンする必要があります。
+Với các URL điều khiển chuyển trang bằng tham số POST như mode=confirm, mode=complete, không thể quét động toàn bộ từ tầng trên.
+Cần quét động từng tham số riêng biệt từ lịch sử, v.v.
 
-## sequence アドオンについて
+## Về addon sequence
 
-sequence アドオンを使用することで、複数画面遷移のテストができます。
-しかし、日本語入力に十分に対応していない模様です。お気に入りの削除機能など、日本語入力を伴わず、かつテスト対象のURLが変化しないケースのみに使用しましょう。
+Addon sequence cho phép kiểm thử chuyển trang nhiều màn hình.
+Tuy nhiên, có vẻ chưa hỗ trợ tốt nhập tiếng Nhật. Chỉ nên dùng cho các chức năng không liên quan đến nhập tiếng Nhật và URL không thay đổi.
 
-## 管理画面の動的スキャンについて
+## Quét động màn hình quản trị
 
-管理画面は、ログアウトしない限り CSRF トークンが変化しないため、連続して動的スキャン可能です。
-しかし、動的スキャンが長時間に及ぶと、何らかの原因で失敗してしまう確率が高くなります。
+Màn hình quản trị có thể quét động liên tục vì token CSRF không thay đổi trừ khi logout.
+Tuy nhiên, nếu quét động kéo dài, khả năng thất bại sẽ tăng lên.
+Nên lặp lại thăm dò thủ công và quét động theo từng chức năng để đảm bảo.
 
-機能ごとに手動探索、動的スキャンを繰替えした方が確実です。
+## Addon beta, alpha
 
-## ベータ版、アルファ版のアドオン
+Nếu cài thêm các addon kiểm tra XSS, SQL Injection beta/alpha, số lượng kiểm tra sẽ tăng rất nhiều.
+Kết quả là quét động kéo dài, session có thể bị thay đổi và kiểm thử thất bại.
 
-追加の XSS, SQLインジェクションの検査項目など、ベータ版、アルファ版のアドオンを入れると、大量の検査項目が生成されます。
-その結果、動的スキャンが長時間に及び、セッションが変更されてしまい、失敗する可能性が高くなります。
+## Không nên quá tin vào kết quả kiểm thử
 
-## テスト結果のみを過信しない
-
-OWASP ZAP にも限界があり、発見できない脆弱性もあります。
-1回のテスト結果のみを過信せず、継続的な調査を実施しましょう。
+OWASP ZAP cũng có giới hạn, vẫn có thể có lỗ hổng không phát hiện được.
+Không nên chỉ tin vào một lần kiểm thử, hãy kiểm tra thường xuyên và liên tục.
 

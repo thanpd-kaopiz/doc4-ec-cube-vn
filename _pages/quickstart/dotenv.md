@@ -1,23 +1,22 @@
 ---
 layout: single
-title: 本番環境での .env ファイル利用
-keywords: install
+title: Sử dụng file .env trong môi trường production
+keywords: cài đặt
 tags: [quickstart, install, dotenv]
 permalink: quickstart/dotenv
 folder: quickstart
-description: 本番環境での .env ファイルの利用についての説明です。
+description: Hướng dẫn sử dụng file .env trong môi trường production.
 ---
 
-## 本番環境での .env ファイルの利用について
+## Về việc sử dụng file .env trong môi trường production
 
-インストール完了後、インストールディレクトリにデータベースの接続情報等が設定された **.env** ファイルが生成されます。
-**.env** ファイルは、開発用途での環境変数を設定するためのものであり、本番環境での使用は推奨されません。
-本番環境では、環境変数をサーバ設定ファイルに設定することを推奨します。
-サーバ設定ファイルに環境変数を設定することにより、環境変数が外部に暴露される危険性が減り、安全に運用できます。
+Sau khi cài đặt xong, một file **.env** sẽ được tạo ra trong thư mục cài đặt, chứa thông tin kết nối database và các biến môi trường khác.
+**File .env** chủ yếu dùng cho mục đích phát triển, không khuyến khích sử dụng trong môi trường production.
+Trong môi trường production, nên thiết lập biến môi trường trong file cấu hình của server để đảm bảo an toàn, tránh lộ thông tin ra ngoài.
 
-### Apache での設定例
+### Ví dụ thiết lập với Apache
 
-httpd.conf や、 .htaccess ファイルに設定します。
+Thiết lập trong httpd.conf hoặc file .htaccess:
 
 ```
 SetEnv APP_ENV prod
@@ -31,25 +30,25 @@ SetEnv ECCUBE_ADMIN_ROUTE admin
 SetEnv ECCUBE_COOKIE_PATH /
 ```
 
-[参考: Apache HTTP サーバ バージョン 2.4 - SetEnv ディレクティブ](https://httpd.apache.org/docs/2.4/ja/mod/mod_env.html#setenv){:target="_blank"}
+[Tham khảo: Apache HTTP Server 2.4 - SetEnv directive](https://httpd.apache.org/docs/2.4/ja/mod/mod_env.html#setenv){:target="_blank"}
 
-### サーバ設定ファイルに環境変数を設定した場合の注意事項
+### Lưu ý khi thiết lập biến môi trường trong file cấu hình server
 
-サーバ設定ファイルに環境変数を設定した場合、 以下の機能を管理画面から設定することができません。
+Khi thiết lập biến môi trường trong file cấu hình server, bạn sẽ không thể thay đổi các chức năng sau từ trang quản trị:
 
-**サーバ設定ファイルの環境変数を変更し、キャッシュクリアする必要がありますのでご注意ください。**
+**Cần thay đổi biến môi trường trong file cấu hình server và xóa cache sau khi thay đổi.**
 
-- 管理画面→オーナーズストア→テンプレート
-- 管理画面→設定→システム設定→セキュリティ管理
+- Quản lý template tại: Quản trị → Owners Store → Template
+- Quản lý bảo mật tại: Quản trị → Cài đặt → Cài đặt hệ thống → Quản lý bảo mật
 
-### bin/console コマンドの使用について
+### Về việc sử dụng lệnh bin/console
 
-`bin/console` コマンドを使用する場合、通常は .env ファイルから環境変数を取得します。
-.env を使用しない場合は、 shell の環境変数に設定をします。
-この場合、 `.bashrc` などの shell の設定ファイルのパーミッションは 600 など、オーナー以外は読み書きできない設定にしておくことを強く推奨します。
+Khi sử dụng lệnh `bin/console`, mặc định sẽ lấy biến môi trường từ file .env.
+Nếu không dùng .env, hãy thiết lập biến môi trường trong shell.
+Nên đặt quyền file cấu hình shell như `.bashrc` là 600 để đảm bảo an toàn.
 
 ```
-## .bashrc の設定例
+## Ví dụ thiết lập trong .bashrc
 export APP_ENV="prod"
 export APP_DEBUG="0"
 export DATABASE_URL="pgsql://dbuser:password@127.0.0.1/cube4_dev"

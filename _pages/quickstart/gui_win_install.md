@@ -1,238 +1,210 @@
 ---
-title: Windows環境でXAMPPを使用したインストール方法
-keywords: install XAMPP
+title: Hướng dẫn cài đặt bằng XAMPP trên Windows
+keywords: cài đặt XAMPP
 tags: [quickstart, install, gui]
 permalink: quickstart/gui_win_install
 folder: quickstart
-description: EC-CUBE4系をXAMPPを使用してWindowsのローカル環境へインストールする方法を解説します。
+description: Hướng dẫn cài đặt EC-CUBE4 trên môi trường Windows sử dụng XAMPP.
 ---
 
-## インストールの前に
-XAMPPを使用してWindowsのローカル環境へインストールする方法を解説します。  
-[システム要件](/quickstart/requirement)からご使用されるEC-CUBEに対応しているphpバージョン等をご確認ください。  
-この記事の構築環境は以下の通りです。  
+## Trước khi cài đặt
+Bài viết này hướng dẫn cài đặt EC-CUBE4 trên môi trường Windows sử dụng XAMPP.  
+Hãy kiểm tra phiên bản PHP phù hợp với EC-CUBE bạn sử dụng tại [Yêu cầu hệ thống](/quickstart/requirement).  
+Môi trường mẫu trong bài viết này như sau:  
 ```
-// サンプルの構築環境
+// Môi trường mẫu
 Windows 10
 EC-CUBE 4.0.4
 XAMPP 7.4.7
 ```
 
+## Tải và cài đặt XAMPP
+Đầu tiên, hãy chuẩn bị XAMPP.  
+EC-CUBE4.0.4 hỗ trợ PHP 7.4.  
+Bạn cần tải đúng phiên bản XAMPP phù hợp với phiên bản PHP của EC-CUBE bạn sử dụng.  
 
-## XAMPPをダウンロード、インストール
-まずはXAMPPを準備します。  
-EC-CUBE4.0.4は、php7.4に対応しています。  
-ご使用されるEC-CUBEに対応したphpバージョンのXAMPPをダウンロードする必要があります。  
+Truy cập [Trang chủ XAMPP](https://www.apachefriends.org/jp/index.html){:target='_blank'},
+chọn menu để vào trang tải về.  
+Tải về phiên bản XAMPP phù hợp.  
+Bạn cũng có thể tải các phiên bản cũ hơn tại mục "Other downloads".
 
-[XAMPP公式サイト](https://www.apachefriends.org/jp/index.html){:target='_blank'}へアクセスし、
-メニューからダウンロードページへ移動します。  
-該当のphpバージョンのXAMPPをダウンロードします。  
-「その他のダウンロード」の項目から古いバージョンのXAMPPもダウンロードできます。
+Sau khi tải về, hãy cài đặt XAMPP.  
 
-ダウンロードできたらXAMPPをインストールします。  
+## Tải EC-CUBE
+Tiếp theo, hãy tải EC-CUBE.  
+Tải phiên bản mới nhất từ [Trang tải về EC-CUBE](https://www.ec-cube.net/download/){:target='_blank'}.  
+※ Cần đăng ký thành viên để tải về.  
 
+Sau khi tải về, hãy giải nén file.  
 
+## Đặt EC-CUBE vào XAMPP
+Giải nén EC-CUBE và đặt vào thư mục htdocs của XAMPP.  
 
-## EC-CUBEをダウンロード
-続いて、EC-CUBEをダウンロードします。  
-[EC-CUBE公式サイトのダウンロードページ](https://www.ec-cube.net/download/){:target='_blank'}から最新版のEC-CUBEをダウンロードします。  
-※ ダウンロードには会員登録が必要です。  
-
-ダウンロードしたら解凍します。  
-
-
-
-## XAMPPにEC-CUBEを配置
-解凍したEC-CUBEをXAMPPのhtdocsディレクトリ（フォルダ）に配置します。  
-
-**配置したディレクトリの構造でショップのトップページURLが決まります。**  
-`http://127.0.0.1/{htdocsの中に作成したディレクトリ名}/`  
-
+**URL trang chủ shop sẽ phụ thuộc vào cấu trúc thư mục bạn đặt.**  
+`http://127.0.0.1/{tên thư mục bạn tạo trong htdocs}/`  
 
 ```
-例:htdocsの中にtest-shopというディレクトリを作成し、そこにeccube-4.0.4を配置した場合
-■ ディレクトリ構造
+Ví dụ: Tạo thư mục test-shop trong htdocs và đặt eccube-4.0.4 vào đó
+■ Cấu trúc thư mục
 Windows(C:)\xampp\htdocs\test-shop\eccube-4.0.4\
 
-■ ショップのトップページURL
+■ URL trang chủ shop
 http://127.0.0.1/test-shop/eccube-4.0.4/
 ```
-※ まだEC-CUBEをインストールしていないので、ショップURLにアクセスしてもサイトは表示されません。  
-※ eccube-4.0.4の名前は自由に変えられます。 
+※ Chưa cài đặt EC-CUBE nên truy cập URL shop sẽ chưa hiển thị trang web.  
+※ Tên thư mục eccube-4.0.4 có thể đổi tùy ý.  
 
-test-shopを作成せずにeccube-4.0.4のみhtdocsに配置するとショップURLは以下のようになります。  
+Nếu chỉ đặt eccube-4.0.4 vào htdocs mà không tạo test-shop, URL shop sẽ là:  
 `http://127.0.0.1/eccube-4.0.4/`  
 
-
-## データベース作成
-XAMPPを起動します。  
-Apacheの「Start」とMySQLの「Start」と「Admin」をクリックしてphpMyAdminを立ち上げます。  
+## Tạo database
+Khởi động XAMPP.  
+Nhấn "Start" cho Apache và MySQL, sau đó nhấn "Admin" để mở phpMyAdmin.  
 ![XAMPP](/images/install/gui-win/xampp1.png)
 
-phpMyAdminが開きます。
+phpMyAdmin sẽ mở ra.
 ![phpMyAdmin](/images/install/gui-win/mysql.png)
 
-「新規作成」をクリックしてデータベース名を入力し、データベースを作成します。  
+Nhấn "Tạo mới" và nhập tên database, sau đó tạo database.  
 ```
-例
-データベース名
+Ví dụ
+Tên database
 `eccube123_`
 
-照合順序はutf8mb4_general_ciのままで問題ありません。
-``` 
+Collation giữ nguyên utf8mb4_general_ci.
+```
 
-XAMPPにはデータベースアカウントが標準で入っており、そちらを使用してEC-CUBEをインストールします。  
-もしアカウントを作成する場合は、メニューの「ユーザーアカウント」から作成してください。
+XAMPP có sẵn tài khoản database, bạn có thể dùng để cài EC-CUBE.  
+Nếu muốn tạo tài khoản mới, vào menu "Tài khoản người dùng" để tạo.
 
-※ 本番環境としてデータベースを作成する場合、ユーザーアカウントを作成してください。  データベースの接続情報（データベース名、アカウント情報等）が外部に漏れると、個人情報の漏洩などの原因になります。  管理にはご注意ください。
+※ Nếu dùng cho môi trường production, hãy tạo tài khoản riêng cho database.  Thông tin kết nối database (tên, tài khoản, v.v.) nếu bị lộ sẽ gây nguy hiểm.  Hãy quản lý cẩn thận.
 
+## Chỉnh sửa file ini
 
-## iniファイルの編集
-
-XAMPPを起動します。  
-ApacheとMySQLのActions項目の「Start」をクリックします。  
+Khởi động XAMPP.  
+Nhấn "Start" cho Apache và MySQL.  
 ![XAMPP](/images/install/gui-win/xampp2.png)
 
-ブラウザから以下のURLにアクセスします。  
-`http://127.0.0.1/{EC-CUBEをアップロードしたディレクトリ名}/`  
+Truy cập trình duyệt với URL:  
+`http://127.0.0.1/{tên thư mục chứa EC-CUBE}/`  
 
-インストール画面が表示されます。  
+Màn hình cài đặt sẽ xuất hiện.  
 
 ![install step0](/images/install/gui-win/step0.png)
 
-「intl拡張モジュールが有効になっていません」というエラーが表示されます。  
+Nếu xuất hiện lỗi "intl extension chưa được bật".  
 
-以下のディレクトリにあるphp.iniファイルを編集し設定を変更します。  
-`Windows(C:）\xampp\php\php.ini`  
+Hãy mở file php.ini tại thư mục sau:  
+`Windows(C:)\xampp\php\php.ini`  
 
-php.iniを開いたら、ファイル内を「intl」で検索します。  
+Tìm kiếm "intl" trong file php.ini.  
 
 ```
 ;extension=intl
 ```
-上記の記述が見つかるので、;を削除します。  
-以下の状態でphp.iniを保存します。
+Tìm dòng trên và xóa dấu ; phía trước.  
+Sau đó lưu lại:
 ```
 extension=intl
 ```
 
-次に、php.iniにあるタイムアウトの設定を変更します。  
-XAMPP環境は動作が遅く、インストール時にタイムアウトが発生する場合があります。  
-ファイル内を「max_execution_time」で検索すると以下の記述が見つかります。
+Tiếp theo, chỉnh sửa thời gian timeout trong php.ini.  
+Tìm kiếm "max_execution_time" trong file:
 ```
 max_execution_time=30
 ```
-以下のように変更します。  
+Sửa thành:
 ```
 max_execution_time=120
 ```
-※ ご使用のPCのスペックが低い場合は、もう少し大きな数字に変更することを推奨します。  
+※ Nếu máy yếu, nên tăng giá trị này lên nữa.  
 
 ```
-// 例
+// Ví dụ
 max_execution_time=300
 ```
-**XAMPPを再起動します。**  
-XAMPPのApacheとMySQLのActions項目の「Stop」をクリックします。  
-10秒ほど時間を置き、再度「Start」をクリックします。  
+**Khởi động lại XAMPP.**  
+Nhấn "Stop" cho Apache và MySQL, đợi 10 giây rồi nhấn "Start" lại.  
 
-ブラウザから以下のURLにアクセスします。  
-`http://127.0.0.1/{EC-CUBEをアップロードしたディレクトリ名}/`  
+Truy cập lại URL:  
+`http://127.0.0.1/{tên thư mục chứa EC-CUBE}/`  
 
 ![install step1](/images/install/step1.png)
 
-「intl拡張モジュールが有効になっていません」のエラーが消えていれば、php.iniの設定変更は完了です。  
+Nếu không còn lỗi "intl extension chưa được bật" thì đã chỉnh xong php.ini.  
 
-続いて、EC-CUBEのインストールを行います。
+Tiếp tục cài đặt EC-CUBE.
 
-インストール画面で「次へ進む」をクリックします。
+Nhấn "Tiếp theo" trên màn hình cài đặt.
 
-
-## EC-CUBEのインストール
-
+## Cài đặt EC-CUBE
 
 ![install step2](/images/install/step2.png)
-「次へ進む」をクリックします。
+Nhấn "Tiếp theo".
 
-
-### サイトの設定
+### Thiết lập website
 
 ![install step3](/images/install/step3.png)
 
-#### 店舗の基本情報
+#### Thông tin cơ bản của cửa hàng
 
-- **あなたの店名**
-  - 店名を入力してください。日本語でも問題ありません。
-- **メールアドレス**
-  - ここで指定するメールアドレス宛に注文通知メールなどが送信されます。
-- **管理画面ログインID**
-  - 管理画面にログインする際に利用する管理者のログインIDです。一番権限の強いスーパーユーザーなので、「admin」などの推測されやすいIDは不正アクセスや情報漏洩の元になるので避けてください。  適当な意味を持たない文字列が良いです。
-- **管理画面パスワード**
-  - 上記の管理者がログインする際に使用するパスワードを指定します。  ここで指定するパスワードを忘れると**管理画面にログインできなくなる**ので必ず控えてください。  
-  EC-CUBEには**管理者のパスワード再発行機能は実装されていません。**  
-  管理者ログインIDと同様に意味を持たない複雑なパスワードにしてください。  
-  「test1234」や「password」などは**絶対避けてください**  
-- **管理画面のディレクトリ名**  
-  - 管理画面にアクセスする場合のURLになります。  
-  http://127.0.0.1/{EC-CUBEをインストールしたディレクトリ}/{管理画面のディレクトリ名}/ でアクセスする事になります。  
-  こちらのディレクトリ名も「admin」や「dashboard」など推測されやすい文字列を指定すると危険です。  
-  適当な意味を持たない文字列を指定してください。
-- **サイトのアクセスをSSL経由に強制します**  
-  - ローカル環境では入力しないでください。
-- **管理画面へのアクセスを、以下のIPに制限します**
-  - 管理画面へのアクセスを特定のIPアドレスに固定します。  
-  ローカル環境では特に指定しなくて大丈夫です。  
-  こちらにIPアドレスを指定すると、指定したIPアドレスのみ管理画面にアクセスできます。  
-  指定した方がセキュリティは強くなりますが、スマートフォンの公衆回線からアクセスできなくなるなど、利便性は損ないます。  
-  固定IPをお持ちでない方は指定しないでください。
+- **Tên cửa hàng của bạn**
+  - Nhập tên cửa hàng, có thể dùng tiếng Việt hoặc Nhật.
+- **Địa chỉ email**
+  - Email này sẽ nhận thông báo đơn hàng.
+- **ID đăng nhập quản trị**
+  - ID dùng để đăng nhập trang quản trị. Không nên đặt "admin" hoặc các ID dễ đoán để tránh bị tấn công. Nên đặt chuỗi ngẫu nhiên.
+- **Mật khẩu quản trị**
+  - Mật khẩu đăng nhập quản trị. Hãy ghi nhớ, nếu quên sẽ không đăng nhập được.  EC-CUBE **không có chức năng lấy lại mật khẩu quản trị**.  Nên đặt mật khẩu phức tạp, không dùng "test1234" hay "password".
+- **Tên thư mục quản trị**  
+  - URL truy cập quản trị sẽ là:  
+  http://127.0.0.1/{thư mục EC-CUBE}/{tên thư mục quản trị}/  
+  Không nên đặt "admin" hay "dashboard". Nên đặt tên khó đoán.
+- **Bắt buộc truy cập site qua SSL**  
+  - Không cần nhập ở môi trường local.
+- **Giới hạn IP truy cập quản trị**
+  - Chỉ cho phép IP nhất định truy cập quản trị. Ở local không cần thiết lập. Nếu có IP cố định thì nên thiết lập để tăng bảo mật.
 
-*※ 管理画面のアクセス情報が漏洩すると個人情報の漏洩や詐欺に利用されるなど甚大な被害が発生します。取り扱いには充分にご注意ください。*
+*Lưu ý: Nếu thông tin truy cập quản trị bị lộ sẽ rất nguy hiểm. Hãy bảo mật cẩn thận!*
 
-#### メール設定
-ローカル環境では特に指定しなくて問題ありません。
+#### Thiết lập email
+Ở local không cần thiết lập gì thêm.
 
-
-### データベースの設定入力 
+### Thiết lập database
 ![install step 4](/images/install/gui-win/step5.png)
-データベースの情報を入力します。  
-**今回はXAMPPに標準で用意されているアカウントを使用します。**
+Nhập thông tin database.  
+**Ở đây dùng tài khoản mặc định của XAMPP.**
 
-- **データベースの種類**
-  - 本番環境ではMySQLかPostgreSQLを利用してください。
-- **データベースのホスト名**
-  - localhostになります。
-- **データベースのポート番号**
-  - 指定しなくても大丈夫です。
-- **データベース名**
-  - 準備したデータベース名を指定してください。  サンプルでは「eccube123_」です。
-- **ユーザー名**
-  - rootになります。
-- **パスワード**
-  - 空欄になります。
+- **Loại database**
+  - Ở môi trường production nên dùng MySQL hoặc PostgreSQL.
+- **Host database**
+  - Là localhost.
+- **Port database**
+  - Có thể để trống.
+- **Tên database**
+  - Nhập tên database đã tạo, ví dụ "eccube123_".
+- **Tên người dùng**
+  - Là root.
+- **Mật khẩu**
+  - Để trống.
 
-※ユーザー名やパスワードは本番環境では独自に作成してください。
+※ Ở môi trường production nên tạo tài khoản riêng.
 
-一通り入力したら「次へ進む」をクリックします。  
+Nhập xong nhấn "Tiếp theo".  
 
-
-
-
-### データベースの初期化
+### Khởi tạo database
 ![install step 6](/images/install/step6.png)
 
-データベースに初期データを登録します。
+Nhấn "Tiếp theo" để đăng ký dữ liệu khởi tạo vào database.
 
-「次へ進む」をクリックします。
-
-
-### インストール完了
+### Hoàn tất cài đặt
 ![install step 6](/images/install/step7.png)
 
-**おめでとうございます！**  
-この画面が表示されたらインストール完了です。  
+**Chúc mừng bạn!**  
+Nếu thấy màn hình này là đã cài đặt thành công.  
 
-管理画面の使い方は[こちら](https://www.ec-cube.net/manual/ec-cube4/){:target="_blank"}。
+Hướng dẫn sử dụng trang quản trị: [tại đây](https://www.ec-cube.net/manual/ec-cube4/){:target="_blank"}.
 
-*管理画面を表示*をクリックすると、管理画面のログイン画面に遷移します。[店舗の基本情報](#店舗の基本情報)で入力した管理者の情報で管理画面にログインしてください。  
+Nhấn *Hiển thị trang quản trị* để vào màn hình đăng nhập quản trị. Đăng nhập bằng thông tin đã nhập ở [Thông tin cơ bản của cửa hàng](#thông-tin-cơ-bản-của-cửa-hàng).
 
-もし、ここでログインできない場合は、管理者のパスワードやログインIDを間違えて控えた可能性が高いので、インストールしたディレクトリの .envを削除し、データベースを空にして再度インストール手順を行ってください。
+Nếu không đăng nhập được, có thể bạn đã nhập sai ID hoặc mật khẩu quản trị. Hãy xóa file .env trong thư mục cài đặt và làm lại các bước cài đặt từ đầu.

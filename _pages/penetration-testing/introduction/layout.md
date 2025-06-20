@@ -1,32 +1,32 @@
 ---
-title: ウェブアプリケーション侵入テストの構成
+title: Cấu trúc kiểm thử xâm nhập ứng dụng web
 permalink: /penetration-testing/introduction/layout
 ---
-docker-compose を使用し、 EC-CUBE と Docker 版 OWASP ZAP を連携します。
-Docker 版 OWASP ZAP では、 Webswing 経由で OWASP ZAP の管理画面へアクセスします。
+Sử dụng docker-compose để kết nối EC-CUBE và OWASP ZAP bản Docker.
+Với OWASP ZAP bản Docker, bạn có thể truy cập giao diện quản lý của OWASP ZAP thông qua Webswing.
 
 ![Webswing](/images/penetration-testing/introduction_layout_webswing.png)
 
-環境に依存しにくく、 docker-compose で基本的な設定を準備できるため、誰でも同じ環境を構築しやすいのがメリットです。
+Ưu điểm là không phụ thuộc vào môi trường, có thể chuẩn bị cấu hình cơ bản bằng docker-compose, giúp bất kỳ ai cũng dễ dàng xây dựng môi trường giống nhau.
 
-セッションを保存しておけば、後から Windows 版や Mac 版など、スタンドアロン版の OWASP ZAP で保存したセッションを開いて、スキャン結果を確認することが可能です。
+Nếu lưu lại session, bạn có thể mở lại session đã lưu bằng OWASP ZAP bản Windows, Mac hoặc Standalone để xác nhận kết quả quét.
 
-## docker-compose の構成
+## Cấu trúc docker-compose
 
-![docker-compose の構成](https://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://raw.githubusercontent.com/EC-CUBE/doc4.ec-cube.net/master/uml/introduction_layout.puml)
+![Cấu trúc docker-compose](https://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://raw.githubusercontent.com/EC-CUBE/doc4.ec-cube.net/master/uml/introduction_layout.puml)
 
-### メリット
+### Ưu điểm
 
-- ローカル環境で完結するため、外部に迷惑をかけることなく安全
-  - 動的スキャンではターゲットに対して実際に攻撃を仕掛ける。プロテクトモードでは、攻撃が外部に漏れることは無い
-  - ただし、標準モード、攻撃モードを使用した場合は、外部サービスにリクエストするため注意
-- 実際に脆弱性を再現させてテストしても外部に漏れることなく安全
-- docker-compose コマンドのみで初期設定が完了するため、構築が簡単
-- 誰がやっても同じような環境を構築しやすい
+- Có thể hoàn thành trong môi trường cục bộ, an toàn vì không gây ảnh hưởng ra bên ngoài
+  - Ở chế độ quét động, sẽ thực hiện tấn công thực tế vào mục tiêu. Ở chế độ bảo vệ, không có tấn công ra bên ngoài
+  - Tuy nhiên, khi sử dụng chế độ tiêu chuẩn hoặc tấn công, cần chú ý vì có thể gửi request ra dịch vụ bên ngoài
+- Có thể tái hiện lỗ hổng và kiểm thử mà không lo rò rỉ ra ngoài
+- Chỉ cần lệnh docker-compose là hoàn tất cấu hình ban đầu, dễ dàng xây dựng
+- Ai cũng có thể xây dựng môi trường giống nhau
 
-### デメリット
+### Nhược điểm
 
-- 実際に運用しているWebサーバーの設定など、運用環境に関するテストはできない
-- 動作中は、セッション情報など数十GBのディスク容量を消費するため、リソースの少ないローカル環境では厳しい
-- スタンドアロン版の OWASP ZAP に比べて動作が遅い
+- Không thể kiểm thử các thiết lập liên quan đến môi trường vận hành thực tế của server web
+- Trong quá trình hoạt động, session có thể tiêu tốn hàng chục GB dung lượng đĩa, nên sẽ khó khăn với môi trường cục bộ ít tài nguyên
+- Tốc độ chậm hơn so với OWASP ZAP bản Standalone
 

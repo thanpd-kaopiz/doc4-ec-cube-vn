@@ -1,12 +1,11 @@
 ---
-title: カスタマイズサンプル集
+title: Tổng hợp các ví dụ tuỳ biến
 keywords: customize sample
 tags: [customize, sample]
 permalink: reverse-lookup/sample-code
 folder: reverse-lookup
 ---
 
-
 ---
 
-- [商品詳細画面へのYouTube動画の追加](/reverse-lookup/sample-code/add-youtube-to-product-detail)
+- [Thêm video YouTube vào trang chi tiết sản phẩm](/reverse-lookup/sample-code/add-youtube-to-product-detail)

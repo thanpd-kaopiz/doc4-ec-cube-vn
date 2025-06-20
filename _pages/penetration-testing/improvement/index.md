@@ -1,40 +1,40 @@
 ---
-title: セキュリティの改善
+title: Cải thiện bảo mật
 permalink: /penetration-testing/improvement
 ---
-## セキュリティホールを発見した場合
+## Khi phát hiện lỗ hổng bảo mật trên website
 
-ウェブサイトのセキュリティホールを発見した場合、脆弱性の情報はウェブサイトの運営者にとっても、ウェブサイト利用者にとっても脅威になりうるため、情報の取り扱いに注意が必要です。
-脆弱性情報は、当事者以外に流出しないよう厳重に管理してください。
+Khi phát hiện lỗ hổng bảo mật trên website, thông tin về lỗ hổng có thể trở thành mối đe dọa đối với cả quản trị viên và người dùng website, do đó cần chú ý khi xử lý thông tin này.
+Vui lòng quản lý nghiêm ngặt thông tin lỗ hổng, không để rò rỉ ra ngoài những người liên quan.
 
-何より、他人に被害を生じさせないことが重要です。
-安全に対策されるまで、発見者と運営者が協調し、誠意を持って対応しましょう。
+Quan trọng nhất là không để người khác bị thiệt hại.
+Cho đến khi có biện pháp an toàn, người phát hiện và quản trị viên nên phối hợp và xử lý một cách thiện chí.
 
-**Note:** [脆弱性の発見・報告に関する勉強会 資料](https://www.ipa.go.jp/security/vuln/report/notice/handling_20190926.html){:target="_blank"} が参考になります。
+**Lưu ý:** [Tài liệu tham khảo về phát hiện và báo cáo lỗ hổng bảo mật](https://www.ipa.go.jp/security/vuln/report/notice/handling_20190926.html){:target="_blank"} sẽ hữu ích cho bạn.
 {: .notice--info}
 
-## 脆弱性の報告方法
+## Cách báo cáo lỗ hổng bảo mật
 
-[IPA 情報処理推進機構による脆弱性関連情報の届出受付窓口](https://www.ipa.go.jp/security/vuln/report/){:target="_blank"} または、 株式会社イーシーキューブ(support@ec-cube.net) までご連絡ください。
+Vui lòng liên hệ với [Cửa sổ tiếp nhận thông tin liên quan đến lỗ hổng bảo mật của IPA](https://www.ipa.go.jp/security/vuln/report/){:target="_blank"} hoặc Công ty cổ phần EC-CUBE (support@ec-cube.net).
 
-## EC-CUBE本体への反映
+## Phản hồi cho EC-CUBE
 
-EC-CUBE本体に脆弱性が発見された場合、 IPA や、脆弱性情報調整機関である JPCERT/CC と連携し、安全に対策されます。
+Nếu phát hiện lỗ hổng bảo mật trong EC-CUBE, sẽ phối hợp với IPA và JPCERT/CC (tổ chức điều phối thông tin lỗ hổng bảo mật) để xử lý an toàn.
 
-EC-CUBE利用店舗、利用者に被害を生じさせないよう、脆弱性情報は厳重に管理されます。
+Thông tin lỗ hổng sẽ được quản lý nghiêm ngặt để không gây thiệt hại cho các cửa hàng và người dùng EC-CUBE.
 
-EC-CUBE本体へ反映された脆弱性情報は、 **[EC-CUBE脆弱性リスト](https://www.ec-cube.net/info/weakness/){:target="_blank"}** にまとめられています。
+Thông tin lỗ hổng phản hồi cho EC-CUBE sẽ được tổng hợp tại **[Danh sách lỗ hổng bảo mật EC-CUBE](https://www.ec-cube.net/info/weakness/){:target="_blank"}**.
 
-**Note:** EC-CUBE2系、3系、4系の各バージョン最新版には、すべて脆弱性対策が実施されています。
-旧バージョンをご利用の場合は、未適用の脆弱性が無いようくれぐれもご注意ください。
+**Lưu ý:** Tất cả các phiên bản mới nhất của EC-CUBE 2, 3, 4 đều đã được áp dụng các biện pháp khắc phục lỗ hổng bảo mật.
+Nếu bạn đang sử dụng phiên bản cũ, vui lòng chú ý vì có thể còn tồn tại lỗ hổng chưa được vá.
 {: .notice--info}
 
-## テスト方法の改善
+## Cải thiện phương pháp kiểm thử
 
-今のところ、 OWASP ZAP を使用したペネトレーションテストは、手作業の部分も多く、EC-CUBE及びセキュリティに関する専門的な知識と、多大なマンパワーが必要です。
+Hiện tại, kiểm thử xâm nhập sử dụng OWASP ZAP vẫn còn nhiều thao tác thủ công, đòi hỏi kiến thức chuyên môn về EC-CUBE và bảo mật, cũng như tài nguyên máy tính lớn.
 
-今後は、 Selenium や GitHub Actions を活用した自動化を進めていく予定です。
+Trong tương lai, dự kiến sẽ tự động hóa bằng Selenium hoặc GitHub Actions.
 
-テストの改善提案がありましたら、 [GitHub の EC-CUBEリポジトリ](https://github.com/EC-CUBE/ec-cube){:target="_blank"} までぜひお寄せください。
+Nếu bạn có đề xuất cải thiện kiểm thử, hãy gửi về [repository EC-CUBE trên GitHub](https://github.com/EC-CUBE/ec-cube){:target="_blank"}.
 
 

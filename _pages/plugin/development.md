@@ -1,21 +1,21 @@
 ---
-title: プラグインを開発する
-keywords: plugin プラグイン 開発
+title: Phát triển Plugin
+keywords: plugin phát triển
 tags: [plugin, development]
 permalink: plugin_development
 
 ---
 
-プラグインの基本的な開発手順について解説します。
+Giải thích các bước cơ bản để phát triển plugin.
 
-## 前提条件
+## Điều kiện tiên quyết
 
-- EC-CUBEを[ローカル環境にインストール](/quickstart/install#cui%E3%81%A7%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B)していること
-- PHPがコマンドラインで実行できること
+- Đã [cài đặt EC-CUBE ở môi trường local](/quickstart/install#cui%E3%81%A7%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B)
+- Có thể chạy PHP trên dòng lệnh
 
-## プラグインの雛形を生成
+## Tạo khung plugin
 
-`bin/console eccube:plugin:generate` コマンドでプラグインの雛形を生成できます。
+Có thể tạo khung plugin bằng lệnh `bin/console eccube:plugin:generate`.
 
 ```shell
 bin/console eccube:plugin:generate
@@ -25,58 +25,57 @@ EC-CUBE Plugin Generator Interactive Wizard
 ===========================================
 
  name [EC-CUBE Sample Plugin]:
- > <プラグイン名を入力して Enter>
+ > <Nhập tên plugin rồi Enter>
 
  code [Sample]:
- > <プラグインコードを入力してEnter>
+ > <Nhập mã plugin rồi Enter>
 
  ver [1.0.0]:
- > <バージョン番号を入力してEnter>
+ > <Nhập số phiên bản rồi Enter>
 
- [OK] Plugin was successfully created: EC-CUBE Sample Plugin Sample 1.0.0
+ [OK] Plugin đã được tạo thành công: EC-CUBE Sample Plugin Sample 1.0.0
 ```
 
-上記で `app/Plugin/Sample` というプラグインの雛形が生成されます。
+Sau đó sẽ tạo ra khung plugin tại `app/Plugin/Sample`.
 
-## プラグインをインストール
+## Cài đặt plugin
 
-`bin/console eccube:plugin:install --code=<プラグインコード>` でインストールできます。
+Có thể cài đặt bằng lệnh `bin/console eccube:plugin:install --code=<mã plugin>`.
 
 ```shell
 bin/console eccube:plugin:install --code Sample
 
- Run bin/console cache:clear --no-warmup...
+ Chạy bin/console cache:clear --no-warmup...
 
- // Clearing the cache for the dev environment with debug
+ // Đang xóa cache cho môi trường dev với debug
  // true
 
- [OK] Cache for the "dev" environment (debug=true) was successfully cleared.
+ [OK] Đã xóa cache cho môi trường "dev" (debug=true).
 
 
 
- [OK] Installed.
+ [OK] Đã cài đặt.
 ```
 
-インストールが完了すると、EC-CUBE管理画面→オーナーズストア→プラグイン→プラグイン一覧にて確認できます。
+Sau khi cài đặt, có thể xác nhận tại EC-CUBE quản trị → Owners Store → Plugin → Danh sách plugin.
 
-その他、開発時に利用可能なコマンドは[こちらをご確認ください](/quickstart/cli#ec-cube%E3%81%8C%E6%8F%90%E4%BE%9B%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89)。
+Các lệnh khác có thể sử dụng khi phát triển, vui lòng xem [tại đây](/quickstart/cli#ec-cube%E3%81%8C%E6%8F%90%E4%BE%9B%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89)。
 
-## プラグインを開発する
+## Phát triển plugin
 
-`app/Plugin/<プラグインコード>` のファイルを修正し、開発してください。
+Hãy sửa file trong `app/Plugin/<mã plugin>` để phát triển.
 
-
-プラグインを削除すると、`app/Plugin/<プラグインコード>` 配下のファイルも物理的に削除されますのでご注意ください。
+Khi xóa plugin, toàn bộ file dưới `app/Plugin/<mã plugin>` cũng sẽ bị xóa vật lý, hãy chú ý!
 {: .notice--danger}
 
-## その他
+## Khác
 
-プラグインのプログラムを Git でバージョン管理したい場合は、以下の記事を参考にしてください。
+Nếu muốn quản lý mã nguồn plugin bằng Git, hãy tham khảo bài viết sau:
 
-[Composerを使いこなしてEC-CUBE4系プラグインの開発効率を爆上げする](https://zenn.dev/nanasess/articles/ec-cube4-plugin-development){:target="_blank"}
+[Sử dụng Composer để tăng hiệu suất phát triển plugin EC-CUBE4](https://zenn.dev/nanasess/articles/ec-cube4-plugin-development){:target="_blank"}
 
-プラグインの E2E テストをしたい場合は、以下の記事を参考にしてください。
+Nếu muốn viết test E2E cho plugin, hãy tham khảo bài viết sau:
 
-[10分でEC-CUBEプラグインのE2Eテストを書いてみる](https://zenn.dev/nanasess/articles/ec-cube-plugin-e2etesting-in-10mins){:target="_blank"}
+[Viết test E2E cho plugin EC-CUBE trong 10 phút](https://zenn.dev/nanasess/articles/ec-cube-plugin-e2etesting-in-10mins){:target="_blank"}
 
-オーナーズストアへ登録するプラグインのテストをしたい場合は、[次のページをご確認ください](/plugin_mock_package_api)。
+Nếu muốn test plugin trước khi đăng ký lên Owners Store, hãy xem [trang sau](/plugin_mock_package_api)。

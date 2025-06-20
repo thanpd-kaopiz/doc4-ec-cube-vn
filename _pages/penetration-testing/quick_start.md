@@ -1,67 +1,67 @@
 ---
-title: Quick Start
+title: Bắt đầu nhanh
 permalink: /penetration-testing/quick_start
 ---
 
-**Attention!** 意図しない外部サイトへの攻撃を防ぐため、 OWASP ZAP は必ず **プロテクトモード** で使用してください
-![プロテクトモードを使用すること](/images/penetration-testing/quick_start_protect_mode.png)
+**Chú ý!** Để tránh tấn công ngoài ý muốn đến các site bên ngoài, hãy luôn sử dụng OWASP ZAP ở **chế độ bảo vệ (Protect Mode)**
+![Sử dụng chế độ Protect Mode](/images/penetration-testing/quick_start_protect_mode.png)
 {: .notice--danger}
 
-1. [docker-compose を使用して EC-CUBE をインストールします](https://doc4.ec-cube.net/quickstart/docker_compose_install)
-1. テスト用のデータを生成しておきます
+1. [Cài đặt EC-CUBE bằng docker-compose](https://doc4.ec-cube.net/quickstart/docker_compose_install)
+1. Tạo dữ liệu test
     ```shell
-    ## APP_ENV: dev に設定
+    ## Đặt APP_ENV: dev
     sed -i.bak -e 's/APP_ENV: "prod"/APP_ENV: "dev"/g' ./docker-compose.yml
-    docker-compose up -d # 変更を反映
-    ## customer を1件生成
+    docker-compose up -d # Áp dụng thay đổi
+    ## Tạo 1 customer
     docker-compose -f docker-compose.yml -f docker-compose.owaspzap.yml exec ec-cube bin/console eccube:fixtures:generate --products=0 --customers=1 --orders=0
-    ## メールアドレスを zap_user@example.com に変更
+    ## Đổi email thành zap_user@example.com
     docker-compose -f docker-compose.yml -f docker-compose.owaspzap.yml exec ec-cube bin/console doctrine:query:sql "UPDATE dtb_customer SET email = 'zap_user@example.com' WHERE id = 1;"
-    ## ZAP でテストする場合は APP_ENV: prod に設定しておく
+    ## Khi test với ZAP, đặt lại APP_ENV: prod
     sed -i.bak -e 's/APP_ENV: "dev"/APP_ENV: "prod"/g' ./docker-compose.yml
-    docker-compose up -d # 変更を反映
+    docker-compose up -d # Áp dụng thay đổi
     ```
-1. OWASP ZAP コンテナを起動します
+1. Khởi động container OWASP ZAP
     ```shell
     docker-compose -f docker-compose.yml -f docker-compose.owaspzap.yml up -d zap
     ```
-    - *アドオンをアップデートするため、少し時間がかかります*
-    - 起動してから、 Firefox 以外のブラウザで `http://localhost:8081/zap/` へアクセスすると、OWASP ZAP の管理画面が表示されます
+    - *Sẽ mất một chút thời gian để cập nhật addon*
+    - Sau khi khởi động, truy cập `http://localhost:8081/zap/` bằng trình duyệt (trừ Firefox) để mở giao diện quản lý OWASP ZAP
 
-    **Note:** OWASP ZAP の起動直後は、画面表示が小さく、一部のツールバーボタンが隠れています。全画面表示にすると使いやすいです。
-    ![全画面表示](/images/penetration-testing/quick_start_fullwindow.png)
+    **Lưu ý:** Sau khi khởi động OWASP ZAP, giao diện sẽ nhỏ và một số nút toolbar bị ẩn. Hãy chuyển sang chế độ toàn màn hình để dễ sử dụng.
+    ![Toàn màn hình](/images/penetration-testing/quick_start_fullwindow.png)
     {: .notice--info}
-1. Firefox を起動し、設定→ネットワーク設定→接続設定からプロキシーの設定をします
-   - **手動でプロキシーを設定する** を選択
-   - HTTPプロキシー: localhost, ポート: 8090
-   - **このプロキシーを FTP と HTTPS でも使用する** にチェックを入れる
-1. Firefox に SSL ルート CA 証明書をインポートします
-   - ローカルの `path/to/ec-cube/zap/owasp_zap_root_ca.cer` に証明書が生成されています
-   - 設定→プライバシーとセキュリティ→証明書→証明書を表示から証明書マネージャーを表示
-   - 認証局証明書→読み込むをクリックし、 `path/to/ec-cube/zap/owasp_zap_root_ca.cer` を選択
-   - **この認証局によるウェブサイトの識別を信頼する** にチェックを入れ、 OK をクリック、設定を閉じます
-1. Firefox で `https://ec-cube/` へアクセスし、プロキシー経由で EC-CUBE にアクセスできるのを確認します。
-1. コンテキストをインポートします。
+1. Mở Firefox, vào Cài đặt → Cài đặt mạng → Cài đặt kết nối proxy
+   - Chọn **Thiết lập proxy thủ công**
+   - HTTP proxy: localhost, Port: 8090
+   - Tick vào **Sử dụng proxy này cho cả FTP và HTTPS**
+1. Import chứng chỉ gốc SSL CA vào Firefox
+   - Chứng chỉ được tạo ở `path/to/ec-cube/zap/owasp_zap_root_ca.cer`
+   - Vào Cài đặt → Quyền riêng tư & bảo mật → Chứng chỉ → Xem chứng chỉ để mở trình quản lý chứng chỉ
+   - Chọn Chứng chỉ CA → Nhập, chọn file `path/to/ec-cube/zap/owasp_zap_root_ca.cer`
+   - Tick vào **Tin tưởng CA này để xác thực website**, nhấn OK và đóng cài đặt
+1. Truy cập `https://ec-cube/` bằng Firefox để kiểm tra đã truy cập EC-CUBE qua proxy thành công
+1. Import context
     ```shell
-    ## 管理画面用
+    ## Cho admin
     docker-compose -f docker-compose.yml -f docker-compose.owaspzap.yml exec zap zap-cli -p 8090 context import /zap/wrk/admin.context
-    ## フロント(ログイン用)
+    ## Cho frontend (login)
     docker-compose -f docker-compose.yml -f docker-compose.owaspzap.yml exec zap zap-cli -p 8090 context import /zap/wrk/front_login.context
-    ## フロント(ゲスト用)
+    ## Cho frontend (guest)
     docker-compose -f docker-compose.yml -f docker-compose.owaspzap.yml exec zap zap-cli -p 8090 context import /zap/wrk/front_guest.context
     ```
-   **Note:** *複数のコンテキストを同時にインポートすると、セッションが競合してログインできなくなる場合があるため注意*
+   **Lưu ý:** *Nếu import nhiều context cùng lúc, có thể bị xung đột session và không đăng nhập được*
    {: .notice--warning}
-1. OWASP ZAP のツールバーにある [Forced User Mode On/Off ボタン](https://www.zaproxy.org/docs/desktop/ui/tltoolbar/#--forced-user-mode-on--off){:target="_blank"} を ON にすると、OWASP ZAP の自動ログインが有効になり、ユーザーログイン中のテストが有効になります
-   ![Forced User Mode On/Off ボタン](/images/penetration-testing/quick_start_forceusermode.png)
-1. テストを実施します
-   1. Firefox でページを巡回(手動探索)します
-   1. 手動探索して検出された URL に対して動的スキャンを実施します
-   1. アラートの検出を確認します
+1. Bật nút [Forced User Mode On/Off](https://www.zaproxy.org/docs/desktop/ui/tltoolbar/#--forced-user-mode-on--off){:target="_blank"} trên toolbar của OWASP ZAP để kích hoạt tự động đăng nhập khi test
+   ![Forced User Mode On/Off](/images/penetration-testing/quick_start_forceusermode.png)
+1. Tiến hành test
+   1. Duyệt các trang bằng Firefox (khám phá thủ công)
+   1. Thực hiện dynamic scan với các URL đã phát hiện
+   1. Kiểm tra các cảnh báo (alert) được phát hiện
 
 
-## 参考
+## Tham khảo
 
-- [DockerでOWASP ZAPを使う](https://pc.atsuhiro-me.net/entry/2019/08/19/011324){:target="_blank"}
-- [Docker版OWASP ZAPを動かしてみる](https://qiita.com/koujimatsuda11/items/83558cd62c20141ebdda){:target="_blank"}
-- [テスティングガイド](https://owasp.org/www-pdf-archive/OTGv3Japanese.pdf){:target="_blank"}
+- [Sử dụng OWASP ZAP với Docker](https://pc.atsuhiro-me.net/entry/2019/08/19/011324){:target="_blank"}
+- [Chạy OWASP ZAP bản Docker](https://qiita.com/koujimatsuda11/items/83558cd62c20141ebdda){:target="_blank"}
+- [Hướng dẫn testing](https://owasp.org/www-pdf-archive/OTGv3Japanese.pdf){:target="_blank"}

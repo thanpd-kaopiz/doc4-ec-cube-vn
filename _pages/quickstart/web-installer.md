@@ -1,238 +1,240 @@
 ---
-title: サーバーへインストールする
+title: Cài đặt lên máy chủ
 keywords: install
 tags: [quickstart, install]
 permalink: quickstart/web-installer
 folder: quickstart
-description: EC-CUBE 4系のインストールについての説明です。
+description: Hướng dẫn cài đặt EC-CUBE 4.
 ---
 
-## インストールの前に
-[システム要件](/quickstart/requirement)を満たしているか確認してください。
+## Trước khi cài đặt
+Hãy kiểm tra xem bạn có đáp ứng [yêu cầu hệ thống](/quickstart/requirement) hay không.
 
-このインストール手順では、サーバの設定、FTPソフト等の設定、使いかたについては解説していません。適時お使いのサーバ会社のマニュアル等を参照してください。
-- さくらインターネット: [https://help.sakura.ad.jp/206054522/](https://help.sakura.ad.jp/206054522/){:target="_blank"}
+Hướng dẫn cài đặt này không giải thích về cấu hình máy chủ, cấu hình phần mềm FTP, hoặc cách sử dụng chúng. Hãy tham khảo tài liệu của nhà cung cấp máy chủ của bạn khi cần thiết.
+- Sakura Internet: [https://help.sakura.ad.jp/206054522/](https://help.sakura.ad.jp/206054522/){:target="_blank"}
 - Xserver: [https://www.xserver.ne.jp/manual/man_ftp_setting.php](https://www.xserver.ne.jp/manual/man_ftp_setting.php){:target="_blank"}
 
-**次のステップ**
-- [データベースの準備をする](#データベースの準備をする)
+**Bước tiếp theo**
+- [Chuẩn bị cơ sở dữ liệu](#chuẩn bị cơ sở dữ liệu)
 
 ----
 
-## データベースの準備をする
-EC-CUBEはMySQL、PostgreSQLどちらかのデータベースを使用します。
-空のデータベースがひとつ必要ですので、新しく作成してください。
-データベースの作成方法は各ホスティング会社のヘルプを参照してください。
-- さくらインターネット: [https://help.sakura.ad.jp/360000225021/](https://help.sakura.ad.jp/360000225021/){:target="_blank"}
+## Chuẩn bị cơ sở dữ liệu
+EC-CUBE sử dụng cơ sở dữ liệu MySQL hoặc PostgreSQL.
+Bạn cần tạo một cơ sở dữ liệu trống mới.
+Hãy tham khảo hướng dẫn của từng nhà cung cấp dịch vụ lưu trữ để biết cách tạo cơ sở dữ liệu.
+- Sakura Internet: [https://help.sakura.ad.jp/360000225021/](https://help.sakura.ad.jp/360000225021/){:target="_blank"}
 - Xserver: [https://www.xserver.ne.jp/manual/man_db_setting.php](https://www.xserver.ne.jp/manual/man_db_setting.php){:target="_blank"}
 
-データベースを作成したら以下の4点を控えておいてください。
-- データベースユーザ名
-  - 例： eccube
-- データベースユーザパスワード
-  - 例： ht4379reguhfdoj
-- データベースホスト名
-  - 例： localhost
-- データベース名
-  - 例： eccube_db
+Sau khi tạo cơ sở dữ liệu, hãy ghi lại 4 thông tin sau:
+- Tên người dùng cơ sở dữ liệu
+  - Ví dụ: eccube
+- Mật khẩu người dùng cơ sở dữ liệu
+  - Ví dụ: ht4379reguhfdoj
+- Tên máy chủ cơ sở dữ liệu
+  - Ví dụ: localhost
+- Tên cơ sở dữ liệu
+  - Ví dụ: eccube_db
 
-*データベースの接続情報が外部に漏れると、個人情報の漏洩などの原因になります。管理には注意してください*
+*Thông tin kết nối cơ sở dữ liệu bị rò rỉ ra ngoài có thể dẫn đến rò rỉ thông tin cá nhân. Hãy quản lý cẩn thận.*
 
-**次のステップ**
-- [メールアカウントの準備をする](#メールアカウントの準備をする)
-
-----
-
-##  メールアカウントの準備をする
-EC-CUBEからはサンキューメールや会員登録メールなど、システムから自動でメールが送信されます。
-このメールの送信元となるアドレス、メールサーバの設定情報が必要になりますので、ご利用のメールサービスの案内に従い、メールアカウントの情報を準備してください。
-
-必要な情報は
-- メールアドレス
-- メールアカウントユーザ名
-- メールアカウントパスワード
-- メールサーバアドレス
-
-*メールアカウントの情報が外部に漏れると、個人情報の漏洩などの原因になります。管理には注意してください*
-
-**次のステップ**
-- [EC-CUEBのソースコードファイルをサーバにアップロードする](#ec-cubeのソースコードファイルをサーバにアップロードする)
+**Bước tiếp theo**
+- [Chuẩn bị tài khoản email](#chuẩn bị tài khoản email)
 
 ----
 
-## EC-CUBEのソースコードファイルをサーバにアップロードする
-インストールするためにはEC-CUBEのソースコードのファイルがサーバ上に展開されている必要があります。
+## Chuẩn bị tài khoản email
+EC-CUBE sẽ tự động gửi email như email cảm ơn và email đăng ký thành viên.
+Bạn cần có thông tin cấu hình của địa chỉ gửi email và máy chủ email. Hãy chuẩn bị thông tin tài khoản email theo hướng dẫn của dịch vụ email bạn sử dụng.
 
-FileZilla等のファイル転送ソフトを使っても可能ですが、EC-CUBEはファイル数が多く、エラーで全てが一度にアップロードできない事があるため、[EC-CUBE Downloaderを使う](#ec-cubeダウンローダーを使ってファイルを展開する)ことをオススメします。
+Thông tin cần thiết là
+- Địa chỉ email
+- Tên người dùng tài khoản email
+- Mật khẩu tài khoản email
+- Địa chỉ máy chủ email
 
-**次のステップ**
-- [EC-CUBEダウンローダーを使ってファイルを展開する](#ec-cubeダウンローダーを使ってファイルを展開する)
-- [ダウンロードしたパッケージをアップロードする](#ダウンロードしたパッケージをアップロードする)
+*Thông tin tài khoản email bị rò rỉ ra ngoài có thể dẫn đến rò rỉ thông tin cá nhân. Hãy quản lý cẩn thận.*
+
+**Bước tiếp theo**
+- [Tải lên tệp mã nguồn EC-CUBE lên máy chủ](#tải lên tệp mã nguồn ec-cube lên máy chủ)
 
 ----
 
-### EC-CUBEダウンローダーを使ってファイルを展開する
-サードパーティ製のダウンローダーを使うと簡単にEC-CUBEのソースコードをサーバ上に展開できます。
+## Tải lên tệp mã nguồn EC-CUBE lên máy chủ
+Để cài đặt, cần phải có tệp mã nguồn của EC-CUBE được triển khai trên máy chủ.
+
+Bạn có thể sử dụng phần mềm chuyển tệp như FileZilla, nhưng do số lượng tệp của EC-CUBE rất lớn, nên có thể gặp lỗi khi tải lên tất cả các tệp cùng một lúc. Vì vậy, chúng tôi khuyên bạn nên sử dụng [EC-CUBE Downloader](#ec-cube-downloader-sử-dụng-để-giải-nén-tệp-mã-nguồn) để giải nén tệp mã nguồn.
+
+**Bước tiếp theo**
+- [EC-CUBE Downloader](#ec-cube-downloader-sử-dụng-để-giải-nén-tệp-mã-nguồn)
+- [Tải lên tệp mã nguồn EC-CUBE lên máy chủ](#tải lên tệp mã nguồn ec-cube lên máy chủ)
+
+----
+
+### EC-CUBE Downloader
+EC-CUBE Downloader là phần mềm được phát triển bởi cộng đồng và có thể giải nén tệp mã nguồn của EC-CUBE một cách đơn giản.
 ![EC-CUBE Donwloader screen shot](https://github.com/tao-s/eccube-downloader/raw/master/EC-CUBE_downloader.gif)
 
-[ここ](https://github.com/tao-s/eccube-downloader/archive/master.zip)からEC-CUBE Downloaderをダウンロードして、以下の手順を踏んでください。
+[Tải EC-CUBE Downloader từ đây](https://github.com/tao-s/eccube-downloader/archive/master.zip) và làm theo các bước sau:
 
-1. ダウンロードされたmaster.zipを展開する。
-1. 展開されたフォルダの中の**dw.php**をEC-CUBEをインストールしたいサーバのディレクトリにアップロードする。<br>例: public_html/ など
-1. Webブラウザ（Google Chromeを推奨）でアップロードした**dw.php**にアクセスする。<br>例: https://www.example.co.jp/dw.php
-1. 表示される「**ダウンロード開始**」をクリックする。
-1. しばらくするとEC-CUBEのインストール画面が表示されます。
+1. Giải nén tệp master.zip.
+1. Sao chép tệp **dw.php** từ thư mục đã giải nén vào thư mục của bạn trên máy chủ. Ví dụ: public_html/ 
+1. Truy cập **dw.php** từ trình duyệt (chúng tôi khuyên nên sử dụng Google Chrome). Ví dụ: https://www.example.co.jp/dw.php
+1. Nhấp vào "**Bắt đầu tải xuống**".
+1. Sau một lúc, màn hình cài đặt EC-CUBE sẽ xuất hiện.
 
-EC-CUBEのインストール画面が表示されたら[インストールウィザード](#インストールウィザード)に進んでください。
+Nếu màn hình cài đặt EC-CUBE xuất hiện, hãy tiếp tục đến [Trình hướng dẫn cài đặt](#trình-hướng-dẫn-cài-đặt)
 
-**次のステップ**
-- [インストールウィザード](#インストールウィザード)
-
-----
-
-### ダウンロードしたパッケージをアップロードする
-**[EC-CUBE Donloaderを使う](#ec-cubeダウンローダーを使ってファイルを展開する)方は不要のステップです。**
-
-[EC-CUBE 4のパッケージ](https://www.ec-cube.net/download/){:target='_blank'}をダウンロードし、解凍してください。
-
-FileZilla等のファイル転送ソフトを使用し、ファイルをサーバへアップロードしてください。  
-※*ファイル数が多いためエラーが発生することがございます。エラー発生時は分割してアップロードをお願いします。*
-
-ブラウザからEC-CUBEにアクセスします。  
-- 例: `http://example.com/{EC-CUBEをアップロードしたディレクトリ}`
-
-EC-CUBEのインストール画面が表示されたら[インストールウィザード](#インストールウィザード)に進んでください。
-
-*※ FTPやSFTPの接続情報が外部に漏れるとクレジットカードなどの個人情報漏洩、不正アクセスに利用されたりと非常に危険です。取り扱いには注意してください。*
-
-**次のステップ**
-- [インストールウィザード](#インストールウィザード)
+**Bước tiếp theo**
+- [Trình hướng dẫn cài đặt](#trình-hướng-dẫn-cài-đặt)
 
 ----
 
-## インストールウィザード
-EC-CUBEのソースコードファイルの展開が完了後に、インストールディレクトリにアクセスするとインストーラ画面が表示されます。
-このインストールウィザードの指示にしたがってインストールしてください。
+### Tải lên tệp mã nguồn EC-CUBE lên máy chủ
+**Nếu bạn đã sử dụng [EC-CUBE Downloader](#ec-cube-downloader-sử-dụng-để-giải-nén-tệp-mã-nguồn), bạn có thể bỏ qua bước này.**
 
-*インストーラ画面のURL例： https://wwww.example.com/{EC-CUBEをアップロードしたディレクトリ/}/index.php/install/step1*
+Tải [EC-CUBE 4 Package](https://www.ec-cube.net/download/){:target='_blank'} và giải nén nó.
+
+Sử dụng phần mềm chuyển tệp như FileZilla để tải tệp lên máy chủ.  
+*Lưu ý: Do số lượng tệp lớn, có thể gặp lỗi khi tải lên tất cả các tệp cùng một lúc. Nếu gặp lỗi, hãy tải lên từng phần.*
+
+Truy cập trình duyệt EC-CUBE từ địa chỉ:  
+- Ví dụ: `http://example.com/{EC-CUBE được tải lên thư mục}`
+
+Nếu màn hình cài đặt EC-CUBE xuất hiện, hãy tiếp tục đến [Trình hướng dẫn cài đặt](#trình-hướng-dẫn-cài-đặt)
+
+*Lưu ý: Thông tin kết nối FTP/SFTP bị rò rỉ ra ngoài có thể dẫn đến rò rỉ thông tin thẻ tín dụng và các thông tin cá nhân khác. Hãy quản lý cẩn thận.*
+
+**Bước tiếp theo**
+- [Trình hướng dẫn cài đặt](#trình-hướng-dẫn-cài-đặt)
+
+----
+
+## Trình hướng dẫn cài đặt
+EC-CUBE mã nguồn được giải nén sau đó, truy cập vào thư mục cài đặt để xem màn hình cài đặt.
+Hãy làm theo hướng dẫn cài đặt để hoàn thành cài đặt.
+
+*URL ví dụ của màn hình cài đặt: https://wwww.example.com/{EC-CUBE được tải lên thư mục/}/index.php/install/step1*
 
 ![install step1](/images/install/step1.png)
-*次へ*をクリックします。
+Nhấp vào *Tiếp tục* để tiếp tục.
 
-### パーミッション（ファイル権限）チェック
+### Kiểm tra quyền truy cập (quyền truy cập tệp)
 
 ![install step2](/images/install/step2.png)
-*次へ進む*をクリックします。
+Nhấp vào *Tiếp tục* để tiếp tục.
 
 ----
 
-### サイトの設定
+### Cấu hình trang web
 
 ![install step3](/images/install/step3.png)
 
-#### 店舗の基本情報
+#### Thông tin cơ bản của cửa hàng
 
-- **あなたの店名**
-  - 店名を入力してください。日本語でも大丈夫です。
-- **メールアドレス**
-  - ここで指定するメールアドレス宛に注文通知メールなどが送信されます。
-- **管理画面ログインID**
-  - 管理画面にログインする際に利用する管理者のログインIDです。一番権限の強いスーパーユーザなので、「admin」とか推測されやすいIDは不正アクセスや情報漏洩の元になるので避けましょう。適当な意味を持たない文字列が良いです。
-- **管理画面パスワード**
-  - 上記の管理者がログインする際に使用するパスワードを指定します。ここで指定するパスワードを忘れると**管理画面にログインできなくなる**ので必ず控えておきましょう。EC-CUBEには管理者のパスワード再発行機能（パスワードリマインダー）は実装されていません。<br>管理者ログインIDと同様に意味を持たない複雑なパスワードを指定しましょう。「test1234」や「password」とかは**非常に危険なので絶対避けましょう**。
-- **管理画面のディレクトリ名**
-  - 管理画面にアクセスする場合のURLを指定します。管理画面には
-  ここで指定する、 https://www.example.com/{EC-CUBEをインストールしたディレクトリ}/{管理画面のディレクトリ名}/ でアクセスする事になります。<br>このディレクトリ名も「admin」とか「dashboard」など推測されやすい文字列を指定すると危険です。適当な意味を持たない文字列を指定しましょう。
-- **サイトのアクセスをSSL経由に強制します**
-  - https://〜 でしかアクセスできなくなります。必ずサーバのコントロールパネル等でSSLの設定を行った後にこのチェックを入れてください。**SSLの設定が終わっていない状態でここにチェックを入れると、サイトにアクセスできなくなります。**
-- **管理画面へのアクセスを、以下のIPに制限します**
-  - 管理画面へのアクセスを特定のIPアドレスに固定します。ここにIPアドレスを指定すると、そのIPアドレスからしか管理画面にアクセスできなくなるので注意してください。指定した方がセキュリティは強くなりますが、スマートフォンの公衆回線からアクセスできなくなるなど、利便性は損ないます。
-  固定IPをお持ちでない方は指定しないでください。
+- **Tên cửa hàng**
+  - Nhập tên cửa hàng của bạn. Bạn có thể nhập bằng tiếng Nhật.
+- **Email**
+  - Email này sẽ nhận thông báo đặt hàng từ hệ thống.
+- **ID đăng nhập trang quản lý**
+  - ID đăng nhập để đăng nhập vào trang quản lý. Đây là người dùng có quyền cao nhất, vì vậy ID như "admin" hoặc các ID dễ đoán sẽ dẫn đến việc truy cập không hợp lệ và thông tin bị rò rỉ. Hãy tránh đặt ID này. Hãy đặt một chuỗi văn bản không có ý nghĩa.
+- **Mật khẩu trang quản lý**
+  - Nhập mật khẩu để người dùng có quyền truy cập vào trang quản lý. Nếu bạn quên mật khẩu này, **bạn sẽ không thể đăng nhập vào trang quản lý** vì EC-CUBE không có chức năng đặt lại mật khẩu cho người dùng. Hãy nhập mật khẩu phức tạp và không có ý nghĩa như "test1234" hoặc "password". **Đây là rất nguy hiểm, hãy tránh đặt mật khẩu này**.
+- **Tên thư mục trang quản lý**
+  - Nhập URL để truy cập vào trang quản lý. Trang quản lý sẽ truy cập vào
+  https://www.example.com/{EC-CUBE được cài đặt thư mục}/{tên thư mục trang quản lý}/ 
+  Hãy đặt tên thư mục này không giống như "admin" hoặc "dashboard" vì có thể bị đoán. Hãy đặt một chuỗi văn bản không có ý nghĩa.
+- **Buộc trang web truy cập qua SSL**
+  - Trang web chỉ có thể truy cập được qua https://〜
+  Hãy đảm bảo thực hiện cấu hình SSL trên máy chủ trước khi bật chức năng này. **Nếu không thực hiện cấu hình SSL, trang web sẽ không thể truy cập được**.
+- **Giới hạn truy cập trang quản lý đến IP sau đây**
+  - Giới hạn truy cập trang quản lý đến địa chỉ IP cố định. Nếu bạn đặt IP ở đây, chỉ có IP đó mới có thể truy cập vào trang quản lý. Lưu ý, điều này có thể làm mất đi tính tiện lợi khi truy cập từ điện thoại di động của bạn.
+  Nếu bạn không có IP cố định, hãy không đặt IP này.
 
-*※ 管理画面のアクセス情報が漏洩すると個人情報の漏洩や詐欺に利用されたりと甚大な被害が発生します。取り扱いには充分注意してください。*
+*Lưu ý: Thông tin truy cập trang quản lý bị rò rỉ ra ngoài có thể dẫn đến rò rỉ thông tin cá nhân và các hành vi trốn tránh thanh toán. Hãy quản lý cẩn thận.*
 
-#### メール設定
-[メールアカウントの準備をする](#メールアカウントの準備をする)で準備したメールアカウントの情報を入力します。
+#### Cấu hình email
+Nhập thông tin tài khoản email đã chuẩn bị ở [Chuẩn bị tài khoản email](#chuẩn bị tài khoản email)
 
-*※ EC-CUBEをインストールしたサーバからsendmail等を使ってメールを送信したい場合は、別途.env等の設定が必要になります。*
+*Lưu ý: Nếu bạn muốn gửi email từ máy chủ cài đặt EC-CUBE bằng cách sử dụng sendmail, bạn cần thực hiện cấu hình khác.*
 
-一通り入力したら*次へ進む*をクリックします。
+Nhấp vào *Tiếp tục* để tiếp tục.
 
-**次のステップ**
-- [データベースの設定入力](#データベースの設定入力)
+**Bước tiếp theo**
+- [Nhập thông tin cơ sở dữ liệu](#nhập-thông-tin-cơ-sở-dữ-liệu)
 
 ----
 
-### データベースの設定入力 
+### Nhập thông tin cơ sở dữ liệu 
 ![install step 4](/images/install/step5.png)
-[データベースの準備をする](#データベースの準備をする)で準備したデータベースの情報を入力します。
+Nhập thông tin cơ sở dữ liệu đã chuẩn bị ở [Chuẩn bị cơ sở dữ liệu](#chuẩn bị cơ sở dữ liệu)
 
-- **データベースの種類**
-  - [データベースの準備をする](#データベースの準備をする)で準備したデータベースの種類を選択してください。本番環境ではMySQLかPostgreSQLを利用してください。
-- **データベースのホスト名**
-  - EC-CUBEを動作させるサーバでMySQL等のデータベースも動いている場合は、localhostや127.0.0.1になります。
-- **データベースのポート番号**
-  - データベース側で特別な指定がなく、標準のポートを利用している場合は指定しなくても大丈夫です。
-- **データベース名**
-  - [データベースの準備をする](#データベースの準備をする)で準備したデータベース名を指定してください。MySQLとかPostgreSQLとかではなく、「eccube_db」とかの方のデータベース名です。
-- **ユーザ名**
-  - EC-CUBEの管理画面ログインIDなどではなく、[データベースの準備をする](#データベースの準備をする)で準備したデータベースのユーザIDを入力してください。
-- **パスワード**
-  - EC-CUBEの管理画面ログインパスワードなどではなく、[データベースの準備をする](#データベースの準備をする)で準備したデータベースのユーザのパスワードを入力してください。
+- **Loại cơ sở dữ liệu**
+  - Chọn loại cơ sở dữ liệu đã chuẩn bị ở [Chuẩn bị cơ sở dữ liệu](#chuẩn bị cơ sở dữ liệu). Đối với môi trường sản xuất, hãy sử dụng MySQL hoặc PostgreSQL.
+- **Tên máy chủ cơ sở dữ liệu**
+  - Nếu máy chủ cơ sở dữ liệu của bạn cũng chạy MySQL, nó có thể là localhost hoặc 127.0.0.1.
+- **Cổng cơ sở dữ liệu**
+  - Nếu máy chủ cơ sở dữ liệu của bạn không có đặc biệt, bạn không cần chỉ định nó.
+- **Tên cơ sở dữ liệu**
+  - Nhập tên cơ sở dữ liệu đã chuẩn bị ở [Chuẩn bị cơ sở dữ liệu](#chuẩn bị cơ sở dữ liệu). Đối với MySQL và PostgreSQL, đây không phải là tên cơ sở dữ liệu như "eccube_db".
+- **Tên người dùng**
+  - Đây không phải là ID người dùng trang quản lý như "eccube" mà là ID người dùng cơ sở dữ liệu đã chuẩn bị ở [Chuẩn bị cơ sở dữ liệu](#chuẩn bị cơ sở dữ liệu).
+- **Mật khẩu**
+  - Đây không phải là mật khẩu đăng nhập trang quản lý như "eccube" mà là mật khẩu của người dùng cơ sở dữ liệu đã chuẩn bị ở [Chuẩn bị cơ sở dữ liệu](#chuẩn bị cơ sở dữ liệu).
 
-一通り入力したら*次へ進む*をクリックします。
+Nhấp vào *Tiếp tục* để tiếp tục.
 
-**次のステップ**
-- [データベースの初期化](#データベースの初期化)
+**Bước tiếp theo**
+- [Khởi tạo cơ sở dữ liệu](#khởi-tạo-cơ-sở-dữ-liệu)
 
 ----
 
-### データベースの初期化
+### Khởi tạo cơ sở dữ liệu
 ![install step 6](/images/install/step6.png)
 
-データベースに初期データを登録します。
+Đăng ký dữ liệu khởi tạo cơ sở dữ liệu.
 
-*次へ進む*をクリックします。
+Nhấp vào *Tiếp tục* để tiếp tục.
 
-**次のステップ**
-- [インストール完了](#インストール完了)
+**Bước tiếp theo**
+- [Hoàn thành cài đặt](#hoàn-thành-cài-đặt)
 
 ----
 
-### インストール完了
+### Hoàn thành cài đặt
 ![install step 6](/images/install/step7.png)
 
-**おめでとうございます！**この画面が表示されたらインストール完了です。管理画面にログインして足りない店舗情報や商品登録を行い、ショップの開店準備を進めましょう。
+**Chúc mừng bạn!** Nếu màn hình này xuất hiện, cài đặt đã hoàn thành. Hãy đăng nhập vào trang quản lý để thêm thông tin cửa hàng và đăng ký hàng hóa, chuẩn bị mở cửa hàng của bạn.
 
-管理画面の使い方は[こちら](https://www.ec-cube.net/manual/ec-cube4/){:target="_blank"}。
+Cách sử dụng trang quản lý được hướng dẫn [ở đây](https://www.ec-cube.net/manual/ec-cube4/){:target="_blank"}.
 
-*管理画面を表示*をクリックすると、管理画面のログイン画面に遷移します。[店舗の基本情報](#店舗の基本情報)で入力した管理者の情報で管理画面にログインしてみましょう。
+Nhấp vào *Hiển thị trang quản lý* để chuyển hướng đến trang đăng nhập trang quản lý. Hãy đăng nhập vào trang quản lý bằng thông tin người quản lý đã nhập ở [Thông tin cơ bản của cửa hàng](#thông-tin-cơ-bản-của-cửa-hàng)
 
-もし、ここでログインできない場合は、管理者のパスワードやログインIDを間違えて控えた可能性が高いので、インストールしたディレクトリの .envを削除し、データベースを空にして再度インストール手順を行ってください。
+Nếu bạn không thể đăng nhập, có khả năng bạn đã quên mật khẩu hoặc ID đăng nhập, vì vậy hãy xóa .env của thư mục cài đặt và xóa cơ sở dữ liệu để thực hiện lại quy trình cài đặt.
 
 ----
 
-### インストール時のよくあるエラー
+### Lỗi thường gặp khi cài đặt
 
-以下にインストール時に初心者がつまづきやすい点を記載してありますのでご確認ください。
+Dưới đây là những điểm mà người mới bắt đầu thường gặp phải, vì vậy hãy kiểm tra:
 
-その他のエラーや不具合でインストールできない時は、[開発コミュニティ](https://xoops.ec-cube.net/){:target="_blank"}を検索、質問してみてください。
+Nếu có lỗi khác, hãy tìm kiếm trên [Cộng đồng phát triển](https://xoops.ec-cube.net/){:target="_blank"} hoặc hỏi câu hỏi trên đó.
 
-また、各地で開催されている[ユーザグループの勉強会](https://www.ec-cube.net/news/#events_information){:target="_blank"}に足を運んで聞いてみるのも良いでしょう。
+Ngoài ra, hãy đến các buổi học thực hành được tổ chức tại các nơi khác nhau [Nhóm người dùng](https://www.ec-cube.net/news/#events_information){:target="_blank"} để nghe.
 
-#### データベースに接続できません
+#### Không thể kết nối đến cơ sở dữ liệu
 
-- データベースサーバが起動していない
-  - データベースを起動してください。
-- データベースの情報を間違えている
-  - ホスト名、ユーザ名、パスワード、データベース名を確認してください。
-- ネットワークの設定に問題がある。
-  - EC-CUBEを動かそうとしているサーバからDBサーバに接続できるか確認してください。
+- Máy chủ cơ sở dữ liệu không khởi động
+  - Hãy khởi động lại máy chủ cơ sở dữ liệu.
+- Thông tin cơ sở dữ liệu bị sai
+  - Hãy kiểm tra lại tên máy chủ, tên người dùng, mật khẩu và tên cơ sở dữ liệu.
+- Vấn đề mạng
+  - Hãy kiểm tra xem máy chủ cài đặt EC-CUBE có thể kết nối đến máy chủ cơ sở dữ liệu hay không.
 
-#### パーミッション（ファイル権限）エラー
-[ここ](/quickstart/permission/#パーミッションの設定について（共通事項）)を見てパーミッションを確認してください。
+#### Lỗi quyền truy cập (quyền truy cập tệp)
+Hãy xem [đây](/quickstart/permission/#quyền-truy-cập-của-tệp-về-quyền-truy-cập-chung) để kiểm tra quyền truy cập.
 
-#### その他
+#### Khác
 
-- PHPのバージョンが合ってない/PHPのモジュールが足りない
-  - [システム要件](/quickstart/requirement)を確認してください。EC-CUBEを動かすためにはPHP Ver.7.1以上が必要です。
+- PHP không phù hợp/PHP không có các module cần thiết
+  - Hãy kiểm tra [yêu cầu hệ thống](/quickstart/requirement). EC-CUBE hoạt động cần PHP Ver.7.1 trở lên.

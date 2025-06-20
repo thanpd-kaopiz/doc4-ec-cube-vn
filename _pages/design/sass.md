@@ -1,64 +1,64 @@
 ---
-title: Sass(scss)の利用方法
-keywords: design 
-tags: [design]
+title: Cách sử dụng Sass (scss)
+keywords: thiết kế 
+tags: [thiết kế]
 permalink: design_sass
 
-summary: Sass(scss)の編集方法
+summary: Cách chỉnh sửa Sass (scss)
 ---
 
-EC-CUBEのCSSは、[Sass(scss)](http://sass-lang.com){:target="_blank"} を使用して記述されています。
+CSS của EC-CUBE được viết bằng [Sass(scss)](http://sass-lang.com){:target="_blank"}.
 
-1. [scssのディレクリ格納場所](#scssのディレクリ格納場所)
-1. [scssの各ディレクトリとファイルについて](#scssの各ディレクトリとファイルについて)
-1. [Sass(scss)のビルド方法](#sass_build)
+1. [Vị trí lưu source scss](#vị-trí-lưu-source-scss)
+1. [Cấu trúc thư mục và file scss](#cấu-trúc-thư-mục-và-file-scss)
+1. [Cách build Sass(scss)](#sass_build)
 
 
-## Sass(scss)のディレクリ格納場所
-- Sass のソースコードは、以下のディレクトリに格納されています。
+## Vị trí lưu source Sass(scss)
+- Source Sass được lưu tại thư mục sau:
 
 ```
 [html]
  └─ [template]
-     └─ [default] # 管理画面はadminになります
+     └─ [default] # admin là cho trang quản trị
          └─ [assets]
              ├─ [css]
              └─ [scss]
 ```
 
-## scssの各ディレクトリとファイルについて
+## Cấu trúc thư mục và file scss
 
-scssディレクトリ内はメンテナンスしやすいように構成されております。<br>
-コンポーネント設計及びCSSの記述方針についてはFLOCSSルールを採用しております。<br>
-[スタイルガイド](https://eccube4-styleguide.herokuapp.com/){:target="_blank"} も合わせてご参照ください。
+Thư mục scss được cấu trúc để dễ bảo trì.<br>
+Về thiết kế component và quy tắc viết CSS, EC-CUBE áp dụng quy tắc FLOCSS.<br>
+Tham khảo thêm [Style Guide](https://eccube4-styleguide.herokuapp.com/){:target="_blank"}.
 
 ```
 [assets]
  ├─ [css]
- │    ├─ style.css     # 読み込まれているCSS ←ビルドして書き出される先
- │    └─ style.min.css # 軽量版CSS ←ビルドして書き出される先
+ │    ├─ style.css     # CSS được build ra từ scss
+ │    └─ style.min.css # CSS rút gọn được build ra từ scss
  └─ [sass]
-      ├─ [component]   # ベースとなる最小モジュール（部品）が格納
-      ├─ [project]     # トップページやヘッダーやフッターなど格納
-      ├─ [mixins]      # 再利用スタイルの設定が格納
-      ├─ [sections]    # 上書き用
-      └─ style.scss    # 各scssファイルがimportで読み込まれているファイル
+      ├─ [component]   # Chứa các module nhỏ (component) cơ bản
+      ├─ [project]     # Chứa các module lớn như header, footer, trang chủ
+      ├─ [mixins]      # Chứa các thiết lập style tái sử dụng
+      ├─ [sections]    # Dùng để ghi đè
+      └─ style.scss    # File import các scss khác
 ```
 
 - component<br>
-  見出しやボタンなど、ベースとなる最小モジュール（部品）が格納されています。<br>
-  [スタイルガイド](https://eccube4-styleguide.herokuapp.com/){:target="_blank"} 1-9までの項目
+  Chứa các module nhỏ như tiêu đề, nút bấm, v.v...<br>
+  Tham khảo Style Guide mục 1-9
 
 - project<br>
-  ヘッダーやフッター、トップページで使用されているモジュール（部品）が格納されています。<br>
-  [スタイルガイド](https://eccube4-styleguide.herokuapp.com/){:target="_blank"} 11-22までの項目
+  Chứa các module lớn như header, footer, trang chủ, v.v...<br>
+  Tham khảo Style Guide mục 11-22
 
 - mixins <br>
-  再利用や複数の場所で呼び出しするスタイルの設定が格納されています。
+  Chứa các thiết lập style tái sử dụng hoặc dùng nhiều nơi.
 
 - sections<br>
-  componentやprojectのCSSクラスを上書きする際にご利用ください。<br>
-  ご利用の際はstyle.scssに以下のコードを追記ください。
+  Dùng để ghi đè các class CSS của component hoặc project.<br>
+  Khi sử dụng, hãy thêm vào style.scss như sau:
 
 ```css
 @import "sections/components";
@@ -66,137 +66,127 @@ scssディレクトリ内はメンテナンスしやすいように構成され�
 ```
 
 - style.scss<br>
-  各ディレクトリのCSSが `@import` で読み込まれているscssファイルです。<br>
-  こちらのstyle.scssが、style.cssやstyle.min.cssに変換されます。
+  File này import các file scss khác.<br>
+  style.scss sẽ được build thành style.css và style.min.css.
   
   
-### スタイルガイドについて
+### Về Style Guide
 
-EC-CUBEでは、CSSやHTMLの設計指針やコーディングルールを確認できるよう、 `スタイルガイド` を用意しています。
-詳しくは以下を参照ください。
+EC-CUBE cung cấp 'Style Guide' để bạn có thể kiểm tra các nguyên tắc thiết kế và quy tắc code cho CSS và HTML.
+Tham khảo thêm tại các link sau:
 
-- [フロント画面のスタイルガイド](https://github.com/EC-CUBE/Eccube-Styleguide){:target="_blank"}
-- [管理画面のスタイルガイド](https://github.com/EC-CUBE/Eccube-Styleguide-Admin){:target="_blank"} 
-
-
+- [Style Guide cho giao diện người dùng](https://github.com/EC-CUBE/Eccube-Styleguide){:target="_blank"}
+- [Style Guide cho trang quản trị](https://github.com/EC-CUBE/Eccube-Styleguide-Admin){:target="_blank"}
 
 
-## Sass(scss)のビルド方法 {#sass_build}
 
-1. [ビルド環境の準備](#ビルド環境の準備)
-1. [EC-CUBE4.0.3までのビルド方法](#build_eccube403)
-1. [EC-CUBE4.0.4でのビルド方法](#build_eccube404)
+## Cách build Sass(scss) {#sass_build}
+
+1. [Chuẩn bị môi trường build](#chuẩn-bị-môi-trường-build)
+1. [Cách build cho EC-CUBE 4.0.3 trở về trước](#build_eccube403)
+1. [Cách build cho EC-CUBE 4.0.4 trở lên](#build_eccube404)
 
 
-## ビルド環境の準備
+## Chuẩn bị môi trường build
 
-EC-CUBE内に組み込まれている [Gulp](https://gulpjs.com/){:target="_blank"} を使用したビルド方法をご紹介いたします。<br>
-前提として [Node.js公式サイト](https://nodejs.org/ja/){:target="_blank"} より、 Node.js をインストールが必要です。
+EC-CUBE sử dụng [Gulp](https://gulpjs.com/){:target="_blank"} để build Sass.<br>
+Yêu cầu cài đặt [Node.js](https://nodejs.org/ja/){:target="_blank"} trước.
 
 - Node.js<br>
-  GulpはNode.jsをベースに作られているので、Gulp動かす為に必要となります。<br>
-  ※最新のNode.jsでは、[Gulpのタスク実行時にエラーが出る場合](https://qiita.com/KKKarin/items/bbb424fd93ef523a741a)があります。
+  Gulp chạy trên nền Node.js.<br>
+  ※ Một số phiên bản Node.js mới có thể gây lỗi khi chạy Gulp, tham khảo [tại đây](https://qiita.com/KKKarin/items/bbb424fd93ef523a741a).
 
 - Gulp<br>
-  SassファイルをCSSに変換に利用されます。<br>
-  EC-CUBE4.0.3まではGulp3、4.0.4からはGulp4が導入
+  Dùng để chuyển đổi file Sass thành CSS.<br>
+  EC-CUBE 4.0.3 trở về trước dùng Gulp3, từ 4.0.4 dùng Gulp4
 
+**1. Cài Node.js vào máy tính**<br>
 
-**1.Node.js をPCへインストールしてください。**<br>
-
-[Node.js公式サイト](https://nodejs.org/ja/){:target="_blank"} よりダウンロードしPCへインストールしてください。<br>
-Node.jsがインストールされているかは、以下のコマンドで確認できます。
+Tải Node.js từ [trang chủ Node.js](https://nodejs.org/ja/){:target="_blank"} và cài đặt.<br>
+Kiểm tra Node.js đã cài bằng lệnh sau:
 ```shell
 node -v
 ```
 
-**2.ec-cube_rootディレクトリへ移動**<br>
-package.json、gulpfile.jpファイルが格納されているroot階層へ移動します。
+**2. Di chuyển vào thư mục gốc của ec-cube**<br>
+Di chuyển vào thư mục chứa package.json, gulpfile.js.
 
 ```shell
-cd path/to/eccube_root # path/to/eccube_rootの部分はEC-CUBEのディレクトリパスをご指定ください
+cd path/to/eccube_root # thay path/to/eccube_root bằng đường dẫn thư mục EC-CUBE
 ```
 
-**3.node_modulesディレクトリが生成します。**<br>
+**3. Tạo thư mục node_modules**<br>
 
-下記コマンドを実行して、上記移動したディレクトリにnode_modulesが生成されている事を確認してください。
+Chạy lệnh sau để tạo thư mục node_modules:
 
 ```shell
-npm install # node_modulesディレクトリが生成
+npm install # tạo thư mục node_modules
 ```
 
 
-## EC-CUBE4.0.3でのビルド方法 {#build_eccube403}
+## Cách build cho EC-CUBE 4.0.3 trở về trước {#build_eccube403}
 
-以下のコマンドでscssをCSSに変換します。
+Chạy lệnh sau để chuyển scss thành CSS:
 
 ```shell
-npm run build # scssをstyle.cssとstyle.min.cssに書き出します 
+npm run build # build scss thành style.css và style.min.css
 ```
 
-変換されたcssは `html/template/{admin,default}/assets/css/` に出力されます。<br>
-style.cssとstyle.min.css（改行など省略した軽量版）が出力されます。
+CSS sau khi build sẽ được xuất ra `html/template/{admin,default}/assets/css/`.<br>
+Sẽ có file style.css và style.min.css (phiên bản rút gọn).
 
 
-### EC-CUBE4.0.3までデフォルトテンプレート以外を適用している場合の注意点
+### Lưu ý khi sử dụng template khác default ở EC-CUBE 4.0.3 trở về trước
 
-テンプレートをdefault以外に変更されている場合、gulpfile.jsの値を変更する必要があります。<br>
-`eccube_root/gulpfile.js` 内の以下のdefaultの部分を変更してください
+Nếu bạn đổi template sang tên khác ngoài default, cần sửa giá trị trong gulpfile.js:<br>
+Sửa phần default trong srcPattern tại `eccube_root/gulpfile.js`:
 ```
 [ec-cube_root]
- └─ gulpfile.js # srcPatternの設定を変更
+ └─ gulpfile.js # sửa thiết lập srcPattern
 ```
 
 ```js
 const srcPattern = [
     'admin',
-    'default' //defaultの部分を適用中のテンプレート名に変更
+    'default' // đổi 'default' thành tên template đang dùng
 ];
 ```
-※EC-CUBE4.0.4からは上記設定は必要なくなりました。<br>
-※デザインテンプレートによっては、Sassの導入・格納場所が異なる場合がありますので、<br>
-ご購入されたデザインテンプレートのマニュアルなどをご参照ください。
+※ Từ EC-CUBE 4.0.4 trở lên không cần thiết lập này.<br>
+※ Một số template có thể có vị trí/lưu trữ Sass khác, hãy tham khảo tài liệu của template bạn mua.
 
 
-## EC-CUBE4.0.4以降でのビルド方法 {#build_eccube404}
+## Cách build cho EC-CUBE 4.0.4 trở lên {#build_eccube404}
 
-4.0.4から新たに、自動ビルドであるwatch機能が追加されました。<br>
-[【注意】Windowsの方は一部コードの修正が必要になります](#win_sass)
+Từ 4.0.4, đã bổ sung chức năng tự động build (watch).<br>
+[Lưu ý cho Windows](#win_sass)
 
-設定ファイルは `gulp/config.js` にありますので先に設定をしておいてください。
+File cấu hình nằm ở `gulp/config.js`, hãy thiết lập trước khi build.
 
 ```shell
-npm run build # scssをstyle.cssとstyle.min.cssに書き出します 
+npm run build # build scss thành style.css và style.min.css
 ```
 ```shell
-npm run watch # scssの更新を監視、自動でstyle.cssとstyle.min.cssに書き出します
+npm run watch # theo dõi thay đổi scss, tự động build style.css và style.min.css
 ```
 ```shell
-npm run start # 監視、自動書き出し＆ブラウザ自動更新
+npm run start # theo dõi, tự động build & tự động reload trình duyệt
 ```
 
-**watchやstartの監視を停止する方法:「Ctrl」+「C」のショートカットキー**
+**Dừng watch hoặc start: nhấn tổ hợp phím "Ctrl" + "C"**
 
 
-変換されたcssは `html/template/{admin,default}/assets/css/` に出力されます。<br>
-style.cssとstyle.min.css（改行など省略した軽量版）が出力されます。
+CSS sau khi build sẽ được xuất ra `html/template/{admin,default}/assets/css/`.<br>
+Sẽ có file style.css và style.min.css (phiên bản rút gọn).
 
 
 
-### 【注意】Windowsの方は一部コードの修正が必要になります {#win_sass}
+### 【Lưu ý】Với Windows cần sửa một số đoạn mã {#win_sass}
 
-4.0.4パッケージ版のWindows環境でSassビルド時にstyle.cssが正しく書き出されない不具合あり、<br>
-Gulpfile.jsの以下の２箇所を変更お願いします。※GitHubの最新コードは修正済み
-
-```
-[ec-cube_root]
- └─ gulpfile.js # Sassのビルド設定が書かれているファイルを一部変更してください。
-```
-gulpfile.jsの90行目と115行目の２箇所のコードを変更してください。
+Ở bản đóng gói 4.0.4 trên Windows, có lỗi không build đúng file style.css, hãy sửa 2 chỗ sau trong gulpfile.js (dòng 90 và 115):
 ```js
-path.dirname = path.dirname.replace('/scss', '/css') # 変更前コード
+path.dirname = path.dirname.replace('/scss', '/css') # trước khi sửa
 ```
 
 ```js
-path.dirname = path.dirname.replace(/scss$/, 'css') # 変更後コード
+path.dirname = path.dirname.replace(/scss$/, 'css') # sau khi sửa
 ```

@@ -1,5 +1,5 @@
 ---
-title: タイムゾーン
+title: Múi giờ
 keywords: timezone
 tags: [i18n, currency]
 permalink: i18n_timezone
@@ -7,41 +7,39 @@ folder: i18n
 
 ---
 
-## 概要
+## Tổng quan
 
-EC-CUBEのタイムゾーンの設定に関するページとなります。
+Trang này giải thích về thiết lập múi giờ trong EC-CUBE.
 
-EC-CUBEの日時データの取り扱い方、タイムゾーン設定を変更する方法について説明します。
+Cách xử lý dữ liệu ngày giờ và cách thay đổi thiết lập múi giờ.
 
-## 初期設定値
+## Giá trị mặc định
 
-EC-CUBEのデフォルトのタイムゾーン設定値は`Asia/Tokyo`となります。
+Múi giờ mặc định của EC-CUBE là `Asia/Tokyo`.
 
-## 注意点(日時データの保存と表示について)
+## Lưu ý (về lưu và hiển thị dữ liệu ngày giờ)
 
-※ 日時データについて、データベースにはすべてUTCで保存する仕様となります。
+※ Dữ liệu ngày giờ sẽ luôn được lưu trong database dưới dạng UTC.
 {: .notice--danger}
 
-フォーム等で入力されたデータは、データベースの登録時にUTC(日本時間から9時間引いた時間)に変換され保存されます。
+Dữ liệu nhập từ form sẽ được chuyển sang UTC (trừ 9 tiếng so với giờ Nhật) trước khi lưu vào database.
 
-また、データベースから取得するデータは、取得時に`ECCUBE_TIMEZONE`で設定したタイムゾーンに変換されます。
+Khi lấy dữ liệu từ database, hệ thống sẽ chuyển đổi sang múi giờ được thiết lập trong `ECCUBE_TIMEZONE`.
 
 
-### 参考
+### Tham khảo
 
-- [日時データ型の対応 - github](https://github.com/EC-CUBE/ec-cube/pull/2308){:target="_blank"}
+- [Hỗ trợ kiểu dữ liệu ngày giờ - github](https://github.com/EC-CUBE/ec-cube/pull/2308){:target="_blank"}
 
-## タイムゾーンの設定を変更する
+## Cách thay đổi thiết lập múi giờ
 
-デフォルトのタイムゾーンの設定は`Asia/Tokyo`ですが、
+Múi giờ mặc định là `Asia/Tokyo`,
 
-環境変数を指定することでアプリケーション内のタイムゾーンを切り替えることができます。
+bạn có thể chuyển đổi múi giờ trong ứng dụng bằng cách chỉ định biến môi trường.
 
-EC-CUBEのルートディレクトリ直下に、`.env.dist`ファイルをコピーし、
+Sao chép file `.env.dist` ở thư mục gốc EC-CUBE thành file mới tên `.env`.
 
-`.env`という名前の新規ファイルを作成してください。
-
-`.env`ファイル内の`ECCUBE_TIMEZONE`のコメントアウトを外し、任意のタイムゾーンを記載します。
+Bỏ comment dòng `ECCUBE_TIMEZONE` trong file `.env` và ghi múi giờ mong muốn.
 
 ```bash
 //.env
@@ -49,5 +47,5 @@ EC-CUBEのルートディレクトリ直下に、`.env.dist`ファイルをコ�
 ECCUBE_TIMEZONE=Pacific/Honolulu
 ```
 
-環境変数設定後、画面をリロードすると、タイムゾーンが切り替わります。
-キャッシュの削除を行う必要はありません。
+Sau khi thiết lập biến môi trường, chỉ cần reload trang là múi giờ sẽ được chuyển đổi.
+Không cần xoá cache.

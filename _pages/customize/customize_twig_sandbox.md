@@ -1,67 +1,62 @@
 ---
 layout: single
-title: Twig Sandboxによる許可リスト制御
-keywords: core カスタマイズ twig 許可リスト sandbox サンドボックス
+title: Kiểm soát danh sách cho phép với Twig Sandbox
+keywords: core tuỳ biến twig danh sách cho phép sandbox
 tags: [core, twig, sandbox]
 permalink: customize_twig_sandbox
 folder: customize
 ---
 
-
 ---
 
-## Twig Sandboxによる許可リスト制御
+## Kiểm soát danh sách cho phép với Twig Sandbox
 
-※この機能はEC-CUBE4.2.3から利用できます。
+※Chức năng này có từ EC-CUBE 4.2.3.
 
-セキュリティ対策として、不本意なtwig機能の実行を防ぐために許可リストによる制御機能が追加されました。  
-この機能を用いることで、twigで使用可能な機能（タグ・フィルター・ファンクション）の実行を取捨選択できるようになります。
+Để tăng cường bảo mật, EC-CUBE bổ sung chức năng kiểm soát bằng danh sách cho phép nhằm ngăn chặn việc thực thi các chức năng twig không mong muốn.
+Với chức năng này, bạn có thể lựa chọn các chức năng (tag, filter, function) được phép sử dụng trong twig.
 
-### Tips: twigの機能について
+### Tips: Về chức năng của twig
 
-EC-CUBEでは、テンプレートエンジンにtwigを使用しています。  
-twigでは、関数や変数を使用することができ、その組み合わせによってViewの構築を便利にできるというメリットがあります。  
-ただし一方で、その便利な機能を悪用することで予期せぬ情報流出が起きるリスクもあります。  
+EC-CUBE sử dụng twig làm template engine.
+Twig cho phép sử dụng các hàm, biến, giúp xây dựng View linh hoạt. Tuy nhiên, nếu lạm dụng, có thể gây rò rỉ thông tin ngoài ý muốn.
 
-EC-CUBEのtwigテンプレートでの出力は、標準ではHTMLエスケープが行われます。  
-しかし例えば以下のようにrawフィルタ等を用い、意図的にエスケープを解除することが可能です。  
-その際、外部からの入力値が含まれていると、攻撃手段として利用される可能性があります。
+Mặc định, output từ template twig của EC-CUBE sẽ được escape HTML. Tuy nhiên, nếu dùng filter như `raw`, bạn có thể bỏ escape một cách chủ động. Nếu dữ liệu đầu vào là từ bên ngoài, điều này có thể bị lợi dụng để tấn công.
 
 ```
-{{"{{ variable|raw " }}}}
+{{ "{{ variable|raw " }}}}
 ```
 
-## Sandboxによる機能制御
+## Kiểm soát chức năng bằng Sandbox
 
-上記のリスクを無くすために、EC-CUBEでは以下の部分に対してSandboxを適用しています。  
+Để loại bỏ rủi ro trên, EC-CUBE áp dụng Sandbox cho các khu vực sau:
 
-* 商品詳細フリーエリア
-* メタタグ （管理画面＞コンテンツ管理＞ページ管理>メタタグ）
+* Free area trên trang chi tiết sản phẩm
+* Meta tag (Quản trị > Quản lý nội dung > Quản lý trang > Meta tag)
 
-Sandbox内ではtwigの機能のうち、許可リストに記載されたものしか使用できなくなります。  
-（通常の文字列は問題なく記述頂くことが可能です）
+Trong Sandbox, chỉ các chức năng twig có trong danh sách cho phép mới được sử dụng.
+(Các chuỗi ký tự thông thường vẫn ghi bình thường)
 
-![Sandboxが使用されている箇所]({{site.baseurl}}/images/customize/sandbox.png)
+![Vị trí sử dụng Sandbox]({{site.baseurl}}/images/customize/sandbox.png)
 
-## デフォルトの許可リスト
+## Danh sách cho phép mặc định
 
-**※以下に記載のあるtwigの機能のみ、Snadbox内で使用することが出来ます。**  
-記載のない機能は使用できないので、もし必要がある場合は許可リストに記載ください。
+**※Chỉ các chức năng twig liệt kê dưới đây mới dùng được trong Sandbox.**
+Nếu cần thêm chức năng khác, hãy bổ sung vào danh sách cho phép.
 
-[デフォルトの許可リストの設定](https://github.com/EC-CUBE/ec-cube/blob/4.2/app/config/eccube/packages/twig_extensions.yaml){:target="_blank"}
+[Xem cấu hình danh sách cho phép mặc định](https://github.com/EC-CUBE/ec-cube/blob/4.2/app/config/eccube/packages/twig_extensions.yaml){:target="_blank"}
 
+## Chỉnh sửa danh sách cho phép
 
-## 許可リストを編集する場合
+Cấu hình bằng file yaml.
+Chỉnh sửa các file sau:
 
-設定はyamlファイルで行います。  
-以下のファイルを編集します。
+* Danh sách cho phép mặc định: `app/config/eccube/packages/twig_extensions.yaml`
+* Nếu Customize: `app/Customize/Resource/config/services.yaml`
 
-* デフォルトの許可リストの場合、 `app/config/eccube/packages/twig_extensions.yaml`
-* Customizeの場合、`app/Customize/Resource/config/services.yaml`
+Chuẩn bị list dưới đây để thêm/bớt chức năng.
 
-以下のリストを用意し、追加・削除を行ってください。
-
-### tagの場合
+### Đối với tag
 
 ```yaml
 parameters:
@@ -72,10 +67,10 @@ parameters:
         - 'embed'
         - 'extends'
         - 'flush'
-(以下略)
+# ...
 ```
 
-### filterの場合
+### Đối với filter
 
 ```yaml
     eccube.twig_sandbox.allowed_filters:
@@ -85,10 +80,10 @@ parameters:
         - 'column'
         - 'convert_encoding'
         - 'country_name'
-(以下略)
+# ...
 ```
 
-### functionの場合
+### Đối với function
 
 ```yaml
     eccube.twig_sandbox.allowed_functions:
@@ -98,12 +93,12 @@ parameters:
         - 'min'
         - 'random'
         - 'range'
-(以下略)
+# ...
 ```
 
-### その他
+### Khác
 
-メソッド・プロパティの制御を行いたい場合は、以下の項目を編集ください
+Nếu muốn kiểm soát method/property, chỉnh các mục sau:
 
 ```yaml
     eccube.twig_sandbox.allowed_methods:
@@ -112,43 +107,36 @@ parameters:
     eccube.twig_sandbox.allowed_properties: []
 ```
 
-## Sandboxの挙動について
+## Hành vi của Sandbox
 
-現在、Sandbox内で許可リストで許可されていない記述が現れた場合、
+Hiện tại, nếu có code không nằm trong danh sách cho phép trong Sandbox:
 
-* 開発モード（`APP_ENV=dev`）では、「エラーを表示させる」
-* 本番モード（`APP_ENV=prod`）では、「エラーをログ出力し、sandbox内の記述を消す」
+* Ở chế độ phát triển (`APP_ENV=dev`): "Hiển thị lỗi"
+* Ở chế độ production (`APP_ENV=prod`): "Ghi log lỗi và xoá nội dung không hợp lệ trong sandbox"
 
-という挙動をするようになっております。
+### Trường hợp chế độ phát triển
 
-### 開発モードの場合
+Sẽ hiển thị màn hình lỗi như sau:
 
-以下のようなエラー画面が表示されます。
+![Màn hình lỗi]({{site.baseurl}}/images/customize/error_screen.png)
 
-![エラー画面]({{site.baseurl}}/images/customize/error_screen.png)
+### Trường hợp production
 
-
-### 本番モードの場合
-
-以下のような文言がログファイルに出力されています。
+Log sẽ ghi lại nội dung như sau:
 
 ```
 Filter "abs" is not allowed in "__string_template__cceb5b1ce6c6124b4a33368da2e5f5c5" at line 3
 ```
 
-![エラー画面]({{site.baseurl}}/images/customize/log_screen.png)
+![Màn hình log]({{site.baseurl}}/images/customize/log_screen.png)
 
+### Nếu thông tin chi tiết sản phẩm từng hiển thị nay không còn
 
-### 今まで表示されていた商品詳細の情報が急に表示されなくなった場合
+Có thể do sử dụng keyword không có trong danh sách cho phép của Sandbox. Hãy kiểm tra log xem có bị hạn chế keyword không.
+Nếu có, hãy kiểm tra [danh sách cho phép](#danh-sach-cho-phep-mac-dinh) và bổ sung nếu cần.
 
-上記のSandboxの機能により、許可リストに記載されていないキーワードが使用されている可能性があります。  
-キーワードが制限されたログが出力されているかどうか確認してください。
+## Tham khảo
 
-出力されている場合は、[許可リスト](#デフォルトの許可リスト) を確認いただき、必要であればそのキーワードを追加ください。
-
-## 参考情報
-
-当機能の許可リスト制御は、twigのSandboxを利用しております。  
-こちらのドキュメントも併せてご参照ください。
+Chức năng kiểm soát danh sách cho phép này sử dụng Sandbox của twig. Tham khảo thêm tại:
 
 [Sandbox Extension](https://twig.symfony.com/doc/3.x/api.html#sandbox-extension){:target="_blank"}

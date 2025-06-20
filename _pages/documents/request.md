@@ -1,31 +1,30 @@
 ---
-title: ドキュメントのリクエスト
+title: Yêu cầu tài liệu
 keywords: 
 tags: [guideline]
 permalink: documents/request
 folder: document
-description: ドキュメントのリクエスト方法を記載します。
+description: Hướng dẫn cách gửi yêu cầu tài liệu.
 ---
 
+Nội dung tài liệu phát triển được quản lý trên GitHub.
+Mọi yêu cầu, góp ý vui lòng đăng ISSUE trên GitHub.
 
-開発ドキュメントの内容は、GitHub上で管理されています。
-ご要望、ご意見はGitHubのISSUEにご登録ください。
+## Cách đăng ISSUE
 
-## ISSUEの登録方法
-
-1. EC-CUBE 4 開発ドキュメントの[ISSUEのページ](https://github.com/EC-CUBE/doc4.ec-cube.net/issues){:target="_blank"}を開く
-1. New issueをクリックする   
-![New issueの作成](/images/github/img-github-issue.png)
-1. 内容を記入後、Submit new issueをクリックする
+1. Mở [trang ISSUE của tài liệu phát triển EC-CUBE 4](https://github.com/EC-CUBE/doc4.ec-cube.net/issues){:target="_blank"}
+1. Nhấn New issue   
+![Tạo New issue](/images/github/img-github-issue.png)
+1. Nhập nội dung và nhấn Submit new issue
 
 
-### ISSUE記載内容の例  
+### Ví dụ nội dung ISSUE  
 
 ```markdown
-## 概要(Overview)
+## Tổng quan (Overview)
 
-## 期待する内容(Expect)  or 要望 (Requirement)
+## Nội dung mong đợi (Expect)  hoặc Yêu cầu (Requirement)
 
-## 関連情報 (Ref)
+## Thông tin liên quan (Ref)
 ```
 

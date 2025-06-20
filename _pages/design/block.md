@@ -1,29 +1,29 @@
 ---
-title: ブロックの利用
-keywords: design block customize
-tags: [design]
+title: Sử dụng Block
+keywords: thiết kế block tùy chỉnh
+tags: [thiết kế]
 permalink: design_block
-summary: ブロックを利用したデザイン変更について説明します。
+summary: Giải thích về việc thay đổi thiết kế sử dụng block.
 ---
 
-## ブロックの使い方
-EC-CUBEにはブロック管理機能があり、用意されているブロックの配置を替えることでデザインの変更が可能です。  
-また、新規にブロックを作成し、レイアウト管理から作成したブロックを配置することで容易にデザインの追加・修正を行うことが可能です。
+## Cách sử dụng Block
+EC-CUBE có chức năng quản lý block, cho phép bạn thay đổi thiết kế bằng cách thay đổi vị trí các block đã có sẵn.  
+Bạn cũng có thể tạo block mới, sau đó bố trí block vừa tạo từ màn hình quản lý layout để dễ dàng thêm hoặc chỉnh sửa thiết kế.
 
-### ブロック管理の新規作成
+### Tạo mới block trong quản lý block
 
-管理画面にログイン後、  
-[コンテンツ管理] -> [ブロック管理] 画面より「新規入力」ボタンを押してブロックの内容を作成します。
-![ブロック管理](./images/design/design-block-01.png)
+Sau khi đăng nhập vào trang quản trị,  
+Từ [Quản lý nội dung] -> [Quản lý block], nhấn nút "Nhập mới" để tạo nội dung cho block.
+![Quản lý block](./images/design/design-block-01.png)
 
-「新規入力」ボタンを押した後、
+Sau khi nhấn nút "Nhập mới",
 
-![ブロック管理](./images/design/design-block-02.png)
+![Quản lý block](./images/design/design-block-02.png)
 
-ブロック名、ファイル名には任意の一意となる名称を入力し、ブロックデータには出力するhtmlを記述し、「登録」ボタンを押すとブロックが作成されます。
+Nhập tên block, tên file (phải là duy nhất), và nhập mã html muốn xuất ra vào phần dữ liệu block, sau đó nhấn nút "Đăng ký" để tạo block.
 
-ブロックの配置方法は[レイアウト管理](design_layout)を確認してください。
+Cách bố trí block, vui lòng xem tại [Quản lý layout](design_layout).
 
-### ブロックの削除
+### Xóa block
 
-デフォルトで用意されているブロックについては削除できず、新規作成されたブロックのみ削除可能です。
+Các block mặc định không thể xóa, chỉ có thể xóa các block do bạn tự tạo mới.

@@ -1,19 +1,19 @@
 ---
 layout: single
 author_profile: false
-title: 最新バージョン
+title: Phiên bản mới nhất
 keywords:
 tags: [quickstart, latest_version]
 permalink: quickstart/latest_version
 
 ---
 
-現時点での最新バージョン情報は以下のとおりです。
+Thông tin về phiên bản mới nhất hiện tại như sau.
 
 - [4.3](https://github.com/EC-CUBE/ec-cube/tree/4.3){:target="_blank"}
-- [4.3 リリースノート](https://github.com/EC-CUBE/ec-cube/releases/latest){:target="_blank"}
-- [4.3 ダウンロード](https://www.ec-cube.net/download/){:target="_blank"}
+- [Ghi chú phát hành 4.3](https://github.com/EC-CUBE/ec-cube/releases/latest){:target="_blank"}
+- [Tải về 4.3](https://www.ec-cube.net/download/){:target="_blank"}
 
-- [システム要件](requirement)
+- [Yêu cầu hệ thống](requirement)
 
-- [4.2から4.3へのマイグレーション](/update-42-43)
+- [Di chuyển từ 4.2 lên 4.3](/update-42-43)

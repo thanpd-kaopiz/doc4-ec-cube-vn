@@ -1,18 +1,18 @@
 ---
-title: テストが止まらないようにするための設定
+title: Thiết lập để kiểm thử không bị gián đoạn
 permalink: /penetration-testing/testing/apply_patch
 ---
-例えば、テスト中の動作によって、セキュリティテストを実行中のユーザーが削除されてしまったり、ページのアクセス権が変更されてしまい、アクセスできなくなってしまう可能性があります。
-これを防いで、安定してテストできるようにするため、EC-CUBE本体側に修正を入れます。
+Ví dụ, trong quá trình kiểm thử, có thể xảy ra trường hợp người dùng đang thực hiện kiểm thử bảo mật bị xóa hoặc quyền truy cập trang bị thay đổi khiến không thể truy cập được nữa.
+Để ngăn chặn điều này và đảm bảo kiểm thử ổn định, cần chỉnh sửa trực tiếp vào mã nguồn EC-CUBE.
 
-[パッチファイル全体はこちら](/patches/testing.patch)
+[Xem toàn bộ file patch tại đây](/patches/testing.patch)
 
-**Note:** これらの修正の他、各種削除機能のテストをする場合は、削除処理がロールバックされるように該当処理の `EntityManager::flush()` をコメントアウトする必要があります。
+**Lưu ý:** Ngoài các chỉnh sửa này, khi kiểm thử các chức năng xóa, cần comment out `EntityManager::flush()` trong các xử lý liên quan để đảm bảo thao tác xóa được rollback.
 {: .notice--warning}
 
-## 管理画面
+## Màn hình quản trị
 
-### 規格、規格分類の削除防止
+### Ngăn chặn xóa quy cách, phân loại quy cách
 
 ``` diff
 diff --git a/src/Eccube/Repository/ClassCategoryRepository.php b/src/Eccube/Repository/ClassCategoryRepository.php
@@ -42,9 +42,9 @@ index 7e894b0585..4809d8262b 100644
  }
 ```
 
-### ログアウト防止
+### Ngăn chặn logout
 
-ログアウトすると、セッションが切断され CSRF トークンが変更されてしまい、テストに失敗するため、ログアウトしないように設定する
+Khi logout, session sẽ bị ngắt và token CSRF sẽ thay đổi, dẫn đến kiểm thử thất bại. Vì vậy, cần vô hiệu hóa chức năng logout.
 
 ``` diff
 diff --git a/app/config/eccube/packages/security.yaml b/app/config/eccube/packages/security.yaml
@@ -67,9 +67,9 @@ index 2ad4e1a608..8da71094d0 100644
 
 ```
 
-### 権限管理の更新防止
+### Ngăn chặn cập nhật quản lý quyền hạn
 
-権限機能の拒否URLに `/` が登録されてしまい、管理画面にアクセスできなくなるのを防ぎます
+Nếu URL từ chối quyền hạn bị đăng ký là `/`, sẽ không thể truy cập màn hình quản trị. Cần ngăn chặn điều này.
 
 ```diff
 diff --git a/src/Eccube/Controller/Admin/Setting/System/AuthorityController.php b/src/Eccube/Controller/Admin/Setting/System/AuthorityController.php
@@ -88,9 +88,9 @@ index 2f69bd5f62..4d2f4fdde1 100644
 
 ```
 
-### マスタデータの更新防止
+### Ngăn chặn cập nhật master data
 
-マスタデータが不用意に更新され、各種機能が動作しなくなるのを防ぎます。
+Ngăn chặn việc master data bị cập nhật không mong muốn, dẫn đến các chức năng không hoạt động.
 
 ```diff
 diff --git a/src/Eccube/Controller/Admin/Setting/System/MasterdataController.php b/src/Eccube/Controller/Admin/Setting/System/MasterdataController.php
@@ -109,10 +109,9 @@ index 9b661031ab..a517b9a6ff 100644
 
 ```
 
+### Ngăn chặn cập nhật thông tin user quản trị
 
-### 管理画面ユーザーの更新防止
-
-テストを実施中のユーザーのパスワードやユーザーIDの変更を防ぎます
+Ngăn chặn việc thay đổi mật khẩu hoặc ID của user đang kiểm thử.
 
 ```diff
 diff --git a/src/Eccube/Controller/Admin/Setting/System/MemberController.php b/src/Eccube/Controller/Admin/Setting/System/MemberController.php
@@ -131,9 +130,9 @@ index d1f042f67a..0ce6235b77 100644
 
 ```
 
-### セキュリティ管理の更新防止
+### Ngăn chặn cập nhật quản lý bảo mật
 
-セキュリティ管理の内容が変更され、管理画面にアクセスできなくなるのを防ぎます
+Ngăn chặn việc thay đổi nội dung quản lý bảo mật khiến không thể truy cập màn hình quản trị.
 
 ```diff
 diff --git a/src/Eccube/Controller/Admin/Setting/System/SecurityController.php b/src/Eccube/Controller/Admin/Setting/System/SecurityController.php
@@ -147,14 +146,13 @@ index d48b4f36b2..a658bbd33b 100644
 -            file_put_contents($envFile, $env);
 +            // file_put_contents($envFile, $env);
 
--            // 管理画面URLの更新. 変更されている場合はログアウトし再ログインさ
-せる.
+-            // Cập nhật URL màn hình quản trị. Nếu thay đổi thì logout và login lại.
 -            $adminRoute = $this->eccubeConfig['eccube_admin_route'];
 -            if ($adminRoute !== $data['admin_route_dir']) {
 -                $env = StringUtil::replaceOrAddEnv($env, [
 -                    'ECCUBE_ADMIN_ROUTE' => $data['admin_route_dir'],
 -                ]);
-+            // // 管理画面URLの更新. 変更されている場合はログアウトし再ログインさせる.
++            // // Cập nhật URL màn hình quản trị. Nếu thay đổi thì logout và login lại.
 +            // $adminRoute = $this->eccubeConfig['eccube_admin_route'];
 +            // if ($adminRoute !== $data['admin_route_dir']) {
 +            //     $env = StringUtil::replaceOrAddEnv($env, [
@@ -167,20 +165,20 @@ index d48b4f36b2..a658bbd33b 100644
 -                $this->addSuccess('admin.setting.system.security.admin_url_changed', 'admin');
 +            //     $this->addSuccess('admin.setting.system.security.admin_url_changed', 'admin');
 
--                // ログアウト
+-                // Đăng xuất
 -                $this->tokenStorage->setToken(null);
-+            //     // ログアウト
++            //     // Đăng xuất
 +            //     $this->tokenStorage->setToken(null);
 
--                // キャッシュの削除
+-                // Xóa cache
 -                $cacheUtil->clearCache();
-+            //     // キャッシュの削除
++            //     // Xóa cache
 +            //     $cacheUtil->clearCache();
 
--                // 管理者画面へ再ログイン
+-                // Đăng nhập lại vào màn hình quản trị
 -                return $this->redirect($request->getBaseUrl().'/'.$data['admin_route_dir']);
 -            }
-+            //     // 管理者画面へ再ログイン
++            //     // Đăng nhập lại vào màn hình quản trị
 +            //     return $this->redirect($request->getBaseUrl().'/'.$data['admin_route_dir']);
 +            // }
 
@@ -188,11 +186,11 @@ index d48b4f36b2..a658bbd33b 100644
 
 ```
 
-## フロント画面
+## Màn hình front
 
-### 会員情報変更防止
+### Ngăn chặn thay đổi thông tin hội viên
 
-会員情報が変更され、再ログインできなくなるのを防止します
+Ngăn chặn việc thay đổi thông tin hội viên khiến không thể đăng nhập lại.
 
 ``` diff
 diff --git a/src/Eccube/Controller/Mypage/ChangeController.php b/src/Eccube/Controller/Mypage/ChangeController.php
@@ -206,13 +204,13 @@ index 70121e110c..1846b6fbe6 100644
 -            $this->entityManager->flush();
 +            // $this->entityManager->flush();
 
-             log_info('会員編集完了');
+             log_info('Hoàn thành chỉnh sửa hội viên');
 
 ```
 
-### お届け先登録制限防止
+### Ngăn chặn giới hạn số lượng địa chỉ nhận hàng
 
-お届け先上限数に抵触してテストが失敗するのを防止します
+Ngăn chặn việc vượt quá số lượng địa chỉ nhận hàng tối đa khiến kiểm thử thất bại.
 
 ``` diff
 diff --git a/src/Eccube/Controller/Mypage/DeliveryController.php b/src/Eccube/Controller/Mypage/DeliveryController.php
@@ -230,9 +228,9 @@ index af8dd653a6..803f3123f2 100644
              $CustomerAddress->setCustomer($Customer);
 ```
 
-### お届け先情報削除防止
+### Ngăn chặn xóa thông tin địa chỉ nhận hàng
 
-お届け先情報が削除され、商品購入が失敗しないようにします
+Ngăn chặn việc xóa thông tin địa chỉ nhận hàng khiến việc mua hàng thất bại.
 
 ```diff
 diff --git a/src/Eccube/Controller/Mypage/DeliveryController.php b/src/Eccube/Controller/Mypage/DeliveryController.php
@@ -251,10 +249,10 @@ index f3ecbc1ed0..7bd7290c1a 100644
 
 ```
 
-### お気に入り追加防止
+### Ngăn chặn thêm sản phẩm yêu thích
 
-お気に入り追加(`/products/add_favorite/<id>`)のテストが失敗しないようにします
-*お気に入り削除防止のパッチと同時には使用できません*
+Ngăn chặn việc kiểm thử thêm sản phẩm yêu thích (`/products/add_favorite/<id>`) bị thất bại
+*Không thể sử dụng đồng thời với patch ngăn chặn xóa sản phẩm yêu thích*
 
 ``` diff
 diff --git a/src/Eccube/Repository/CustomerFavoriteProductRepository.php b/src/Eccube/Repository/CustomerFavoriteProductRepository.php
@@ -271,10 +269,10 @@ index 24430036a4..cff5db5a64 100644
      }
 ```
 
-### お気に入り削除防止
+### Ngăn chặn xóa sản phẩm yêu thích
 
-お気に入りが削除され、お気に入り関連のテストが失敗しないようにします
-*お気に入り追加防止のパッチと同時には使用できません*
+Ngăn chặn việc xóa sản phẩm yêu thích khiến kiểm thử liên quan đến sản phẩm yêu thích bị thất bại
+*Không thể sử dụng đồng thời với patch ngăn chặn thêm sản phẩm yêu thích*
 
 ```diff
 diff --git a/src/Eccube/Controller/Mypage/MypageController.php b/src/Eccube/Controller/Mypage/MypageController.php
@@ -293,12 +291,12 @@ index d3abe49efd..b02a841954 100644
 
 ```
 
-**Note:** sequence アドオンを使用することで、登録→削除までの一連の流れをテストできる可能性
+**Lưu ý:** Có thể kiểm thử luồng đăng ký→xóa bằng addon sequence
 {: .notice--info}
 
-### 会員の退会防止
+### Ngăn chặn hội viên rút khỏi hệ thống
 
-テスト中の会員が退会してしまい、テストが停止しないようにします
+Ngăn chặn việc hội viên rút khỏi hệ thống khiến kiểm thử bị dừng lại
 
 ```diff
 diff --git a/src/Eccube/Controller/Mypage/WithdrawController.php b/src/Eccube/Controller/Mypage/WithdrawController.php
@@ -307,7 +305,7 @@ index 796a0b943e..940709df9c 100644
 +++ b/src/Eccube/Controller/Mypage/WithdrawController.php
 @@ -121,8 +121,8 @@ class WithdrawController extends AbstractController
 
-                     // 退会ステータスに変更
+                     // Chuyển sang trạng thái rút khỏi
                      $CustomerStatus = $this->customerStatusRepository->find(CustomerStatus::WITHDRAWING);
 -                    $Customer->setStatus($CustomerStatus);
 -                    $Customer->setEmail(StringUtil::random(60).'@dummy.dummy');
@@ -319,21 +317,21 @@ index 796a0b943e..940709df9c 100644
 @@ -140,11 +140,11 @@ class WithdrawController extends AbstractController
                      $this->mailService->sendCustomerWithdrawMail($Customer, $email);
 
-                     // カートと受注のセッションを削除
+                     // Xóa session giỏ hàng và đơn hàng
 -                    $this->cartService->clear();
 -                    $this->orderHelper->removeSession();
 +                    // $this->cartService->clear();
 +                    // $this->orderHelper->removeSession();
 
-                     // ログアウト
+                     // Đăng xuất
 -                    $this->tokenStorage->setToken(null);
 +                    // $this->tokenStorage->setToken(null);
 
-                     log_info('ログアウト完了');
+                     log_info('Hoàn thành đăng xuất');
 
 ```
 
-### 仮会員登録防止
+### Ngăn chặn đăng ký hội viên tạm thời
 
 ``` diff
 diff --git a/src/Eccube/Controller/EntryController.php b/src/Eccube/Controller/EntryController.php
@@ -347,11 +345,11 @@ index 076ac0a991..30a089994a 100644
 -                    $this->entityManager->flush();
 +                    // $this->entityManager->flush();
 
-                     log_info('会員登録完了');
+                     log_info('Hoàn thành đăng ký hội viên');
 
 ```
 
-### 本会員登録防止
+### Ngăn chặn đăng ký hội viên chính thức
 
 ```
 @@ -293,7 +293,7 @@ class EntryController extends AbstractController
@@ -361,15 +359,15 @@ index 076ac0a991..30a089994a 100644
 -        $this->entityManager->flush();
 +        // $this->entityManager->flush();
 
-         log_info('本会員登録完了');
+         log_info('Hoàn thành đăng ký hội viên chính thức');
 
 ```
 
-### 注文完了時のカート削除
+### Không xóa giỏ hàng khi hoàn tất đơn hàng
 
-注文完了時にカートが削除されないようにします。
+Ngăn chặn việc xóa giỏ hàng khi hoàn tất đơn hàng.
 
-*注文確認画面から注文完了画面への遷移は `/shopping/checkout` へ CSRF トークンを POST するのみですので、あまり有用ではないかもしれません。*
+*Việc chuyển từ màn hình xác nhận đơn hàng sang hoàn tất chỉ là POST token CSRF tới `/shopping/checkout`, nên có thể không quá hữu ích.*
 
 ``` diff
 diff --git a/src/Eccube/Controller/ShoppingController.php b/src/Eccube/Controller/ShoppingController.php
@@ -383,30 +381,30 @@ index 8e99094d73..e8e744f39a 100644
 -                $this->entityManager->flush();
 +                //$this->entityManager->flush();
 
-                 log_info('[注文処理] 注文処理が完了しました.', [$Order->getId()]);
+                 log_info('[Xử lý đơn hàng] Đã hoàn thành xử lý đơn hàng.', [$Order->getId()]);
              } catch (ShoppingException $e) {
 @@ -409,7 +409,7 @@ class ShoppingController extends AbstractShoppingController
 
-             // カート削除
-             log_info('[注文処理] カートをクリアします.', [$Order->getId()]);
+             // Xóa giỏ hàng
+             log_info('[Xử lý đơn hàng] Xóa giỏ hàng.', [$Order->getId()]);
 -            $this->cartService->clear();
 +            //$this->cartService->clear();
 
-             // 受注IDをセッションにセット
+             // Gán ID đơn hàng vào session
              $this->session->set(OrderHelper::SESSION_ORDER_ID, $Order->getId());
 @@ -417,7 +417,7 @@ class ShoppingController extends AbstractShoppingController
-             // メール送信
-             log_info('[注文処理] 注文メールの送信を行います.', [$Order->getId()]);
+             // Gửi mail
+             log_info('[Xử lý đơn hàng] Gửi mail đơn hàng.', [$Order->getId()]);
              $this->mailService->sendOrderMail($Order);
 -            $this->entityManager->flush();
 +            //$this->entityManager->flush();
 
-             log_info('[注文処理] 注文処理が完了しました. 購入完了画面へ遷移します.', [$Order->getId()]);
+             log_info('[Xử lý đơn hàng] Đã hoàn thành xử lý đơn hàng. Chuyển sang màn hình hoàn tất.', [$Order->getId()]);
 
 @@ -463,7 +463,7 @@ class ShoppingController extends AbstractShoppingController
          }
 
-         log_info('[注文完了] 購入フローのセッションをクリアします. ');
+         log_info('[Hoàn tất đơn hàng] Xóa session luồng mua hàng.');
 -        $this->orderHelper->removeSession();
 +        //$this->orderHelper->removeSession();
 
@@ -414,9 +412,9 @@ index 8e99094d73..e8e744f39a 100644
 
 ```
 
-### クーポンプラグインの利用制限解除
+### Gỡ bỏ giới hạn sử dụng plugin coupon
 
-何回でも繰り返しクーポンを利用できるようにします
+Cho phép sử dụng coupon lặp lại nhiều lần.
 
 ```
 diff --git a/Controller/CouponShoppingController.php b/Controller/CouponShoppingController.php
@@ -430,6 +428,6 @@ index 7551217..091bbd7 100644
 -
 +                $error = false;
                  // ----------------------------------
-                 // 値引き項目追加 / 合計金額上書き
+                 // Thêm mục giảm giá / Ghi đè tổng tiền
                  // ----------------------------------
 ```

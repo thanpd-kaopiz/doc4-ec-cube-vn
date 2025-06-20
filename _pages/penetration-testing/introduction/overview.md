@@ -1,7 +1,7 @@
 ---
-title: セキュリティテストについて
+title: Về kiểm thử bảo mật
 permalink: /penetration-testing/introduction/overview
 ---
-- セキュリティテストの種類
-- ウェブアプリケーション侵入テストについて
-- [ウェブアプリケーション侵入テストの構成](/penetration-testing/introduction/layout)
+- Các loại kiểm thử bảo mật
+- Về kiểm thử xâm nhập ứng dụng web
+- [Cấu trúc kiểm thử xâm nhập ứng dụng web](/penetration-testing/introduction/layout)

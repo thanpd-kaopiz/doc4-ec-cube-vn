@@ -1,46 +1,46 @@
 ---
-title: イントロダクション
+title: Giới thiệu
 permalink: /penetration-testing/introduction
 ---
-## 対象の読者
+## Đối tượng độc giả
 
-### EC-CUBE本体開発者
+### Nhà phát triển EC-CUBE chính
 
-EC-CUBE2系の頃から、商用のセキュリティテストツールを導入し、リリース前にはセキュリティテストを実施してきました。
+Từ thời EC-CUBE2, chúng tôi đã áp dụng các công cụ kiểm thử bảo mật thương mại và thực hiện kiểm thử bảo mật trước khi phát hành.
 
-しかし、ツールの特性上、テストできる環境が限られ、横展開が難しく、誰もがセキュリティテストを実施できる状況ではありませんでした。
+Tuy nhiên, do đặc thù của các công cụ này, môi trường kiểm thử bị giới hạn, khó mở rộng và không phải ai cũng có thể thực hiện kiểm thử bảo mật.
 
-今回、 OWASP ZAP を導入したことにより、誰でも簡単にテストを試せるようになりました。
-確実に漏れなくテストをするのは簡単ではありませんが、EC-CUBEの内部構造を把握している開発者だからこそ、有用なテストもあります。
+Với việc áp dụng OWASP ZAP lần này, bất kỳ ai cũng có thể dễ dàng thử nghiệm kiểm thử bảo mật.
+Việc kiểm thử toàn diện không phải lúc nào cũng dễ dàng, nhưng với các nhà phát triển nắm rõ cấu trúc bên trong của EC-CUBE, việc kiểm thử sẽ hiệu quả hơn.
 
-テストの最終段階だけではなく、ぜひ、普段の開発中でも OWASP ZAP を活用していただき、EC-CUBEの安全性を高め、テストの改善にご協力いただければ幸いです。
+Chúng tôi hy vọng không chỉ ở giai đoạn cuối mà cả trong quá trình phát triển thường xuyên, bạn cũng sẽ sử dụng OWASP ZAP để nâng cao bảo mật cho EC-CUBE và đóng góp vào việc cải thiện kiểm thử.
 
-### EC-CUBEカスタマイズ開発者・プラグイン開発者
+### Nhà phát triển tuỳ biến EC-CUBE, nhà phát triển plugin
 
-従来、個別のカスタマイズ案件でのセキュリティテストは、専門機関に依頼し、独自に実施する以外方法がありませんでした。
+Trước đây, kiểm thử bảo mật cho từng dự án tuỳ biến thường phải nhờ đến các tổ chức chuyên môn hoặc tự thực hiện, không có phương pháp nào khác.
 
-これには多額の費用がかかるため、一部の大型案件以外ではセキュリティテストの実施は困難でした。
+Do chi phí cao, việc kiểm thử bảo mật chỉ thực hiện ở một số dự án lớn.
 
-プラグイン開発時においても、セキュリティテストを実施するのは難しく、リリース後に脆弱性が発覚するケースも多く見受けられました。
+Ngay cả khi phát triển plugin, việc kiểm thử bảo mật cũng khó khăn, nhiều trường hợp phát hiện lỗ hổng sau khi phát hành.
 
-OWASP ZAP の導入と、このドキュメントの作成により、個別のカスタマイズ案件やプラグイン開発時でも容易にテストできるようになりました。
-ぜひ、ご自身の係わる案件、プラグインなどにもセキュリティテストを導入していただき、安心安全なECプラットフォームを創っていけたらと思います。
+Nhờ việc áp dụng OWASP ZAP và xây dựng tài liệu này, giờ đây bạn có thể dễ dàng kiểm thử bảo mật cho các dự án tuỳ biến hoặc plugin của mình.
+Hãy chủ động áp dụng kiểm thử bảo mật cho các dự án, plugin liên quan để xây dựng một nền tảng EC an toàn, tin cậy.
 
-### ソフトウェアテスト実施者
+### Người thực hiện kiểm thử phần mềm
 
-OWASP ZAP の導入により、開発者でなくても、できるだけ簡単にセットアップできるようになりました。
-ぜひセキュリティテストにも取り組んでいただき、ご自身のキャリアにも活かしていただけれあば幸いです。
+Nhờ áp dụng OWASP ZAP, không chỉ nhà phát triển mà bất kỳ ai cũng có thể dễ dàng thiết lập môi trường kiểm thử.
+Hãy tích cực tham gia kiểm thử bảo mật và áp dụng vào công việc của bạn.
 
-### セキュリティ専門家
+### Chuyên gia bảo mật
 
-EC-CUBE本体のセキュリティテストは、 EC-CUBE本体開発者がテストしています。
-このドキュメントを書いているのも、EC-CUBE本体開発者であり、セキュリティの専門家ではありません。
+Kiểm thử bảo mật cho EC-CUBE được thực hiện bởi các nhà phát triển chính của EC-CUBE.
+Tài liệu này cũng được viết bởi nhà phát triển chính, không phải chuyên gia bảo mật.
 
-セキュリティについての知識向上に努力を惜しまず、日々改善を重ねておりますが、どうしても限界があります。
-ぜひ、このセキュリティテストも試していただき、専門家の立場からフィードバックしていただければ幸いです。
+Chúng tôi luôn nỗ lực nâng cao kiến thức về bảo mật và cải thiện từng ngày, nhưng vẫn có những giới hạn nhất định.
+Rất mong bạn cũng thử nghiệm kiểm thử bảo mật này và phản hồi từ góc độ chuyên gia.
 
-## セキュリティテストについて
+## Về kiểm thử bảo mật
 
-- [セキュリティテストの種類](/penetration-testing/introduction/type)
-- [ウェブアプリケーション侵入テストについて](/penetration-testing/introduction/penetration-test)
-- [ウェブアプリケーション侵入テストの構成](/penetration-testing/introduction/layout)
+- [Các loại kiểm thử bảo mật](/penetration-testing/introduction/type)
+- [Về kiểm thử xâm nhập ứng dụng web](/penetration-testing/introduction/penetration-test)
+- [Cấu trúc kiểm thử xâm nhập ứng dụng web](/penetration-testing/introduction/layout)

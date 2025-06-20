@@ -1,87 +1,84 @@
 ---
 layout: single
-title: スロットリング機能のカスタマイズ
-keywords: core カスタマイズ スロットリング
+title: Tuỳ biến chức năng throttling
+keywords: core tuỳ biến throttling
 tags: [core, throttling]
 permalink: customize_throttling
 folder: customize
 ---
 
-
 ---
 
-## スロットリング機能
+## Chức năng throttling
 
-※この機能はEC-CUBE 4.2.1から利用できます。
+※Chức năng này có từ EC-CUBE 4.2.1.
 
 - [EC-CUBE/ec-cube#5881](https://github.com/EC-CUBE/ec-cube/pull/5881)
 - [EC-CUBE/ec-cube#5942](https://github.com/EC-CUBE/ec-cube/pull/5942)
  
-クレジットマスター等への抑止として、スロットリング機能が追加されました。
+Chức năng throttling được thêm vào để hạn chế truy cập, ví dụ như chống brute force vào credit master.
 
-IPごと、または会員ごとのスロットリングを行うことができます。
+Có thể throttling theo IP hoặc theo hội viên.
 
-本体で適用される対象機能や試行回数等は以下となります。
+Các chức năng, số lần thử... được áp dụng mặc định như sau:
 
-| 画面 | ルーティング | IPベース | 会員ベース | 備考 |
+| Màn hình | Routing | Theo IP | Theo hội viên | Ghi chú |
 |---|---|---|---|---|
-| 会員登録 | entry | 25回/30分 | - | 新規会員登録（入力）画面から確認画面に遷移する時に実施 |
-| 会員登録(完了) | entry | 5回/30分 | - | 新規会員登録画面で会員登録を完了した時に実施 |
-| パスワード再発行 | forgot | 5回/30分 | - |  |
-| 問い合わせ | contact | 5回/30分 | - |  |
-| 注文確認画面 | shopping_confirm | 25回/30分 | 10回/30分 | バリデーション等が完了し、決済プラグインへ処理を移譲する直前で実施 |
-| 注文完了処理 | shopping_checkout | 25回/30分 | 10回/30分 | バリデーション等が完了し、決済プラグインへ処理を移譲する直前で実施 |
-| 会員情報編集 | mypage_change | - | 10回/30分 | ログイン後の画面のため、会員ベースのみ |
-| 会員お届け先追加 | mypage_delivery_new | - | 10回/30分 | ログイン後の画面のため、会員ベースのみ |
-| 会員お届け先編集 | mypage_delivery_edit | - | 10回/30分 | ログイン後の画面のため、会員ベースのみ |
-| 会員お届け先削除 | mypage_delivery_delete | - | 10回/30分 | ログイン後の画面のため、会員ベースのみ |
-| カート内会員複数配送設定 | shopping_shipping_multiple_edit | - | 10回/30分 | ログイン後の画面のため、会員ベースのみ |
-| カート内会員お届け先編集 | shopping_shipping_edit | - | 10回/30分 | ログイン後の画面のため、会員ベースのみ |
-| 管理画面ログイン（2段階認証) | admin_two_factor_auth | - | 5回/30分 | 管理画面ログイン後の画面のため、管理者ユーザベースのみ |
+| Đăng ký hội viên | entry | 25 lần/30 phút | - | Khi chuyển từ màn hình nhập sang xác nhận |
+| Đăng ký hội viên (hoàn tất) | entry | 5 lần/30 phút | - | Khi hoàn tất đăng ký hội viên |
+| Quên mật khẩu | forgot | 5 lần/30 phút | - |  |
+| Liên hệ | contact | 5 lần/30 phút | - |  |
+| Xác nhận đơn hàng | shopping_confirm | 25 lần/30 phút | 10 lần/30 phút | Thực hiện trước khi chuyển sang xử lý thanh toán |
+| Hoàn tất đơn hàng | shopping_checkout | 25 lần/30 phút | 10 lần/30 phút | Thực hiện trước khi chuyển sang xử lý thanh toán |
+| Sửa thông tin hội viên | mypage_change | - | 10 lần/30 phút | Chỉ áp dụng cho hội viên đã đăng nhập |
+| Thêm địa chỉ giao hàng | mypage_delivery_new | - | 10 lần/30 phút | Chỉ áp dụng cho hội viên đã đăng nhập |
+| Sửa địa chỉ giao hàng | mypage_delivery_edit | - | 10 lần/30 phút | Chỉ áp dụng cho hội viên đã đăng nhập |
+| Xoá địa chỉ giao hàng | mypage_delivery_delete | - | 10 lần/30 phút | Chỉ áp dụng cho hội viên đã đăng nhập |
+| Sửa nhiều địa chỉ giao hàng | shopping_shipping_multiple_edit | - | 10 lần/30 phút | Chỉ áp dụng cho hội viên đã đăng nhập |
+| Sửa địa chỉ giao hàng trong giỏ | shopping_shipping_edit | - | 10 lần/30 phút | Chỉ áp dụng cho hội viên đã đăng nhập |
+| Đăng nhập quản trị (2FA) | admin_two_factor_auth | - | 5 lần/30 phút | Chỉ áp dụng cho quản trị viên đã đăng nhập |
 
-また、プラグインやCustomizeからもこの機能を利用できます。
+Bạn cũng có thể sử dụng chức năng này trong Plugin hoặc Customize.
 
-## 拡張サンプル
+## Ví dụ mở rộng
 
-### yamlでの設定
+### Cấu hình bằng yaml
 
-以下のようにyamlで設定を行うことで、ルーティングに対しスロットリングが自動実行されます。
+Cấu hình như sau để tự động throttling theo routing.
 
-スロットリングの制御はipごと/会員（または管理者ユーザ）ごとを指定可能です。
+Có thể chỉ định kiểm soát theo IP hoặc hội viên (hoặc quản trị viên).
 
-yamlファイルは、
+File yaml:
 
-- Customizeの場合、app/Customize/Resource/config/services.yaml
-- プラグインの場合、app/Plugin/[Plugin Code]/Resource/config/services.yaml
-
-に記載してください。
+- Customize: app/Customize/Resource/config/services.yaml
+- Plugin: app/Plugin/[Plugin Code]/Resource/config/services.yaml
   
 ```yaml
 eccube:
     rate_limiter:
         forgot:
-            route: forgot # スロットリングを実行するルーティングを指定します。
-            method: ['POST'] # スロットリングを実行するmethodを指定します。デフォルトはPOSTです。
-            type: ip # スロットリングの制御方法を設定します。ip, userを指定します。複数指定も可能です。(4.2.3以降は customer ではなく userを指定してください。)
+            route: forgot # Routing cần throttling
+            method: ['POST'] # Phương thức cần throttling, mặc định là POST
+            type: ip # Kiểm soát theo ip, user. Có thể chỉ định nhiều (từ 4.2.3 dùng user thay cho customer)
             limit: 5
             interval: '30 minutes'
         entry:
             route: entry
             method: ['POST']
             params:
-                mode: complete # 会員登録画面のように、確認画面を挟む遷移をする場合、遷移用のパラメータを指定できます。
+                mode: complete # Nếu có bước xác nhận, chỉ định param
             type: [ 'ip', 'user' ]
             limit: 5
             interval: '30 minutes'
         shopping_confirm_ip:
-            route: ~ # routeがnullの場合は自動実行されません。
+            route: ~ # Nếu route là null thì không tự động thực thi
             limit: 25
             interval: '30 minutes'
 ```
 
-### 独自のスロットリングを組み込みたい場合
+### Tự triển khai throttling riêng
 
-routeにnullを指定することで、自動実行は行わず`RateLimiter`の生成のみ行うことができます。
+Chỉ định route là null để chỉ tạo RateLimiter, không tự động thực thi.
 
 ```yaml
 eccube:
@@ -92,7 +89,7 @@ eccube:
             interval: '30 minutes'
 ```
 
-コントローラ等、必要な箇所でRateLimiterFactoryをインジェクションし、実装してください。
+Inject RateLimiterFactory vào controller để sử dụng:
 
 ```php
 class HogeController {
@@ -100,30 +97,30 @@ class HogeController {
   public function index(RateLimiterFactory $hogeLimiter, Request $request) {
     $limiter = $hogeLimiter->create($request->getClientIp());
     if (!$limiter->consume()->isAccepted()) {
-        throw new TooManyRequestsHttpException()
+        throw new TooManyRequestsHttpException();
     }
   }
 
 ```
 
-### 既存の設定の上書きを行う
+### Ghi đè cấu hình mặc định
 
-本体、もしくはプラグインの設定は、Customizeで上書きすることができます。
+Có thể ghi đè cấu hình mặc định của core hoặc plugin bằng Customize.
 
-例えば、本体で以下のような設定がある場合、
+Ví dụ, core có cấu hình:
 
 ```yaml
 eccube:
  rate_limiter:
   forgot:
-   route: forgot # スロットリングを実行するルーティングを指定します。
-   method: ['POST'] # スロットリングを実行するmethodを指定します。デフォルトはPOSTです。
-   type: ip # スロットリングの制御方法を設定します。ip, userを指定します。複数指定も可能です。(4.2.3以降は customer ではなく userを指定してください。)
+   route: forgot
+   method: ['POST']
+   type: ip
    limit: 5
    interval: '30 minutes'
 ```
 
-Customizeで以下のように上書きを行うことができます。
+Customize ghi đè như sau:
 
 ```yaml
 eccube:
@@ -133,19 +130,19 @@ eccube:
    interval: '60 minutes'
 ```
 
-### スロットリングをクリアする
+### Xoá cache throttling
 
-スロットリングの結果は、以下のコマンドでクリアできます。
+Xoá cache bằng lệnh:
 
 ```
 bin/console cache:pool:clear rate_limiter.cache --env=<APP_ENV> 
 ```
 
-### スロットリング情報の保存先を変更する
+### Thay đổi nơi lưu thông tin throttling
 
-デフォルトでは、スロットリング情報の保存先はファイルシステムとなっています。
+Mặc định lưu bằng file system.
 
-app/config/eccube/packages/rate_limiter.yml で、保存先を変更することが可能です。
+Có thể thay đổi tại app/config/eccube/packages/rate_limiter.yml.
 
 ```
 # config/packages/rate_limiter.yaml
@@ -156,25 +153,23 @@ framework:
                 adapter: cache.adapter.filesystem
 ```
 
-設定方法は [https://symfony.com/doc/5.4/cache.html](https://symfony.com/doc/5.4/cache.html) を参照してください。
+Tham khảo: [https://symfony.com/doc/5.4/cache.html](https://symfony.com/doc/5.4/cache.html)
 
 {: .notice--danger}
-現在、[EC-CUBE/ec-cube#5957](https://github.com/EC-CUBE/ec-cube/issues/5957) の不具合があり、スロットリング情報の保存先にcache.adapter.doctrine_dbalを選択することができません。
-冗長構成をとる場合は、redisやmemcachedを設定してください。
+Hiện tại, [EC-CUBE/ec-cube#5957](https://github.com/EC-CUBE/ec-cube/issues/5957) có bug, không thể dùng cache.adapter.doctrine_dbal. Nếu cần HA, hãy dùng redis hoặc memcached.
 {: .notice--danger}
 
-### ログインスロットリング
+### Throttling đăng nhập
 
-ログインのスロットリング機能については、以下を参照してください。
+Tham khảo thêm:
 
 - [EC-CUBE/ec-cube#4249](https://github.com/EC-CUBE/ec-cube/issues/4249)
 - [EC-CUBE/ec-cube#5473](https://github.com/EC-CUBE/ec-cube/pull/5473)
 - [EC-CUBE/ec-cube#6035](https://github.com/EC-CUBE/ec-cube/pull/6035)
 - [EC-CUBE/ec-cube#6038](https://github.com/EC-CUBE/ec-cube/pull/6038)
 
-## 参考情報
+## Tham khảo
 
-スロットリングの機能は、symfony/rate-limiterを利用しています。  
-その他のカスタマイズ方法についてはSymfonyのドキュメントを参照してください。
+Chức năng throttling sử dụng symfony/rate-limiter. Tham khảo thêm tại tài liệu Symfony:
 
 [Rate Limiter](https://symfony.com/doc/5.4/rate_limiter.html){:target="_blank"}

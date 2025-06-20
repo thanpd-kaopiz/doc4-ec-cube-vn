@@ -1,54 +1,54 @@
 ---
-title: プラグインのインストール
-keywords: plugin install プラグイン
+title: Cài đặt Plugin
+keywords: plugin cài đặt plugin
 tags: [quickstart, getting_started]
 permalink: plugin_install
 
 ---
 
-### プラグインの操作についての概要
+### Tổng quan về thao tác plugin
 
-- プラグインは、インストール後に有効化することで機能を利用できるようになります。  
-- 機能を一時的に利用できなくしたい場合には、有効/無効を切り替えることができます。
-- 不要になった場合にはプラグインを削除することができます。
+- Sau khi cài đặt plugin, cần kích hoạt để sử dụng chức năng.  
+- Nếu muốn tạm thời không sử dụng, có thể chuyển đổi giữa bật/tắt plugin.
+- Nếu không cần nữa, có thể xóa plugin.
 
-### 管理画面を利用してインストールする
+### Cài đặt từ màn hình quản trị
 
-管理画面から以下のインストール方法を利用できます。
+Có thể cài plugin từ quản trị bằng các cách sau:
 
-- オーナーズストアで購入したプラグインのインストール
-- 独自プラグイン(tar.gz/zip)をアップロードしてのインストール
+- Cài plugin đã mua từ Owners Store
+- Cài plugin tự phát triển (tar.gz/zip) bằng cách upload
 
-### コマンドラインインターフェースを利用してインストールする
+### Cài đặt bằng dòng lệnh
 
-サンプルプラグイン(ProductReview)を `./app/Plugin/ProductReview` に展開後、以下のコマンドを実行してください。
+Sau khi giải nén plugin mẫu (ProductReview) vào `./app/Plugin/ProductReview`, hãy chạy lệnh sau.
 
-1. インストール  
+1. Cài đặt  
 `bin/console eccube:plugin:install --code=ProductReview`
-1. 有効化  
+1. Kích hoạt  
 `bin/console eccube:plugin:enable --code=ProductReview`
 
-#### その他の操作
+#### Các thao tác khác
 
-プラグイン操作のために以下のコマンドラインインターフェースを提供しています。  
-これらを利用することでコマンドベースでプラグインの操作を行うことができるようになります。
+Có thể thao tác plugin bằng các lệnh sau trên dòng lệnh.  
+Nhờ đó có thể quản lý plugin bằng command.
 
 ```
-bin/console eccube:plugin:install            // インストール
-bin/console eccube:plugin:uninstall          // 削除
-bin/console eccube:plugin:enable             // 有効化
-bin/console eccube:plugin:disable            // 無効化
+bin/console eccube:plugin:install            // Cài đặt
+bin/console eccube:plugin:uninstall          // Xóa
+bin/console eccube:plugin:enable             // Kích hoạt
+bin/console eccube:plugin:disable            // Vô hiệu hóa
 ```
 
-##### 利用例
+##### Ví dụ sử dụng
 
-1. インストール  
-`bin/console eccube:plugin:install --code=プラグインコード`
-1. 有効化  
-`bin/console eccube:plugin:enable --code=プラグインコード`
-1. 無効化  
-`bin/console eccube:plugin:disable --code=プラグインコード`
-1. 削除  
-`bin/console eccube:plugin:uninstall --code=プラグインコード`
-1. 削除(プラグインのファイルも削除する場合)  
-`bin/console eccube:plugin:uninstall --code=プラグインコード --uninstall-force=true`
+1. Cài đặt  
+`bin/console eccube:plugin:install --code=<mã plugin>`
+1. Kích hoạt  
+`bin/console eccube:plugin:enable --code=<mã plugin>`
+1. Vô hiệu hóa  
+`bin/console eccube:plugin:disable --code=<mã plugin>`
+1. Xóa  
+`bin/console eccube:plugin:uninstall --code=<mã plugin>`
+1. Xóa cả file plugin  
+`bin/console eccube:plugin:uninstall --code=<mã plugin> --uninstall-force=true`

@@ -1,39 +1,36 @@
 ---
-title: ec-cube.co アップデート指針
-keywords: co ec-cube.co クラウド版 アップデート指針
+title: ec-cube.co Hướng dẫn cập nhật
+keywords: co ec-cube.co Cloud version Hướng dẫn cập nhật
 tags: [co, ec-cube.co]
 permalink: co/co_update_guidelines
 folder: co
 ---
 
-
 ---
 
-## 適用されるソースコード
+## Mã nguồn được áp dụng
 
-ec-cube.co(4.0/4.1/4.2)で利用されているEC-CUBEのソースコードは [co/masterブランチ](https://github.com/EC-CUBE/ec-cube/tree/co/master){:target="_blank"}、[co/4.1ブランチ](https://github.com/EC-CUBE/ec-cube/tree/co/4.1){:target="_blank"} 、[co/4.2ブランチ](https://github.com/EC-CUBE/ec-cube/tree/co/4.2){:target="_blank"} で公開されています。  
-[4.2ブランチ](https://github.com/EC-CUBE/ec-cube/tree/4.2){:target="_blank"} のHEADが [co/4.2ブランチ](https://github.com/EC-CUBE/ec-cube/tree/co/4.2){:target="_blank"} に適宜マージされ、週次メンテナンスのタイミングで取り込まれます。
+Mã nguồn EC-CUBE sử dụng trên ec-cube.co (4.0/4.1/4.2) được công khai tại các branch [co/master](https://github.com/EC-CUBE/ec-cube/tree/co/master){:target="_blank"}, [co/4.1](https://github.com/EC-CUBE/ec-cube/tree/co/4.1){:target="_blank"}, [co/4.2](https://github.com/EC-CUBE/ec-cube/tree/co/4.2){:target="_blank"}.
+Branch [4.2](https://github.com/EC-CUBE/ec-cube/tree/4.2){:target="_blank"} sẽ được merge định kỳ vào branch [co/4.2](https://github.com/EC-CUBE/ec-cube/tree/co/4.2){:target="_blank"} trong các đợt bảo trì hàng tuần.
 
-現在ec-cube.co(4.2版)に適用されているEC-CUBEのソースコードは、[co/4.2-YYYYMMDD](https://github.com/EC-CUBE/ec-cube/tags){:target="_blank"} をご確認ください。
-現在ec-cube.co(4.1版)に適用されているEC-CUBEのソースコードは、[co/4.1-YYYYMMDD](https://github.com/EC-CUBE/ec-cube/tags){:target="_blank"} をご確認ください。  
-現在ec-cube.co(4.0版)に適用されているEC-CUBEのソースコードは、[co/YYYYMMDD](https://github.com/EC-CUBE/ec-cube/tags){:target="_blank"} をご確認ください。
+Mã nguồn EC-CUBE đang áp dụng cho ec-cube.co (bản 4.2) có thể kiểm tra tại [co/4.2-YYYYMMDD](https://github.com/EC-CUBE/ec-cube/tags){:target="_blank"}.
+Mã nguồn EC-CUBE đang áp dụng cho ec-cube.co (bản 4.1) có thể kiểm tra tại [co/4.1-YYYYMMDD](https://github.com/EC-CUBE/ec-cube/tags){:target="_blank"}.
+Mã nguồn EC-CUBE đang áp dụng cho ec-cube.co (bản 4.0) có thể kiểm tra tại [co/YYYYMMDD](https://github.com/EC-CUBE/ec-cube/tags){:target="_blank"}.
 
-## アップデート指針
+## Hướng dẫn cập nhật
 
-EC-CUBEのPull Request取り込み基準と同様、互換性の保持を優先します。
+Ưu tiên đảm bảo tính tương thích với tiêu chuẩn merge Pull Request của EC-CUBE.
 
-Pull Request互換性保持チェックリスト
+Danh sách kiểm tra tương thích Pull Request:
+- Thay đổi specification của chức năng hiện có
+- Thay đổi timing gọi function hookpoint
+- Xoá/thay đổi kiểu dữ liệu parameter của function hookpoint
+- Xoá/thay đổi kiểu dữ liệu parameter truyền vào file twig
+- Xoá/thay đổi kiểu dữ liệu parameter của function public trong Service class
+- Thay đổi format file xuất/nhập (CSV, ...)
 
-- 既存機能の仕様変更
-- フックポイントの呼び出しタイミングの変更
-- フックポイントのパラメータの削除・データ型の変更
-- twigファイルに渡しているパラメータの削除・データ型の変更
-- Serviceクラスの公開関数の、引数の削除・データ型の変更
-- 入出力ファイル(CSVなど)のフォーマット変更
+## Thời điểm phản ánh
 
-## 反映タイミング
-
-週次メンテナンスのタイミングでアップデートが行われます。
-
-- 週次メンテナンス(毎週木曜9:00〜10時、無停止でのメンテナンス)：EC-CUBEのアップデートを実施
-- 月次メンテナンス(毎月木曜9:00〜10時、停止を伴う場合がある)：GKEノード等、インフラ・ミドルウェアの更新を実施
+Cập nhật sẽ được thực hiện theo lịch bảo trì hàng tuần.
+- Bảo trì hàng tuần (mỗi thứ 5 từ 9:00~10:00, không dừng dịch vụ): cập nhật EC-CUBE
+- Bảo trì hàng tháng (mỗi thứ 5 đầu tháng từ 9:00~10:00, có thể dừng dịch vụ): cập nhật GKE node, hạ tầng, middleware

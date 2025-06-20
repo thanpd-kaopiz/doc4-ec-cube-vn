@@ -1,23 +1,19 @@
 ---
 layout: single
-title: パーミッション設定
-keywords: permission
-tags: [quickstart, permission]
+title: Cài đặt quyền
+keywords: quyền
 permalink: quickstart/permission
 folder: quickstart
-description: パーミッション設定に関して
+description: Về cài đặt quyền
 ---
 
-## パーミッションの設定について（共通事項）
+## Về cài đặt quyền (Điểm chung)
 
-EC-CUBE の便利な機能のいくつかは、Webサーバがファイルに書き込みできることに基づいています。
-しかし、アプリケーションがファイルに書き込み権限を持つことは危険です。
-セキュリティの観点からベストなのは、パーミッションを可能な限り制限して特定のディレクトリ・ファイルのみに書き込み権限を与えることです。
-以下のパーミッション設定に関してはどのインストール方法でも共通になります。
+Một số tính năng tiện lợi của EC-CUBE dựa trên việc máy chủ web có thể ghi vào tệp. Tuy nhiên, việc ứng dụng có quyền ghi vào tệp là nguy hiểm. Từ góc độ bảo mật, tốt nhất là hạn chế quyền càng nhiều càng tốt và chỉ cấp quyền ghi cho các thư mục/tệp cụ thể. Các cài đặt quyền dưới đây là chung cho mọi phương pháp cài đặt.
 
-### Webサーバの書き込み権限
+### Quyền ghi của máy chủ web
 
-EC-CUBEの全ての機能を利用するためには以下のディレクトリ・ファイルにWebサーバからの書き込み権限が必要です。
+Để sử dụng tất cả các tính năng của EC-CUBE, cần có quyền ghi từ máy chủ web cho các thư mục/tệp sau.
 
 ```
 [eccube_root/]
@@ -34,89 +30,72 @@ EC-CUBEの全ての機能を利用するためには以下のディレクトリ�
   └──[composer.lock]
 ```
 
-その他のディレクトリ・ファイルには読み取り権限が必要です。
+Các thư mục/tệp khác cần có quyền đọc.
 
 #### eccube_root/
 
-EC-CUBEのルートディレクトリにWebサーバの書き込み権限が必要です。
-ルートディレクトリ配下には `.env` ファイルや `.maintenance` ファイル等が配置されます。
-**ルートディレクトリ配下は別の推奨権限がありますので一括権限変更しないようにご注意ください。**
+Cần có quyền ghi từ máy chủ web cho thư mục gốc của EC-CUBE. Dưới thư mục gốc có các tệp như `.env` và `.maintenance`. **Có các quyền khuyến nghị khác cho thư mục gốc, vì vậy hãy cẩn thận không thay đổi quyền một cách toàn diện.**
 
 #### app/
 
-ディレクトリにWebサーバの書き込み権限が必要です。
-配下のディレクトリにWebサーバの書き込み権限が必要なためです。
+Cần có quyền ghi từ máy chủ web cho thư mục này. Vì cần có quyền ghi từ máy chủ web cho các thư mục con.
 
 #### app/Plugin/
 
-ディレクトリにWebサーバの書き込み権限が必要です。
-プラグインのソースコードが配置されます。
+Cần có quyền ghi từ máy chủ web cho thư mục này. Mã nguồn của plugin được đặt ở đây.
 
 #### app/PluginData/
 
-ディレクトリにWebサーバの書き込み権限が必要です。
-プラグインのデータが配置されます。
+Cần có quyền ghi từ máy chủ web cho thư mục này. Dữ liệu của plugin được đặt ở đây.
 
 #### app/proxy/
 
-ディレクトリ配下にWebサーバの書き込み権限が必要です。
-Entity拡張で生成されるproxyファイルが配置されます。
+Cần có quyền ghi từ máy chủ web cho thư mục này. Các tệp proxy được tạo ra khi mở rộng Entity được đặt ở đây.
 
 #### app/template/
 
-ディレクトリ配下にWebサーバの書き込み権限が必要です。
-テンプレートファイルが配置されます。
+Cần có quyền ghi từ máy chủ web cho thư mục này. Các tệp mẫu được đặt ở đây.
 
 #### html/
 
-ディレクトリ配下にWebサーバの書き込み権限が必要です。
-cssファイルやjsファイル等が配置されます。
+Cần có quyền ghi từ máy chủ web cho thư mục này. Các tệp css và js được đặt ở đây.
 
 #### var/
 
-ディレクトリ配下にWebサーバの書き込み権限が必要です。
-キャッシュやログなどの一時ファイルが配置されます。
+Cần có quyền ghi từ máy chủ web cho thư mục này. Các tệp tạm thời như cache và log được đặt ở đây.
 
 #### vendor/
 
-ディレクトリ配下にWebサーバの書き込み権限が必要です。
-プラグインインストール時にライブラリがインストールされ、クラスマップが更新されます。
+Cần có quyền ghi từ máy chủ web cho thư mục này. Các thư viện được cài đặt khi cài đặt plugin và bản đồ lớp được cập nhật.
 
 #### composer.json / composer.lock
 
-ファイルにWebサーバの書き込み権限が必要です。
-プラグインインストール時に更新されます。
+Cần có quyền ghi từ máy chủ web cho các tệp này. Được cập nhật khi cài đặt plugin.
 
-#### パーミッションの設定例
+#### Ví dụ cài đặt quyền
 
-権限が必要なロールはサーバの仕様によって異なります。
-例えば共有サーバ等の場合、ファイルを設置するFTPユーザとWebサーバの実行ユーザが異なる場合があります。
-この場合、WebサーバはOtherでの権限でアクセスすることになりますので、EC-CUBEの機能を利用するためにはOtherに対して適切に書き込み権限を設定する必要があります。
+Quyền cần thiết cho các vai trò khác nhau tùy thuộc vào thông số kỹ thuật của máy chủ. Ví dụ, trong trường hợp máy chủ chia sẻ, người dùng FTP đặt tệp và người dùng thực thi máy chủ web có thể khác nhau. Trong trường hợp này, máy chủ web sẽ truy cập với quyền Other, vì vậy cần thiết lập quyền ghi cho Other để sử dụng các tính năng của EC-CUBE.
 
-| ディレクトリ・ファイル | Webサーバに必要な権限 | 設定例 |
+| Thư mục/Tệp | Quyền cần thiết cho máy chủ web | Ví dụ cài đặt |
 |--------------------|----------|-------|
-| eccube_root/ <br> app/ <br>  app/Plugin/ <br>  app/PluginData/ <br>  app/proxy/ <br>  app/template/ <br>  html/ <br>  var/ <br> vendor/ | 読み取り、書き込み | 707( `rwx---rwx` ) |
-| その他のディレクトリ | 読み取り | 705( `rwx---r-x` ) |
-| composer.json <br> composer.lock | 読み取り、書き込み | 606( `rw----rw-` ) |
-| その他のファイル | 読み取り | 604( `rw----r--` ) |
+| eccube_root/ <br> app/ <br>  app/Plugin/ <br>  app/PluginData/ <br>  app/proxy/ <br>  app/template/ <br>  html/ <br>  var/ <br> vendor/ | Đọc, ghi | 707( `rwx---rwx` ) |
+| Các thư mục khác | Đọc | 705( `rwx---r-x` ) |
+| composer.json <br> composer.lock | Đọc, ghi | 606( `rw----rw-` ) |
+| Các tệp khác | Đọc | 604( `rw----r--` ) |
 
-#### 本体のバージョンアップについて
+#### Về việc nâng cấp phiên bản chính
 
-アップデートプラグインにてEC-CUBE本体をバージョンアップする場合は全ファイルにWebサーバからの書き込み権限が必要になります。
-バージョンアップの際は一時的にWebサーバの書き込み権限を付与していただき、アップデート後は推奨のパーミッション設定に戻してください。
+Khi nâng cấp phiên bản chính của EC-CUBE bằng plugin cập nhật, cần có quyền ghi từ máy chủ web cho tất cả các tệp. Khi nâng cấp, hãy tạm thời cấp quyền ghi từ máy chủ web, sau khi cập nhật hãy trở lại cài đặt quyền khuyến nghị.
 
-#### bin/consoleについて
+#### Về bin/console
 
-EC-CUBEのコマンドを利用する場合は `bin/console` に実行権限を付与してください。
+Khi sử dụng lệnh của EC-CUBE, hãy cấp quyền thực thi cho `bin/console`.
 
-### 本番環境でのパーミッション設定
+### Cài đặt quyền trong môi trường sản xuất
 
-前項ではEC-CUBEの全ての機能を利用するためのWebサーバの書き込み権限について記載いたしました。
-本番環境ではさらにパーミッションを制限することで、よりセキュリティリスクを下げることができます。
-ただしパーミッションの制限を強くすると一部機能が制限され、利便性が落ちてしまいます。
-それぞれのファイル・ディレクトリの役割と制限内容を理解した上でパーミッションの設定をお願いします。
+Phần trước đã đề cập đến quyền ghi từ máy chủ web để sử dụng tất cả các tính năng của EC-CUBE. Trong môi trường sản xuất, có thể giảm rủi ro bảo mật bằng cách hạn chế quyền hơn nữa. Tuy nhiên, việc hạn chế quyền quá mức có thể làm giảm tính tiện lợi và hạn chế một số tính năng. Hãy hiểu rõ vai trò và nội dung hạn chế của từng tệp/thư mục trước khi cài đặt quyền.
 
-以下のディレクトリ・ファイルにはセキュリティの観点からWebサーバの書き込み権限を付与しないほうが安全です。
+Không nên cấp quyền ghi từ máy chủ web cho các thư mục/tệp sau từ góc độ bảo mật.
 
 ```
 [eccube_root/]
@@ -132,57 +111,49 @@ EC-CUBEのコマンドを利用する場合は `bin/console` に実行権限を�
   └──[composer.lock]
 ```
 
-上記のディレクトリ・ファイルのWebサーバの書き込み権限を制限した場合には以下の機能が制限されます。
+Khi hạn chế quyền ghi từ máy chủ web cho các thư mục/tệp trên, các tính năng sau sẽ bị hạn chế.
 
-- コンテンツ管理
-  - ページ管理
-  - ブロック管理
-  - メンテナンス管理
-- 設定
-  - 店舗設定
-    - 特定商取引法設定
-    - 利用規約設定
-    - メール設定
-  - システム設定
-    - セキュリティ管理
-- オーナーズストア
-  - プラグイン
-    - プラグイン一覧
-  - テンプレート
-    - テンプレート一覧
-    - アップロード
-  - 設定
+- Quản lý nội dung
+  - Quản lý trang
+  - Quản lý khối
+  - Quản lý bảo trì
+- Cài đặt
+  - Cài đặt cửa hàng
+    - Cài đặt luật thương mại cụ thể
+    - Cài đặt điều khoản sử dụng
+    - Cài đặt email
+  - Cài đặt hệ thống
+    - Quản lý bảo mật
+- Cửa hàng chủ sở hữu
+  - Plugin
+    - Danh sách plugin
+  - Mẫu
+    - Danh sách mẫu
+    - Tải lên
+  - Cài đặt
 
-#### .env と .htaccess
+#### .env và .htaccess
 
-`.env` はEC-CUBEのインストール時に作成され、EC-CUBEの重要な設定が記載されています。
-また、 `.htaccess` にはWebサーバの設定や環境変数等の重要な設定が記載されています。
-共に重要な設定が記載されたファイルですので、Webサーバからの読み取り権限と書き込み権限のみに制限したほうが安全です。
-ファイルの所有者をWebサーバのユーザに設定し、 `400(rw-------)` のパーミッションを設定してください。
-本番環境の `.env` ファイルの利用については[本番環境での .env ファイルの利用について](/quickstart/dotenv)も合わせてご覧ください。
+`.env` được tạo khi cài đặt EC-CUBE và chứa các cài đặt quan trọng của EC-CUBE. Ngoài ra, `.htaccess` chứa các cài đặt quan trọng như cài đặt máy chủ web và biến môi trường. Vì cả hai đều chứa các cài đặt quan trọng, nên hạn chế chỉ cho phép quyền đọc và ghi từ máy chủ web. Hãy đặt chủ sở hữu tệp là người dùng máy chủ web và thiết lập quyền `400(rw-------)`. Về việc sử dụng tệp `.env` trong môi trường sản xuất, hãy xem thêm [Về việc sử dụng tệp .env trong môi trường sản xuất](/quickstart/dotenv).
 
 #### var/
 
-キャッシュやログ等のEC-CUBEの稼働に必要なファイルが設置されます。
-EC-CUBEが稼働するためにはWebサーバの書き込み権限が必要です。
+Các tệp cần thiết cho hoạt động của EC-CUBE như cache và log được đặt ở đây. Để EC-CUBE hoạt động, cần có quyền ghi từ máy chủ web.
 
 #### app/PluginData/
 
-プラグインのデータを配置するためのディレクトリです。
-`app/PluginData/` を利用しているかどうかはプラグインによって異なります。
-`app/PluginData/` を利用するプラグインがインストールされている場合にはWebサーバの書き込み権限が必要です。
+Thư mục này dùng để đặt dữ liệu của plugin. Việc sử dụng `app/PluginData/` phụ thuộc vào plugin. Nếu có plugin sử dụng `app/PluginData/` được cài đặt, cần có quyền ghi từ máy chủ web.
 
 #### html/
 
-商品等の画像等をアップロードした際に `html/` に配置されます。
-Webサーバからの書き込み権限を制限すると以下の機能が制限されます。
+Khi tải lên các hình ảnh sản phẩm, chúng được đặt trong `html/`. Khi hạn chế quyền ghi từ máy chủ web, các tính năng sau sẽ bị hạn chế.
 
-- 商品管理
-  - 商品登録
-    - 商品画像
-- コンテンツ管理
-  - ファイル管理
-- 設定
-  - 店舗設定
-    - 支払方法設定
-      - ロゴ画像
+- Quản lý sản phẩm
+  - Đăng ký sản phẩm
+    - Hình ảnh sản phẩm
+- Quản lý nội dung
+  - Quản lý tệp
+- Cài đặt
+  - Cài đặt cửa hàng
+    - Cài đặt phương thức thanh toán
+      - Hình ảnh logo

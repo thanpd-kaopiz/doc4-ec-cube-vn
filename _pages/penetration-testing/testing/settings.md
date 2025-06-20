@@ -1,54 +1,54 @@
 ---
-title: 環境構築
+title: Hướng dẫn cấu hình môi trường
 permalink: /penetration-testing/testing/settings
 ---
-## システム要件
+## Yêu cầu hệ thống
 
-- Docker 1.13.0 or higher
-- docker-compose 1.10.0 or higher
+- Docker 1.13.0 trở lên
+- docker-compose 1.10.0 trở lên
 
-- Chrome(最新版) - OWASP ZAP の管理画面操作に使用します
-- Firefox(最新版) - Local Proxes 経由の手動探索で使用します
+- Chrome (phiên bản mới nhất) - Dùng để thao tác giao diện quản lý OWASP ZAP
+- Firefox (phiên bản mới nhất) - Dùng để thăm dò thủ công qua Local Proxes
 
-## インストール
+## Cài đặt
 
-[Quick Start](/penetration-testing/quick_start) を参照
+Tham khảo [Quick Start](/penetration-testing/quick_start)
 
-**Note:** 後ほど詳細含めて追記します
+**Lưu ý:** Sẽ bổ sung chi tiết sau
 {: .notice}
 
-### docker-compose.owaspzap.yml で自動設定される内容
+### Nội dung được tự động thiết lập bởi docker-compose.owaspzap.yml
 
-#### VOLUME マウントディレクトリ
+#### Thư mục mount VOLUME
 
 ```shell
-<ec-cubeインストールディレクトリ>/ec-cube/zap:/zap/wrk
+<ec-cube-thư-mục-cài-đặt>/ec-cube/zap:/zap/wrk
 ```
 
-セッションやレポートの保存先など、 `/zap/wrk` に設定すると、ローカル環境にすぐに取り出すことができて便利です。
+Nếu thiết lập lưu session, report, ... vào `/zap/wrk` thì có thể dễ dàng lấy ra từ môi trường local.
 
-#### インストールされるアドオン
+#### Addon được cài đặt
 
-- [help_ja_JP](https://www.zaproxy.org/addons/#addon-help_ja_JP) - 日本語ヘルプ
-- [wappalyzer](https://www.zaproxy.org/docs/desktop/addons/technology-detection/) - 利用技術検出
-- [sequence](https://www.zaproxy.org/docs/desktop/addons/sequence-scanner/) - 複数画面遷移用アドオン
+- [help_ja_JP](https://www.zaproxy.org/addons/#addon-help_ja_JP) - Trợ giúp tiếng Nhật
+- [wappalyzer](https://www.zaproxy.org/docs/desktop/addons/technology-detection/) - Phát hiện công nghệ sử dụng
+- [sequence](https://www.zaproxy.org/docs/desktop/addons/sequence-scanner/) - Addon cho kiểm thử chuyển trang nhiều màn hình
 
-#### アンインストールされるアドオン
+#### Addon bị gỡ bỏ
 
-- [hud](https://www.zaproxy.org/docs/desktop/addons/hud/) - ヘッドアップディスプレイ。 Selenium などのブラウザ操作ツールと干渉するため使用しない
+- [hud](https://www.zaproxy.org/docs/desktop/addons/hud/) - Head Up Display. Không sử dụng vì gây xung đột với các công cụ thao tác trình duyệt như Selenium
 
-#### 自動設定されるオプション
+#### Các tuỳ chọn được thiết lập tự động
 
-- 日本語ロケール
-- APIキーの無効化
-  - クローズドな環境での利便性向上のため
-- アンチCSRFトークン(試験的)
-- HttpSessionトークン
-- グローバルアラートフィルター(試験的)
-  - 常に誤検知されるものを登録
+- Ngôn ngữ tiếng Nhật
+- Vô hiệu hoá API key
+  - Để tăng tiện lợi trong môi trường đóng
+- Token Anti-CSRF (thử nghiệm)
+- Token HttpSession
+- Global Alert Filter (thử nghiệm)
+  - Đăng ký các cảnh báo luôn bị false positive
 
-#### その他
+#### Khác
 
-- Local Proxes 用 SSL ルート CA 証明書の自動出力
-  - ローカル環境の `<ec-cubeインストールディレクトリ>/zap/owasp_zap_root_ca.cer` に出力されます
-  - Firefox の証明書マネージャーに読み込んで使用します
+- Tự động xuất chứng chỉ gốc SSL cho Local Proxes
+  - Được xuất ra `<ec-cube-thư-mục-cài-đặt>/zap/owasp_zap_root_ca.cer` trên môi trường local
+  - Đọc vào Firefox qua Certificate Manager để sử dụng

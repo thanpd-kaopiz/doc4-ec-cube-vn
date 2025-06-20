@@ -1,45 +1,45 @@
 ---
-title: オーナーズストア経由のインストールをテストする
-keywords: plugin mock プラグイン オーナーズストア
+title: Kiểm thử cài đặt qua Owners Store
+keywords: plugin mock plugin Owners Store
 tags: [plugin, mock, package-api]
 permalink: plugin_mock_package_api
 
 ---
 
-オーナーズストアのmockサーバをたて、プラグインのダウンロードをオーナーズストア経由でのダウンロードのように行う手順を解説します。
-オーナーズストア申請前のプラグインの検証等に活用してください。
+Hướng dẫn cách dựng mock server Owners Store để kiểm thử tải plugin như khi tải qua Owners Store thật.
+Có thể dùng để kiểm thử plugin trước khi đăng ký lên Owners Store.
 
-### requirements
+### Yêu cầu
 
-mockサーバを利用するために、dockerが必要になります。
+Cần cài đặt docker để sử dụng mock server.
 
-適宜インストールをしてください。
+Hãy cài đặt docker nếu chưa có.
 
-### mockサーバの実行手順
+### Các bước chạy mock server
 
-mockサーバを実行するための手順は以下のとおりです。
+Các bước chạy mock server như sau:
 
 ```
-// ec-cubeのルートディレクトリに移動
+// Di chuyển vào thư mục gốc ec-cube
 $ cd /path/to/ec-cube
 
-// プラグインの保管ディレクトリを作成
+// Tạo thư mục lưu plugin
 $ mkdir ${PWD}/repos
 
-// mockサーバを起動。ここでは9999をポート番号に設定していますが、必要に応じて変更してください
-docker run -d --rm -v ${PWD}/repos:/repos -e MOCK_REPO_DIR=/repos -p 9999:8080 eccube/mock-package-api
+// Khởi động mock server. Ở đây dùng port 9999, có thể đổi nếu cần
+$ docker run -d --rm -v ${PWD}/repos:/repos -e MOCK_REPO_DIR=/repos -p 9999:8080 eccube/mock-package-api
 
-// mockサーバを参照するように環境変数を定義
-echo ECCUBE_PACKAGE_API_URL=http://127.0.0.1:9999 >> .env
+// Đặt biến môi trường để tham chiếu mock server
+$ echo ECCUBE_PACKAGE_API_URL=http://127.0.0.1:9999 >> .env
 
-// 認証キーを設定
-psql eccube_db -h 127.0.0.1 -U postgres -c "update dtb_base_info set authentication_key='test';"
+// Thiết lập key xác thực
+$ psql eccube_db -h 127.0.0.1 -U postgres -c "update dtb_base_info set authentication_key='test';"
 
-// reposディレクトリにプラグインを設置。拡張子はtgzに変更してください
-cp /path/to/SamplePlugin.tar.gz repos/SamplePlugin.tgz
+// Đặt plugin vào thư mục repos. Đổi đuôi thành tgz
+$ cp /path/to/SamplePlugin.tar.gz repos/SamplePlugin.tgz
 ```
 
-以上の手順を行うと、「プラグインを探す」でreposディレクトリに配置したプラグインが表示されます。
+Sau khi thực hiện các bước trên, plugin đặt trong thư mục repos sẽ hiển thị khi tìm kiếm plugin.
 
-![プラグインを探す](./images/plugin/mock-server.png)
+![Tìm plugin](/images/plugin/mock-server.png)
 

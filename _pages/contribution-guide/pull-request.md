@@ -1,112 +1,108 @@
 ---
-title: プルリクエストの作り方
-description: EC-CUBEのプルリクエストを送る場合の手順や考慮してもらいたいことについて説明します。
+title: Cách tạo Pull Request
+description: Hướng dẫn gửi Pull Request cho EC-CUBE và các lưu ý cần thiết.
 keywords: Githubflow
 tags: [contribution-guide, guideline]
 permalink: contribution-guide/pull-request
 folder: contribution-guide
 ---
 
-EC-CUBEのプルリクエストを送る場合の手順や考慮してもらいたいことについて説明します。
+Hướng dẫn gửi Pull Request cho EC-CUBE và các lưu ý cần thiết.
 
-## ソースコードをローカルにクローンする
+## Clone mã nguồn về local
 
-<a href="https://github.com/EC-CUBE/ec-cube" target="_blank">ec-cube</a>のリポジトリを自身の Github アカウントに <a href="https://help.github.com/ja/github/getting-started-with-github/fork-a-repo" target="_blank">Fork</a> し、ローカルに <a href="https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository" target="_blank">clone</a>　します。
+Fork repository <a href="https://github.com/EC-CUBE/ec-cube" target="_blank">ec-cube</a> về tài khoản Github của bạn, sau đó <a href="https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository" target="_blank">clone</a> về local.
 
-## パッケージのインストール
+## Cài đặt package phụ thuộc
 
-依存関係のあるパッケージをインストールします。
+Cài đặt các package phụ thuộc:
 
 ```sh
 $ composer install
 ```
 
-## リモートの追加
+## Thêm remote
 
-ec-cubeのリポジトリをリモートに追加します。
-
-リモートリポジトリ名を `upstream` としていますが、任意の名前で構いません。
+Thêm repository gốc của ec-cube làm remote. Ở đây đặt tên là `upstream`, bạn có thể đặt tên khác nếu muốn.
 
 ```sh
 $ git remote add upstream https://github.com/EC-CUBE/ec-cube.git
 ```
 
-## ローカルのmainブランチの更新
+## Cập nhật branch main local
 
-ec-cubeは4.2ブランチがmainブランチとなっています。
+EC-CUBE sử dụng branch 4.2 làm branch chính.
 
 ```sh
 $ git pull upstream 4.2
 ```
 
-## 開発用ブランチの作成
+## Tạo branch phát triển
 
 ```sh
-$ git checkout -b [任意のブランチ名] upstream/4.2
+$ git checkout -b [tên branch tuỳ ý] upstream/4.2
 ```
 
-## 自身のGithubリポジトリの更新
+## Đẩy lên repository của bạn
 
-作成したブランチで変更内容を commit 後、自身のGithubリポジトリに push を行います。
+Sau khi commit thay đổi trên branch vừa tạo, hãy push lên repository của bạn.
 
 ```sh
-$ git push origin [任意のブランチ名]
+$ git push origin [tên branch tuỳ ý]
 ```
 
-## プルリクエストを送る
+## Gửi Pull Request
 
-自身のGithubリポジトリのページから、<a href="https://github.com/EC-CUBE/ec-cube" target="_blank">ec-cube</a> へプルリクエストを作成します。
+Từ trang repository của bạn trên Github, tạo Pull Request tới <a href="https://github.com/EC-CUBE/ec-cube" target="_blank">ec-cube</a>.
 
-- GitHubの自分のレポトリから、PullRequestする
+- Tạo Pull Request từ repository của bạn lên repository chính
 
-### プルリクエストのマージ条件
+### Điều kiện merge Pull Request
 
-以下がクリアされる事で本体の「Master」にマージされます。
+Pull Request sẽ được merge vào "Master" khi đáp ứng các điều kiện sau:
 
-1. 開発者・コミッターのレビュー
+1. Được developer/committer review
+2. Check CI thành công
+    - Travis: Unit test
+    - AppVeyor: Unit test (môi trường Windows)
+    - Scrutinizer: Phân tích mã nguồn tĩnh
 
-2. CIのチェック
-    - Travis			 : ユニットテスト
-    - AppVeyor		 : ユニットテスト( Win環境 )
-    - Scritinizer	: 静的コード解析
+### Lưu ý khi gửi Pull Request
 
-### プルリクエストを送る際に行ってもらいたいこと
+Hãy gộp các commit không cần thiết lại với nhau. Nếu bạn đã quen với `git rebase`, hãy sử dụng để gộp commit.
 
-不要なコミットログはまとめてください。
-対象は`git rebase`について把握している方ですので、必須ではありません。
-
-以下のようなコミットを行った場合は、`112233445`から`334455667`はまとめてください。
+Ví dụ, nếu bạn có các commit như sau, hãy gộp `112233445` đến `334455667` lại:
 ```sh
 $ git log --pretty=format:"%h - %an : %s"
-334455667 - myself : 機能A修正
-223344556 - myself : 機能A修正
-112233445 - myself : 機能A追加
-001122334 - other_user : 別ユーザーのコミット
+334455667 - myself : Sửa chức năng A
+223344556 - myself : Sửa chức năng A
+112233445 - myself : Thêm chức năng A
+001122334 - other_user : Commit của người khác
 ```
-`git rebase`を実行し、まとめてください。
+Chạy `git rebase` để gộp commit:
 ```sh
 $ git rebase -i 001122334
-pick 112233445 機能A追加
-squash 223344556 機能A修正
-squash 334455667 機能A修正
+pick 112233445 Thêm chức năng A
+squash 223344556 Sửa chức năng A
+squash 334455667 Sửa chức năng A
 ```
-以下のようになったらプルリクエストを上げてください。
+Sau khi gộp, log sẽ như sau:
 ```sh
 $ git log --pretty=format:"%h - %an : %s"
-445566778 - myself : 機能A追加
-001122334 - other_user : 別ユーザーのコミット
+445566778 - myself : Thêm chức năng A
+001122334 - other_user : Commit của người khác
 $ git push origin master
 $ ...
 ```
 
-ただし、コメントに対して修正を加えた場合は履歴がわかるようにするためにまとめすぎないようにしてください。
+Tuy nhiên, nếu bạn sửa theo comment review, hãy giữ lại lịch sử để dễ theo dõi, không nên gộp quá nhiều:
 ```sh
 $ git log --pretty=format:"%h - %an : %s"
-667788990 - myself : 修正に間違いがあったため修正
-556677889 - myself : レビュー結果を反映
-445566778 - myself : 機能A追加
-001122334 - other_user : 別ユーザーのコミット
+667788990 - myself : Sửa lại do sai sót
+556677889 - myself : Phản hồi kết quả review
+445566778 - myself : Thêm chức năng A
+001122334 - other_user : Commit của người khác
 ```
-`445566778`のコミット後にプルリクエストを上げ、レビューされた内容を反映するために修正した場合、`556677889`と`667788990`はまとめますが、`445566778`はまとめないでください。
+Sau khi commit `445566778` và gửi Pull Request, nếu có sửa theo review thì chỉ gộp các commit sửa review lại với nhau, không gộp với commit chính.
 
-マージ済みのコミットはまとめないでください。
+Không gộp các commit đã được merge.

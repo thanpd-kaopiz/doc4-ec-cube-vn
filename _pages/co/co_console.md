@@ -1,22 +1,21 @@
 ---
 title: ec-cube.co Console
-keywords: co ec-cube.co クラウド版 Console コンソール
+keywords: co ec-cube.co Cloud version Console Bảng điều khiển
 tags: [co, ec-cube.co]
 permalink: co/co_console
 folder: co
 ---
 
-
 ---
 
-## コンソール管理画面について
+## Về màn hình quản lý Console
 
-コンソール管理画面にログインすると環境情報や契約情報を確認できます。  
-コンソール管理画面にログインする際はPCのChromeブラウザをご使用下さい。  
+Khi đăng nhập vào màn hình quản lý Console, bạn có thể kiểm tra thông tin môi trường và thông tin hợp đồng.
+Khi đăng nhập vào màn hình quản lý Console, vui lòng sử dụng trình duyệt Chrome trên máy tính.
 <br>
-スタンダードプランの場合、以下の表示と使用が可能になります。  
+Nếu bạn sử dụng gói Standard, bạn sẽ có thể xem và sử dụng các mục sau:
 
-- 「テスト環境」、「Gitリポジトリ」項目の表示
-- サイドメニューの「ログ」、「テスト環境」の使用
+- Hiển thị các mục "Môi trường kiểm thử", "Kho Git"
+- Sử dụng các mục "Log", "Môi trường kiểm thử" trong menu bên
 
 ![console_standard](/images/co/console_standard.png)

@@ -1,40 +1,40 @@
 ---
-title: コンテキストの分類
+title: Phân loại Context
 permalink: /penetration-testing/testing/context
 ---
-OWASP ZAP には、ログインが必要なページをテストするための自動ログイン機能があり、認証パターンをコンテキストごとに設定できます。
-このため、コンテキストは HTTP Session の利用方法に応じて、3種類に分けます。
+OWASP ZAP có chức năng đăng nhập tự động để kiểm thử các trang cần đăng nhập, cho phép thiết lập pattern xác thực cho từng context.
+Vì vậy, context được chia thành 3 loại tùy theo cách sử dụng HTTP Session:
 
-- 管理画面
-- フロント(ゲスト)
-- フロント(ログイン)
+- Màn hình quản trị
+- Front (khách vãng lai)
+- Front (đã đăng nhập)
 
-**Note:** *これらのコンテキストを複数同時に使用すると、セッションが競合してログインできなくなる場合があるため注意してください*
+**Lưu ý:** *Nếu sử dụng đồng thời nhiều context này, session có thể bị xung đột và không thể đăng nhập, hãy chú ý!*
 {: .notice--warning}
 
-コンテキストごとに、以下のような設定ができます。
+Với từng context, có thể thiết lập các mục sau:
 
-- テスト対象のURL設定
-- テストを除外するURL設定
-- クエリストリングや、POST の接続子(& や = など)設定
-- 利用している OS やミドルウェアの設定
-- 認証パターンの設定
-- 認証ユーザーの設定
-- HTTP Session の管理方法の設定
-- アラートフィルターの設定
+- Thiết lập URL kiểm thử
+- Thiết lập URL loại trừ khỏi kiểm thử
+- Thiết lập ký tự nối query string, POST (&, =, ...)
+- Thiết lập OS, middleware đang sử dụng
+- Thiết lập pattern xác thực
+- Thiết lập user xác thực
+- Thiết lập cách quản lý HTTP Session
+- Thiết lập alert filter
 
-コンテキストの種類に応じて、上記を設定済みのファイルを用意していますので、適宜インポートして利用してください。
+Tùy theo loại context, đã chuẩn bị sẵn file cấu hình, hãy import và sử dụng phù hợp.
 
 ```shell
-## 管理画面用
+## Dành cho màn hình quản trị
 docker-compose -f docker-compose.yml -f docker-compose.owaspzap.yml exec zap zap-cli -p 8090 context import /zap/wrk/admin.context
-## フロント(ログイン用)
+## Dành cho front (đã đăng nhập)
 docker-compose -f docker-compose.yml -f docker-compose.owaspzap.yml exec zap zap-cli -p 8090 context import /zap/wrk/front_login.context
-## フロント(ゲスト用)
+## Dành cho front (khách vãng lai)
 docker-compose -f docker-compose.yml -f docker-compose.owaspzap.yml exec zap zap-cli -p 8090 context import /zap/wrk/front_guest.context
 ```
 
-このコンテキストごとにテストを実施し、それぞれテスト結果のレポートを評価します。
+Hãy thực hiện kiểm thử cho từng context và đánh giá báo cáo kết quả kiểm thử tương ứng.
 
-**Note:** コンテキストごとに、OWASP ZAP のセッションを分けて保存しておくと便利です。
+**Lưu ý:** Nếu lưu session của OWASP ZAP riêng cho từng context sẽ rất tiện lợi.
 {: .notice--info}

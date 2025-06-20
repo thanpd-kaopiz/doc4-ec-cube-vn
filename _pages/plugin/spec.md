@@ -1,79 +1,78 @@
 ---
-title: プラグイン仕様
-keywords: plugin spec プラグイン 仕様
+title: Đặc tả plugin
+keywords: plugin đặc tả plugin spec
 tags: [quickstart, getting_started]
 permalink: plugin_spec
 
 ---
 
-## 概要
+## Tổng quan
 
-プラグイン仕様の概要を記載します。
+Mô tả tổng quan về đặc tả plugin.
 
-## ディレクトリ構成
+## Cấu trúc thư mục
 
-プラグインの一般的なディレクトリ構成を示します。
+Cấu trúc thư mục phổ biến của plugin như sau:
 
 ```
 app/Plugin/SamplePlugin/
 ├── Command
 ├── Common
-│   └── Nav.php
+│   └── Nav.php
 ├── Controller
 ├── Doctrine
-│   └── Query
+│   └── Query
 ├── Entity
 ├── EventListener
-│   └── EventListener.php
+│   └── EventListener.php
 ├── Form
-│   ├── Extension
-│   └── Type
+│   ├── Extension
+│   └── Type
 ├── PluginManager.php
 ├── Repository
 ├── Resource
-│   ├── assets
-│   ├── config
-│   │   └── services.yaml
-│   ├── locale
-│   └── template
+│   ├── assets
+│   ├── config
+│   │   └── services.yaml
+│   ├── locale
+│   └── template
 └── composer.json
 ```
 
-上記のすべてのディレクトリ、ファイルが必要なわけではありません。
-必須となるのは、`composer.json`のみです。
+Không bắt buộc phải có tất cả các thư mục/file trên.
+Chỉ bắt buộc phải có `composer.json`.
 
-## 設定ファイル
+## File cấu hình
 
-プラグインの情報を記述する`composer.json`と、コンテナの定義を行う`services.yaml`があります。
+Có 2 file cấu hình chính: `composer.json` (mô tả thông tin plugin) và `services.yaml` (định nghĩa container).
 
 ### composer.json
 
-プラグインの情報を記述します。
-`[プラグインディレクトリ]/composer.json`に設置します。
+Mô tả thông tin plugin.
+Đặt tại `[thư mục plugin]/composer.json`.
 
-設定項目は以下のとおりです。
+Các mục cấu hình:
 
-- name: パッケージ名
-    - `"ec-cube/[プラグインコード]"` を記述します。
-- version: バージョン
-    - プラグインのバージョン番号です。
-    - phpのバージョンフォーマットに合わせてください。
-- description: プラグイン名称
-- type: パッケージタイプ
-    - `"eccube-plugin"` にします。
-- require: 依存パッケージ
-    - プラグインが利用するパッケージがあれば追記します。
-    - `"ec-cube/plugin-installer": "~0.0.6"` は常に記述してください。
-- extra: 付属情報
-    - `"code": "[プラグインコード]"` を記述してください。
+- name: Tên package
+    - Ghi dạng "ec-cube/[mã plugin]"
+- version: Phiên bản
+    - Số version của plugin, theo format version của PHP.
+- description: Tên plugin
+- type: Loại package
+    - Ghi là "eccube-plugin"
+- require: Package phụ thuộc
+    - Nếu plugin dùng package ngoài, thêm vào đây.
+    - Luôn ghi "ec-cube/plugin-installer": "~0.0.6"
+- extra: Thông tin bổ sung
+    - Ghi "code": "[mã plugin]"
 
-記載例は以下の通りです。
+Ví dụ:
 
 ```yaml
 {
     "name": "ec-cube/ProductReview",
     "version": "1.0.0",
-    "description": "商品レビュープラグイン",
+    "description": "Plugin đánh giá sản phẩm",
     "type": "eccube-plugin",
     "require": {
         "ec-cube/plugin-installer": "~0.0.6"
@@ -86,23 +85,23 @@ app/Plugin/SamplePlugin/
 
 ### services.yaml
 
-コンテナの定義を行います。
-`[プラグインディレクトリ]/Resouce/config/services.yaml`に設置します。
-yamlフォーマットの他に、phpやxmlでも記述可能です。
+Định nghĩa container.
+Đặt tại `[thư mục plugin]/Resouce/config/services.yaml`.
+Có thể viết bằng yaml, php hoặc xml.
 
-コンテナの定義については、Symfonyの公式ドキュメントを参照してください。
+Tham khảo thêm về định nghĩa container tại tài liệu chính thức của Symfony:
 https://symfony.com/doc/current/service_container.html
 
-### その他の設定ファイル
-その他のプラグイン独自の設定ファイルをプラグイン内に含めることは可能ですが、プラグインインストール後に生成または変更される設定ファイルは `app/PluginData` ディレクトリ以下に設置するようにしてください。プラグインのディレクトリ内にこれらのファイルを配置した場合、**プラグインのアップデートや再インストールの操作によって設定ファイルが失われます。**
-`app/PluginData` ディレクトリ以下を利用する場合は、他のプラグインとの衝突を避けるため、`app/PluginData/[プラグインコード]` ディレクトリを作成して利用することを推奨します。
+### Các file cấu hình khác
+Có thể thêm file cấu hình riêng cho plugin, nhưng các file sinh ra hoặc thay đổi sau khi cài đặt plugin nên đặt dưới `app/PluginData`.
+Nếu đặt trong thư mục plugin, các file này sẽ bị mất khi update hoặc cài lại plugin.
+Khi dùng `app/PluginData`, nên tạo thư mục `app/PluginData/[mã plugin]` để tránh xung đột với plugin khác.
 
-## 静的コンテンツ
+## Nội dung tĩnh
 
-プラグインで利用する静的コンテンツ (html,css,js,画像など) は、`Resource/assets` 以下に配置します。プラグイン以下の `Resource/assets` ディレクトリはインストール/アップデート時に `[EC-CUBEホームディレクトリ]/html/plugin/[プラグインコード]/assets` 以下にコピーされます。 [#3821](https://github.com/EC-CUBE/ec-cube/pull/3821)
+Các file tĩnh (html, css, js, ảnh, ...) dùng trong plugin nên đặt dưới `Resource/assets`. Khi cài/upgrade plugin, thư mục này sẽ được copy sang `[EC-CUBE_HOME]/html/plugin/[mã plugin]/assets`. [#3821](https://github.com/EC-CUBE/ec-cube/pull/3821)
 
-
-例えば、以下のように `sample.jpg` ファイルを配置しておくと、 `[EC-CUBEホームディレクトリ]/html/plugin/SamplePlugin/assets/sample.jpg` にコピーされます。
+Ví dụ, nếu đặt file `sample.jpg` như sau, sẽ được copy sang `[EC-CUBE_HOME]/html/plugin/SamplePlugin/assets/sample.jpg`:
 
 ```
 SamplePlugin
@@ -111,48 +110,46 @@ SamplePlugin
          └── sample.jpg
 ```
 
-Twigファイルからこの `sample.jpg` へのパスは以下の記述で取得できます。
+Từ file twig, có thể lấy đường dẫn như sau:
 
 ```twig
 {% raw %}{{ asset('SamplePlugin/assets/sample.jpg', 'plugin') }}{% endraw %}
 ```
 
-展開されたパスは以下のようになります。
+Đường dẫn thực tế sẽ là:
 
 ```
 /html/plugin/SamplePlugin/assets/sample.jpg
 ```
 
+## Đóng gói plugin
 
-## プラグインのパッケージング
-
-開発したプラグインを配布したり、オーナーズストアに申請する際は、アーカイブする必要があります。
-アーカイブの方式は、tar.gzで行ってください。
-また、以下の点に注意してアーカイブを作成してください。
-- フォルダごと圧縮しないようにする
-- `.git` ディレクトリや `.DS_Store` ファイル等をアーカイブに含めないようにする
+Khi muốn phân phối hoặc đăng ký plugin lên Owners Store, cần đóng gói plugin thành file tar.gz.
+Lưu ý:
+- Không nén cả thư mục cha
+- Không đưa các file .git, .DS_Store vào gói
 
 ```bash
 $ cd app/Plugin/[PluginDir]
 $ COPYFILE_DISABLE=1 tar --exclude  ".git" --exclude ".DS_Store" -cvzf ../[PluginDir].tar.gz *
 ```
 
-## 3.0.xからの変更点
+## Thay đổi so với 3.0.x
 
-3.0.xからの主な変更点を記載します。
+Các thay đổi chính so với 3.0.x:
 
-- ServiceProviderの廃止
-    - ServiceProviderで行っていたコンテナ定義は、Symfonyの機構を利用するようになりました。
-- マイグレーション機構の変更
-    - マイグレーションは、doctrine:schema:updateを利用するようになりました。
-    - PluginManagerではマイグレーションは行わず、初期データの投入・更新・削除のみ行うようにしてください。
-- フックポイントの非推奨化
-    - `eccube.event.admin.request`など、リクエストの実行前後に動作するフックポイントは非推奨となりました。
-    - twigファイルにパーツを差し込むために利用している場合は、スニペットを用意し、ユーザに貼り付けてもらう方式になります。
+- Bỏ ServiceProvider
+    - Định nghĩa container chuyển sang dùng cơ chế của Symfony.
+- Thay đổi cơ chế migration
+    - Migration dùng doctrine:schema:update.
+    - PluginManager không thực hiện migration, chỉ thêm/sửa/xóa dữ liệu khởi tạo.
+- Không khuyến khích dùng hook point
+    - Các hook như `eccube.event.admin.request` không khuyến khích dùng nữa.
+    - Nếu muốn chèn phần vào twig, hãy chuẩn bị snippet để người dùng tự dán vào.
     - https://github.com/EC-CUBE/ec-cube/issues/2440
-- ファイル設置のみのプラグインはロードされない
-    - dtb_pluginにレコードが登録されている必要があります。
+- Plugin chỉ copy file sẽ không được load
+    - Cần có record trong dtb_plugin.
 
-## プラグインサンプル
+## Plugin mẫu
 
-- [決済プラグインサンプル](https://github.com/EC-CUBE/sample-payment-plugin){:target="_blank"}
+- [Plugin mẫu thanh toán](https://github.com/EC-CUBE/sample-payment-plugin){:target="_blank"}

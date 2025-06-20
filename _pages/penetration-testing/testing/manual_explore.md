@@ -1,57 +1,53 @@
 ---
-title: マニュアル探索の仕方
+title: Cách thăm dò thủ công
 permalink: /penetration-testing/testing/manual_explore
 ---
-Local Proxes 設定をした Firefox ですべてのページを探索します。
-GET で参照可能なページは、 `containing urls` のインポート機能や、スパイダーで検出可能なので、 POST で遷移するフォームを重点的に探索します。
+Khám phá tất cả các trang bằng Firefox đã thiết lập Local Proxes.
+Các trang có thể truy cập bằng GET có thể phát hiện bằng chức năng import `containing urls` hoặc Spider, nên hãy tập trung thăm dò các form chuyển trang bằng POST.
 
-**Note:** マニュアル探索する場合は、途中でログアウトしないように注意してください。
-ログアウトしてしまうと、CSRFトークンが変わってしまい、動的スキャンが失敗してしまう場合があります。
+**Lưu ý:** Khi thăm dò thủ công, hãy chú ý không logout giữa chừng.
+Nếu logout, token CSRF sẽ thay đổi và quét động có thể thất bại.
 {: .notice--danger}
 
-テスト中に CSRF トークンが変更されないよう、機能ごとに **マニュアル探索→動的スキャン** を繰替えすのがコツです。
+Để token CSRF không bị thay đổi trong quá trình kiểm thử, bí quyết là lặp lại **thăm dò thủ công → quét động** theo từng chức năng.
 
-### 日本語入力フォーム
+### Form nhập tiếng Nhật
 
-カナ氏名など、日本語入力必須な入力フォームは、必ず日本語入力をしてマニュアル探索をすること。
-日本語入力をしておくことで、動的スキャンでも日本語を使用して検査をしてくれます。
+Với các form bắt buộc nhập tiếng Nhật như tên Kana, hãy chắc chắn nhập tiếng Nhật khi thăm dò thủ công.
+Việc này giúp quét động cũng kiểm thử với dữ liệu tiếng Nhật.
 
+### Pattern chuyển trang đặc biệt
 
-### 特殊な遷移パターン
+#### Trường hợp điều khiển chuyển trang bằng tham số mode trong POST
 
-#### POST の mode パラメータで遷移を制御している場合
+Với các chức năng có pattern chuyển trang như **Nhập form → Màn hình xác nhận → Màn hình hoàn tất**, có 2 loại pattern lớn:
 
-**フォームの入力 → 確認画面 → 完了画面** といった遷移パターンの機能において、さらに大きく2種類の遷移パターンがあります。
+**1. Trường hợp màn hình nhập, xác nhận, hoàn tất được phân biệt bằng URL**
 
+| Màn hình | Nhập         | Xác nhận             | Hoàn tất                |
+|----------|--------------|----------------------|-------------------------|
+| URL      | `/shopping`  | `/shopping/confirm`  | `/shopping/complete`    |
 
-**1. 入力画面、確認画面、完了画面が URL で分けられているケース**
+**2. Trường hợp chuyển trang nhập, xác nhận được phân biệt bằng tham số mode trong POST**
 
-| 画面 | 入力画面    | 確認画面            | 完了画面             |
-|------|-------------|---------------------|----------------------|
-| URL  | `/shopping` | `/shopping/confirm` | `/shopping/complete` |
+| Màn hình | Nhập        | Xác nhận         | Hoàn tất                |
+|----------|-------------|------------------|-------------------------|
+| URL      | `/contact`  | `/contact`       | `/contact/complete`     |
+| POST     |             | `mode=confirm`   | `mode=complete`         |
 
-**2. 入力画面、確認画面の遷移が POST の mode パラメータで分けられているケース**
+Trường hợp 1 thì không có gì khó, nhưng với trường hợp 2, khi quét động cần có thêm thao tác đặc biệt.
 
-| 画面 | 入力画面   | 確認画面       | 完了画面            |
-|------|------------|----------------|---------------------|
-| URL  | `/contact` | `/contact`     | `/contact/complete` |
-| POST |            | `mode=confirm` | `mode=complete`     |
-
-1 の場合は、特に難しくは無いのですが、 2 のような機能の場合は、次の動的スキャンの際に工夫が必要です。
-
-**Note:** お問い合わせ画面、会員登録画面などが該当します。
+**Lưu ý:** Áp dụng cho các màn hình như liên hệ, đăng ký hội viên, v.v.
 {: .notice--info}
 
-#### セッションでデータの引き継ぎをしている場合
+#### Trường hợp truyền dữ liệu qua session
 
-**フォームの入力 → 確認画面 → 完了画面** といった遷移パターンの機能において、入力画面で入力したデータをセッションに格納し、確認画面から完了画面の遷移には入力項目が存在しない(hidden で引き継ぎしない)画面があります。
+Với các chức năng có pattern **Nhập form → Xác nhận → Hoàn tất**, nếu dữ liệu nhập ở màn hình nhập được lưu vào session và khi chuyển từ xác nhận sang hoàn tất không có input (không truyền qua hidden), thì chỉ có thể quét động từ nhập → xác nhận, không thể quét động từ xác nhận → hoàn tất.
 
-この場合、フォームの入力 → 確認画面の動的スキャンは可能ですが、確認画面 → 完了画面の動的スキャンは十分にできません。
-
-**Note:** sequence アドオンや ZAP Script を使用することで、複数画面遷移のテストが可能な場合はありますが、ここでは割愛します。
+**Lưu ý:** Có thể kiểm thử chuyển trang nhiều màn hình bằng addon sequence hoặc ZAP Script, nhưng phần này xin phép không đề cập chi tiết.
 {: .notice--info}
 
-入力画面で入力した内容を、完了画面で表示するようなカスタマイズや、プラグインを導入している場合は、十分にテストできない可能性がありますのでご注意ください。
+Nếu có tuỳ biến hoặc plugin hiển thị lại nội dung nhập ở màn hình hoàn tất, có thể sẽ không kiểm thử đầy đủ, hãy chú ý.
 
-**Note:** 商品購入完了画面が該当します。
+**Lưu ý:** Áp dụng cho màn hình hoàn tất mua hàng.
 {: .notice--info}

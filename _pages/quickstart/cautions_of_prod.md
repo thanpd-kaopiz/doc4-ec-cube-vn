@@ -1,16 +1,15 @@
 ---
-title: 本番環境での注意事項
-keywords: install prod 本番環境 注意事項
+title: Lưu ý khi triển khai môi trường sản xuất
+keywords: cài đặt sản xuất lưu ý
 tags: [quickstart, install, prod]
 permalink: quickstart/cautions_of_prod
 folder: quickstart
 ---
 
-
 ---
 
-本番環境を構築する際にご注意・ご確認いただきたい内容をまとめました。
+Tổng hợp các nội dung cần lưu ý và xác nhận khi xây dựng môi trường sản xuất.
 
-+ [パーミッションの設定](/quickstart/permission)
-+ [本番環境での .env ファイル利用](/quickstart/dotenv)
++ [Cài đặt quyền (Permission)](/quickstart/permission)
++ [Sử dụng file .env trong môi trường sản xuất](/quickstart/dotenv)
 

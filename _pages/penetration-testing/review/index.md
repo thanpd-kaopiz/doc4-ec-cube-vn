@@ -1,40 +1,40 @@
 ---
-title: テスト評価
+title: Đánh giá kiểm thử
 permalink: /penetration-testing/review
 ---
-## レポート出力
+## Xuất báo cáo
 
-レポートのメニューから、各種レポートを出力できます。
-基本的には、 HTML形式で出力します。
+Từ menu báo cáo, có thể xuất nhiều loại báo cáo khác nhau.
+Cơ bản sẽ xuất dưới dạng HTML.
 
-[Faraday](https://faradaysec.com){:target="_blank"} などの、脆弱性管理ツールに取り込んで確認することもできます。
+Bạn cũng có thể nhập vào các công cụ quản lý lỗ hổng như [Faraday](https://faradaysec.com){:target="_blank"} để xác nhận.
 
-## セキュリティアラートの評価方法
+## Phương pháp đánh giá lỗ hổng bảo mật
 
-セキュリティアラートを検出した場合、単に危険度を評価するというよりも、ビジネスに与える影響度を評価することが重要です。
+Khi phát hiện lỗ hổng bảo mật, quan trọng hơn việc chỉ đánh giá mức độ nguy hiểm là đánh giá mức độ ảnh hưởng đến hoạt động kinh doanh.
 
-具体的な評価方法については、主に **[共通脆弱性評価システムCVSS](https://www.ipa.go.jp/security/vuln/CVSS.html){:target="_blank"}** が用いられます。
+Về phương pháp đánh giá cụ thể, chủ yếu sử dụng **[Hệ thống đánh giá lỗ hổng chung CVSS](https://www.ipa.go.jp/security/vuln/CVSS.html){:target="_blank"}**.
 
-**Note:** [CVSS計算ツール](https://www.first.org/cvss/calculator/3.0){:target="_blank"} が公開されていますので、こちらもご活用ください<br />
+**Lưu ý:** Có thể sử dụng [Công cụ tính điểm CVSS](https://www.first.org/cvss/calculator/3.0){:target="_blank"} đã được công khai.<br />
 [https://www.first.org/cvss/calculator/3.0](https://www.first.org/cvss/calculator/3.0){:target="_blank"}
 {: .notice--info}
 
-詳細は、独立行政法人 情報処理推進機構(IPA) による [共通脆弱性評価システムCVSS](https://www.ipa.go.jp/security/vuln/CVSS.html){:target="_blank"} のページをご覧ください。
+Chi tiết, vui lòng tham khảo trang [Hệ thống đánh giá lỗ hổng chung CVSS](https://www.ipa.go.jp/security/vuln/CVSS.html){:target="_blank"} của IPA.
 
-## 誤検知かどうかの判定
+## Phân biệt cảnh báo sai (false positive)
 
-アラートが検出されても、必ずしも脆弱性があるわけではなく、誤検知である可能性もあります。
+Ngay cả khi phát hiện alert, không phải lúc nào cũng là lỗ hổng bảo mật thực sự, có thể là cảnh báo sai.
 
-誤検知される理由は様々ですが、アプリケーションの特性が原因の場合が多いです。
+Nguyên nhân cảnh báo sai có nhiều, nhưng thường do đặc thù của ứng dụng.
 
-- レポートに記録されているリクエストを、実際に送信してみて再現するか
-- 再現した場合、実際に脅威を与えるかどうか
+- Thử gửi lại request ghi trong báo cáo để xác nhận có tái hiện được không
+- Nếu tái hiện, xác nhận xem có thực sự gây nguy hiểm không
 
-がポイントです。
+Đây là các điểm cần lưu ý.
 
-特に、 **High** のアラートが検出された場合は、慎重な確認が必要です。
-判断に迷う場合は専門家に判断を仰ぐと良いでしょう
+Đặc biệt, nếu phát hiện alert **High**, cần xác nhận cẩn thận.
+Nếu phân vân, nên hỏi ý kiến chuyên gia.
 
-XSS が検出され、レスポンスの送信も再現するが、実際には実行されることない誤検知の例
+Ví dụ cảnh báo XSS được phát hiện, gửi lại request cũng tái hiện nhưng thực tế không thực thi mã độc (cảnh báo sai):
 ![XSS positive false](/images/penetration-testing/review_positive_false.png)
 {: .notice}

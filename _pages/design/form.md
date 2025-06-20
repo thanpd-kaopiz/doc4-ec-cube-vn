@@ -1,55 +1,54 @@
 ---
-title: フォームレイアウトの変更
-keywords: design 
-tags: [design]
+title: Thay đổi bố cục form
+keywords: thiết kế 
+tags: [thiết kế]
 permalink: design_form
-summary: フォームレイアウトを変更する方法を説明します。
+summary: Hướng dẫn cách thay đổi bố cục form.
 ---
 
-## フォーム画面の構成
-フォームを画面を作成する場合、`<input type="text" name="hoge">`とinputタグを直接記述せず、Twig関数を利用してフォーム画面を作成します。  
+## Cấu trúc màn hình form
+Khi tạo màn hình form, bạn không nên viết trực tiếp thẻ `<input type="text" name="hoge">` mà nên sử dụng các hàm Twig để tạo form.  
 
-フォームをより詳しく理解するにはSymfonyのサイトをご確認ください。  
+Để hiểu rõ hơn về form, hãy tham khảo trang của Symfony:  
 [https://symfony.com/doc/current/forms.html](https://symfony.com/doc/current/forms.html){:target="_blank"}  
 [https://symfony.com/doc/current/best_practices/forms.html](https://symfony.com/doc/current/best_practices/forms.html){:target="_blank"}
 
-## フォーム内容の出力方法
-Twigではフォーム画面を作成する場合、専用の出力関数と変数を利用して作成します。
+## Cách xuất nội dung form
+Khi tạo màn hình form với Twig, bạn sử dụng các hàm và biến chuyên dụng.
 
 ```twig
 {% raw %}{{ form(form) }}{% endraw %}
-→引数にあるformとは、Controllerから渡されたkey名
+→ 'form' ở đây là tên key được truyền từ Controller
 ```
-このように記述するとフォーム項目が表示されます。
-また、指定したフィールドを出力したい場合、
+Khi viết như trên, các trường của form sẽ được hiển thị.
+Nếu muốn xuất riêng từng trường:
 
 ```twig
 {% raw %}{{ form_row(form.name) }}{% endraw %}
-や
+hoặc
 {% raw %}{{ form_widget(form.name) }}{% endraw %}
 ```
-と記述します。
 
-## フォームレイアウトの変更
-フォーム画面を作成する場合、form関数を利用すると自動的にタグが付加されてフォーム画面が作成されるようになりますが、デザインによってはフォーム画面を変更したい時があります。
+## Thay đổi bố cục form
+Khi sử dụng hàm form, các thẻ sẽ tự động được thêm vào để tạo màn hình form, nhưng đôi khi bạn muốn thay đổi thiết kế form cho phù hợp.
 
-EC-CUBEではフォーム内容を出力するためのテンプレートが用意されており、このファイルの内容を修正することでフォーム出力時のデザインを変更することが可能です。
+EC-CUBE cung cấp sẵn template để xuất nội dung form, bạn có thể chỉnh sửa file này để thay đổi thiết kế khi xuất form.
 
-フロントと管理画面のフォームレイアウトの配置場所です。
+Vị trí các file bố cục form cho frontend và admin:
 
-- フロント用のフォームレイアウト  
+- Bố cục form cho frontend  
 ECCUBEROOT/src/Eccube/Resource/template/default/Form/form_div_layout.twig
 
-- 管理画面用のフォームレイアウト  
+- Bố cục form cho admin  
 ECCUBEROOT/src/Eccube/Resource/template/admin/Form/bootstrap_4_layout.html.twig
 ECCUBEROOT/src/Eccube/Resource/template/admin/Form/bootstrap_4_horizontal_layout.html.twig
 
-## フロント画面で利用しているform_div_layout.twigの内容
+## Nội dung file form_div_layout.twig sử dụng ở frontend
 
-フォームレイアウトの内容は `block` で定義されている関数(form_errorsやform_labelなど)を独自に上書きしています。  
-blockの後に続く `form_errors` や `form_label` がTwig関数と対応しています。
+Nội dung bố cục form được định nghĩa bằng các block (ví dụ: form_errors, form_label) và có thể ghi đè lại theo ý muốn.
+Các block như `form_errors` hay `form_label` tương ứng với các hàm Twig.
 
-### form_div_layout.tiwgの中身
+### Nội dung file form_div_layout.twig
 
 {% highlight twig  %}
 {% raw %}
@@ -92,8 +91,7 @@ blockの後に続く `form_errors` や `form_label` がTwig関数と対応して
 {% endraw %}
 {% endhighlight %}
 
-
-例えば、form_errorsを使ってエラーメッセージ表示のデザインを変更したい場合、
+Ví dụ, nếu muốn thay đổi thiết kế hiển thị lỗi bằng form_errors:
 
 ```twig
 {% raw %}{%- block form_errors -%}
@@ -107,16 +105,16 @@ blockの後に続く `form_errors` や `form_label` がTwig関数と対応して
 {%- endblock form_errors -%}{% endraw %}
 ```
 
-pタグをulタグに変更することでエラーメッセージ出力時の表示内容を変更できます。
+Chỉ cần đổi thẻ p thành ul là có thể thay đổi cách hiển thị lỗi.
 
-他のtwig関数も同様に、blockで定義されている内容を変更することでデザイン変更が可能です。
+Các hàm Twig khác cũng có thể thay đổi thiết kế bằng cách ghi đè nội dung block tương ứng.
 
-## フロント画面でのフォームデザインの使い方
+## Cách sử dụng thiết kế form ở frontend
 
-フロント画面からformを利用する場合、 `{% raw %}{% form_theme form 'Form/form_div_layout.twig' %}{% endraw %}` を明示的に記述する必要があります。  
-これはformに対してどのformテーマを利用するかを宣言するものです。
+Khi sử dụng form ở frontend, bạn cần khai báo rõ theme cho form bằng dòng sau: `{% raw %}{% form_theme form 'Form/form_div_layout.twig' %}{% endraw %}`
+Dòng này dùng để chỉ định theme cho form.
 
-### 利用方法
+### Cách sử dụng
 
 ```twig
 {% raw %}{% extends 'default_frame.twig' %}
@@ -134,32 +132,30 @@ pタグをulタグに変更することでエラーメッセージ出力時の�
 {% endblock %}{% endraw %}
 ```
 
-上記にある、
+Trong đó,
 
 ```twig
 {% raw %}{% form_theme form 'Form/form_div_layout.twig' %}{% endraw %}
 ```
 
-や
+và
 
 ```twig
 {% raw %}{{ form_widget(form.name.name01, {'attr': {'placeholder': 'signup.label.family_name'}}) }}{% endraw %}
 ```
 
-に出現する `form` はControllerから渡されるパラメータ名です。  
-Controllerから `form1` として渡された場合、
+biến `form` là tên biến được truyền từ Controller.
+Nếu Controller truyền sang là `form1`, bạn cần viết:
 
 ```twig
 {% raw %}{% form_theme form1 'Form/form_div_layout.twig' %}{% endraw %}
 ```
 
-や
+hoặc
 
 ```twig
 {% raw %}{{ form_widget(form1.name.name01, {'attr': {'placeholder': 'signup.label.family_name'}}) }}{% endraw %}
 ```
 
-と記述する必要があります。
-
-フォームのカスタマイズをより詳しく知りたい方はSymfonyのサイトをご確認ください。  
+Để tìm hiểu chi tiết hơn về tuỳ biến form, hãy tham khảo trang Symfony:  
 [http://symfony.com/doc/current/form/form_customization.html](http://symfony.com/doc/current/form/form_customization.html){:target="_blank"}

@@ -1,31 +1,29 @@
 ---
-title: ComposerからWebインストーラでインストールする
-keywords: install Composer Webインストーラ
+title: Cài đặt bằng Web Installer từ Composer
+keywords: cài đặt Composer Web Installer
 tags: [quickstart, install, composer]
 permalink: quickstart/composer_web_installer
 folder: quickstart
 ---
 
-
 ---
 
-こちらは、[コマンドラインからインストールする](/quickstart/command_install)とほぼ同じやり方になります。   
-違いとしては、実行するとEC-CUBEのインストール画面が立ち上がります。EC-CUBEのインストール画面から始めたい方におすすめです。
+Phương pháp này gần giống với [Cài đặt từ dòng lệnh](/quickstart/command_install).   
+Khác biệt là sau khi thực hiện, màn hình cài đặt EC-CUBE sẽ xuất hiện. Phù hợp cho ai muốn cài đặt qua giao diện web.
 
-[コマンドラインからインストールする](/quickstart/command_install)にて、3.の工程の部分を以下のコマンドで実行してください。
+Ở bước 3 trong [Cài đặt từ dòng lệnh](/quickstart/command_install), thay bằng lệnh sau:
 
 ```shell
 php composer.phar create-project --no-scripts ec-cube/ec-cube ec-cube "4.1.x-dev" --keep-vcs
 ```
 
-ec-cube ディレクトリが生成されますので、`cd ec-cube`で移動し、  
-`php bin/console server:run` コマンドを実行すると、ビルトインウェブサーバが起動します。
+Thư mục ec-cube sẽ được tạo, di chuyển vào đó và chạy web server tích hợp:
 
 ```shell
 cd ec-cube
 php bin/console server:run
 ```
 
-[http://127.0.0.1:8000/](http://127.0.0.1:8000/){:target="_blank"} にアクセスすると、 EC-CUBEのインストール画面が立ち上がりますので、指示にしたがってインストールしてください。
+Truy cập [http://127.0.0.1:8000/](http://127.0.0.1:8000/){:target="_blank"} để bắt đầu cài đặt EC-CUBE qua giao diện web.
 
-*ビルトインウェブサーバを終了する場合は `Ctrl+C` を押してください*
+*Để dừng web server, nhấn `Ctrl+C`*

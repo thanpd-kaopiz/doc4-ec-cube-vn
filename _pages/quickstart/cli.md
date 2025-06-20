@@ -1,81 +1,75 @@
 ---
-title: コマンドラインインターフェイス
+title: Giao diện dòng lệnh (CLI)
 keywords: CLI
 tags: [quickstart, cli]
 permalink: quickstart/cli
 folder: quickstart
 ---
 
-EC-CUBEでは、コマンドラインで実行できる各種ユーティリティコマンドを提供しています。
-以下のように実行することができます。
+EC-CUBE cung cấp nhiều lệnh tiện ích có thể thực thi qua dòng lệnh.
+Bạn có thể thực hiện như sau:
 
 ```bash
-$ cd [ec-cube ルートディレクトリ]
+$ cd [thư mục gốc ec-cube]
 $ php bin/console eccube:install
 ```
 
-コマンド名は省略することも可能です。
-コマンド名が`eccube:install`であれば、`e:i`でも実行できます。
+Tên lệnh có thể được rút gọn. Ví dụ, với lệnh `eccube:install`, bạn có thể dùng `e:i`.
 
 ```bash
 $ php bin/console e:i
 ```
 
-## EC-CUBEが提供しているコマンド
+## Danh sách lệnh do EC-CUBE cung cấp
 
-EC-CUBEが提供しているコマンドの一覧と概要です。
+Bảng dưới đây liệt kê các lệnh và mô tả ngắn gọn:
 
-| コマンド名                                | 概要                                                                                        |
-|-------------------------------------------|---------------------------------------------------------------------------------------------|
-| eccube:install                            | EC-CUBEのインストールを行います。                                                           |
-| eccube:plugin:install                     | EC-CUBEのプラグインをインストールします。                                                   |
-| eccube:plugin:enable                      | EC-CUBEのプラグインを有効化します。                                                         |
-| eccube:plugin:disable                     | EC-CUBEのプラグインを無効化します。                                                         |
-| eccube:plugin:uninstall                   | EC-CUBEのプラグインを削除します。                                                           |
-| eccube:composer:install                   | composer.lock ファイルに従い、オーナーズストア経由でEC-CUBEプラグインをインストールします。 |
-| eccube:composer:require                   | オーナーズストア経由でEC-CUBEのプラグインをインストールします。                             |
-| eccube:composer:update                    | オーナーズストア経由でEC-CUBEのプラグインをアップデートします。                             |
-| eccube:composer:remove                    | オーナーズストア経由のEC-CUBEプラグインを削除します。                                       |
-| eccube:composer:require-already-installed | プラグインのインストール状況に合わせて composer.json と composer.lock を更新します。        |
-| eccube:plugin:generate                    | EC-CUBEのプラグインの雛形を生成します。                                                     |
-| eccube:generate:proxies                   | Entity拡張を利用している場合に、プロキシファイルの生成を行います。                          |
-| eccube:fixtures:load                      | 初期データを投入します。                                                                    |
-| eccube:fixtures:generate                  | 商品や会員データのダミーデータを投入します。                                                |
-| eccube:delete-carts                       | 指定日以前の `dtb_cart` を削除します。                                                      |
+| Tên lệnh                                | Mô tả                                                                                      |
+|-----------------------------------------|-------------------------------------------------------------------------------------------|
+| eccube:install                          | Cài đặt EC-CUBE.                                                                          |
+| eccube:plugin:install                   | Cài đặt plugin EC-CUBE.                                                                   |
+| eccube:plugin:enable                    | Kích hoạt plugin EC-CUBE.                                                                 |
+| eccube:plugin:disable                   | Vô hiệu hóa plugin EC-CUBE.                                                               |
+| eccube:plugin:uninstall                 | Gỡ plugin EC-CUBE.                                                                        |
+| eccube:composer:install                 | Cài plugin EC-CUBE qua Owners Store dựa trên composer.lock.                               |
+| eccube:composer:require                 | Cài plugin EC-CUBE qua Owners Store.                                                      |
+| eccube:composer:update                  | Cập nhật plugin EC-CUBE qua Owners Store.                                                 |
+| eccube:composer:remove                  | Gỡ plugin EC-CUBE qua Owners Store.                                                       |
+| eccube:composer:require-already-installed | Cập nhật composer.json và composer.lock theo trạng thái cài đặt plugin.                  |
+| eccube:plugin:generate                  | Tạo khung plugin EC-CUBE.                                                                 |
+| eccube:generate:proxies                 | Tạo file proxy khi sử dụng mở rộng Entity.                                                |
+| eccube:fixtures:load                    | Nạp dữ liệu khởi tạo.                                                                     |
+| eccube:fixtures:generate                | Nạp dữ liệu mẫu cho sản phẩm, hội viên.                                                   |
+| eccube:delete-carts                     | Xóa các bản ghi `dtb_cart` trước ngày chỉ định.                                           |
 
-## SymfonyやDoctrineが提供しているコマンド
+## Các lệnh do Symfony và Doctrine cung cấp
 
-SymfonyやDoctrineが提供しているコマンドの一覧と概要です。
-ここでは主要なコマンドを紹介します。
+Bảng dưới đây liệt kê các lệnh chính:
 
-| コマンド名               | 概要                                                            |
-|--------------------------|-----------------------------------------------------------------|
-| cache:clear              | キャッシュを削除します。 `--no-warmup` を指定するのが望ましいです。 |
-| cache:warmup             | キャッシュの生成を行います。                                    |
-| server:run               | 開発用のWebサーバを立ち上げます。                               |
-| debug:router             | ルーティングの一覧を確認できます。                              |
-| doctrine:database:create | データベースの作成を行います。                                  |
-| doctrine:database:drop   | データベースの削除を行います。                                  |
-| doctrine:schema:create   | Entityのマッピング定義を元にテーブルの生成を行います。          |
-| doctrine:schema:drop     | Entityのマッピング定義を元にテーブルの削除を行います。          |
-| doctrine:schema:update   | Entityのマッピング定義を元にテーブルの更新を行います。          |
+| Tên lệnh               | Mô tả                                                          |
+|------------------------|---------------------------------------------------------------|
+| cache:clear            | Xóa cache. Nên dùng thêm `--no-warmup`.                       |
+| cache:warmup           | Sinh cache.                                                    |
+| server:run             | Khởi động web server cho phát triển.                           |
+| debug:router           | Xem danh sách routing.                                         |
+| doctrine:database:create | Tạo database.                                                |
+| doctrine:database:drop   | Xóa database.                                                |
+| doctrine:schema:create   | Tạo bảng dựa trên mapping Entity.                            |
+| doctrine:schema:drop     | Xóa bảng dựa trên mapping Entity.                            |
+| doctrine:schema:update   | Cập nhật bảng dựa trên mapping Entity.                       |
 
-## 参考
+## Tham khảo
 
-上記で紹介したコマンドの他にも、たくさんのコマンドが存在します。
+Ngoài các lệnh trên, còn rất nhiều lệnh khác.
 
-コマンドの一覧は、
+Bạn có thể xem danh sách lệnh bằng:
 
 ```bash
 $ php bin/console list
 ```
 
-で確認できます。
-
-また、
+Hoặc xem hướng dẫn sử dụng từng lệnh:
 
 ```bash
-$ php bin/console [command name] --help
+$ php bin/console [tên lệnh] --help
 ```
-
-で使い方を確認できます。

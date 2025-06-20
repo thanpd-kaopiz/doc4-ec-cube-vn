@@ -1,19 +1,19 @@
 ---
-title: Entityのカスタマイズ
-keywords: core カスタマイズ Entity
+title: Tuỳ biến Entity
+keywords: core tuỳ biến Entity
 tags: [core, entity]
 permalink: customize_entity
 folder: customize
 ---
 
-## Entity拡張 [#2267](https://github.com/EC-CUBE/ec-cube/pull/2267){:target="_blank"}
+## Mở rộng Entity [#2267](https://github.com/EC-CUBE/ec-cube/pull/2267){:target="_blank"}
 
-### 基本の拡張方法
+### Cách mở rộng cơ bản
 
-trait と `@EntityExtension` アノテーションを使用して、 Entity のフィールドを拡張可能です。
-継承を使用せずに Proxy クラスを生成するため、複数のプラグインや、独自カスタマイズからの拡張を共存できます。
+Bạn có thể mở rộng field của Entity bằng cách sử dụng trait và annotation `@EntityExtension`.
+Không cần kế thừa, EC-CUBE sẽ tự động sinh Proxy class, cho phép nhiều plugin hoặc tuỳ biến cùng mở rộng một entity.
 
-``` php
+```php
 <?php
 
 namespace Customize\Entity;
@@ -22,7 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Eccube\Annotation\EntityExtension;
 
 /**
-  * @EntityExtension("Eccube\Entity\Product")
+  * @EntityExtension("Eccube\\Entity\\Product")
  */
 trait ProductTrait
 {
@@ -33,57 +33,55 @@ trait ProductTrait
 }
 ```
 
-`@EntityExtension` アノテーションの引数には、 trait を適用したいクラスを指定します。
-trait には、追加したいフィールドを実装します。
-`@ORM\Column` など、 Doctrine ORM のアノテーションを使用して、データベース定義を設定します。
+Tham số của annotation `@EntityExtension` là tên class bạn muốn áp dụng trait.
+Trong trait, bạn khai báo các field muốn thêm, sử dụng annotation của Doctrine ORM như `@ORM\Column` để định nghĩa DB.
 
-trait の実装ができたら、 `bin/console eccube:generate:proxies` コマンドで Proxy クラスを生成します。
+Sau khi tạo trait, chạy lệnh sau để sinh Proxy class:
 
 ```
 bin/console eccube:generate:proxies
 ```
 
-Proxy を生成できたら、 `bin/console doctrine:schema:update` コマンドで、定義をデータベースに反映します。
+Sau đó, chạy lệnh sau để cập nhật DB:
 
 ```
-## 作成した Proxy クラスを確実に認識できるようキャッシュを削除
+## Xoá cache để nhận Proxy mới
 bin/console cache:clear --no-warmup
 
-## 実行する SQL を確認
+## Xem SQL sẽ thực thi
 bin/console doctrine:schema:update --dump-sql
 
-## SQL を実行
+## Thực thi SQL
 bin/console doctrine:schema:update --dump-sql --force
 ```
 
-#### コントローラや Twig での利用
+#### Sử dụng trong Controller hoặc Twig
 
-コントローラや Twig で利用する際は、特に何も意識せずに利用可能です。
+Bạn có thể sử dụng field mở rộng như bình thường trong controller hoặc twig.
 
-
-``` php
-// コントローラでの使用例
+```php
+// Ví dụ trong controller
 public function index()
 {
     $Product = $this->productRepository->find(1);
     dump($Product->maker_name);
 
-    $Product->maker_name = 'あああ';
+    $Product->maker_name = 'abc';
     $this->entityManger->persist($Product);
     $this->entityManger->flush();
     ...
 ```
 
-``` twig
-{# twig での使用例 #}
+```twig
+{# Ví dụ trong twig #}
 {{ Product.maker_name }}
 ```
 
-### Entity からフォームを自動生成する
+### Tự động sinh form từ Entity
 
-`@EntityExtension` アノテーションで拡張したフィールドに `@FormAppend` アノテーションを追加することで、フォームを自動生成できます。
+Nếu muốn tự động sinh form cho field mở rộng, thêm annotation `@FormAppend` vào field trong trait.
 
-``` php
+```php
 <?php
 
 namespace Customize\Entity;
@@ -93,26 +91,24 @@ use Eccube\Annotation as Eccube;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @Eccube\EntityExtension("Eccube\Entity\BaseInfo")
+ * @Eccube\EntityExtension("Eccube\\Entity\\BaseInfo")
  */
 trait BaseInfoTrait
 {
     /**
      * @ORM\Column(name="company_name_vn", type="string", length=255, nullable=true)
      * @Eccube\FormAppend
-     * @Assert\NotBlank(message="にゅうりょくしてくださいね！！！")
+     * @Assert\NotBlank(message="Vui lòng nhập thông tin!")
      */
     public $company_name_vn;
 }
-
 ```
 
-`@FormAppend` アノテーションを追加すると、対象のエンティティを使用しているフォームに、追加したフィールドのフォームが追加されます。
-入力チェックを使用したい場合は、 `@NotBlank` など [Symfony 標準のアノテーション](https://symfony.com/doc/current/reference/constraints.html){:target="_blank"} を使用できます。
+Khi thêm annotation `@FormAppend`, form sẽ tự động có field mới. Nếu muốn kiểm tra dữ liệu nhập, dùng các annotation của Symfony như `@NotBlank`.
 
-フォームを詳細にカスタマイズしたい場合は、 `auto_render=true` を指定し、 `form_theme` や `type`, `option` を個別に指定します。
+Nếu muốn tuỳ biến form chi tiết hơn, dùng `auto_render=true` và chỉ định `form_theme`, `type`, `option`.
 
-``` php
+```php
 <?php
 
 namespace Customize\Entity;
@@ -122,22 +118,23 @@ use Eccube\Annotation as Eccube;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @Eccube\EntityExtension("Eccube\Entity\BaseInfo")
+ * @Eccube\EntityExtension("Eccube\\Entity\\BaseInfo")
  */
 trait BaseInfoTrait
 {
     /**
      * @ORM\Column(name="company_name_vn", type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message="入力してください")
+     * @Assert\NotBlank(message="Vui lòng nhập thông tin")
      * @Eccube\FormAppend(
      *     auto_render=true,
      *     form_theme="Form/company_name_vn.twig",
      *     type="\Symfony\Component\Form\Extension\Core\Type\TextType",
      *     options={
      *          "required": true,
-     *          "label": "会社名(VN)"
+     *          "label": "Tên công ty (VN)"
      *     })
      */
     public $company_name_vn;
 }
 ```
+

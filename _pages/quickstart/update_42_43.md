@@ -1,37 +1,37 @@
 ---
 layout: single
-title: 4.2から4.3へのマイグレーション
-keywords: howto update
+title: Di chuyển từ 4.2 lên 4.3
+keywords: cách cập nhật
 tags: [quickstart, getting_started]
 permalink: update-42-43
-summary : EC-CUBE4.2から4.3へのマイグレーションについて記載します。
+summary : Mô tả về di chuyển từ EC-CUBE 4.2 lên 4.3.
 ---
 
-EC-CUBE4.2から4.3へのマイグレーションを解説します。
+Giải thích về di chuyển từ EC-CUBE 4.2 lên 4.3.
 
-EC-CUBE本体および一部公式プラグインをEC-CUBE4.3対応し、コードの移植が必要な箇所をまとめたものです。
+Tổng hợp các phần cần chuyển mã để EC-CUBE 4.3 tương thích với EC-CUBE bản chính và một số plugin chính thức.
 
-- [EC-CUBE 4.3 Roadmap](https://github.com/EC-CUBE/ec-cube/issues/6069){:target="_blank"}
-- [Symfony6 対応](https://github.com/EC-CUBE/ec-cube/pull/6073){:target="_blank"}
-- [商品レビュープラグイン：Symfony 6対応](https://github.com/EC-CUBE/ProductReview-plugin/pull/93){:target="_blank"}
-- [APIプラグイン：Symfony 6対応](https://github.com/EC-CUBE/eccube-api4/pull/164){:target="_blank"}
-- [メルマガプラグイン：Symfony 6対応](https://github.com/EC-CUBE/mail-magazine-plugin/pull/146){:target="_blank"}
+- [Lộ trình EC-CUBE 4.3](https://github.com/EC-CUBE/ec-cube/issues/6069){:target="_blank"}
+- [Tương thích Symfony6](https://github.com/EC-CUBE/ec-cube/pull/6073){:target="_blank"}
+- [Plugin Đánh giá sản phẩm: Tương thích Symfony 6](https://github.com/EC-CUBE/ProductReview-plugin/pull/93){:target="_blank"}
+- [Plugin API: Tương thích Symfony 6](https://github.com/EC-CUBE/eccube-api4/pull/164){:target="_blank"}
+- [Plugin Mail Magazine: Tương thích Symfony 6](https://github.com/EC-CUBE/mail-magazine-plugin/pull/146){:target="_blank"}
 
-## プラグインの互換性について
+## Về tính tương thích của plugin
 
-EC-CUBE 4.2と4.3はプラグインの互換性を担保しています。
+EC-CUBE 4.2 và 4.3 đảm bảo tính tương thích của plugin.
 
-本ドキュメントの修正を実施いただくことで、両バージョンでプラグインを動作させることができます。
+Bằng cách thực hiện các sửa đổi trong tài liệu này, có thể chạy plugin trên cả hai phiên bản.
 
-両バージョンでプラグインを動作させる場合、`composer.json` のプラグインコードの変更は不要です。
+Nếu chạy plugin trên cả hai phiên bản, không cần thay đổi mã plugin trong `composer.json`.
 
-## PHP8.3対応
+## Tương thích PHP8.3
 
-EC-CUBE 4.3では、PHPのシステム要件は8.1〜8.3となります。
+Trong EC-CUBE 4.3, yêu cầu hệ thống PHP là 8.1〜8.3.
 
-PHP7.4〜8.1で発生していた非推奨のWarningのうち、特に型パラメータに関するものはエラーとなり動作しなくなります。
+Các cảnh báo không khuyến khích trong PHP7.4〜8.1, đặc biệt là liên quan đến tham số kiểu, sẽ trở thành lỗi và không hoạt động.
 
-以下はエラーの一例です。
+Dưới đây là một ví dụ về lỗi.
 
 ```
 $ bin/console
@@ -51,9 +51,9 @@ Symfony\Component\ErrorHandler\Error\FatalError^ {#45
 
 ```
 
-このようなエラーが出た場合は、引数や戻り値等の型パラメータを指定することで解消できます。
+Nếu gặp lỗi như vậy, có thể giải quyết bằng cách chỉ định tham số kiểu cho tham số và giá trị trả về.
 
-上記のエラーの修正例は、以下になります。
+Dưới đây là ví dụ sửa lỗi trên.
 
 ```diff
 class Kernel extends BaseKernel
@@ -68,30 +68,30 @@ class Kernel extends BaseKernel
     }
 ```
 
-PHPに関する非互換の変更は、php.netの移行ガイドもあわせてご参考ください。
+Về các thay đổi không tương thích của PHP, hãy tham khảo hướng dẫn di chuyển trên php.net.
 
 - https://www.php.net/manual/ja/migration82.php
 - https://www.php.net/manual/ja/migration83.php
 
-## Symfony6対応
+## Tương thích Symfony6
 
-Symfony6での変更をすべて網羅できているわけではないため、記載されていない問題があった場合は、SymfonyのUPGRADEドキュメントも合わせて参照してください。
+Không thể bao quát hết các thay đổi trong Symfony6, nếu có vấn đề không được đề cập, hãy tham khảo tài liệu UPGRADE của Symfony.
 
 - [UPGRADE-6.0.md](https://github.com/symfony/symfony/blob/6.4/UPGRADE-6.0.md){:target="_blank"}
 
-また、EC-CUBE4.2とEC-CUBE4.3での互換性を重視し、発生しているdeprecation noticeを意図的に修正していない箇所もあります。
+Ngoài ra, để duy trì tính tương thích giữa EC-CUBE4.2 và EC-CUBE4.3, có một số phần không sửa đổi các thông báo deprecation.
 
-※ログ等で`User Deprecated: xxx`といった出力が出る場合がありますが、動作上は問題ありません。
+※ Có thể xuất hiện thông báo `User Deprecated: xxx` trong log, nhưng không ảnh hưởng đến hoạt động.
 
-本修正を行っても、EC-CUBE 4.2/4.3ともに動作します。
+Dù thực hiện sửa đổi này, EC-CUBE vẫn hoạt động trên cả EC-CUBE 4.2/4.3.
 
-### Session関連
+### Liên quan đến Session
 
-#### SessionInterface のインジェクションの廃止
+#### Bỏ injection của SessionInterface
 
-`SessionInterface`によるインジェクションが廃止されました。
+Injection bằng `SessionInterface` đã bị loại bỏ.
 
-`Session`を利用する際は、`RequestStack`から取得するようにしてください。
+Khi sử dụng `Session`, hãy lấy từ `RequestStack`.
 
 ```diff
 - use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -106,7 +106,7 @@ Symfony6での変更をすべて網羅できているわけではないため、
 }
 ```
 
-EC-CUBE 4.2で動作させる必要がない(4.3のみに対応する)場合は、`Eccube\Session\Session`を利用することができます。
+Nếu không cần chạy trên EC-CUBE 4.2 (chỉ hỗ trợ 4.3), có thể sử dụng `Eccube\Session\Session`.
 
 ```diff
 - use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -120,13 +120,13 @@ EC-CUBE 4.2で動作させる必要がない(4.3のみに対応する)場合は�
 }
 ```
 
-### Container関連
+### Liên quan đến Container
 
-#### コンテナからのサービス取得の制限
+#### Hạn chế lấy dịch vụ từ container
 
-`$container->get(Hoge::class)`でサービスを取得する場合は、サービスロケータとして指定する必要があります。
+Khi lấy dịch vụ bằng `$container->get(Hoge::class)`, cần chỉ định là service locator.
 
-また、コンテナクラスをuseする際は、`Symfony\Component\DependencyInjection\ContainerInterface`ではなく、`Psr\Container\ContainerInterface`をuseしてください。
+Ngoài ra, khi sử dụng container class, hãy sử dụng `Psr\Container\ContainerInterface` thay vì `Symfony\Component\DependencyInjection\ContainerInterface`.
 
 ```diff
 - use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -141,7 +141,7 @@ public function __construct(ContainerInterface $container)
 
 ```
 
-services.yamlの記述例：
+Ví dụ về services.yaml:
 
 ```
 services
@@ -151,9 +151,9 @@ services
                 Eccube\Repository\CustomerRepository: '@Eccube\Repository\CustomerRepository'
 ```
 
-PluginManagerでのサービス呼び出しも、本仕様変更の影響を受けます。
+Việc gọi dịch vụ trong PluginManager cũng bị ảnh hưởng bởi thay đổi này.
 
-コンテナからのサービス取得は、以下が可能です。
+Có thể lấy dịch vụ từ container như sau.
 
 ```
 // ManagerRegistory
@@ -169,11 +169,11 @@ PluginManagerでのサービス呼び出しも、本仕様変更の影響を受�
 - $container->get(EccubeConfig::class);
 ```
 
-#### パラメータ取得の変更
+#### Thay đổi cách lấy tham số
 
-`$container->getParameter('key')` でパラメータを取得することはできません。
+Không thể lấy tham số bằng `$container->getParameter('key')`.
 
-代わりに、`Eccube\Common\EccubeConfig`を利用してください。
+Thay vào đó, hãy sử dụng `Eccube\Common\EccubeConfig`.
 
 ```diff
 - use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -189,13 +189,13 @@ PluginManagerでのサービス呼び出しも、本仕様変更の影響を受�
 }
 ```
 
-### PasswordEncoder関連
+### Liên quan đến PasswordEncoder
 
-#### PasswordEncoderの廃止
+#### Bỏ PasswordEncoder
 
-`PasswordEncoder`は廃止され、`PasswordHaser`を利用するようになりました。
+`PasswordEncoder` đã bị loại bỏ, thay vào đó sử dụng `PasswordHaser`.
 
-`PasswordHaser`を使用する際のパスワードのハッシュ化処理は、以下のようなコードになります。
+Khi sử dụng `PasswordHaser` để mã hóa mật khẩu, mã sẽ như sau.
 
 ```diff
 - use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
@@ -221,7 +221,7 @@ if ($Customer->getPlainPassword() !== $this->eccubeConfig['eccube_default_passwo
 }
 ```
 
-独自にPasswordEncoderを実装している場合は、以下のようにPasswordHasherを使用するように変更してください。
+Nếu tự triển khai PasswordEncoder, hãy thay đổi để sử dụng PasswordHasher như sau.
 
 ```diff
 - class UserPasswordEncoder implements UserPasswordEncoderInterface
@@ -236,25 +236,25 @@ Plugin\Api42\EventListener\UserResolveListener:
 +        - '@Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface'
 ```
 
-`@Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface` に差し替え、動作が確認できれば、PasswordEncoderは削除して問題ありません。
+Nếu thay thế bằng `@Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface` và hoạt động, có thể xóa PasswordEncoder.
 
-#### パスワードのハッシュアルゴリズムの自動更新
+#### Tự động cập nhật thuật toán mã hóa mật khẩu
 
-`PasswordHaser`を利用することで、パスワードのハッシュアルゴリズムが自動更新されるようになります。
+Bằng cách sử dụng `PasswordHaser`, thuật toán mã hóa mật khẩu sẽ tự động cập nhật.
 
-使用しているアルゴリズムのチェックは、ユーザーがログインしたタイミングで行われ、アルゴリズムの更新が必要と判断されると、パスワードを新しいアルゴリズムでハッシュ化し、DBに保存します。
+Kiểm tra thuật toán sử dụng sẽ được thực hiện khi người dùng đăng nhập, nếu cần cập nhật thuật toán, mật khẩu sẽ được mã hóa lại bằng thuật toán mới và lưu vào DB.
 
-EC-CUBE伝統のAUTH_MAGICを使ったアルゴリズムを利用している場合、上記の通りログインのタイミングで更新されます。新しいアルゴリズムはsalt値がハッシュ化したパスワードに含まれるため、以降、dtb_member/customerのsaltカラムは利用されません。
+Nếu sử dụng thuật toán AUTH_MAGIC truyền thống của EC-CUBE, thuật toán sẽ được cập nhật khi đăng nhập. Thuật toán mới sẽ bao gồm giá trị salt trong mật khẩu đã mã hóa, do đó, cột salt trong dtb_member/customer sẽ không còn sử dụng.
 
-[Password Hashing and Verification](https://symfony.com/doc/current/security/passwords.html){:target="_blank"} も参考にしてください。
+Tham khảo thêm [Password Hashing and Verification](https://symfony.com/doc/current/security/passwords.html){:target="_blank"}.
 
-### テストコード
+### Mã kiểm tra
 
-#### expectOutputRegex で検証ができない
+#### Không thể kiểm tra bằng expectOutputRegex
 
-csvダウロードのレスポンスチェック等、expectOutputRegexで検証している場合、動作しない場合があります。
+Khi kiểm tra phản hồi tải xuống csv bằng expectOutputRegex, có thể không hoạt động.
 
-`$client->getInternalResponse()->getContent()` で出力内容を取得できるので、こちらを利用してください。
+Có thể lấy nội dung xuất ra bằng `$client->getInternalResponse()->getContent()`, hãy sử dụng cách này.
 
 ```diff
 ...
@@ -269,15 +269,15 @@ $this->client->request(
 $this->assertTrue($this->client->getResponse()->isSuccessful());
 
 + $content = $this->client->getInternalResponse()->getContent();
-+ $content = mb_convert_encoding($content, 'UTF-8', 'SJIS-win'); // 必要あればエンコーディング変換
++ $content = mb_convert_encoding($content, 'UTF-8', 'SJIS-win'); // Nếu cần, chuyển đổi mã hóa
 + $this->assertMatchesRegularExpression("/{$review->getTitle()}/", $content);
 ```
 
-#### セッションを検証したい
+#### Muốn kiểm tra session
 
-セッションの値を検証したい場合、`static::getContainer()->get('session')` は機能しません。
+Nếu muốn kiểm tra giá trị session, `static::getContainer()->get('session')` không hoạt động.
 
-`Eccube\Tests\Web\AbstractWebTestCase::createSession`を利用してください。
+Hãy sử dụng `Eccube\Tests\Web\AbstractWebTestCase::createSession`.
 
 ```diff
 
@@ -287,32 +287,30 @@ $outPut = $session->getFlashBag()->get('eccube.admin.success');
 
 ```
 
-#### バリデーションメッセージ
+#### Thông điệp xác thực
 
-一部のバリデーションメッセージが変更になっています。
-バリデーションメッセージを検証している自動テストは修正が必要な可能性があります。
-プロダクトコードの修正は必要ありません。
+Một số thông điệp xác thực đã thay đổi. Các bài kiểm tra tự động kiểm tra thông điệp xác thực có thể cần sửa đổi. Không cần sửa mã sản phẩm.
 
-### その他の仕様変更
+### Các thay đổi khác
 
-## オーナーズストア経由でのプラグインインストールテスト
+## Kiểm tra cài đặt plugin qua Owner's Store
 
-EC-CUBE がオーナーズストア経由でプラグインをインストールする際のエンドポイントが変更になっています。
+Endpoint khi cài đặt plugin qua Owner's Store đã thay đổi.
 
-現時点(2024/01/31)では未実装ですが、以下のエンドポイントとなる予定です。
+Hiện tại (31/01/2024) chưa được triển khai, nhưng dự kiến sẽ là endpoint dưới đây.
 
 ```
 ECCUBE_PACKAGE_API_URL=https://package-api-c2.ec-cube.net/v43
 ```
 
-## purchaseflow.yamlの変更
-4.3からpurchaseflow.yamlの形式が変更されました。
-従来の「親から子のメソッドを設定する」方式から、「どのメソッドをどの親に設定するか」という方式に変更されています。
-またpriorityの設定によって、purchaseflow内の実行順を変更することができます。
-実装の詳細は[こちら](https://github.com/EC-CUBE/ec-cube/pull/5147)を参照ください。
-### 修正例
-例としてProductStatusValidatorの変更を取り上げます。<br>
-以下が4.2での定義になります。
+## Thay đổi purchaseflow.yaml
+Từ 4.3, định dạng của purchaseflow.yaml đã thay đổi.
+Thay đổi từ cách "thiết lập phương thức từ cha đến con" sang cách "thiết lập phương thức cho cha nào".
+Ngoài ra, có thể thay đổi thứ tự thực thi trong purchaseflow bằng cách thiết lập priority.
+Xem chi tiết tại [đây](https://github.com/EC-CUBE/ec-cube/pull/5147).
+### Ví dụ sửa đổi
+Lấy ví dụ về thay đổi của ProductStatusValidator.<br>
+Dưới đây là định nghĩa trong 4.2.
 ```yaml
 # 4.2_purchaseflow.yaml
 eccube.purchase.flow.cart:
@@ -325,10 +323,10 @@ eccube.purchase.flow.cart.item_validators:
     class: Doctrine\Common\Collections\ArrayCollection
     arguments:
         - #
-            - '@Eccube\Service\PurchaseFlow\Processor\ProductStatusValidator' # 商品の公開状態のチェック
+            - '@Eccube\Service\PurchaseFlow\Processor\ProductStatusValidator' # Kiểm tra trạng thái công khai của sản phẩm
 ```
 
-続いて以下が4.3での定義になります。
+Tiếp theo là định nghĩa trong 4.3.
 ```yaml
 # 4.3_purchaseflow.yaml
 eccube.purchase.flow.cart:
@@ -336,27 +334,27 @@ eccube.purchase.flow.cart:
     calls:
         - [ setFlowType, [ 'cart' ] ]
 
-eccube.purchase.flow.item.validator.product.status.validator: # 商品の公開状態のチェック
+eccube.purchase.flow.item.validator.product.status.validator: # Kiểm tra trạng thái công khai của sản phẩm
     class: Eccube\Service\PurchaseFlow\Processor\ProductStatusValidator
     tags:
         - { name: eccube.item.validator, flow_type: cart, priority: 900 }
 ```
 
-### プラグインで、4.2/4.3両バージョンに対応する
+### Hỗ trợ cả hai phiên bản 4.2/4.3 trong plugin
 
-プラグインで、purchase flowを利用している際に、4.2/4.3両バージョンに対応する方法を解説します。
+Khi sử dụng purchase flow trong plugin và muốn hỗ trợ cả hai phiên bản 4.2/4.3, hãy làm theo hướng dẫn dưới đây.
 
-#### アノテーションで指定している場合
+#### Khi chỉ định bằng annotation
 
-@CartFlowなどのアノテーションは引き続き4.3でも利用することができます。
+Các annotation như @CartFlow vẫn có thể sử dụng trong 4.3.
 
-priorityは常に0となり、従来通りプロセッサーは末尾に追加されます。
+priority luôn là 0 và processor sẽ được thêm vào cuối danh sách như trước.
 
-#### yamlファイルで指定している場合
+#### Khi chỉ định bằng tệp yaml
 
-yamlファイルで既存の設定を上書きしている場合、phpファイルで設定するようにし、EC-CUBEのバージョンで分岐してください。
+Nếu ghi đè cài đặt hiện có bằng tệp yaml, hãy chuyển sang cài đặt bằng tệp php và phân nhánh theo phiên bản EC-CUBE.
 
-以下に、SampleProcessorを既存のプロセッサの先頭で実行している場合の修正例を記載します。
+Dưới đây là ví dụ sửa đổi khi thực hiện SampleProcessor trước các processor hiện có.
 
 SampleProcessor
 ```php
@@ -377,7 +375,7 @@ class SampleProcessor extends ItemValidator
 }
 ```
 
-4.2での設定
+Cài đặt trong 4.2
 ```yaml
 # Plugin/Sample/Resource/config/services.yaml
 
@@ -386,17 +384,17 @@ eccube.purchase.flow.cart.item_validators:
   arguments:
     - #
       - '@Plugin\Sample\Service\PurchaseFlow\SampleProcessor' # SampleProcessor
-      - '@Eccube\Service\PurchaseFlow\Processor\DeliverySettingValidator' # 配送設定のチェック
-      - '@Eccube\Service\PurchaseFlow\Processor\ProductStatusValidator' # 商品の公開状態のチェック
-      - '@Eccube\Service\PurchaseFlow\Processor\PriceChangeValidator' # 商品価格の変更検知
-      - '@Eccube\Service\PurchaseFlow\Processor\StockValidator' # 在庫のチェック
-      - '@Eccube\Service\PurchaseFlow\Processor\SaleLimitValidator' # 販売制限数のチェック
-      - '@Eccube\Service\PurchaseFlow\Processor\ClassCategoryValidator' # 商品規格の公開状態チェック
+      - '@Eccube\Service\PurchaseFlow\Processor\DeliverySettingValidator' # Kiểm tra cài đặt giao hàng
+      - '@Eccube\Service\PurchaseFlow\Processor\ProductStatusValidator' # Kiểm tra trạng thái công khai của sản phẩm
+      - '@Eccube\Service\PurchaseFlow\Processor\PriceChangeValidator' # Phát hiện thay đổi giá sản phẩm
+      - '@Eccube\Service\PurchaseFlow\Processor\StockValidator' # Kiểm tra tồn kho
+      - '@Eccube\Service\PurchaseFlow\Processor\SaleLimitValidator' # Kiểm tra giới hạn bán hàng
+      - '@Eccube\Service\PurchaseFlow\Processor\ClassCategoryValidator' # Kiểm tra trạng thái công khai của loại sản phẩm
 ```
 
-4.2/4.3両バージョンに対応する場合の設定
+Cài đặt hỗ trợ cả hai phiên bản 4.2/4.3
 
-services.yamlを削除し、services.phpを作成してください。services.php内でバージョン分岐を行います。
+Xóa services.yaml và tạo services.php. Phân nhánh theo phiên bản EC-CUBE trong services.php.
 ```php
 # Plugin/Sample/Resource/config/services.php
 
@@ -415,7 +413,7 @@ return function(ContainerConfigurator $containerConfigurator) {
     if (version_compare(Constant::VERSION, '4.3', '>=')) {
         $services
             ->set(SampleProcessor::class)
-            ->tag('eccube.item.validator', ['flow_type' => 'cart', 'priority' => 2000]); // 先頭で実行するため、既存のプロセッサよりもpriorityを大きくする
+            ->tag('eccube.item.validator', ['flow_type' => 'cart', 'priority' => 2000]); // Thực hiện trước, priority lớn hơn các processor hiện có
     // 4.2
     } else {
         $services
@@ -424,14 +422,13 @@ return function(ContainerConfigurator $containerConfigurator) {
         $services
             ->set('eccube.purchase.flow.cart.item_validators')
             ->class(ArrayCollection::class)
-            ->args([[
-                service('Plugin\Sample\Service\PurchaseFlow\SampleProcessor'), # SampleProcessor
-                service('Eccube\Service\PurchaseFlow\Processor\DeliverySettingValidator'), # 配送設定のチェック
-                service('Eccube\Service\PurchaseFlow\Processor\ProductStatusValidator'), # 商品の公開状態のチェック
-                service('Eccube\Service\PurchaseFlow\Processor\PriceChangeValidator'), # 商品価格の変更検知
-                service('Eccube\Service\PurchaseFlow\Processor\StockValidator'), # 在庫のチェック
-                service('Eccube\Service\PurchaseFlow\Processor\SaleLimitValidator'), # 販売制限数のチェック
-                service('Eccube\Service\PurchaseFlow\Processor\ClassCategoryValidator'), # 商品規格の公開状態チェック
+            ->args([[service('Plugin\Sample\Service\PurchaseFlow\SampleProcessor'), # SampleProcessor
+                service('Eccube\Service\PurchaseFlow\Processor\DeliverySettingValidator'), # Kiểm tra cài đặt giao hàng
+                service('Eccube\Service\PurchaseFlow\Processor\ProductStatusValidator'), # Kiểm tra trạng thái công khai của sản phẩm
+                service('Eccube\Service\PurchaseFlow\Processor\PriceChangeValidator'), # Phát hiện thay đổi giá sản phẩm
+                service('Eccube\Service\PurchaseFlow\Processor\StockValidator'), # Kiểm tra tồn kho
+                service('Eccube\Service\PurchaseFlow\Processor\SaleLimitValidator'), # Kiểm tra giới hạn bán hàng
+                service('Eccube\Service\PurchaseFlow\Processor\ClassCategoryValidator'), # Kiểm tra trạng thái công khai của loại sản phẩm
             ]]);
     }
 };

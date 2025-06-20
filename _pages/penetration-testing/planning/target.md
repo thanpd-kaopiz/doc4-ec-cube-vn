@@ -1,40 +1,40 @@
 ---
-title: テスト対象
+title: Đối tượng kiểm thử
 permalink: /penetration-testing/planning/target
 ---
-本テストは、アプリケーション(EC-CUBE)に依存する範囲が対象となります。
+Kiểm thử này tập trung vào phạm vi phụ thuộc vào ứng dụng (EC-CUBE).
 
-## テスト対象
+## Đối tượng kiểm thử
 
-- アプリケーション(EC-CUBE)に依存する範囲
-- OWASP ZAP のリリース版検査項目のうち以下が対象
+- Phạm vi phụ thuộc vào ứng dụng (EC-CUBE)
+- Trong các mục kiểm tra của bản phát hành OWASP ZAP, các mục sau là đối tượng:
   - CSRF
   - XSS
-  - パラメータ・タンパリング
-  - OSコマンドインジェクション
-  - サーバーサイドコードインジェクション
-  - SQLインジェクション
+  - Tham số/Parameter Tampering
+  - OS Command Injection
+  - Server Side Code Injection
+  - SQL Injection
   - Format String Error
-  - 外部リダイレクト
-  - パス・トラバーサル
-  - リモートファイルインジェクション
+  - External Redirect
+  - Path Traversal
+  - Remote File Inclusion
 
-## テスト対象外
+## Ngoài phạm vi kiểm thử
 
-**Note:** EC-CUBEをリリースする際のテストでは対象外ですが、実運用に向けてのテストでは実施した方が良いものもあります。各プロジェクトのポリシーに合わせてご検討ください。
+**Lưu ý:** Một số kiểm thử không áp dụng cho đợt phát hành EC-CUBE, nhưng nên thực hiện khi vận hành thực tế. Hãy cân nhắc tuỳ theo chính sách của từng dự án.
 {: .notice--info}
 
-- ディレクトリ露出
-- サーバーサイドインクルード
-- バッファーオーバーフロー
-- Webサーバーやミドルウェア、PHPに対する脆弱性攻撃
-- Webサーバーやミドルウェア、PHPに対する設定不備
+- Lộ thông tin thư mục
+- Server Side Include
+- Buffer Overflow
+- Tấn công lỗ hổng của Web server, middleware, PHP
+- Cấu hình sai của Web server, middleware, PHP
 - DoS
-- パスワードなどの総当たり攻撃
+- Tấn công tổng hợp như password
 
-## OWASP ZAP でテストできないもの
+## Những gì không thể kiểm thử bằng OWASP ZAP
 
-- 認証の権限に対するテスト
-- EC-CUBEの設定不備に対するテスト
+- Kiểm thử về quyền xác thực
+- Kiểm thử về cấu hình sai của EC-CUBE
 
 

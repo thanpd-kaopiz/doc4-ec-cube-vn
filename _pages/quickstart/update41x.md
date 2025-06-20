@@ -1,46 +1,46 @@
 ---
 layout: single
-title: 4.1 本体バージョンアップ
+title: Nâng cấp phiên bản 4.1
 keywords: howto update
 tags: [quickstart, getting_started]
 permalink: update41x
-summary : 4.1.x の本体バージョンアップ手順について記載します。
+summary : Hướng dẫn nâng cấp phiên bản 4.1.x.
 ---
 
-本番環境でバージョンアップを行う前に、テスト環境で事前検証を必ず行ってください。
+Trước khi thực hiện nâng cấp trên môi trường sản xuất, hãy đảm bảo kiểm tra trước trên môi trường thử nghiệm.
 {: .notice--danger}
-この手順では、ec-cube.netからダウンロードしたEC-CUBEのパッケージを利用していることを想定しています。
+Hướng dẫn này giả định rằng bạn đang sử dụng gói EC-CUBE tải về từ ec-cube.net.
 {: .notice--danger}
-EC-CUBE本体のコード(app/config/eccube, app/DoctrineMigrations, bin, src, htmlディレクトリ)をカスタマイズしている場合、ファイルが上書きされてしまうため、この手順ではバージョンアップできません。[各バージョンでの変更差分](#各バージョンでの変更差分)を確認して必要な差分を取り込んでください。
+Nếu bạn đã tùy chỉnh mã nguồn của EC-CUBE (các thư mục app/config/eccube, app/DoctrineMigrations, bin, src, html), các tệp sẽ bị ghi đè và bạn không thể nâng cấp theo hướng dẫn này. Hãy kiểm tra [sự khác biệt giữa các phiên bản](#sự khác biệt giữa các phiên bản) và tích hợp các thay đổi cần thiết.
 {: .notice--danger}
-2022年2月21日に公開された「HTTP Hostヘッダの処理に脆弱性」は、EC-CUBEのバージョンアップを行っても修正されません。[脆弱性詳細ページ](https://www.ec-cube.net/info/weakness/20220221/)を参考に、適切な設定を行ってください。
+Lỗ hổng bảo mật "Xử lý tiêu đề HTTP Host" được công bố vào ngày 21 tháng 2 năm 2022 sẽ không được sửa chữa ngay cả khi bạn nâng cấp EC-CUBE. Hãy tham khảo [trang chi tiết lỗ hổng bảo mật](https://www.ec-cube.net/info/weakness/20220221/) để thực hiện các cài đặt phù hợp.
 {: .notice--danger}
 
 
-## 作業の流れ
-1. サイトのバックアップ
-1. メンテナンスモードを有効にする
-1. プラグインのアップデート
-1. EC-CUBEのソースファイルをバージョンアップしたものに置き換え
-1. 個別ファイル差し替え
-1. composer.json/composer.lockの更新
-1. スキーマ更新/マイグレーション
-1. フロントテンプレートファイルの更新
-1. メンテナンスモードを無効にする
+## Quy trình công việc
+1. Sao lưu trang web
+1. Kích hoạt chế độ bảo trì
+1. Cập nhật plugin
+1. Thay thế các tệp nguồn của EC-CUBE bằng phiên bản đã nâng cấp
+1. Thay thế tệp riêng lẻ
+1. Cập nhật composer.json/composer.lock
+1. Cập nhật schema/di chuyển
+1. Cập nhật tệp mẫu giao diện
+1. Vô hiệu hóa chế độ bảo trì
 
-## 手順詳細
+## Chi tiết các bước
 
-### 1. サイトのバックアップ
+### 1. Sao lưu trang web
 
-EC-CUBEのインストールディレクトリ以下をすべてバックアップしてください。
+Hãy sao lưu toàn bộ thư mục cài đặt của EC-CUBE.
 
-お使いのデータベースも全てバックアップしてください。
+Cũng hãy sao lưu toàn bộ cơ sở dữ liệu của bạn.
 
-### 2. メンテナンスモードを有効にする
+### 2. Kích hoạt chế độ bảo trì
 
-EC-CUBEの管理画面へアクセスし、「コンテンツ管理」の「メンテナンス管理」から、メンテナンスモードを有効にしてください。
+Truy cập giao diện quản lý của EC-CUBE, từ "Quản lý nội dung" chọn "Quản lý bảo trì" và kích hoạt chế độ bảo trì.
 
-または、EC-CUBEのルートディレクトリに「.maintenance」ファイルを設置することでメンテナンスモードを有効にすることもできます。
+Hoặc, bạn có thể kích hoạt chế độ bảo trì bằng cách tạo tệp ".maintenance" trong thư mục gốc của EC-CUBE.
 
 ```
 [root]
@@ -49,22 +49,22 @@ EC-CUBEの管理画面へアクセスし、「コンテンツ管理」の「メ�
   │
 ```
 
-※ メンテナンスモード使用時は、管理画面以外のページにアクセスするとメンテナンス画面が表示されます。
+※ Khi sử dụng chế độ bảo trì, nếu truy cập vào các trang ngoài giao diện quản lý, màn hình bảo trì sẽ được hiển thị.
 
-### 3. プラグインのアップデート
+### 3. Cập nhật plugin
 
-インストール済みのプラグインのうち、アップデート可能なものがあれば、事前にアップデートを行ってください。
+Nếu có plugin đã cài đặt có thể cập nhật, hãy thực hiện cập nhật trước.
 
-### 4. EC-CUBEのソースファイルをバージョンアップしたものに置き換え
+### 4. Thay thế các tệp nguồn của EC-CUBE bằng phiên bản đã nâng cấp
 
-EC-CUBEのソースファイルについて、ディレクトリごとにそれぞれバージョンアップしたソースファイルに置き換えていきます。置き換える対象のディレクトリとなるのは、今回のバージョンアップで変更となったものとなります。
-（`app/config/eccube` `app/DoctrineMigrations` `bin` `src` `html` `vendor` など）
+Về các tệp nguồn của EC-CUBE, hãy thay thế từng thư mục bằng các tệp nguồn đã nâng cấp. Các thư mục cần thay thế là những thư mục đã thay đổi trong lần nâng cấp này.
+（`app/config/eccube` `app/DoctrineMigrations` `bin` `src` `html` `vendor` v.v...）
 
-#### `vendor` ディレクトリ以外の置き換え
+#### Thay thế ngoài thư mục `vendor`
 
-置き換える対象となるディレクトリを削除し、バージョンアップするEC-CUBEのバージョンのディレクトリにそれぞれ置き換えてください。
+Hãy xóa các thư mục cần thay thế và thay thế bằng các thư mục của phiên bản EC-CUBE đã nâng cấp.
 
-（対象ディレクトリの上書きではなくディレクトリの中のすべてのファイルを置き換える必要があります。古いファイルが残ってしまうと、予期せぬ動作となる恐れがありますので、必ず置き換える対象となるディレクトリごとにすべてのファイルを置き換えるようにしてください。）
+（Không chỉ ghi đè lên các thư mục mục tiêu mà cần thay thế toàn bộ các tệp trong thư mục. Nếu các tệp cũ còn sót lại, có thể dẫn đến hoạt động không mong muốn, vì vậy hãy chắc chắn thay thế toàn bộ các tệp trong từng thư mục mục tiêu.）
 
 ```
 [root]
@@ -77,11 +77,11 @@ EC-CUBEのソースファイルについて、ディレクトリごとにそれ�
   │
 ```
 
-#### `vendor` ディレクトリの置き換え
+#### Thay thế thư mục `vendor`
 
-`vendor` ディレクトリは削除せず、バージョンアップするEC-CUBEのバージョンの `vendor` ディレクトリで上書きしてください。
+Thư mục `vendor` không cần xóa, hãy ghi đè lên bằng thư mục `vendor` của phiên bản EC-CUBE đã nâng cấp.
 
-（ Web API プラグインなど Symfony bundle を利用の場合に `vendor` ディレクトリを完全に削除してしまうと以降の手順でエラーが発生します。ステップ(5) の `bin/console eccube:composer:require-already-installed` コマンドで `vendor` ディレクトリ内の不要なファイルは削除されます。）
+（Nếu bạn sử dụng các plugin Web API hoặc Symfony bundle, việc xóa hoàn toàn thư mục `vendor` có thể gây ra lỗi trong các bước tiếp theo. Lệnh `bin/console eccube:composer:require-already-installed` trong bước (5) sẽ xóa các tệp không cần thiết trong thư mục `vendor`）
 
 ```
 [root]
@@ -90,91 +90,91 @@ EC-CUBEのソースファイルについて、ディレクトリごとにそれ�
   │
 ```
 
-### 5. 個別ファイル差し替え
+### 5. Thay thế tệp riêng lẻ
 
-対象となるバージョンごとに、個別のファイル差し替えが必要です。
+Đối với từng phiên bản, cần thay thế các tệp riêng lẻ.
 
-下記から差し替え対象ファイルを確認して最新のファイルで上書きしてください。
+Hãy kiểm tra các tệp cần thay thế từ dưới đây và ghi đè bằng các tệp mới nhất.
 
-| バージョンアップ対象 | 差し替え対象ファイル                                                                              |
+| Phiên bản nâng cấp | Tệp cần thay thế                                                                              |
 |----------------------|---------------------------------------------------------------------------------------------------|
 | 4.1.0 → 4.1.1        | composer.json<br>composer.lock<br>.htaccess<br>index.php<br>symfony.lock<br>package.json<br>package-lock.json|
 | 4.1.1 → 4.1.2        | composer.json<br>composer.lock<br>.htaccess<br>index.php<br>symfony.lock<br>package.json<br>package-lock.json|
 | 4.1.2 → 4.1.2-p1        | -|
 
-※ FTP等でファイルをアップロードするとパーミッションが変更される可能性があります。[パーミッションの設定について](/quickstart/permission)を参考にパーミッションの確認をお願いします。
+※ Khi tải lên tệp qua FTP, có thể quyền truy cập sẽ bị thay đổi. Hãy tham khảo [cài đặt quyền truy cập](/quickstart/permission) để kiểm tra quyền truy cập.
 
-上書き後、以下のコマンドでキャッシュの削除を行ってください。
+Sau khi ghi đè, hãy xóa bộ nhớ đệm bằng lệnh dưới đây.
 
 ```
 bin/console cache:clear --no-warmup
 ```
 
-### 6. composer.json/composer.lockの更新
+### 6. Cập nhật composer.json/composer.lock
 
-以下のコマンドを実行してください。
+Hãy thực hiện lệnh dưới đây.
 
 ```
 bin/console eccube:composer:require-already-installed
 ```
 
-packagist等の外部ライブラリを独自にインストールしている場合は、再度requireしてください。
+Nếu bạn đã tự cài đặt các thư viện bên ngoài như packagist, hãy yêu cầu lại.
 
-例えば、psr/http-messageをインストールしている場合は、以下のコマンドを実行してください。
+Ví dụ, nếu bạn đã cài đặt psr/http-message, hãy thực hiện lệnh dưới đây.
 
 ```
 composer require psr/http-message
 ```
 
-### 7. スキーマ更新/マイグレーション
+### 7. Cập nhật schema/di chuyển
 
-スキーマ更新およびマイグレーション機能を利用して、データベースのバージョンアップを行います。
+Sử dụng chức năng cập nhật schema và di chuyển để nâng cấp cơ sở dữ liệu.
 
-以下のコマンドを実行してください。
+Hãy thực hiện lệnh dưới đây.
 
-スキーマ更新
+Cập nhật schema
 
 ```
 bin/console doctrine:schema:update --force --dump-sql
 ```
 
-マイグレーション
+Di chuyển
 
 ```
 bin/console doctrine:migrations:migrate
 ```
 
-### 8. フロントテンプレートファイルの更新
+### 8. Cập nhật tệp mẫu giao diện
 
-対象となるバージョンごとに、フロントテンプレートファイル(twig)の更新が必要です。
+Đối với từng phiên bản, cần cập nhật tệp mẫu giao diện (twig).
 
-管理画面のコンテンツ管理もしくは店舗設定＞メール設定から、該当するページ/ブロック/メールテンプレートを編集してください。
+Từ "Quản lý nội dung" hoặc "Cài đặt cửa hàng > Cài đặt email" trong giao diện quản lý, hãy chỉnh sửa trang/khối/mẫu email tương ứng.
 
-変更対象の差分は、以下リンクからご確認いただくが[各バージョンでの変更差分](#各バージョンでの変更差分)からご確認いただけます。
+Bạn có thể kiểm tra sự khác biệt của các thay đổi từ [sự khác biệt giữa các phiên bản](#sự khác biệt giữa các phiên bản).
 
 #### 4.1.0 → 4.1.1
 
-<a href="https://github.com/EC-CUBE/ec-cube/pulls?q=is%3Apr+label%3Aaffected%3Atemplate+is%3Aclosed+milestone%3A4.1.1" target = "_blank">フロントテンプレートファイルの差分</a>
+<a href="https://github.com/EC-CUBE/ec-cube/pulls?q=is%3Apr+label%3Aaffected%3Atemplate+is%3Aclosed+milestone%3A4.1.1" target = "_blank">Sự khác biệt của tệp mẫu giao diện</a>
 
 #### 4.1.1 → 4.1.2
 
-<a href="https://github.com/EC-CUBE/ec-cube/pulls?q=is%3Apr+label%3Aaffected%3Atemplate+is%3Aclosed+milestone%3A4.1.2" target = "_blank">フロントテンプレートファイルの差分</a>
+<a href="https://github.com/EC-CUBE/ec-cube/pulls?q=is%3Apr+label%3Aaffected%3Atemplate+is%3Aclosed+milestone%3A4.1.2" target = "_blank">Sự khác biệt của tệp mẫu giao diện</a>
 
-### 9.メンテナンスモードを無効にする
+### 9. Vô hiệu hóa chế độ bảo trì
 
-EC-CUBEの管理画面へアクセスし、「コンテンツ管理」の「メンテナンス管理」から、メンテナンスモードを無効にしてください。
+Truy cập giao diện quản lý của EC-CUBE, từ "Quản lý nội dung" chọn "Quản lý bảo trì" và vô hiệu hóa chế độ bảo trì.
 
-または、EC-CUBEのルートディレクトリに「.maintenance」ファイルを削除することでメンテナンスモードを無効にすることもできます。
+Hoặc, bạn có thể vô hiệu hóa chế độ bảo trì bằng cách xóa tệp ".maintenance" trong thư mục gốc của EC-CUBE.
 
 ---
 
-EC-CUBEのバージョンアップ手順は以上です。
+Quy trình nâng cấp phiên bản của EC-CUBE đã hoàn tất.
 
-## 各バージョンでの変更差分
+## Sự khác biệt giữa các phiên bản
 
-バージョンごとの詳細な変更差分は、以下のリンク先で確認することができます。
+Bạn có thể kiểm tra sự khác biệt chi tiết giữa các phiên bản từ các liên kết dưới đây.
 
-| バージョン      | 差分ページ                                                                                                             |
+| Phiên bản      | Trang sự khác biệt                                                                                                             |
 |-----------------|------------------------------------------------------------------------------------------------------------------------|
 | 4.1.0 → 4.1.1   | [https://github.com/EC-CUBE/ec-cube/compare/4.1.0...4.1.1](https://github.com/EC-CUBE/ec-cube/compare/4.1.0...4.1.1?w=1#files_bucket){:target="_blank"}   |
 | 4.1.1 → 4.1.2   | [https://github.com/EC-CUBE/ec-cube/compare/4.1.1...4.1.2](https://github.com/EC-CUBE/ec-cube/compare/4.1.1...4.1.2?w=1#files_bucket){:target="_blank"}   |

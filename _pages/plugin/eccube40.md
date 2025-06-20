@@ -1,32 +1,31 @@
 ---
-title: EC-CUBE4.0系(Composer v1)利用時の注意点
+title: Lưu ý khi sử dụng EC-CUBE4.0 (Composer v1)
 keywords: plugin EC-CUBE4.0 Composer1
 tags: [plugin, eccube, composer]
 permalink: plugin_eccube40
 
 ---
 
-EC-CUBE4.0系で利用している Composer v1 のメタデータが 2025年8月1日以降廃止されるというアナウンスがありました。
+Có thông báo rằng metadata của Composer v1 sử dụng trong EC-CUBE4.0 sẽ bị ngừng cung cấp từ sau ngày 1/8/2025.
 
 [https://blog.packagist.com/shutting-down-packagist-org-support-for-composer-1-x/](https://blog.packagist.com/shutting-down-packagist-org-support-for-composer-1-x/){:target="_blank"}
 
-EC-CUBE4.0系はプラグインの管理に Composer v1 を利用しており、プラグインインストール/有効化/無効化/削除/アップデートに影響があります。
+EC-CUBE4.0 sử dụng Composer v1 để quản lý plugin, điều này ảnh hưởng đến việc cài đặt/kích hoạt/vô hiệu hóa/xóa/cập nhật plugin.
 
-廃止されるのは、 Composer v1 のメタデータ(パッケージのバージョン情報や、ダウンロードURLなど)へのアクセスのみですので、通常は依存関係を更新しようとしないかぎりは影響ありません。
+Việc ngừng cung cấp chỉ ảnh hưởng đến truy cập metadata của Composer v1 (thông tin version package, URL tải về, v.v.), nên thông thường sẽ không bị ảnh hưởng nếu không cập nhật dependency.
 
-composer.lock ファイルにダウンロードURLは記録されていますので、composer install によるパッケージのインストールは従来どおり可能です。
+File composer.lock đã lưu URL tải về, nên việc cài đặt package bằng composer install vẫn thực hiện như trước.
 
-しかしながらEC-CUBE4.0系は歴史的な経緯もあり、プラグインインストール/有効化/無効化/削除/アップデートをした際に、本来不要な Composer v1 メタデータへのアクセスが必要になる場合があります。
+Tuy nhiên, do lịch sử phát triển, EC-CUBE4.0 có thể cần truy cập metadata Composer v1 không cần thiết khi cài đặt/kích hoạt/vô hiệu hóa/xóa/cập nhật plugin.
 
-## 対応方法
+## Cách xử lý
 
-### composer.json の修正
+### Sửa file composer.json
 
-1. require-dev セクションを削除します。
-   以下のような require-dev セクションを削除しておきます。このセクションは発時にのみ利用するため、削除しても問題ありません。
+1. Xóa phần require-dev.
+   Xóa phần require-dev như bên dưới. Phần này chỉ dùng khi phát triển nên xóa không ảnh hưởng.
 
    ``` json
-
     "require-dev": {
         "bheller/images-generator": "^1.0",
         "captbaritone/mailcatcher-codeception-module": "^1.2",
@@ -41,10 +40,9 @@ composer.lock ファイルにダウンロードURLは記録されていますの
     },
     ```
 
-2. repositories セクションに // ここから // ここまで の設定を追加します。
-   eccube-plugin-installer の参照先を GitHub に設定します。また予期せぬエラーを防ぐために packagist.org へのアクセスを無効化します。
-   
-   // ここから // ここまで は追加時には削除してください。構文エラーになってしまいます
+2. Thêm cấu hình vào phần repositories.
+   Thêm cấu hình tham chiếu eccube-plugin-installer vào GitHub và vô hiệu hóa packagist.org để tránh lỗi không mong muốn.
+   // ここから // ここまで cần xóa khi thêm vào thực tế để tránh lỗi cú pháp.
 
    ``` json
     "repositories": {
@@ -53,7 +51,7 @@ composer.lock ファイルにダウンロードURLは記録されていますの
             "url": "https://package-api.ec-cube.net",
             "options": {
                 "http": {
-                    "header": ["X-ECCUBE-KEY: <認証キーの文字列>"]
+                    "header": ["X-ECCUBE-KEY: <chuỗi key xác thực>"]
                 }
             }
         }
@@ -69,26 +67,25 @@ composer.lock ファイルにダウンロードURLは記録されていますの
     }
    ```
 
-### composer install コマンドの実行
+### Chạy lệnh composer install
 
-次にssh を利用して composer install --no-scripts --no-plugins コマンドを実行しておきます。vendor 以下の整合性を維持するために必要です。—no-dev オプションを付与せず、require-dev のパッケージもインストールしておくことがポイントです。
-(composer.json の require-dev は削除済みですが、composer.lock の情報を参照して依存関係を更新しようとする場合があるため)
+Tiếp theo, dùng ssh để chạy lệnh composer install --no-scripts --no-plugins. Cần thiết để đảm bảo tính nhất quán dưới vendor. Không thêm --no-dev để cài luôn các package trong require-dev (dù đã xóa khỏi composer.json nhưng composer.lock vẫn còn thông tin).
 
 ```
 composer install --no-scripts --no-plugins
 ```
 
-composer.json の修正 とcomposer install コマンドの実行が完了すれば、依存関係の更新を伴わないプラグインのインストール/有効化/無効化/削除/アップデートができるようになります
+Sau khi sửa composer.json và chạy composer install, có thể cài đặt/kích hoạt/vô hiệu hóa/xóa/cập nhật plugin mà không cần cập nhật dependency.
 
-## 注意事項
+## Lưu ý
 
-### 他のパッケージと依存関係のあるプラグインの場合
+### Trường hợp plugin phụ thuộc package khác
 
-[Web APIプラグイン](https://www.ec-cube.net/products/detail.php?product_id=2121)など、他のパッケージと依存関係のあるプラグインの場合は、Composer v1 メタデータアクセス廃止の影響を受けてしまいます。
+Ví dụ như [Web API Plugin](https://www.ec-cube.net/products/detail.php?product_id=2121), nếu plugin phụ thuộc package khác sẽ bị ảnh hưởng bởi việc ngừng metadata Composer v1.
 
-他のパッケージと依存関係のある場合でも、 composer.json に依存先のGitHub リポジトリを記載することで対応可能です。
+Có thể xử lý bằng cách thêm cấu hình GitHub của package phụ thuộc vào composer.json.
 
-以下のように、app/Plugin/<プラグインコード>/composer.json の require セクションに ec-cube/plugin-installer 以外のパッケージが含まれている場合は、他のパッケージに依存関係があります。
+Nếu trong require của app/Plugin/<mã plugin>/composer.json có package ngoài ec-cube/plugin-installer thì là có phụ thuộc.
 
 ```
 "require": {
@@ -99,13 +96,11 @@ composer.json の修正 とcomposer install コマンドの実行が完了すれ
   },
 ```
 
-**対応方法**
+**Cách xử lý**
 
-例として [Web APIプラグイン](https://www.ec-cube.net/products/detail.php?product_id=2121){:target="_blank"} の場合は、repositories セクションにGitHubの設定を追加します。
+Ví dụ với [Web API Plugin](https://www.ec-cube.net/products/detail.php?product_id=2121){:target="_blank"}, thêm cấu hình GitHub của các package phụ thuộc vào repositories.
 
-依存関係のあるパッケージすべてを追加する必要があります。
-
-***// ここから // ここまで** は追加時には削除してください。構文エラーになってしまいます*
+***// ここから // ここまで** cần xóa khi thêm vào thực tế để tránh lỗi cú pháp*
 
 ```
     "repositories": {
@@ -114,7 +109,7 @@ composer.json の修正 とcomposer install コマンドの実行が完了すれ
             "url": "https://package-api.ec-cube.net",
             "options": {
                 "http": {
-                    "header": ["X-ECCUBE-KEY: <認証キー>"]
+                    "header": ["X-ECCUBE-KEY: <KEY xác thực>"]
                 }
             }
         },
@@ -190,29 +185,29 @@ composer.json の修正 とcomposer install コマンドの実行が完了すれ
     }
 ```
 
-### コマンドラインでのプラグインインストール/削除/アップデートを推奨
+### Khuyến nghị cài đặt/xóa/cập nhật plugin bằng dòng lệnh
 
-EC-CUBE4.0系で利用している Composer v1 は、大変多くのリソースが必要なため、レンタルサーバーのような共有環境や、CPUやメモリの利用が限られた環境では、EC-CUBE管理画面からのプラグインインストール/削除/アップデートに失敗するケースが多々あります。
+Composer v1 sử dụng trong EC-CUBE4.0 cần nhiều tài nguyên, nên trên môi trường shared hosting hoặc tài nguyên hạn chế, việc cài đặt/xóa/cập nhật plugin từ quản trị có thể thất bại.
 
-一見、正常に動作しているように見えても、composer.json のパッケージ一覧と、 app/Plugin 以下のファイル、 dtb_plugin のデータに不整合が発生している場合が多いです。
+Ngay cả khi có vẻ hoạt động bình thường, có thể xảy ra bất nhất giữa danh sách package trong composer.json, file dưới app/Plugin, và dữ liệu dtb_plugin.
 
-EC-CUBE管理画面よりもコマンドラインを使用した方が遥かに安定していますので、コマンドラインでのプラグイン操作を推奨します
+Khuyến nghị thao tác plugin bằng dòng lệnh để đảm bảo ổn định hơn.
 
 [https://qiita.com/nanasess/items/791c9ec98f69ada93ea0#コマンドラインでのプラグインインストール](https://qiita.com/nanasess/items/791c9ec98f69ada93ea0#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%A7%E3%81%AE%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB){:target="_blank"}
 
-### EC-CUBEのバージョンアップを推奨
+### Khuyến nghị nâng cấp EC-CUBE
 
-Composer を通じた関連ライブラリのアップデートができなくなるため、EC-CUBE4.3以降へのバージョンアップを推奨します。
+Do không thể cập nhật các thư viện liên quan qua Composer, khuyến nghị nâng cấp lên EC-CUBE4.3 trở lên.
 
-EC-CUBE4.3へのバージョンアップが難しい場合は、可能なかぎりEC-CUBE4.1以降へのバージョンアップを推奨します。EC-CUBE4.0と4.1はプラグインの互換性もあり、比較的少ない工数でのバージョンアップが可能です
+Nếu khó nâng cấp lên 4.3, hãy cố gắng nâng cấp lên 4.1 trở lên. EC-CUBE4.0 và 4.1 tương thích plugin nên nâng cấp ít tốn công hơn.
 
-### トラブルシューティング
+### Xử lý sự cố
 
-**Q) 管理画面からプラグインをアップデートしようとしたところエラーになりました。**
+**Q) Khi cập nhật plugin từ quản trị bị lỗi.**
 
-A) 何らかの原因でプラグインの不整合が発生している可能性があります。エラーの内容を確認の上、コマンドラインでのアップデートをお試しください。
+A) Có thể đã xảy ra bất nhất plugin. Hãy kiểm tra nội dung lỗi và thử cập nhật bằng dòng lệnh.
 
-- [packagist.org](http://packagist.org){:target="_blank"} のメタデータにアクセスしようとして発生するエラー
+- Nếu gặp lỗi truy cập metadata packagist.org
     
     ```diff
     Your requirements could not be resolved to an installable set of packages.
@@ -226,10 +221,10 @@ A) 何らかの原因でプラグインの不整合が発生している可能�
         - Installation request for ec-cube/api ^2.1 -> satisfiable by ec-cube/Api[2.1.0, 2.1.3, 2.1.4, 2.1.1, 2.1.2].
     ```
     
-    no matching package found. といった、パッケージが見つからないというエラーが発生した場合は、 Composer v1 メタデータアクセス廃止の影響を受けている可能性が高いです。[こちら](/plugin_eccube40#%E4%BB%96%E3%81%AE%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%AE%E3%81%82%E3%82%8B%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%AE%E5%A0%B4%E5%90%88) を参照して、依存パッケージを composer.json に追加してください
+    Nếu gặp lỗi "no matching package found.", có thể do ảnh hưởng của việc ngừng metadata Composer v1. Hãy tham khảo [tại đây](/plugin_eccube40#%E4%BB%96%E3%81%AE%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%AE%E3%81%82%E3%82%8B%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%AE%E5%A0%B4%E5%90%88) để thêm package phụ thuộc vào composer.json
     
 
-- 何らかの原因で依存ライブラリの更新に失敗するエラー
+- Nếu gặp lỗi khi cập nhật dependency
     
     ```
     [21.1MiB/8.61s] Package operations: 0 installs, 0 updates, 42 removals
@@ -245,41 +240,37 @@ A) 何らかの原因でプラグインの不整合が発生している可能�
       ommentHint()."
     ```
     
-    エラーログに `In Filesystem.php line 217 Could not delete ～` と記録されるエラーが発生する場合があります。( Could not delete 以降は関係のない deprecated 等のメッセージが表示される)
-    
-    これは Composer v1 での通信ができないことで、予期せぬエラーが発生したケースです。
-    
-    データの不整合も発生していますので、コマンドラインでのアップデートをお願いいたします。
+    Nếu gặp lỗi "Could not delete ...", có thể do không thể giao tiếp với Composer v1. Hãy cập nhật bằng dòng lệnh.
     
 
-**Q) 依存関係のあるパッケージのGitHub はどうやって探したらよいですか？**
+**Q) Làm sao tìm GitHub của package phụ thuộc?**
 
-A) [packagist.org](http://packagist.org){:target="_blank"} の該当パッケージページの画面右側 detail セクションにリンクがあります
+A) Trên [packagist.org](http://packagist.org){:target="_blank"} ở phần detail bên phải sẽ có link GitHub.
 
-### Composer v1 のインストール方法
+### Cách cài đặt Composer v1
 
-https://getcomposer.org/download/ にも記載されていますが、 2025年8月以降、v1 のセットアップ方法が廃止される可能性がありますので、v1 を直接ダウンロードする方法を記載します
+Theo https://getcomposer.org/download/, sau 8/2025 có thể không còn setup v1, nên hướng dẫn cách tải trực tiếp v1.
 
-1. EC-CUBEのインストールディレクトリへ移動
+1. Di chuyển vào thư mục cài đặt EC-CUBE
     
     ```
     cd path/to/ec-cube
     ```
     
-2. composer.phar のダウンロード
+2. Tải composer.phar
     
     ```
     curl -O https://getcomposer.org/download/1.10.27/composer.phar
     ```
     
-3. composer にリネーム
+3. Đổi tên thành composer
     
     ```
     mv composer.phar composer
     ```
     
 
-以下のコマンドを実行して、composer のロゴが表示されればインストール成功です。
+Chạy lệnh sau, nếu hiện logo composer là cài đặt thành công.
 
 ```
 php composer list
@@ -297,14 +288,12 @@ Usage:
 ...(省略)
 ```
 
-本記事中の `composer` コマンドは `php composer` として実行してください。
+Trong bài này, lệnh `composer` nghĩa là chạy `php composer`.
 
-レンタルサーバーなどで comannd not found といったエラーが表示された場合は、通常とは異なる場所に PHP がインストールされている可能性があります。
-
-サーバーのドキュメントを参照し、以下のように PHP のパスを直接指定してみてください
+Nếu gặp lỗi command not found trên shared hosting, có thể PHP cài ở vị trí khác. Hãy tham khảo tài liệu server và chỉ định đường dẫn PHP như sau:
 
 ```
-# エックスサーバーの例
+# Ví dụ trên Xserver
 /usr/bin/php7.4 composer list
 ```
 

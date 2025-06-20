@@ -1,42 +1,42 @@
 ---
-title: レイアウトの利用
-keywords: design layout
-tags: [design]
+title: Sử dụng Layout
+keywords: thiết kế layout
+tags: [thiết kế]
 permalink: design_layout
-summary: レイアウトを利用したデザイン変更について説明します。
+summary: Giải thích về việc thay đổi thiết kế sử dụng layout.
 
 ---
 
-## レイアウト管理について
-EC-CUBE 4では新たに「レイアウト管理」という機能が作成されました。この機能の役目としては、
+## Về quản lý layout
+EC-CUBE 4 có chức năng mới gọi là "Quản lý layout". Chức năng này cho phép:
 
-1. ページ単位で共通となるレイアウトを設定可能  
-1. トップページとトップページ以外というようにページ毎にまとめてレイアウト設定が可能  
-1. モバイル向けのレイアウトも可能
+1. Thiết lập layout chung cho từng trang  
+1. Có thể nhóm layout cho từng trang như trang chủ và các trang khác  
+1. Hỗ trợ layout cho thiết bị di động
 
-というようにレイアウトが汎用的に設定できるようになっています。
+Như vậy, layout có thể được thiết lập một cách linh hoạt.
 
-* レイアウト管理画面  
-![レイアウト管理](./images/design/design-layout-01.png)
-
-
-## レイアウト管理の利用
-
-2系、3系だと例えばトップページ以外の全ての画面に特定のブロックを配置したい場合、全ての画面に一つずつブロックを配置する必要がありました。
-
-今回のレイアウト管理を利用した場合、トップページは `トップページ用レイアウト`、トップページ以外は `下層ページ用レイアウト` というようにレイアウト単位でまとめてブロックが配置できるようになります。  
-デフォルトでは「トップページ用レイアウト」と「下層ページ用レイアウト」が用意されており、トップページと下層ページで異なるレイアウトが可能となっています。  
-
-また、新しいレイアウトも作成することが可能で、レイアウト毎に異なるブロックが設定できそのレイアウトに対して適用するページを設定します。
-
-フロント画面のレイアウト変更は管理画面の[コンテンツ管理] → [レイアウト管理]から各レイアウト名称のリンクを押すと変更可能です。
-
-* トップページ用レイアウトの例  
-![レイアウト管理](./images/design/design-layout-02.png)
+* Màn hình quản lý layout  
+![Quản lý layout](./images/design/design-layout-01.png)
 
 
-* 下層ページ用レイアウトの例  
-![レイアウト管理](./images/design/design-layout-03.png)
+## Cách sử dụng quản lý layout
 
-未使用ブロック欄にある新しく作成したブロックをドラッグ&ドロップで適切な枠に配置します。  
-また、新規にブロックを作成し、レイアウト管理から作成したブロックを配置することで容易にデザインの追加・修正を行うことが可能です。
+Ở phiên bản 2.x, 3.x, nếu muốn đặt một block cho tất cả các trang ngoài trang chủ, bạn phải đặt block đó cho từng trang một.
+
+Với quản lý layout mới, bạn có thể nhóm các trang thành "Layout cho trang chủ" và "Layout cho các trang con", từ đó dễ dàng đặt block cho từng nhóm trang.  
+Mặc định có sẵn "Layout cho trang chủ" và "Layout cho các trang con", cho phép bạn thiết kế khác nhau cho từng nhóm.
+
+Bạn cũng có thể tạo layout mới, đặt các block khác nhau cho từng layout và gán layout đó cho các trang mong muốn.
+
+Để thay đổi layout cho frontend, vào [Quản lý nội dung] → [Quản lý layout] trong trang quản trị, nhấn vào tên layout để chỉnh sửa.
+
+* Ví dụ layout cho trang chủ  
+![Quản lý layout](./images/design/design-layout-02.png)
+
+
+* Ví dụ layout cho các trang con  
+![Quản lý layout](./images/design/design-layout-03.png)
+
+Kéo thả block mới tạo từ danh sách block chưa sử dụng vào vị trí mong muốn.  
+Bạn cũng có thể tạo block mới và bố trí từ quản lý layout để dễ dàng thêm hoặc chỉnh sửa thiết kế.

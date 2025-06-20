@@ -1,66 +1,66 @@
 ---
-title: ドキュメントの追加・書き方
-description: EC-CUBE4系開発ドキュメントにページを追加する場合の、markdownの書き方について説明します。
+title: Thêm & Viết tài liệu
+description: Hướng dẫn cách thêm trang và viết markdown cho tài liệu phát triển EC-CUBE4.
 tags: [howto]
 permalink: documents/writing-and-formatting
 ---
 
-## ページの追加方法
+## Cách thêm trang mới
 
-[Jekyll](http://jekyllrb-ja.github.io/){:target="_blank"}を利用してページの自動生成を行っています。
-[開発ドキュメントのソースコード](https://github.com/EC-CUBE/doc4.ec-cube.net/){:target="_blank"}にある `_pages` ディレクトリの中にmarkdownファイル(.md)を置くと、自動的にページが追加されます。
+Trang được tự động sinh bằng [Jekyll](http://jekyllrb-ja.github.io/){:target="_blank"}.
+Chỉ cần đặt file markdown (.md) vào thư mục `_pages` trong [source code tài liệu phát triển](https://github.com/EC-CUBE/doc4.ec-cube.net/){:target="_blank"}, trang sẽ tự động được thêm mới.
 
-### markdownヘッダー部分の書き方
+### Cách viết phần header của markdown
 
-ページ生成時に利用するヘッダー情報です。各ページに必ず記載する必要があります。
+Đây là thông tin header dùng khi sinh trang. Bắt buộc phải có ở mỗi trang.
 
 ```yaml
 ---
-title: テストページ
-description: xxxxを行う場合のツール導入方法と実装についてのポイントをまとめました。
+title: Trang thử nghiệm
+description: Tổng hợp các lưu ý khi cài đặt công cụ và triển khai xxxx.
 permalink: test
 tags: [quickstart, install]
 ---
 ```
 
-`title` ：h1タグのコンテンツになります。
-`description` ：シェアした場合に `og:description` になります。
-`permalink` ：ページのURLになります。hoge/testのような書き方も可能。
-`tags` ：タグ付けができます。
+`title`: Sẽ là nội dung thẻ h1.
+`description`: Sẽ là `og:description` khi share.
+`permalink`: Đường dẫn URL của trang. Có thể viết dạng hoge/test.
+`tags`: Gắn tag cho trang.
 
-### 左のメニューに追加する場合
+### Thêm vào menu bên trái
 
-`_data/navigation.yml` に追加して下さい。小カテゴリの階層は第２階層まで作ることができます。
+Thêm vào `_data/navigation.yml`. Có thể tạo menu con đến 2 cấp.
 
 ```yaml
 docs:
-  - title: 大カテゴリ
+  - title: Danh mục lớn
     output: web, pdf
     children:
-      - title: コンテンツ
+      - title: Nội dung
         url: /quickstart_requirement
         output: web, pdf
-      - title: 小カテゴリ
+      - title: Danh mục nhỏ
         output: web, pdf
         sub_items:
-        - title: コンテンツ
+        - title: Nội dung
           url: /update
           output: web, pdf
 ```
 
-## ページの書き方
+## Cách viết nội dung trang
 
-- markdownで記載して下さい。
-- 改行(brタグ)は行末に改行２つ必要です。
-- 外部へのハイパーリンクの場合は `{:target="_blank"}` を記述してください。
-- 「```php」と書くことでシンタックスハイライトを指定することができます。
-- テンプレートで用意されているUtility/Helpersを利用することができます。
+- Viết bằng markdown.
+- Để xuống dòng (br tag) cần 2 dấu xuống dòng liên tiếp.
+- Khi link ra ngoài, thêm `{:target="_blank"}`.
+- Có thể highlight code bằng cách viết "```php".
+- Có thể sử dụng các Utility/Helpers template đã cung cấp:
     - [Utility](https://mmistakes.github.io/minimal-mistakes/docs/utility-classes/){:target="_blank"}
     - [Helpers](https://mmistakes.github.io/minimal-mistakes/docs/helpers/){:target="_blank"}
 
-### Utilityサンプル
+### Ví dụ Utility
 
 {: .notice--info}
-補足情報などを囲って読みやすくすることができます。
+Bạn có thể đóng khung thông tin bổ sung để dễ đọc hơn.
 
-[ボタンリンクも作れます](#link){: .btn .btn--primary}
+[Bạn cũng có thể tạo nút link](#link){: .btn .btn--primary}

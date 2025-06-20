@@ -1,95 +1,90 @@
 ---
 title: Tips
-keywords: Tips tips つまづいた 困った
+keywords: Tips tips vướng mắc khó khăn
 tags: [tips]
 permalink: reverse-lookup/tips
 folder: reverse-lookup
 ---
 
-
 ---
 
-ここではちょっと開発につまづいた時に役に立ちそうなTipsを挙げていきます。
+Tại đây tổng hợp các tips hữu ích khi gặp khó khăn trong quá trình phát triển.
 
-## 開発の小技
+## Thủ thuật phát triển
 
-### デバッグしながら開発したい
+### Muốn debug khi phát triển
 
-デバッグモードを有効化すると便利です。
+Bật chế độ debug sẽ rất tiện lợi.
 
-[デバッグモード](/debug_mode)
+[Chế độ debug](/debug_mode)
 
-### オブジェクトの中身を確認しながら開発したい
+### Muốn kiểm tra nội dung object khi phát triển
 
-デバッグモードを有効にしソースにdump関数を埋め込むと、Symfonyツールバーから確認ができ便利です。
-
-```
-// ソースへの埋め込み
-dump([中身を確認したいオブジェクトのインスタンス]);
-```
-
-![デバッグモードでdump](/images/reverse-lookup/dump.png)
-
-### 画面が真っ白になってしまって困った！
-
-本体、サーバーなど様々な要因が考えられますが、まずは本体のログを確認してみると良いかもしれません。
+Bật debug mode và chèn hàm dump vào source, có thể kiểm tra từ thanh công cụ Symfony.
 
 ```
-[EC−CUBE本体ディレクトリ]/var/log 配下
+// Chèn vào source
+ dump([instance object muốn kiểm tra]);
 ```
 
-### 開発時に送信メール内容を確認したい
+![Debug mode với dump](/images/reverse-lookup/dump.png)
 
-MailCatcherを使うと便利です。
+### Gặp lỗi trắng trang!
+
+Có thể do nhiều nguyên nhân (core, server, ...), trước tiên hãy kiểm tra log của core.
+
+```
+[Thư mục gốc EC-CUBE]/var/log
+```
+
+### Muốn kiểm tra nội dung email gửi đi khi phát triển
+
+Dùng MailCatcher rất tiện.
 
 [MailCatcher](/development-tools/mail-catcher)
 
+## Liên quan DB
 
+### Muốn thêm cột vào bảng
 
-
-## DB関連
-
-### テーブルにカラムを追加したい
-
-Entityを編集後、以下のスキーマ更新のコマンドを実行してください。
+Sau khi sửa Entity, hãy chạy lệnh update schema sau.
 
 ```
-$ cd {EC-CUBEディレクトリのパス}
+$ cd {đường dẫn EC-CUBE}
 $ bin/console doctrine:schema:update --force --dump-sql
 ```
 
-### スキーマ更新のコマンドを実行したのだけれど、テーブルに反映されない
+### Đã chạy lệnh update schema nhưng bảng chưa thay đổi
 
-どうやらDoctolinのキャッシュが残ってしまっているようです。  
-以下のコマンドでキャッシュを削除してください。
+Có thể cache của Doctrine còn sót lại. Hãy xoá cache bằng lệnh sau.
 
 ```
-$ cd {EC-CUBEディレクトリのパス}
+$ cd {đường dẫn EC-CUBE}
 $ rm -rf var/cache
 ```
 
-### テーブルに登録されたデータを確認してみたら、日時のデータがなんだかズレている？
+### Dữ liệu ngày giờ trong bảng bị lệch?
 
-EC−CUBE本体とDBのタイムゾーン設定のドキュメントを読んでみると謎がとけます。
+Hãy đọc tài liệu về cấu hình timezone của core và DB.
 
-[タイムゾーン](/i18n_timezone)
+[Timezone](/i18n_timezone)
 
-### 本体インストール時やアップグレード時に、テーブルへデータ登録しておきたい場合はどうすればいい？
+### Muốn thêm dữ liệu vào bảng khi cài mới hoặc nâng cấp core?
 
-#### 本体アップグレード時
+#### Khi nâng cấp core
 
-マイグレーションファイルの追加が必要になります。  
-マイグレーションファイルはインストール時にも実行されてしまうらしいので、データ重複回避策が必要です。
+Cần thêm file migration.  
+File migration cũng sẽ chạy khi cài mới, nên cần tránh trùng dữ liệu.
 
-![migration_versionsテーブル](/images/reverse-lookup/migration_versions.png)
+![Bảng migration_versions](/images/reverse-lookup/migration_versions.png)
 
-マイグレーションファイルはmigration_versionsテーブルで管理されます。  
-versionカラムにマイグレーションファイル名の日時部分が登録されます。
+File migration được quản lý trong bảng migration_versions.  
+Cột version sẽ lưu tên file migration (phần ngày giờ).
 
-[マイグレーションファイルの例](https://github.com/EC-CUBE/ec-cube/blob/4.0/app/DoctrineMigrations/Version20201218044542.php){:target="_blank"}
+[Ví dụ file migration](https://github.com/EC-CUBE/ec-cube/blob/4.0/app/DoctrineMigrations/Version20201218044542.php){:target="_blank"}
 
-#### 本体インストール時
+#### Khi cài mới core
 
-csvファイルへのレコード追加が必要になります。
+Cần thêm record vào file csv.
 
-[インポートCSV](https://github.com/EC-CUBE/ec-cube/tree/4.0/src/Eccube/Resource/doctrine/import_csv){:target="_blank"}
+[Import CSV](https://github.com/EC-CUBE/ec-cube/tree/4.0/src/Eccube/Resource/doctrine/import_csv){:target="_blank"}

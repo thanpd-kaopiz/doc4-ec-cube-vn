@@ -1,17 +1,16 @@
 ---
-title: ec-cube.co ログの取得方法
-keywords: co ec-cube.co クラウド版 ログの取得方法
+title: ec-cube.co Cách lấy log
+keywords: co ec-cube.co Cloud version Cách lấy log
 tags: [co, ec-cube.co]
 permalink: co/co_log
 folder: co
 ---
 
-
 ---
 
-## ログの取得方法
+## Cách lấy log
 
-コンソール画面＞ログから、ログの取得ができます。  
-WEBサーバーのアクセスログ、PHPログとデータベースのスロークエリログが取得できます。  
+Bạn có thể lấy log từ màn hình Console > Log.
+Có thể lấy access log của web server, log PHP và log lỗi của database.
 
 ![co_log](/images/co/co_log.png)

@@ -1,31 +1,30 @@
 ---
-title: ウェブアプリケーション侵入テストについて
+title: Về kiểm thử xâm nhập ứng dụng web
 permalink: /penetration-testing/introduction/penetration-test
 ---
-ウェブアプリケーション侵入テスト(ペネトレーションテスト)は、インターネットに接続されているシステムに対し、実際に攻撃を実施して、脆弱性が無いか確認するテストです。
+Kiểm thử xâm nhập ứng dụng web (Penetration Test) là quá trình thực hiện tấn công thực tế vào hệ thống kết nối Internet để xác nhận xem có tồn tại lỗ hổng bảo mật hay không.
 
-実際に攻撃をして再現性を確認するため、意図せずデータが更新されたり、削除される場合があります。
-テストする場合は、**必ず本番環境とは別にテスト環境を用意し、テスト環境に対して実施しましょう**
+Do thực hiện tấn công thực tế để xác nhận khả năng tái hiện, có thể xảy ra trường hợp dữ liệu bị thay đổi hoặc xóa ngoài ý muốn.
+Khi thực hiện kiểm thử, **nhất định phải chuẩn bị môi trường kiểm thử riêng biệt với môi trường thật và chỉ thực hiện trên môi trường kiểm thử**
 
-また、テストを実施することで、大きな負荷がかかる場合が多く、ホスティングサービスによっては、テストに制限をかけている場合があります。
-ご利用のホスティングサービスの利用規約をよく確認してからテストを実施してください。
+Ngoài ra, việc kiểm thử có thể gây tải lớn lên hệ thống, một số dịch vụ hosting có thể giới hạn kiểm thử, hãy xác nhận kỹ quy định sử dụng dịch vụ hosting trước khi thực hiện kiểm thử.
 
-代表的なクラウドサービスについては、以下のリンクを参照してください。
+Tham khảo các dịch vụ cloud tiêu biểu:
 
 - [Amazon Web Service](https://aws.amazon.com/jp/security/penetration-testing/)
 - [Microsoft Azure](https://docs.microsoft.com/ja-jp/azure/security/fundamentals/pen-testing)
 - [Google Cloud Platform](https://support.google.com/cloud/answer/6262505?hl=ja)
 
-## メリット
+## Ưu điểm
 
-システムの環境に合わせてテストを設計し、テスト環境に対して侵入テストを試みますので、 **安全かつ具体的な調査が可能** です。
+Có thể thiết kế kiểm thử phù hợp với môi trường hệ thống, thực hiện kiểm thử xâm nhập trên môi trường kiểm thử nên **có thể điều tra an toàn và cụ thể**.
 
-開発時には気づかなかった脆弱性が発見される場合も多く、より堅牢なシステムを運用できます。
+Nhiều trường hợp phát hiện lỗ hổng mà khi phát triển không nhận ra, giúp vận hành hệ thống vững chắc hơn.
 
-## デメリット
+## Nhược điểm
 
-テストの実施に際し、対象のシステム及びセキュリティについての高度な知識が必要になります。
+Khi thực hiện kiểm thử, cần có kiến thức chuyên sâu về hệ thống mục tiêu và bảo mật.
 
-OWASP ZAP など、自動探索でテストするツールもいくつかありますが、自動でテスト可能な範囲は十分とは言えず、手動探索を組み合わせる必要があります。
+Có một số công cụ kiểm thử tự động như OWASP ZAP, nhưng phạm vi kiểm thử tự động vẫn còn hạn chế, cần kết hợp kiểm thử thủ công.
 
-よって、テストのコストが高額になり、時間もかかる傾向にあります。
+Do đó, chi phí kiểm thử thường cao và mất nhiều thời gian.

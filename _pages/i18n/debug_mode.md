@@ -1,5 +1,5 @@
 ---
-title: デバッグモード
+title: Chế độ debug
 keywords: debug
 tags: [debug, env]
 permalink: debug_mode
@@ -7,32 +7,28 @@ folder: i18n
 
 ---
 
-## 概要
+## Tổng quan
 
-デバッグモードを有効にすることにより、
+Khi bật chế độ debug, bạn có thể xem thông tin chi tiết như stack trace trên trang lỗi.
 
-エラーページにスタックトレース等の詳細な情報を表示することができます。
+Ngoài ra, file cache sẽ được tạo lại mỗi lần request.
 
-また、キャッシュファイルをリクエスト毎に生成するようになります。
+Việc bật chế độ debug bằng biến môi trường sẽ giúp phát triển thuận tiện hơn, nhưng khi truy cập từ trình duyệt, thông tin debug sẽ hiển thị công khai. Chỉ nên sử dụng chế độ debug khi phát triển local, khi public lên internet phải tắt chế độ debug.
 
-環境変数の設定でデバッグモードを有効にすると開発に便利な機能を利用できますが、ブラウザでアクセスをするとデバッグの情報が確認できる状態となります。
-デバッグモードの利用はローカルでの開発のみに限定し、サイトをインターネット上で公開される際は必ずデバッグモードを無効にしてください。
+## Thiết lập chế độ debug
 
-## デバッグモードの設定
+Mở file .env ở thư mục gốc dự án ec-cube, tìm biến `APP_DEBUG`.
 
+Thay đổi giá trị của `APP_DEBUG` để bật/tắt chế độ debug.
 
-ec-cubeプロジェクトのルートにある.envファイルを開くと、`APP_DEBUG` という定数があります。
+Nếu `APP_DEBUG=0`, khi có lỗi chỉ hiển thị thông báo tối giản.
 
-`APP_DEBUG` の設定値を変更することで、デバッグモードを切り替えることができます。
+Nếu `APP_DEBUG=1`, chế độ debug sẽ được bật.
 
-`APP_DEBUG=0` の場合、エラー発生時に最小限の表示となります。
+Khi có lỗi ở chế độ debug, màn hình sau sẽ hiển thị:
 
-`APP_DEBUG=1` に設定すると、デバッグモードが有効となり、
+![Màn hình lỗi](/images/debug_mode/debug_error.png)
 
-デバッグモード時にエラーが発生すると以下ような画面が表示されます。
-
-![エラー画面](/images/debug_mode/debug_error.png)
-
-一般的には`APP_ENV＝dev`、`APP_ENV＝test`の時は1を設定し、`APP_ENV＝prod`の場合には0を設定します。
+Thông thường, nên đặt `APP_DEBUG=1` khi `APP_ENV=dev` hoặc `APP_ENV=test`, và đặt `APP_DEBUG=0` khi `APP_ENV=prod`.
 
 

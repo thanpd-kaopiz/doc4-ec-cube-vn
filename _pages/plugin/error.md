@@ -1,130 +1,126 @@
 ---
-title: プラグインのトラブル対処法
-keywords: plugin error trouble プラグインエラー プラグイントラブル
+title: Cách xử lý sự cố plugin
+keywords: plugin lỗi sự cố lỗi plugin sự cố plugin
 tags: [quickstart, getting_started]
 permalink: plugin_error
 ---
 
-
 ---
 
-## どんな時に発生するのか？
+## Khi nào xảy ra lỗi?
 
-- プラグインをインストールした途端エラーが発生し、フロントや管理画面にアクセスできなくなる
-- プラグインを有効化する際にエラーが発生し、フロントや管理画面にアクセスできなくなる
-- プラグインのインストールや更新や有効化には成功したが、なんだか表示がおかしくなった
+- Ngay sau khi cài plugin thì xuất hiện lỗi, không thể truy cập front hoặc quản trị
+- Khi kích hoạt plugin thì xuất hiện lỗi, không thể truy cập front hoặc quản trị
+- Cài đặt/cập nhật/kích hoạt plugin thành công nhưng hiển thị bị lỗi
 
-このページではこれらの事象の解決策について記載いたします。
+Trang này sẽ hướng dẫn cách giải quyết các sự cố trên.
 
-### メンテナンスモード下でのインストール
+### Cài đặt khi ở chế độ bảo trì
 
-前提として、プラグインをインストールする際はメンテナンスモードにしてから実行すると、キャッシュ関連の問題が起きにくくなります。  
-EC-CUBEの管理画面へアクセスし、「コンテンツ管理」の「メンテナンス管理」からメンテナンスモードを有効にした後プラグインのインストールをおこなってください。
+Khi cài plugin, nên chuyển sang chế độ bảo trì để tránh lỗi cache.
+Vào quản trị EC-CUBE → Quản lý nội dung → Quản lý bảo trì để bật chế độ bảo trì trước khi cài plugin.
 
-## インストールや有効化時にエラー発生、サイトアクセス不可となった場合
+## Nếu gặp lỗi khi cài/kích hoạt plugin, không thể truy cập site
   
-まずは以下をご確認ください。
+Hãy kiểm tra các mục sau.
 
-- ec-cube.co環境である -> イーシーキューブ社サポートへ[お問い合わせ](https://www.ec-cube.net/product/co/support.php){:target="_blank"}
-- サーバーへ入り、コマンド実行などを行うのが困難である -> [よくあるご質問 - モジュールやプラグイン設置後のエラー](https://support.ec-cube.net/hc/ja/articles/360038542232){:target="_blank"}へ
-- 上記以外の場合、以降をお読みいただきご確認や実行を行ってみてください。
+- Nếu là môi trường ec-cube.co -> Liên hệ [bộ phận hỗ trợ EC-CUBE](https://www.ec-cube.net/product/co/support.php){:target="_blank"}
+- Nếu không thể thao tác trên server (ssh, v.v.) -> Xem [FAQ - Lỗi sau khi cài module/plugin](https://support.ec-cube.net/hc/ja/articles/360038542232){:target="_blank"}
+- Nếu không thuộc các trường hợp trên, hãy đọc tiếp các hướng dẫn bên dưới.
 
-### 壊れたキャッシュが残ってしまった
+### Cache bị lỗi do quá trình cài đặt bị gián đoạn
 
-もっとも多いエラーの原因として、インストールプロセスの途中終了により壊れたキャッシュが残ってしまうことがあります。
-以下の手順でキャッシュをクリアし、再度インストールをお試しください。
+Nguyên nhân phổ biến nhất là cache bị lỗi do quá trình cài đặt bị dừng giữa chừng.
+Hãy xóa cache theo hướng dẫn bên dưới rồi thử cài lại.
 
-[コマンドでキャッシュクリア](#コマンドでキャッシュクリア)  
-[ディレクトリのキャッシュを削除](#ディレクトリのキャッシュを削除)
+[Xóa cache bằng lệnh](#Xóa-cache-bằng-lệnh)  
+[Xóa cache bằng cách xóa thư mục](#Xóa-cache-bằng-cách-xóa-thư-mục)
 
-### 管理画面のメニュー追加が行われた際にNavファイルだけ有効化されてしまった
+### Khi thêm menu quản trị, chỉ file Nav được kích hoạt
  
-管理画面のメニュー追加を行うプラグインの場合、プラグインの有効化時にまれに起こることがあります。  
-有効化が正常に終了せず、Navファイル`ec-cube/app/config/eccube/packages/eccube_nav.yaml`のみ有効化されルーティングが有効化されない状態です。  
+Nếu plugin thêm menu quản trị, đôi khi chỉ file Nav `/ec-cube/app/config/eccube/packages/eccube_nav.yaml` được kích hoạt mà routing không được kích hoạt.
   
-以下の手順を試してみてください。
+Hãy thử các bước sau:
 
-1. Navファイルをローカルにバックアップします。
-1. サーバー上のNavファイルを削除します。
-1. 管理画面にログイン出来るようになります。
-1. 管理画面より、プラグインを一旦無効化します。
-1. ローカルにバックアップしたNavファイルをサーバーの元のディレクトリへ戻します。
-1. 管理画面から有効化を行うと再度エラーとなる可能性も有るため、可能であれば[コマンドでのプラグイン有効化](/plugin_install#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E6%93%8D%E4%BD%9C){:target="_blank"}をおすすめします。
+1. Backup file Nav về local.
+1. Xóa file Nav trên server.
+1. Đăng nhập lại quản trị sẽ được.
+1. Vào quản trị, tạm thời vô hiệu hóa plugin.
+1. Đưa lại file Nav đã backup vào đúng thư mục trên server.
+1. Nếu kích hoạt lại plugin từ quản trị có thể lại bị lỗi, nên nếu có thể hãy [kích hoạt plugin bằng lệnh](/plugin_install#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E6%93%8D%E4%BD%9C){:target="_blank"}.
 
-### プラグインが競合してしまった
+### Plugin bị xung đột
 
-プラグインを複数インストールし競合してしまった場合は、プラグイン製作者へ相談しましょう。  
-その際、エラーログ・再現方法などの情報を準備しておくとやりとりがスムーズになります。
+Nếu cài nhiều plugin và bị xung đột, hãy liên hệ tác giả plugin.
+Khi liên hệ, nên chuẩn bị log lỗi, cách tái hiện để trao đổi dễ dàng hơn.
 
-[よくあるご質問 - ログの取得](https://support.ec-cube.net/hc/ja/search?utf8=%E2%9C%93&query=%E3%83%AD%E3%82%B0){:target="_blank"}
+[Xem FAQ - Lấy log](https://support.ec-cube.net/hc/ja/search?utf8=%E2%9C%93&query=%E3%83%AD%E3%82%B0){:target="_blank"}
 
-### 上記の対処法でも解決しない場合
+### Nếu các cách trên không giải quyết được
 
-その他の対処法や原因・予防対策について、EC-CUBEエバンジェリスト大河内氏の以下の記事にて詳しくご紹介されております。ぜひご参照ください。
+Tham khảo thêm các bài viết chi tiết của evangelist EC-CUBE ông Okouchi:
 
-- [EC-CUBE4系でプラグインインストール時にエラーが出た時の対処法](https://qiita.com/nanasess/items/583683eb94947aebea44){:target="_blank"}
-- [EC-CUBE4系でのプラグインエラーの原因と予防対策](https://qiita.com/nanasess/items/791c9ec98f69ada93ea0){:target="_blank"}
+- [Cách xử lý lỗi khi cài plugin trên EC-CUBE4](https://qiita.com/nanasess/items/583683eb94947aebea44){:target="_blank"}
+- [Nguyên nhân và cách phòng tránh lỗi plugin trên EC-CUBE4](https://qiita.com/nanasess/items/791c9ec98f69ada93ea0){:target="_blank"}
 
-## 有効化したが表示がおかしい場合
+## Kích hoạt nhưng hiển thị bị lỗi
 
-以下の事象が想定されます。  
-また、表示くずれなどは有効化のみならずプラグインを更新した際にも発生することがあるようです。
+Có thể gặp các trường hợp sau.  
+Ngoài ra, lỗi hiển thị có thể xảy ra cả khi cập nhật plugin.
 
-- 有効化には成功したが、管理画面に追加したプラグインのメニューや設定アイコンなどが表示されない
-- 有効化には成功したが、表示がくずれる、または英語表記や文字化けが起こる
+- Kích hoạt thành công nhưng menu hoặc icon plugin không hiển thị ở quản trị
+- Kích hoạt thành công nhưng hiển thị bị lỗi, tiếng Anh hoặc lỗi font
 
-### 有効化したが管理画面のメニューや設定アイコンなどが表示されない
+### Kích hoạt nhưng menu hoặc icon plugin không hiển thị
 
-一度プラグインを無効化していただき、再度有効化してみてください。
+Hãy thử vô hiệu hóa rồi kích hoạt lại plugin.
 
-### 有効化したが表示がくずれる、または英語表記や文字化けが起こる
+### Kích hoạt nhưng hiển thị bị lỗi, tiếng Anh hoặc lỗi font
 
-管理画面よりキャッシュをクリアしてみてください。  
+Hãy thử xóa cache từ quản trị.
 
-[管理画面でキャッシュクリア](#管理画面でキャッシュクリア)
+[Xóa cache từ quản trị](#Xóa-cache-từ-quản-trị)
 
-### 上記の対処法でも解決しない場合
+### Nếu vẫn không giải quyết được
 
-プラグイン製作者へ相談しましょう。
+Hãy liên hệ tác giả plugin.
 
 ---
 ---
 
-## 付録：キャッシュをクリアする方法
+## Phụ lục: Cách xóa cache
 
-### 管理画面でキャッシュクリア
+### Xóa cache từ quản trị
 
-管理画面へのログインが可能な場合、  
-管理画面の [コンテンツ管理] > [キャッシュ管理] からキャッシュクリアをお試しください。
+Nếu đăng nhập được quản trị, vào [Quản lý nội dung] > [Quản lý cache] để xóa cache.
 
-### コマンドでキャッシュクリア
+### Xóa cache bằng lệnh
 
-管理画面へアクセスできない場合は、コマンドラインからキャッシュをクリア&生成する方法をお試しください。  
-前提として、コマンドラインの操作のためにターミナルからSSH接続が必要となります。  
-ご契約サーバーのSSH接続方法をご確認ください。
+Nếu không vào được quản trị, hãy xóa cache bằng lệnh qua SSH.  
+Cần SSH vào server EC-CUBE.
 
-SSH接続後、EC-CUBEのディレクトリへ移動します。
+Sau khi SSH, chuyển vào thư mục EC-CUBE.
 ```shell
-## path/to/eccube_rootの部分にEC-CUBEのディレクトリパスを記載
+## Ghi đúng đường dẫn EC-CUBE vào path/to/eccube_root
 cd path/to/eccube_root/
 ```
 
-キャッシュのクリアと生成コマンドを実行
+Chạy lệnh xóa và tạo lại cache
 ```shell
-## Symfony コマンドでのキャッシュクリアと生成
+## Xóa và tạo lại cache bằng lệnh Symfony
 bin/console cache:clear --no-warmup
 bin/console cache:warmup
 ```
 
-※キャッシュクリアコマンドがうまくいかない場合は、強制削除をお試しください。
+Nếu lệnh xóa cache không thành công, hãy xóa mạnh tay:
 ```shell
-## path/to/eccube_root/の部分はEC-CUBEのディレクトリパスを記載
+## Ghi đúng đường dẫn EC-CUBE vào path/to/eccube_root
 rm -rf path/to/eccube_root/var/cache/*
 ```
 
-### ディレクトリのキャッシュを削除
+### Xóa cache bằng cách xóa thư mục
 
-コマンドでキャッシュクリアがうまくいかない場合は、ディレクトリのファイルを削除する方法をお試しください。
+Nếu xóa cache bằng lệnh không được, hãy xóa trực tiếp thư mục cache qua FTP.
 
-1. FTP接続する
-1. EC-CUBEディレクトリ内の `var/cache/` 以下のディレクトリを削除する
+1. Kết nối FTP
+1. Xóa thư mục dưới `var/cache/` trong thư mục EC-CUBE

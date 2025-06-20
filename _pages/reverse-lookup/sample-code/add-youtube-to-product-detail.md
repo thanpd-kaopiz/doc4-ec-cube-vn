@@ -1,21 +1,21 @@
 ---
-title: 商品詳細画面へのYouTube動画の追加
-keywords: core カスタマイズ Entity Product
+title: Thêm video YouTube vào trang chi tiết sản phẩm
+keywords: core tuỳ biến Entity Product
 tags: [core, entity, product]
 permalink: reverse-lookup/sample-code/add-youtube-to-product-detail
 folder: sample-code
 ---
 
-## 商品詳細画面へのYouTube動画の追加
+## Thêm video YouTube vào trang chi tiết sản phẩm
 
-1. ProductTraitの作成
-1. proxyの生成とDBスキーマの変更
-1. detail.twigへのyoutubeタグ追加
+1. Tạo ProductTrait
+1. Tạo proxy và cập nhật DB schema
+1. Thêm thẻ youtube vào detail.twig
 
-### ProductTraitの作成
+### Tạo ProductTrait
 
-trait と `@EntityExtension` アノテーションを使用して、 ProductEntity のフィールドを拡張可能です。
-継承を使用せずに Proxy クラスを生成するため、複数のプラグインや、独自カスタマイズからの拡張を共存できます。
+Có thể mở rộng field của ProductEntity bằng trait và annotation `@EntityExtension`.
+Việc này cho phép tạo Proxy class mà không cần kế thừa, giúp nhiều plugin hoặc tuỳ biến cùng mở rộng mà không xung đột.
 
 ``` php
 <?php
@@ -37,13 +37,13 @@ trait ProductTrait
 }
 ```
 
-`@EntityExtension` アノテーションの引数には、 trait を適用したいクラスを指定します。
-trait には、追加したいフィールドを実装します。
-`@ORM\Column` など、 Doctrine ORM のアノテーションを使用して、データベース定義を設定します。
+Tham số của annotation `@EntityExtension` là class muốn áp dụng trait.
+Trong trait, định nghĩa các field muốn thêm.
+Dùng annotation của Doctrine ORM như `@ORM\Column` để định nghĩa DB.
 
-#### 管理画面でのフォーム表示
+#### Hiển thị form trên quản trị
 
-`@EntityExtension` アノテーションで拡張したフィールドに `@FormAppend` アノテーションを追加することで、フォームを自動生成できます。
+Nếu thêm annotation `@FormAppend` vào field mở rộng bằng `@EntityExtension`, form sẽ tự động sinh ra.
 
 ``` php
 <?php
@@ -72,7 +72,7 @@ trait ProductTrait
     public $youtube_url;
 
     /**
-     * 無くても動くけど一応作る
+     * Không bắt buộc nhưng nên có
      */
     public function getYoutubeUrl()
     {
@@ -80,7 +80,7 @@ trait ProductTrait
     }
 
     /**
-     * 無くても動くけど一応作る
+     * Không bắt buộc nhưng nên có
      */
     public function setYoutubeUrl($url = null)
     {
@@ -91,46 +91,44 @@ trait ProductTrait
 
 ```
 
-`@FormAppend` アノテーションを追加すると、対象のエンティティを使用しているフォームに、追加したフィールドのフォームが追加されます。
-入力チェックを使用したい場合は、 `@NotBlank` など [Symfony 標準のアノテーション](https://symfony.com/doc/current/reference/constraints.html){:target="_blank"} を使用できます。
+Khi thêm annotation `@FormAppend`, form của field sẽ tự động được thêm vào các form sử dụng entity đó.
+Nếu muốn kiểm tra dữ liệu nhập, có thể dùng các annotation chuẩn của Symfony như `@NotBlank`.
 
-フォームを詳細にカスタマイズしたい場合は、 `auto_render=true` を指定し、 `form_theme` や `type`, `option` を個別に指定します。
+Nếu muốn tuỳ biến form chi tiết, hãy dùng `auto_render=true` và chỉ định `form_theme`, `type`, `option`.
 
+### Tạo proxy và cập nhật DB schema
 
-### Proxyの生成とDBスキーマの変更
-
-trait の実装ができたら、 `bin/console eccube:generate:proxies` コマンドで Proxy クラスを生成します。
+Sau khi tạo trait, chạy lệnh `bin/console eccube:generate:proxies` để sinh Proxy class.
 
 ```
 bin/console eccube:generate:proxies
 ```
 
-Proxy を生成できたら、 `bin/console doctrine:schema:update` コマンドで、定義をデータベースに反映します。
+Sau khi sinh Proxy, chạy lệnh `bin/console doctrine:schema:update` để cập nhật DB.
 
 ```
-## 作成した Proxy クラスを確実に認識できるようキャッシュを削除
+## Xoá cache để nhận Proxy mới
 bin/console cache:clear --no-warmup
 
-## 実行する SQL を確認
+## Xem trước SQL
 bin/console doctrine:schema:update --dump-sql
 
-## SQL を実行
+## Thực thi SQL
 bin/console doctrine:schema:update --dump-sql --force
 ```
 
-これで管理画面では自動的にYouTubeのURLのフォームが追加されます。
+Sau đó, form nhập URL YouTube sẽ tự động xuất hiện trên quản trị.
 
 <img width="914" alt="ss2021-01-12 16 11 00" src="https://user-images.githubusercontent.com/485749/104288126-bf1f7880-54fa-11eb-816d-75b0d947abef.png">
 
-### detail.twigへのyoutubeタグ追加
+### Thêm thẻ youtube vào detail.twig
 
-テンプレートの``Prdoduct/detail.twig``のYouTube動画を表示させたい箇所へYouTubeのタグを追加します。
+Thêm thẻ YouTube vào vị trí muốn hiển thị trong template ``Prdoduct/detail.twig``.
 
 <script src="https://gist.github.com/tao-s/3b67f9f6dc19f78593eda49877df3b6b.js"></script>
 
+Hãy kiểm tra biến `youtube_url` đã được định nghĩa chưa, chỉ hiển thị thẻ YouTube khi có giá trị.
 
-`youtube_url`がちゃんと定義されているかどうかをチェックして、定義されている時だけYouTubeのタグを出すようにします。
-
-フロントではこの様に表示されます。
+Kết quả hiển thị ở front sẽ như sau.
 
 <img width="1204" alt="スクリーンショット 2021-01-12 17 16 05" src="https://user-images.githubusercontent.com/485749/104288010-94cdbb00-54fa-11eb-80b0-2c524478ed5e.png">

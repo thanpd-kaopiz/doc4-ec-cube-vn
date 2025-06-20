@@ -1,41 +1,41 @@
 ---
 layout: single
-title: 4.0から4.1へのマイグレーション
-keywords: howto update
+title: Di chuyển từ 4.0 lên 4.1
+keywords: cách cập nhật
 tags: [quickstart, getting_started]
 permalink: update-40-41
-summary : EC-CUBE4.0から4.1へのマイグレーションについて記載します。
+summary : Mô tả về di chuyển từ EC-CUBE 4.0 lên 4.1.
 ---
 
-EC-CUBE4.0から4.1へのマイグレーションを解説します。
+Giải thích về di chuyển từ EC-CUBE 4.0 lên 4.1.
 
-EC-CUBE本体および一部公式プラグインをEC-CUBE4.1対応し、コードの移植が必要な箇所をまとめたものです。
+Tổng hợp các phần cần chuyển mã để EC-CUBE 4.1 tương thích với EC-CUBE bản chính và một số plugin chính thức.
 
-- [EC-CUBE 4.1 Roadmap](https://github.com/EC-CUBE/ec-cube/issues/4603){:target="_blank"}
-- [GitHub 4.1ブランチ](https://github.com/EC-CUBE/ec-cube/tree/4.1){:target="_blank"}
-- [Web API プラグイン：Symfony 4.4対応](https://github.com/EC-CUBE/eccube-api4/pull/106){:target="_blank"}
-- [商品レビュープラグイン：Symfony 4.4対応](https://github.com/EC-CUBE/ProductReview-plugin/pull/55){:target="_blank"}
+- [Lộ trình EC-CUBE 4.1](https://github.com/EC-CUBE/ec-cube/issues/4603){:target="_blank"}
+- [Nhánh GitHub 4.1](https://github.com/EC-CUBE/ec-cube/tree/4.1){:target="_blank"}
+- [Plugin Web API: Tương thích Symfony 4.4](https://github.com/EC-CUBE/eccube-api4/pull/106){:target="_blank"}
+- [Plugin Đánh giá sản phẩm: Tương thích Symfony 4.4](https://github.com/EC-CUBE/ProductReview-plugin/pull/55){:target="_blank"}
 
-## Composer2.0対応
+## Tương thích Composer2.0
 
-Composer 2.0 導入に伴いプラグインの composer.json を必ず変更していただく必要があります。
+Cần thay đổi composer.json của plugin để tương thích với Composer 2.0.
 
 ### name
 
-`ec-cube/<すべて小文字のPluginCode>`
+`ec-cube/<PluginCode viết thường>`
 
-PluginCode はプラグインの namespace に対応し、すべて小文字にする必要があります。
+PluginCode cần tương ứng với namespace của plugin và phải viết thường.
 
 ```php
 <?php
 namespace Plugin\ExamplePlugin;
 
-// 上記の namespace の場合、 composer.json の name は ec-cube/exampleplugin になります。
+// Với namespace trên, name trong composer.json sẽ là ec-cube/exampleplugin.
 ```
 
 ### require
 
-`ec-cube/plugin-installer: "~0.0.6 || ^2.0"` を含める必要があります
+Cần bao gồm `ec-cube/plugin-installer: "~0.0.6 || ^2.0"`
 
 ```json
   "require": {
@@ -43,7 +43,7 @@ namespace Plugin\ExamplePlugin;
   },
 ```
 
-### composer.json の変更例
+### Ví dụ thay đổi composer.json
 
 ```diff
 {
@@ -51,7 +51,7 @@ namespace Plugin\ExamplePlugin;
 +   "name": "ec-cube/exampleplugin",
 -  "version": "1.0.0",
 +  "version": "2.0.0",
-  "description": "プラグインのサンプル",
+  "description": "Plugin mẫu",
   "type": "eccube-plugin",
   "require": {
 -     "ec-cube/plugin-installer": "~0.0.6"
@@ -63,29 +63,29 @@ namespace Plugin\ExamplePlugin;
 }
 ```
 
-修正内容について詳しくは[GitHubのIssue](https://github.com/EC-CUBE/ec-cube/issues/4737){:target="_blank"}をご覧ください。
+Xem chi tiết về nội dung sửa đổi tại [Issue trên GitHub](https://github.com/EC-CUBE/ec-cube/issues/4737){:target="_blank"}.
 
-2020/12/09時点でEC-CUBEが通信するオーナースズトア(package-api)側の4.1対応はされていません。
+Tính đến ngày 09/12/2020, phía package-api của Owner's Store mà EC-CUBE giao tiếp chưa hỗ trợ 4.1.
 
-プラグインのインストールの4.1でのテストは4.0と同様に[オーナーズストア経由のインストールをテストする](plugin_mock_package_api)の手順で行えます。
+Việc kiểm tra cài đặt plugin trên 4.1 có thể thực hiện tương tự như trên 4.0 thông qua [kiểm tra cài đặt qua Owner's Store](plugin_mock_package_api).
 
-## Symfony4.4対応
+## Tương thích Symfony4.4
 
-Symfony4.4での変更をすべて網羅できているわけではないため、記載されていない問題があった場合は、SymfonyのUPGRADEドキュメントも合わせて参照してください。
+Không thể bao quát hết các thay đổi trong Symfony4.4, nếu có vấn đề không được đề cập, hãy tham khảo tài liệu UPGRADE của Symfony.
 
 - [UPGRADE-4.0.md](https://github.com/symfony/symfony/blob/4.4/UPGRADE-4.0.md){:target="_blank"}
 
-また、EC-CUBE4.0とEC-CUBE4.1での互換性を重視し、発生しているdeprecation noticeを意図的に修正していない箇所もあります。
+Ngoài ra, để duy trì tính tương thích giữa EC-CUBE4.0 và EC-CUBE4.1, có một số phần không sửa đổi các thông báo deprecation.
 
-※ログ等で`User Deprecated: xxx`といった出力が出る場合がありますが、動作上は問題ありません。
+※ Có thể xuất hiện thông báo `User Deprecated: xxx` trong log, nhưng không ảnh hưởng đến hoạt động.
 
-本修正を行っても、[テストコード/コンテナの取得](#コンテナの取得)の項目を除き、Symfony3.4/4.4ともに動作します。
+Dù thực hiện sửa đổi này, EC-CUBE vẫn hoạt động trên cả Symfony3.4/4.4, ngoại trừ mục [Lấy container trong mã kiểm tra](#コンテナの取得).
 
-### Form関連
+### Liên quan đến Form
 
-#### Formのバリデーション
+#### Xác thực Form
 
-`isValid()`単独で呼び出すことはできません。`isSubmitted() && isValid()` でチェックしてください。
+Không thể gọi `isValid()` một mình. Hãy kiểm tra bằng `isSubmitted() && isValid()`.
 
 ```diff
 - if ($form->isValid()) {
@@ -96,9 +96,9 @@ Symfony4.4での変更をすべて網羅できているわけではないため�
 
 #### FormExtension
 
-`getExtendedTypes`メソッドを追加します。
+Thêm phương thức `getExtendedTypes`.
 
-EC-CUBE4.0.x(Symfony3.4)と互換性を保つ場合、`getExtendedType`メソッドを残す必要があります。
+Để duy trì tính tương thích với EC-CUBE4.0.x(Symfony3.4), cần giữ lại phương thức `getExtendedType`.
 
 ```diff
     /**
@@ -118,22 +118,22 @@ EC-CUBE4.0.x(Symfony3.4)と互換性を保つ場合、`getExtendedType`メソッ
 +    }
 ```
 
-### Translator関連
+### Liên quan đến Translator
 
 #### message.[locale].yaml
 
-変数を利用している場合、コーテーションで囲う必要があります。
+Nếu sử dụng biến, cần đặt trong dấu nháy đơn.
 
 ```diff
 - common.password_sample: 半角英数記号%min%〜%max%文字
 + common.password_sample: '半角英数記号%min%〜%max%文字'
 ```
 
-### Log関連
+### Liên quan đến Log
 
-#### monologの設定
+#### Cài đặt monolog
 
-`channels`を重複して記述している場合は削除してください。
+Nếu có ghi đè `channels`, hãy xóa.
 
 ```diff
 monolog:
@@ -154,11 +154,11 @@ monolog:
             level: debug
 ```
 
-### Container関連
+### Liên quan đến Container
 
-#### インジェクション時のインターフェース指定
+#### Chỉ định interface khi injection
 
-コンストラクタインジェクションやメソッドインジェクション利用時に、具象クラスを指定している場合は、インターフェースを指定するようにしてください。
+Khi sử dụng constructor injection hoặc method injection, nếu chỉ định class cụ thể, hãy chỉ định interface.
 
 ```diff
 - public function __construct(Session $session)
@@ -168,15 +168,15 @@ monolog:
 + public function index(Request $request, $page_no = 1, PaginatorInterface $paginator)
 ```
 
-#### コンテナからのサービス取得の制限
+#### Hạn chế lấy dịch vụ từ container
 
-一部のサービス(doctrine等)を除き、`$container->get(Hoge::class)`で取得することはできません。
+Ngoại trừ một số dịch vụ (như doctrine), không thể lấy dịch vụ bằng `$container->get(Hoge::class)`.
 
-インジェクションするか、services.yamlでサービスをpublicに設定してください。
+Hãy sử dụng injection hoặc thiết lập dịch vụ là public trong services.yaml.
 
-※ただし、publicに変更した場合、パフォーマンスへの影響があります。インジェクションの利用が望ましいです。
+※ Tuy nhiên, nếu thay đổi thành public, sẽ ảnh hưởng đến hiệu suất. Nên sử dụng injection.
 
-インジェクションの記述例：
+Ví dụ về sử dụng injection:
 
 ```diff
 -
@@ -198,7 +198,7 @@ monolog:
 + }
 ```
 
-services.yamlの記述例：
+Ví dụ về services.yaml:
 
 ```diff
 + services:
@@ -206,7 +206,7 @@ services.yamlの記述例：
 +          public: true
 ```
 
-PluginManagerでは、インジェクションは利用できません。Repositoryを取得する場合は、以下のコードで取得してください。
+Trong PluginManager, không thể sử dụng injection. Khi lấy Repository, hãy sử dụng mã sau.
 
 ```diff
 - $pageRepository = $container->get(PageRepository::class);
@@ -214,11 +214,11 @@ PluginManagerでは、インジェクションは利用できません。Reposit
 + $pageRepository = $entityManager->getRepository(Page::class);
 ```
 
-### テストコード
+### Mã kiểm tra
 
-#### コンテナの取得
+#### Lấy container
 
-コンテナがメンバ変数からクラス変数に変更されました。
+Container đã được thay đổi từ biến thành viên sang biến lớp.
 
 ```diff
     public function setUp()
@@ -230,37 +230,34 @@ PluginManagerでは、インジェクションは利用できません。Reposit
     }
 ```
 
-#### バリデーションメッセージ
+#### Thông điệp xác thực
 
-一部のバリデーションメッセージが変更になっています。
-バリデーションメッセージを検証している自動テストは修正が必要な可能性があります。
-プロダクトコードの修正は必要ありません。
+Một số thông điệp xác thực đã thay đổi. Các bài kiểm tra tự động kiểm tra thông điệp xác thực có thể cần sửa đổi. Không cần sửa mã sản phẩm.
 
-### その他の仕様変更
+### Các thay đổi khác
 
-#### 非会員購入時のお客様情報取得方法の変更
+#### Thay đổi cách lấy thông tin khách hàng khi mua hàng không đăng ký
 
-非会員購入時にはお客様情報を session に保存していますが、その保持形式がエンティティから配列へ変更になりました。
-それに伴い非会員購入時のお客様情報を取得・変更されるようなカスタマイズをされている場合に修正が必要です。
+Khi mua hàng không đăng ký, thông tin khách hàng được lưu trong session, nhưng định dạng lưu trữ đã thay đổi từ entity sang mảng. Nếu có tùy chỉnh để lấy hoặc thay đổi thông tin khách hàng khi mua hàng không đăng ký, cần sửa đổi.
 
 ```diff
 - $NonMember = $this->session->get('eccube.front.shopping.nonmember')
 + $NonMember = $this->orderHelper->getNonMember('eccube.front.shopping.nonmember')
 ```
 
-[Customer の Serializable 実装に伴う本体の修正](https://github.com/EC-CUBE/ec-cube/commit/9a84daf16d92a5129eb169ac14f9b219e81c5d90){:target="_blank"}
+[Xem chi tiết về sửa đổi do Serializable của Customer](https://github.com/EC-CUBE/ec-cube/commit/9a84daf16d92a5129eb169ac14f9b219e81c5d90){:target="_blank"}
 
-## WebAPI対応
+## Tương thích WebAPI
 
-EC-CUBE のパッケージに Web API プラグインが同封され、 EC-CUBE インストールで Web API が利用可能になりました。
+EC-CUBE 4.1 đóng gói Plugin Web API, cho phép sử dụng Web API khi cài đặt EC-CUBE.
 
-Web API で取得可能なデータは許可リスト方式のため、プラグインで追加された Entity はデフォルトで取得できません。
+Dữ liệu có thể lấy qua Web API theo danh sách cho phép, do đó, Entity được thêm bởi plugin không thể lấy mặc định.
 
-追加された Entity の取得を許可する場合は `eccube.api.allow_list` タグを付けたコンポーネントを定義します。
+Để cho phép lấy Entity được thêm, hãy định nghĩa component với tag `eccube.api.allow_list`.
 
-サービスIDは `[プラグインコード].api.allow_list` の形を推奨します。
+ID dịch vụ nên có dạng `[PluginCode].api.allow_list`.
 
-例えばメーカー管理プラグインでは以下のような ArrayObject の定義をプラグイン内の services.yaml に追加します。
+Ví dụ, trong plugin quản lý nhà sản xuất, thêm định nghĩa ArrayObject sau vào services.yaml của plugin.
 
 ```yaml
 services:
@@ -273,28 +270,28 @@ services:
                 Plugin\Maker4\Entity\Maker: ['id', 'name', 'sort_no', 'create_date', 'update_date']
 ```
 
-詳しくは[Web API プラグインのドキュメント](https://doc.ec-cube.net/eccube-api4/customize/allow_list){:target="_blank"}をご確認ください。
+Xem chi tiết tại [tài liệu plugin Web API](https://doc.ec-cube.net/eccube-api4/customize/allow_list){:target="_blank"}.
 
-### その他削除された関数・機能
+### Các hàm và tính năng bị xóa khác
 
 #### Application.php
 
-Eccube\Applicationは削除されました。これに伴い、ServiceProvider も廃止されています。SymfonyのContainerを使用するようにしてください。
+Eccube\Application đã bị xóa. Do đó, ServiceProvider cũng bị loại bỏ. Hãy sử dụng Container của Symfony.
 
-##### app['session'] を使用して、セッションを取得していた場合の変更例
+##### Ví dụ thay đổi khi lấy session bằng app['session']
 
-**4.0まで**
+**Đến 4.0**
 
 ``` php
     public function index(Application $app, Request $request)
     {
-        // SessionServiceProvider からセッションを取得
+        // Lấy session từ SessionServiceProvider
         $session = $app['session'];
     }
 
  ```
 
-**4.1以降**
+**Từ 4.1 trở đi**
 
  ```php
     use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -312,18 +309,18 @@ Eccube\Applicationは削除されました。これに伴い、ServiceProvider �
 
     public function index(Request $request)
     {
-        // コンストラクタインジェクションでセッションを取得
+        // Lấy session qua constructor injection
         $session = $this->session;
     }
  ```
 
 
-## オーナーズストア経由でのプラグインインストールテスト
+## Kiểm tra cài đặt plugin qua Owner's Store
 
-EC-CUBE 4.1 では Composer2 対応が必要となりました。
-それに伴い EC-CUBE がオーナーズストア経由でプラグインをインストールする際のエンドポイントが変更になっています。
-EC-CUBE 4.1 beta3 以前でテストをしたい場合は、EC-CUBE に以下の環境変数を設定することで Composer2 対応のエンドポイントへ切り替えられます。
-GitHub の最新の 4.1 ブランチではこちらの対応は不要です。
+EC-CUBE 4.1 yêu cầu tương thích với Composer2.
+Do đó, endpoint khi cài đặt plugin qua Owner's Store đã thay đổi.
+Nếu muốn kiểm tra trên EC-CUBE 4.1 beta3 trở về trước, có thể chuyển sang endpoint tương thích với Composer2 bằng cách thiết lập biến môi trường sau trong EC-CUBE.
+Nhánh 4.1 mới nhất trên GitHub không cần thực hiện điều này.
 
 ```
 ECCUBE_PACKAGE_API_URL=https://package-api-c2.ec-cube.net

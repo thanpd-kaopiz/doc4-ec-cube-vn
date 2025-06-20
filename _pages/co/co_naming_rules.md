@@ -1,19 +1,18 @@
 ---
-title: ec-cube.co ネーミングルール
-keywords: co ec-cube.co クラウド版 ネーミングルール
+title: ec-cube.co Quy tắc đặt tên
+keywords: co ec-cube.co Cloud version Quy tắc đặt tên
 tags: [co, ec-cube.co]
 permalink: co/co_naming_rules
 folder: co
 ---
 
-
 ---
 
-※ [shopid]：申込みの際に指定したショップIDです(xxx.ec-cube.coのxxx部)。
+※ [shopid]: Là Shop ID bạn chỉ định khi đăng ký (phần xxx trong xxx.ec-cube.co).
 
 | | | |
 |-|-|-|
-|リポジトリ名|eccube.co-[shopid]-customize||
-|ブランチ|master->本番環境, develop->テスト環境|※ スタンダードプランのみ|
-|ショップURL(本番環境)|[shopid].ec-cuube.shop||
-|ショップURL(テスト環境)|stg-[shopid].ec-cuube.shop|※ スタンダードプランのみ|
+|Tên repository|eccube.co-[shopid]-customize||
+|Branch|master-> môi trường production, develop-> môi trường test|※ Chỉ áp dụng cho gói Standard|
+|URL shop (production)|[shopid].ec-cuube.shop||
+|URL shop (test)|stg-[shopid].ec-cuube.shop|※ Chỉ áp dụng cho gói Standard|

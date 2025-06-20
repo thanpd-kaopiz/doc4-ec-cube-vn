@@ -1,28 +1,28 @@
 ---
-title: CSSの利用
-keywords: design 
-tags: [design]
+title: Sử dụng CSS
+keywords: thiết kế 
+tags: [thiết kế]
 permalink: design_css
 
-summary: CSSの編集方法
+summary: Cách chỉnh sửa CSS
 ---
 
-## CSSの利用について
+## Về việc sử dụng CSS
 
-EC-CUBEでは、CSSを編集する方法。
+Trong EC-CUBE, có hai cách để chỉnh sửa CSS:
 
-1. [管理画面のCSS管理から編集する](#管理画面のCSS管理から編集する)
-2. [style.cssを直に編集する](#style.cssを直に編集する)
+1. [Chỉnh sửa từ Quản lý CSS trong trang quản trị](#chỉnh-sửa-từ-quản-lý-css-trong-trang-quản-trị)
+2. [Chỉnh sửa trực tiếp file style.css](#chỉnh-sửa-trực-tiếp-file-style.css)
 
-トップページのメインビジュアルのスライドなど一部CSSはtwigファイル内に記述されています。<br>
-EC-CUBE管理画面の[コンテンツ管理] -> [ページ管理]のTOPページで編集可能です。
+Một số CSS như slide của hình ảnh chính trên trang chủ được viết trực tiếp trong file twig.<br>
+Bạn có thể chỉnh sửa tại [Quản lý nội dung] -> [Quản lý trang] -> Trang TOP trong trang quản trị EC-CUBE.
 
 
-## 管理画面のCSS管理から編集する
+## Chỉnh sửa từ Quản lý CSS trong trang quản trị
 
-EC-CUBE管理画面の[コンテンツ管理] -> [CSS管理]からCSSを記述できます。
+Từ [Quản lý nội dung] -> [Quản lý CSS] trong trang quản trị EC-CUBE, bạn có thể viết mã CSS.
 
-- [CSS管理]に記述したコードは、以下のディレクトリのcustomize.cssに反映されます。<br>
+- Mã bạn viết trong [Quản lý CSS] sẽ được phản ánh vào file customize.css trong thư mục sau:<br>
 
 ```
 [html]
@@ -32,15 +32,15 @@ EC-CUBE管理画面の[コンテンツ管理] -> [CSS管理]からCSSを記述�
              └─ customize.css
 ```
   
-  管理画面からの編集（customize.css）の記述は、style.cssより優先されます。
+  CSS chỉnh sửa từ trang quản trị (customize.css) sẽ được ưu tiên hơn style.css.
 
 
-## style.cssを直に編集する
+## Chỉnh sửa trực tiếp file style.css
 
-EC-CUBEのCSSは、以下ディレクトリ内のstyle.cssにまとまっています。<br>
-CSSメンテナンスの観点から、この後ご紹介するSassの利用もご検討ください。
+CSS của EC-CUBE được tập trung trong file style.css ở thư mục sau:<br>
+Về mặt bảo trì CSS, bạn cũng nên cân nhắc sử dụng Sass như sẽ giới thiệu bên dưới.
 
-- style.cssは、以下のディレクトリに格納されています。
+- style.css được lưu tại thư mục sau:
 
 ```
 [html]
@@ -48,17 +48,17 @@ CSSメンテナンスの観点から、この後ご紹介するSassの利用も�
      └─ [default]
             └─[assets]
                  ├─ [css]
-                 │    ├─ style.css     # 読み込まれているCSS
-                 │    └─ style.min.css # 軽量版CSS
+                 │    ├─ style.css     # CSS được sử dụng
+                 │    └─ style.min.css # CSS phiên bản rút gọn
                  └─ [sass]
                       ├─...
 ```
 
 
-## スタイルガイドについて
+## Về Style Guide
 
-EC-CUBEでは、CSSやHTMLの設計指針やコーディングルールを確認できるよう、 `スタイルガイド` を用意しています。
-詳しくは以下を参照ください。
+EC-CUBE cung cấp 'Style Guide' để bạn có thể kiểm tra các nguyên tắc thiết kế và quy tắc code cho CSS và HTML.
+Tham khảo thêm tại các link sau:
 
-- [フロント画面のスタイルガイド](https://github.com/EC-CUBE/Eccube-Styleguide){:target="_blank"}
-- [管理画面のスタイルガイド](https://github.com/EC-CUBE/Eccube-Styleguide-Admin){:target="_blank"}
+- [Style Guide cho giao diện người dùng](https://github.com/EC-CUBE/Eccube-Styleguide){:target="_blank"}
+- [Style Guide cho trang quản trị](https://github.com/EC-CUBE/Eccube-Styleguide-Admin){:target="_blank"}

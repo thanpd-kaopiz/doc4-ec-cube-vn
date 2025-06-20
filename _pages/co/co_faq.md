@@ -1,15 +1,14 @@
 ---
 title: ec-cube.co FAQ
-keywords: co ec-cube.co クラウド版 FAQ
+keywords: co ec-cube.co Cloud version FAQ
 tags: [co, ec-cube.co]
 permalink: co/co_faq
 folder: co
 ---
 
-
 ---
 
-よくお問い合わせいただく事柄をまとめました。
+Tổng hợp các câu hỏi thường gặp.
 
 <style>
 .page__content h2{ 
@@ -67,523 +66,393 @@ folder: co
   font-size: 12px !important;
   padding: .5rem 1rem !important;
 }
-
 </style>
-## DB
 
-### DBクライアントツールを使用して、直接ec-cube.coのDBにアクセスはできますか？
+## Cơ sở dữ liệu (DB)
 
-セキュリティや運用の都合上、接続は不可とさせていただいております。  
-ご了承ください。
+### Có thể truy cập trực tiếp DB của ec-cube.co bằng công cụ client DB không?
 
-### DBのスキーマ変更は可能でしょうか？
+Vì lý do bảo mật và vận hành, việc kết nối trực tiếp là không thể. Mong bạn thông cảm.
 
-トライアル環境では不可となります。ご了承ください。
+### Có thể thay đổi schema DB không?
 
-スタンダードプランをご契約いただいた後は、カスタマイズ領域を使用して実現が可能です。  
-詳しくは [Entityのカスタマイズ 基本の拡張方法](https://doc4.ec-cube.net/customize_entity#%E5%9F%BA%E6%9C%AC%E3%81%AE%E6%8B%A1%E5%BC%B5%E6%96%B9%E6%B3%95){:target="_blank"} をご確認ください。
+Không thể trên môi trường trial. Sau khi đăng ký gói Standard, bạn có thể thực hiện thông qua vùng tuỳ biến. Xem thêm tại [Hướng dẫn mở rộng Entity](https://doc4.ec-cube.net/customize_entity#%E5%9F%BA%E6%9C%AC%E3%81%AE%E6%8B%A1%E5%BC%B5%E6%96%B9%E6%B3%95){:target="_blank"}.
 
-### 対応DBはPostgreSQLのみでしょうか？
+### Chỉ hỗ trợ PostgreSQL phải không?
 
-はい。PostgreSQLのみとなります。
+Đúng vậy, chỉ hỗ trợ PostgreSQL.
 
-## ダウンロード版との違い
+## Khác biệt với bản download
 
-### ec-cube.coとダウンロード版はどのような点が異なるのでしょうか？
+### ec-cube.co khác gì so với bản download?
 
-本体機能はダウンロード版のEC-CUBE4系がベースになっており、同じです。  
-ダウンロード版同様、EC-CUBE4系対応の各種決済を含めたプラグイン、デザインテンプレートの利用が可能です。  
-また、スタンダードプランをご契約いただいた後はカスタマイズディレクトリを使用した機能拡張が可能となります。
+Chức năng chính dựa trên EC-CUBE4 bản download, giống nhau. Bạn có thể sử dụng các plugin, template thiết kế tương tự bản download. Sau khi đăng ký gói Standard, bạn có thể mở rộng chức năng qua thư mục Customize.
 
-## Google Analytics(アクセス解析)
+## Google Analytics (Phân tích truy cập)
 
-### Google Analyticsを設定したいのですが、どうすればいいでしょうか？
+### Làm sao để cài đặt Google Analytics?
 
-[オーナーズストア](https://www.ec-cube.net/owners/){:target="_blank"} のプラグインを使用していただくことで実現可能です。
-  
-- [【EC-CUBE4対応】Google Analytics eコマース/拡張eコマース対応プラグイン](https://www.ec-cube.net/products/detail.php?product_id=1715){:target="_blank"}
-- [Google Analytics Eコマース/User-ID対応プラグイン(4.0系)](https://www.ec-cube.net/products/detail.php?product_id=1722){:target="_blank"}
+Bạn có thể sử dụng plugin trên [Owner's Store](https://www.ec-cube.net/owners/){:target="_blank"}:
+- [Plugin Google Analytics eCommerce/Enhanced eCommerce cho EC-CUBE4](https://www.ec-cube.net/products/detail.php?product_id=1715){:target="_blank"}
+- [Plugin Google Analytics E-Commerce/User-ID cho 4.0](https://www.ec-cube.net/products/detail.php?product_id=1722){:target="_blank"}
 
 ## Web API
 
-### Web APIは使用できますか？WebAPIでどんなことが実現できますか？
+### Có thể sử dụng Web API không? Có thể làm gì với WebAPI?
 
-[EC-CUBE Web API プラグイン](https://www.ec-cube.net/products/detail.php?product_id=2121){:target="_blank"} を使用していただくことで実現可能です。  
-詳しくは[開発ドキュメント](https://doc.ec-cube.net/eccube-api4/){:target="_blank"} をご参照ください。
+Bạn có thể sử dụng [Plugin EC-CUBE Web API](https://www.ec-cube.net/products/detail.php?product_id=2121){:target="_blank"}. Xem chi tiết tại [Tài liệu phát triển](https://doc.ec-cube.net/eccube-api4/){:target="_blank"}.
 
-## アクセス制限
+## Giới hạn truy cập
 
-### サイトへアクセス制限をかけたいのですが、どうすればいいでしょうか？
+### Muốn giới hạn truy cập vào site thì làm thế nào?
 
-目的により実現方法が異なります。
+Tùy mục đích mà cách thực hiện khác nhau:
+- Vận hành site chỉ cho hội viên: dùng plugin trên Owner's Store, tìm với từ khóa "closed", "hội viên", "đăng ký hội viên".
+- Giới hạn truy cập admin: vào Quản trị > Cài đặt > Cài đặt hệ thống > Quản lý bảo mật để cài đặt giới hạn IP.
+- Giới hạn toàn site bằng .htaccess: không còn hỗ trợ cài đặt Basic Auth qua support. Để ẩn front khi xây dựng site, dùng chức năng bảo trì (Maintenance) từ bản 4.1.2 trở lên. Khi bật chế độ bảo trì, chỉ admin đã đăng nhập mới xem được front. Tuy nhiên, một số chức năng như thanh toán có thể không hoạt động khi bật maintenance.
 
-- 会員限定サイトとして運用したい
-  - [オーナーズストア](https://www.ec-cube.net/owners/){:target="_blank"} のプラグインを使用していただくことで実現可能です。  
-    「クローズド」「特定会員」「会員登録」などのキーワードで検索していただきご検討ください。
+## Giới hạn upload
 
-- 管理画面にアクセス制限をかけて安全に運用したい
-  - 管理画面 ＞ 設定 ＞ システム設定 ＞ セキュリティ管理でIP制限の設定ができます。
+### Có giới hạn upload file không?
 
-- .htaccessファイルで設定し、サイト全体にアクセス制限をかけたい
-  - Basic認証設定につきましては、coサポートでの設定受付を終了いたしました。  
-  - サイト構築中のため外部へフロント機能を非公開にする方法としましては、以下の管理機能を利用することで実現可能です(バージョン4.1.2より)。  
-    [EC-CUBE4 管理・運用マニュアル / 管理画面 コンテンツ管理＞メンテナンス管理](https://www.ec-cube.net/manual/ec-cube4/content/maintenance.php){:target="_blank"}
-  - メンテナンスモードを有効にしていただきますと、管理者ログイン済の方のみフロント表示が可能となります。  
-    ただしメンテナンスモードを有効にしている場合、決済など一部の機能は正常に動作いたしません。その際は一度メンテナンスモードを無効に設定いただき、動作確認後にメンテナンスモードを再度有効に設定してください。
+Có. Mỗi file upload tối đa 10MB.
 
-## アップロード制限
+### Có thể yêu cầu tăng giới hạn upload hoặc tuỳ biến không?
 
-### ファイルアップロードの制限はありますか？
+Không thể. Mong bạn thông cảm.
 
-はい。1ファイル毎のアップロードには10Mの制限がございます。
+## Lỗi/Hoạt động không ổn định
 
-### ファイルアップロード制限の最大値の変更は依頼できますか？もしくはカスタマイズで対応可能でしょうか？
+### Khi thao tác bị lỗi hoặc không ổn định thì làm gì?
 
-変更やカスタマイズは不可となります。ご了承ください。
+Hãy liên hệ [Hỗ trợ ec-cube.co](https://www.ec-cube.net/product/co/support.php){:target="_blank"} và cung cấp các thông tin sau để được hỗ trợ nhanh:
+- URL site cần kiểm tra
+- Mô tả hiện tượng, thao tác gây ra lỗi
+- Thời điểm xảy ra
+- Đã khắc phục được chưa hay vẫn còn
+- Có thay đổi gì trước khi xảy ra lỗi không
 
-## エラー/動作不良
+### Không làm gì nhưng menu admin bị ẩn đi?
 
-### 画面を操作したら不安定だったりエラーが発生するのですが、どうしたらいいでしょうか？
- 
-[ec-cube.coに関するお問い合わせ](https://www.ec-cube.net/product/co/support.php){:target="_blank"} からご相談ください。  
-その際、以下の状況を共有いただけますとスムーズになります。ご協力お願いいたします。
-- 調査対象のサイトのURL
-- どのような事象が発生しているか、どのような操作を行うと発生するか
-- いつ発生したか
-- 現在は解消しているか、それとも継続中か
-- 事象が発生する前に行った変更など
+Có thể do cache không đồng bộ. Hãy thử xóa cache trong quản trị. Nếu không được, liên hệ [Hỗ trợ ec-cube.co](https://www.ec-cube.net/product/co/support.php){:target="_blank"} và cung cấp các thông tin như trên.
 
-※プラグインインストール・アンインストール後に不安定となりご相談いただくことが、一概には言えませんがございます。 
+## Tuỳ biến
 
-### 特に何もした覚えがないのですが、管理画面の特定のメニューが突然表示されなくなりました。
+### Làm sao miễn phí vận chuyển khi tổng tiền vượt mức?
 
-キャッシュ不整合によるものだと考えられます。  
-管理画面のキャッシュ管理からキャッシュ削除をお試しください。  
+Vào Quản trị > Cài đặt > Cài đặt cơ bản > Cài đặt phí vận chuyển để cài đặt điều kiện miễn phí.
 
-解消しない場合は [ec-cube.coに関するお問い合わせ](https://www.ec-cube.net/product/co/support.php){:target="_blank"} からご相談ください。  
-その際、以下の状況を共有いただけますと調査がスムーズに行えます。ご協力お願いいたします。
-- 調査対象のサイトのURL
-- どのような事象が発生しているか、どのような操作を行うと発生するか
-- いつ発生したか
-- 現在は解消しているか、それとも継続中か
-- 事象が発生する前に行った変更など
+### Muốn cài đặt phí vận chuyển, nơi gửi theo từng sản phẩm?
 
-## カスタマイズ
+Sử dụng chức năng [Phân loại bán hàng](https://www.ec-cube.net/manual/ec-cube4/product/product_new.php){:target="_blank"}.
 
-### 合計金額が一定金額を超えた場合は送料を無料にしたいのですが、どうしたらいいでしょうか？
+### Muốn cài đặt "Nhận tại cửa hàng" trong phương thức giao hàng?
 
-管理画面 ＞ 設定 ＞ 基本設定 ＞ 送料設定で、送料無料条件を設定してください。
+Cần tuỳ biến code core. Tuy nhiên, có thể thực hiện như sau:
+1. Tạo phương thức giao hàng "Nhận tại cửa hàng" trong Quản trị > Cài đặt > Cài đặt cửa hàng > Cài đặt phương thức giao hàng, nhập tên cửa hàng vào mục "Thời gian giao".
+2. Tuỳ biến code trong Quản trị > Quản lý nội dung > Quản lý JavaScript để ẩn mục "Ngày giao" và đổi "Thời gian giao" thành "Cửa hàng nhận" khi chọn "Nhận tại cửa hàng".
 
-### 商品ごとに配送元・送料を設定したいのですが、どうしたらいいでしょうか？
+Lưu ý: Trên quản lý đơn hàng, mục "Thời gian giao" sẽ hiển thị tên cửa hàng nhận, không thể tuỳ biến thêm.
 
-[販売種別機能](https://www.ec-cube.net/manual/ec-cube4/product/product_new.php){:target="_blank"} がございますので、そちらをご使用ください。
+### Muốn đổi favicon?
 
-### 配送方法に「店舗受取」を設定したいのですが、どうしたらいいでしょうか？
+Vào Quản trị > Quản lý nội dung > Quản lý file, upload favicon.ico vào assets > img > common.
 
-本体のコアコード変更が必要となるため、実現は不可となります。 
-ただし以下でカスタマイズいただくことで実現は可能です。
+### Chỉ có thể tuỳ biến bằng plugin riêng hay có thể tuỳ biến core?
 
-1. 配送方法の設定  
-   管理画面 ＞ 設定 ＞ 店舗設定 ＞ 配送方法設定 の新規作成で「店舗受取」を作成し、標準機能で「お届け時間」と表示される項目に時間ではなく店舗名等を登録します。
+Sau khi đăng ký gói Standard, bạn có thể tuỳ biến qua thư mục Customize. Có thể dùng plugin riêng, nhưng các vấn đề phát sinh từ plugin riêng sẽ không được hỗ trợ. Việc tuỳ biến core đang được xem xét cho các gói mới.
 
-1. 管理画面からのコード変更  
-   標準機能としては配送方法の選択画面で「お届け日」「お届け時間」が表示されるので、「店舗受取」を選択された場合は、「お届け日」の項目を非表示、「お届け時間」の文言を【受取店舗】などの文言に変更する様、管理画面 ＞ コンテンツ管理 ＞JavaScript管理 でif文で制御を入れます。
+### Muốn thêm trường tuỳ ý cho sản phẩm?
 
-注)受注管理上の見え方は下記のようになります。（こちらはカスタマイズができません）  
-- 「店舗受取」の場合は「お届け時間」の項目に「受取店舗」が入ります。  
-  この場合、CSVでも店舗の場合は「お届け時間」の項目に「受取店舗」が入ります。  
+Có thể dùng plugin trên Owner's Store, ví dụ: [Plugin thêm trường thông tin sản phẩm](https://www.ec-cube.net/products/detail.php?product_id=1713){:target="_blank"}.
 
-### ファビコンを変更したいのですが、どうしたらいいでしょうか？
+### Muốn tuỳ biến hoá đơn giao hàng?
 
-管理画面 ＞ コンテンツ管理 ＞ ファイル管理 で、assets ＞ img ＞ commonと辿り、favicon.icoをアップロードすることで変更が可能です。
+Không thể trên môi trường trial. Sau khi đăng ký gói Standard, có thể thực hiện tuỳ vào cách triển khai.
 
-### 独自プラグインを作ってカスタマイズ開発の選択肢のみですか？コアカスタマイズはできますか？
+### Có thể thêm trạng thái đơn hàng không?
 
-スタンダードプランをご契約いただいた後は、カスタマイズディレクトリによるカスタマイズ開発が可能です。  
-独自プラグインによる実現も可能ですが、 独自プラグインに関連する不具合対応等はサポート外となります。ご了承ください。  
-また、コアカスタマイズ可能な新プランは現在検討中となります。
+Không thể, vì cần thay đổi cả chương trình. Xem thêm tại [Github Issue](https://github.com/EC-CUBE/ec-cube/issues/4299){:target="_blank"}.
 
-### 商品登録の自由記載のフィールドをカスタマイズして操作するようにできますか？
+### Cách thay đổi thiết kế front?
 
-[オーナーズストア](https://www.ec-cube.net/owners/){:target="_blank"} にございますプラグインを使用することで実現可能かと思われます。  
+Vào Quản trị > Quản lý nội dung >
+- Quản lý CSS
+- Quản lý JavaScript
 
-例：[商品情報項目追加プラグイン](https://www.ec-cube.net/products/detail.php?product_id=1713){:target="_blank"}
+Bạn có thể cập nhật code để thay đổi thiết kế front. Ngoài ra, có thể upload template thiết kế riêng. Tuy nhiên, các vấn đề phát sinh từ template riêng sẽ không được hỗ trợ. Không thể chỉnh sửa trực tiếp file (default_frame.twig) từ quản trị.
 
-### 納品書のカスタマイズをしたいのですが、どうしたらいいでしょうか？
+### Có thể tích hợp Instagram Shopping không?
 
-トライアル環境では不可となります。ご了承ください。  
-スタンダードプランをご契約いただいた後は、実装方法にもよりますが実現は可能です。
+Có plugin trên Owner's Store:
+[Plugin quản lý bài đăng Instagram cho EC-CUBE4](https://www.ec-cube.net/products/detail.php?product_id=2356){:target="_blank"}
 
-### 受注ステータスの追加は可能でしょうか？
+Ngoài ra còn nhiều plugin khác, hãy tìm kiếm trên [Owner's Store](https://www.ec-cube.net/owners/){:target="_blank"}.
+Lưu ý: Plugin Facebook hiện không sử dụng được.
 
-管理画面から受注ステータスの追加とともにプログラムの変更も必要となる為、不可となります。ご了承ください。   
-詳しくは [Github Issue：マスタデータ管理から注文ステータスを追加しても、受注管理から操作できない](https://github.com/EC-CUBE/ec-cube/issues/4299){:target="_blank"} をご参照ください。
+### Có thể thêm chức năng thêm vào giỏ hàng nhanh, hiển thị sản phẩm đã xem gần đây trên header không?
 
-### フロントのデザイン変更方法を教えて欲しい
+Có thể thực hiện bằng tuỳ biến sau khi đăng ký gói Standard.
 
-管理画面のコンテンツ管理下の
-- CSS管理
-- JavaScript管理
+### Muốn cài đặt meta tag cho SEO?
 
-で既存のコードを更新することにより、フロントのデザイン変更が可能です。  
-また、自身で作成された独自デザインテンプレートをアップロードすることで、フロントのデザイン変更は可能です。  
-ただし独自デザインテンプレートに関連する不具合対応等はサポート外となります。ご了承ください。
+Vào Quản trị > Quản lý nội dung > Quản lý trang, cài đặt meta ở cuối mỗi trang.
 
-※管理画面から直接ファイル(default_frame.twig)を編集することは不可となりますのでご了承ください。
+### Muốn đổi logo trên hoá đơn giao hàng?
 
-### Instagramショッピング機能は導入出来ますか？
+Vào Quản trị > Quản lý nội dung > Quản lý file, upload logo mới.
 
-[オーナーズストア](https://www.ec-cube.net/owners/){:target="_blank"} に下記のプラグインがございます。
+### Có thể tuỳ biến gì?
 
-[Instagram投稿管理プラグイン[EC-CUBE4]](https://www.ec-cube.net/products/detail.php?product_id=2356){:target="_blank"}  
+- Tuỳ biến trong phạm vi quản trị
+- Tuỳ biến bằng plugin, template thiết kế
+- Tuỳ biến qua thư mục Customize
+- Tuỳ biến bằng plugin/template riêng (không hỗ trợ lỗi phát sinh)
 
-上記以外にも多数のプラグインがございます。  
-ご希望の機能を持つプラグインが見つかるかもしれませんので、よろしければお探しくださいませ。  
-[https://www.ec-cube.net/owners/](https://www.ec-cube.net/owners/){:target="_blank"}  
+Không thể tuỳ biến core.
 
-※プラグインの詳細につきましては、プラグイン提供元にご相談いただきますようお願い申し上げます。  
-※Facebook連携プラグインは現在ご利用いただけません。  
+### Đã thay đổi code trong quản lý nội dung, muốn khôi phục về mặc định?
 
-### 簡易カートへの追加機能やヘッダー上に最近見た商品表示機能などが実現可能でしょうか？
+Mã nguồn EC-CUBE sử dụng trên ec-cube.co được công khai tại [co/master branch](https://github.com/EC-CUBE/ec-cube/tree/co/master){:target="_blank"}. Hãy tham khảo và copy code về môi trường của bạn.
 
-以下のような機能が実現可能かのお問い合わせをいただくことがございます。
+### Có thể tuỳ biến plugin của các bên khác không?
 
-- 商品一覧のカートマークをクリックすると、ポップアップで簡易カートに追加できる
-- ヘッダーの上に「最近見た商品」の一覧を横並びで表示する
+Tuỳ vào license của từng plugin, EC-CUBE không thể trả lời. Hãy kiểm tra thông tin license trên trang chi tiết plugin và liên hệ nhà cung cấp.
 
-実装方法にもよりますが、スタンダードプランをご契約いただいた後はカスタマイズ領域の使用により実現が可能となります。
+### Muốn được hỗ trợ về thiết kế?
 
-### SEO対策でmetaタグを設定したいのですが、どうしたらいいでしょうか？
+Liên hệ [Hỗ trợ ec-cube.co](https://www.ec-cube.net/product/co/support.php){:target="_blank"} hoặc [Đối tác tích hợp EC-CUBE](https://www.ec-cube.net/integrate/partner/){:target="_blank"}.
 
-管理画面 ＞ コンテンツ管理 ＞ ページ管理 の各ページ下部のメタ設定より設定が可能です。
+### Có cách nào tuỳ biến mà không sửa code core không?
 
-### 納品書のロゴを変更したいのですが、どうしたらいいでしょうか？
+Có thể override class hoặc parameter mà không sửa code core. Tham khảo:
+- [Override class core trên EC-CUBE4](https://qiita.com/chihiro-adachi/items/b3bb70e6abbc0f824965){:target="_blank"}
+- [Override parameter trên EC-CUBE4](https://qiita.com/chihiro-adachi/items/7edaf82845f9352d6500){:target="_blank"}
 
-管理画面 ＞ コンテンツ管理 ＞ ファイル管理 からロゴ画像をアップロードすることで変更が可能です。
+## Di chuyển site
 
-### どんなカスタマイズが可能でしょうか？
+### Hướng dẫn di chuyển từ bản download (2.x, 3.x) sang ec-cube.co?
 
-- 管理画面から変更できる範囲のカスタマイズは可能です。
-- プラグイン、デザインテンプレート導入によるカスタマイズは可能です。
-- カスタマイズディレクトリ使用によるカスタマイズは可能です。
-- 独自プラグイン、独自デザインテンプレートによるカスタマイズは可能ですが、独自プラグインや独自テンプレートに関連する不具合対応等はサポート外となります。ご了承ください。
+Xem [Hướng dẫn di chuyển dữ liệu 2.x, 3.x](https://www.ec-cube.co/pdf/migration_manual_flow.pdf){:target="_blank"}. Nếu có vấn đề không có trong tài liệu, liên hệ [Hỗ trợ ec-cube.co](https://www.ec-cube.net/product/co/support.php){:target="_blank"}.
 
-※コアのカスタマイズは不可となります。ご了承ください。
+### Hướng dẫn di chuyển từ ec-cube.co sang bản download?
 
-### 管理画面からコンテンツ管理のコードを変更したのですが、初期の状態に戻すにはどうしたらいいですか？
+Có thể thực hiện có phí. Liên hệ [Hỗ trợ ec-cube.co](https://www.ec-cube.net/product/co/support.php){:target="_blank"} và cung cấp:
+- URL site
+- Thời gian mong muốn lấy dữ liệu
 
-ec-cube.coで利用されているEC-CUBEのソースコードは [co/masterブランチ](https://github.com/EC-CUBE/ec-cube/tree/co/master){:target="_blank"} で公開されております。  
-ご参照いただき、該当のコードをコピーしてご自身の環境へ反映してください。
-
-### 各社プラグインのカスタマイズの可・不可を教えて欲しい
-
-各社提供プラグインごとによってライセンスが異なり、イーシーキューブ社ではお答えできかねます。  
-ご了承ください。
-
-[オーナーズストア](https://www.ec-cube.net/owners/){:target="_blank"} の各社プラグインの商品詳細ページに掲載されておりますライセンス情報をご確認の上、各社へお問い合わせくださいますようお願いいたします。
-
-### デザイン面のサポートはどちらに相談したらよいでしょうか？
-
-[ec-cube.coに関するお問い合わせ](https://www.ec-cube.net/product/co/support.php){:target="_blank"} からご相談ください。  
-また、 [EC-CUBE インテグレートパートナー](https://www.ec-cube.net/integrate/partner/){:target="_blank"} にご相談いただくことも可能です。
-
-### コアコードを変更せずにカスタマイズする方法はありますか？
-
-コアのクラスやパラメータを触らずに上書きする方法がございます。詳しくは以下ページを参考に実施してください。 
-
-- [EC-CUBE4で、コアのクラスを触らずに上書きする](https://qiita.com/chihiro-adachi/items/b3bb70e6abbc0f824965){:target="_blank"}
-- [EC-CUBE4で、パラメータを上書きする](https://qiita.com/chihiro-adachi/items/7edaf82845f9352d6500){:target="_blank"}
-
-## サイト移行
-
-### ダウンロード(2系、3系)からec-cube.coへ移行する手順を教えてほしい
-
-[2、3系データ移行マニュアル](https://www.ec-cube.co/pdf/migration_manual_flow.pdf){:target="_blank"} をご確認いただき、お手続きをお願いいたします。  
-上記マニュアルには掲載されていない内容についてのご相談は、[ec-cube.coに関するお問い合わせ](https://www.ec-cube.net/product/co/support.php){:target="_blank"} からご相談ください。 
-
-### ec-cube.coからダウンロード版へ移行する手順を教えてほしい
-
-有料にてご提供が可能です。  
-[ec-cube.coに関するお問い合わせ](https://www.ec-cube.net/product/co/support.php){:target="_blank"} から以下の情報を添えてご連絡ください。
-- 対象のサイトURL
-- データ抜き出し希望日時
-
-お渡しする情報は以下となります。
+Thông tin cung cấp gồm:
 - DB
-- ソースコード
-- 商品画像
+- Mã nguồn
+- Ảnh sản phẩm
 
-ただしec-cube.co環境停止から1週間以上経過しますと、データ保管期限が切れてしまいお渡しすることができなくなります。  
-ご了承ください。
+Lưu ý: Sau 1 tuần kể từ khi dừng môi trường ec-cube.co, dữ liệu sẽ bị xoá và không thể cung cấp lại.
 
-## サイト規模
+## Quy mô site
 
-### どれぐらいの規模向けのサービスでしょうか？
+### Dịch vụ phù hợp quy mô nào?
 
-小規模から中〜大規模サイトの開発・運用実績がございます。
+Phù hợp từ site nhỏ đến vừa và lớn.
 
-## セキュリティ
+## Bảo mật
 
-### SSL設置は可能でしょうか？
+### Có hỗ trợ SSL không?
 
-常時SSL対応済です。
+Đã hỗ trợ SSL toàn thời gian.
 
-### PCI DSSに準拠したサイト構築をしていく必要があるのですが、PCI DSSの要件に対応はしていますか？
+### Có đáp ứng PCI DSS không?
 
-PCI DSSの要件に対応はしておりません。ご了承ください。  
-カード情報非保持化につきましては [オーナーズストア](https://www.ec-cube.net/owners/){:target="_blank"} の決済プラグインが対応しております。
+Không đáp ứng PCI DSS. Về không lưu trữ thông tin thẻ, hãy dùng plugin thanh toán trên Owner's Store.
 
-### 4.1環境では管理画面のセキュリティ管理で「信頼できるホスト名」という項目が表示されていますが、何を設定したらよいでしょうか？変更してもよいでしょうか？
+### Trên môi trường 4.1, mục "Tên host tin cậy" trong quản lý bảo mật là gì? Có cần thay đổi không?
 
-特に設定や変更をしていただく必要はございません。環境構築時に自動で設定されております。  
-独自ドメインへの変更時においても設定変更はイーシーキューブ社で対応しておりますので、ご安心ください。  
+Không cần thay đổi, đã được cài đặt tự động. Khi đổi domain, EC-CUBE sẽ hỗ trợ cài đặt lại. Nếu lỡ thay đổi và không truy cập được site, liên hệ [Hỗ trợ ec-cube.co](https://www.ec-cube.net/product/co/support.php){:target="_blank"} để khôi phục.
 
-[運用マニュアル セキュリティ管理](https://www.ec-cube.net/manual/ec-cube4/setting/system_security.php){:target="_blank"}  
-  
-4.0環境をご利用の場合は、管理画面上に「信頼できるホスト名」の設定項目は表示されません。
-サーバー側で既に設定されておりますのでご安心ください。  
-  
-もしうっかり変更してしまいサイトが見られなくなった場合は、[ec-cube.coに関するお問い合わせ](https://www.ec-cube.net/product/co/support.php){:target="_blank"} から環境復旧をご依頼ください。  
-その際、以下の状況を共有いただけますとスムーズになります。ご協力お願いいたします。
-- 調査対象のサイトのURL
-- 信頼できるホスト名を変更してサイトにアクセスできなくなったので復旧してほしい
+## Bán hàng sản phẩm download
 
-## ダウンロード商品販売
+### Có thể bán sản phẩm download không?
 
-### ダウンロード商品販売は可能でしょうか？
+Có, nhưng mỗi file upload tối đa 10MB. Nên dùng dịch vụ ngoài như CDN nếu cần.
 
-可能です。ただし、1ファイル毎のファイルアップロード制限(10MB)があり、限界はございます。ご了承ください。  
-回避策として他のCDNなど外部サービスを利用することをお勧めします。
+## Dữ liệu/Nội dung
 
-## データ/コンテンツ
+### Muốn xoá hàng loạt đơn hàng test trên production?
 
-### 本番で行ったテスト受注があり一括で消したいのですが、どうしたらいいでしょうか？
+Dùng plugin trên Owner's Store:
+- 4.2: [Plugin xoá đơn hàng hàng loạt cho EC-CUBE4.2](https://www.ec-cube.net/products/detail.php?product_id=2851){:target="_blank"}
+- 4.0~4.1: [Plugin xoá đơn hàng hàng loạt cho EC-CUBE4](https://www.ec-cube.net/products/detail.php?product_id=2101){:target="_blank"}
 
-[オーナーズストア](https://www.ec-cube.net/owners/){:target="_blank"} にございます下記を使用することで実現が可能です。  
-- 4.2系＞ [受注データ一括削除プラグイン for EC-CUBE4.2](https://www.ec-cube.net/products/detail.php?product_id=2851){:target="_blank"}
-- 4.0～4.1系＞ [受注データ一括削除プラグイン for EC-CUBE4](https://www.ec-cube.net/products/detail.php?product_id=2101){:target="_blank"}
+### Muốn cập nhật DB production mới nhất?
 
-### 本番環境を最新にしたいのですが、DBダンプファイルなどの反映はお願いできますか？
+Liên hệ [Hỗ trợ ec-cube.co](https://www.ec-cube.net/product/co/support.php){:target="_blank"} và cung cấp:
+- URL site
+- Nội dung yêu cầu (ví dụ: cập nhật DB)
 
-まずは[ec-cube.coに関するお問い合わせ](https://www.ec-cube.net/product/co/support.php){:target="_blank"} からご相談ください。  
-その際、以下の状況を共有いただけますとスムーズになります。ご協力お願いいたします。
-- 調査対象のサイトのURL
-- ご依頼内容：例)DBを最新化してほしい
+## Template thiết kế
 
-## デザインテンプレート
+### Có thể dùng template thiết kế nào trên ec-cube.co?
 
-### デザインテンプレートを適用したいのですが、ec-cube.coで使用可能なものを教えてもらえますか？
+Xem danh sách template tại [đây](https://www.ec-cube.net/products/list.php?category_id=7&ecversion=4.0){:target="_blank"}. Lưu ý: file trên 10MB sẽ bị lỗi khi upload.
 
-利用可能なデザインテンプレート一覧は [こちら](https://www.ec-cube.net/products/list.php?category_id=7&ecversion=4.0){:target="_blank"} になります。  
-ただし容量が10Mを超えるものはファイルアップロード時の制限でエラーとなりますのでご注意ください。
+## Domain
 
-## ドメイン
+### Có thể dùng domain riêng không? Cài đặt SSL thế nào?
 
-### 独自ドメインは使用できますか？SSL証明書の取得や設定はどうすればいいでしょうか？
-
-独自ドメインは使用可能です。SSL証明書の取得や設定は、独自ドメイン切り替え作業と併せて設定いたします。
-流れについては [PDF：独自ドメイン設定の流れ](https://www.ec-cube.net/user_data/packages/default/img/product/co/original_domain_setting.pdf){:target="_blank"} をご参照ください。
-
-また、サブドメインのみ設定が可能です。ルートドメインは設定NGとなりますのでご注意ください。
+Có thể dùng domain riêng. SSL sẽ được cài đặt cùng lúc chuyển domain. Xem quy trình tại [PDF: Quy trình cài đặt domain riêng](https://www.ec-cube.net/user_data/packages/default/img/product/co/original_domain_setting.pdf){:target="_blank"}.
+Chỉ hỗ trợ subdomain, không hỗ trợ root domain.
 
 ```
-NG： https://example.com
-OK： https://www.example.com
-OK： https://shop.example.com
+Không được: https://example.com
+Được: https://www.example.com
+Được: https://shop.example.com
 ```
 
-## プラグイン
+## Plugin
 
-### 決済プラグインをインストールしたいのですが、ec-cube.coで使用可能なものを教えてもらえますか？
+### Muốn cài plugin thanh toán, có thể dùng plugin nào?
 
-利用可能な決済プラグイン一覧は [こちら](https://www.ec-cube.net/products/list.php?ecversion=4.0&category_id=3){:target="_blank"} になります。
+Xem danh sách plugin thanh toán tại [đây](https://www.ec-cube.net/products/list.php?ecversion=4.0&category_id=3){:target="_blank"}.
+Lưu ý: Plugin "Repeat Cube" không thể cài đặt thông thường, liên hệ [Hỗ trợ ec-cube.co](https://www.ec-cube.net/product/co/support.php){:target="_blank"} nếu cần.
+Nếu dùng plugin ngoài danh sách, site có thể bị dừng theo [Điều khoản sử dụng ec-cube.co](https://www.ec-cube.co/pdf/term.pdf){:target="_blank"}.
 
-ただし、 [定期購入プラグイン「リピートキューブ」4系用](https://www.ec-cube.net/products/detail.php?product_id=1918){:target="_blank"} のみ、仕様上通常のインストールでは使用不可となります。  
-個別で [ec-cube.coに関するお問い合わせ](https://www.ec-cube.net/product/co/support.php){:target="_blank"} からご相談ください。
+### Cài nhiều plugin có làm chậm site không?
 
-上記以外の決済プラグインを使用した場合、 [ec-cube.co利用規約](https://www.ec-cube.co/pdf/term.pdf){:target="_blank"} に基づきサイトを停止することがございます。  
-ご了承ください。
+Có site cài hơn 20 plugin vẫn hoạt động tốt. Tuy nhiên, tuỳ vào cách lập trình của từng plugin mà có thể ảnh hưởng hiệu năng.
 
-### 複数のプラグイン導入を検討していますが、サイトの処理速度の低下の可能性はありますか？
+### Cài nhiều plugin có thể gây xung đột không?
 
-プラグインを20以上インストールし運用しているサイトもございますので特に問題なしと考えられます。
-ただし、各プラグインの実装の仕方によっては処理速度に影響が出ることもございます。
+Có thể, tuỳ vào sự kết hợp plugin. Không thể cung cấp thông tin xung đột chi tiết do số lượng plugin lớn.
 
-### 複数のプラグイン導入を検討していますが、競合発生によりサイトが正常に動作しなくなる可能性はありますか？
+### Sau khi cài plugin bị lỗi server, không truy cập được site?
 
-選択したプラグインの組み合わせによっては競合が発生する可能性はございます。  
-またバリエーションが多岐にわたる為、競合情報提供はできかねます。ご了承ください。
+Có thể do cache. Nếu không đăng nhập được admin, liên hệ [Hỗ trợ ec-cube.co](https://www.ec-cube.net/product/co/support.php){:target="_blank"} và cung cấp:
+- URL site
+- Plugin gây lỗi
+- Thời điểm xảy ra
+- Thay đổi trước khi lỗi (nếu có)
 
-### プラグインをインストール後、サーバーエラーとなってサイトへアクセスできなくなりました。どうしたらよいでしょうか？
+Để tránh lỗi, hãy chuyển site sang chế độ bảo trì trước khi cài/upgrade plugin.
 
-プラグインインストール時のトラブル(主にキャッシュ)によるものと考えられます。  
-管理画面へのログインが困難となることもございますので、 [ec-cube.coに関するお問い合わせ](https://www.ec-cube.net/product/co/support.php){:target="_blank"} からご相談ください。  
-その際、以下の状況を共有いただけますとスムーズになります。ご協力お願いいたします。
-- 調査対象のサイトのURL
-- どのプラグインをインストールした後発生したのか
-- いつ発生したか
-- 事象が発生する前に行った変更など(プラグインインストール以外)
+## Email
 
-次回からの回避策として、手動でメンテナンスモードに切り替えてからプラグインインストール(アップデートも同様)を行うと、トラブルは起こりにくくなるかと存じます。ご検討ください。
+### Khách hàng không nhận được email mua hàng?
 
-## メール
+Kiểm tra xem email có bị chặn hoặc vào spam không. Nếu không phải, liên hệ [Hỗ trợ ec-cube.co](https://www.ec-cube.net/product/co/support.php){:target="_blank"} và cung cấp:
+- URL site
+- Đơn hàng bị lỗi
+- Thời điểm xảy ra
+- Các đơn hàng khác có bị không
+- Thay đổi trước khi lỗi (nếu có)
 
-### 商品購入メールが届かないとお客様から問い合わせがあったのですが、どうしたらよいでしょうか？
+## Email marketing
 
-お客様側(受信者)で受信拒否設定や迷惑メールでフィルタリングされている可能性がないか、ご確認をお願いいたします。
+### Có thể gửi email marketing không?
 
-上記に問題がない場合は [ec-cube.coに関するお問い合わせ](https://www.ec-cube.net/product/co/support.php){:target="_blank"} からご相談ください。  
-その際、以下の状況を共有いただけますとスムーズになります。ご協力お願いいたします。
-- 調査対象のサイトのURL
-- どの注文に対して発生しているか
-- いつ発生したか
-- 他の注文でも発生しているか
-- 事象が発生する前に行った変更など(思い当たる事があれば)
+Giới hạn 12.000 email/tháng. Nếu vượt, hãy dùng dịch vụ ngoài. Có thể dùng plugin trên Owner's Store:
+- [Plugin quản lý email marketing](https://www.ec-cube.net/products/detail.php?product_id=1760){:target="_blank"}
+- [Plugin gửi email marketing đơn giản x GreenForm (4.x)](https://www.ec-cube.net/products/detail.php?product_id=1859){:target="_blank"}
+- [Plugin PostCarrier cho EC-CUBE4](https://www.ec-cube.net/products/detail.php?product_id=1940){:target="_blank"}
 
-## メールマガジン
+Có template email marketing:
+- [HTML Email Magazine Template No.EM001](https://www.ec-cube.net/products/detail.php?product_id=2114){:target="_blank"}
+- [HTML Email Magazine Template No.EM002](https://www.ec-cube.net/products/detail.php?product_id=2115){:target="_blank"}
 
-### メールマガジンの配信はできますか？
+## Vận hành
 
-目安として 1万2千通/月 の配信を上限とさせていただいております。  
-上限を超える場合は外部サービスの利用をお願いいたします。
+### Muốn đăng ký hàng loạt sản phẩm?
 
-[オーナーズストア](https://www.ec-cube.net/owners/){:target="_blank"} よりプラグインをインストールしていただくことで実現可能です。
-- [メルマガ管理プラグイン](https://www.ec-cube.net/products/detail.php?product_id=1760){:target="_blank"}
-- [かんたんメルマガ配信 x 本格メールフォームGreenFormプラグイン(4系)](https://www.ec-cube.net/products/detail.php?product_id=1859){:target="_blank"}
-- [EC-CUBE4用「PostCarrier for EC-CUBE」メルマガ配信プラグイン](https://www.ec-cube.net/products/detail.php?product_id=1940){:target="_blank"}
+Có thể import file CSV sản phẩm từ quản trị. Không giới hạn số lượng (đã kiểm tra với 10.000 sản phẩm).
 
-またメールマガジン用のテンプレートもございます。ご検討ください。
-- [HTMLメールマガジンテンプレート No.EM001](https://www.ec-cube.net/products/detail.php?product_id=2114){:target="_blank"}
-- [HTMLメールマガジンテンプレート No.EM002](https://www.ec-cube.net/products/detail.php?product_id=2115){:target="_blank"}
+### Có giới hạn số lượng sản phẩm hoặc dung lượng dữ liệu không?
 
-## 運用
+Không giới hạn. Tuy nhiên, mỗi lần upload dữ liệu tối đa 10MB. Nếu đăng ký quá nhiều sản phẩm, hiệu năng site có thể giảm.
 
-### 商品をまとめてサイトに登録したいのですが、どうしたらよいでしょうか？
+### Muốn đăng ký hơn 1000 thuộc tính cho 1 sản phẩm?
 
-管理画面から商品CSVファイルを登録することで一括登録が可能です。  
-登録可能件数に上限はございません。(商品1万件で検証済)
+Cần tăng php_value max_input_vars lên trên 1000, nhưng không thể thay đổi trên ec-cube.co vì lý do bảo mật và tài nguyên. Hãy chia nhỏ sản phẩm.
 
-### 商品登録数やデータ容量の制限はありますか？
+## Phát triển
 
-制限はございません。
+### Muốn thuê phát triển site hoặc giới thiệu công ty phát triển?
 
-ただし、以下の点にご留意ください。
-- 1度のデータアップロードは10Mの制限がございます。
-- 商品登録数の制限はありませんが、大量の商品登録を行うとサイトの動作パフォーマンスは低下する可能性がございます。
+Hãy liên hệ [EC-CUBE Advisor](https://www.ec-cube.net/advisor/){:target="_blank"} hoặc [Đối tác tích hợp EC-CUBE](https://www.ec-cube.net/integrate/partner/){:target="_blank"}.
 
-### 一つの商品に対して1000以上の規格登録を行いたいのですが、どうしたらよいでしょうか？
+## Kết nối dịch vụ ngoài
 
-一度にPOSTを行う上限数(php_value max_input_vars)を1000以上に引き上げる設定が必要となります。  
-ですが、ec-cube.co環境ではリソース消費が激しくなることやセキュリティ上のリスクもあり、設定変更は不可とさせていただいております。ご了承ください。  
-  
-回避方法としては、商品の分割登録をお願いいたします。
+### Muốn dùng dịch vụ ngoài thì làm thế nào?
 
-## 開発
+Có thể cài plugin tích hợp dịch vụ ngoài từ Owner's Store, hoặc tuỳ biến qua thư mục Customize/plugin riêng sau khi đăng ký gói Standard. Lưu ý:
+- Chỉ dùng plugin thanh toán tải từ Owner's Store
+- Không hỗ trợ lỗi phát sinh từ plugin/template riêng
 
-### サイト開発を依頼したい場合、どうすればよいでしょうか？また、制作会社のご紹介はしていただけますでしょうか？
+Nếu dùng plugin thanh toán ngoài Owner's Store, site có thể bị dừng theo [Điều khoản sử dụng ec-cube.co](https://www.ec-cube.co/pdf/term.pdf){:target="_blank"}.
 
-ぜひ[EC-CUBEアドバイザー](https://www.ec-cube.net/advisor/){:target="_blank"} にご相談ください。  
-[EC-CUBEインテグレートパートナー](https://www.ec-cube.net/integrate/partner/){:target="_blank"} にご相談いただくことも可能です。
+## Kết nối môi trường
 
-## 外部サービス連携
+### Có thể thao tác trực tiếp trên môi trường production không?
 
-### 外部サービスを使用したいのですが、どうすればよいでしょうか？
+Chỉ giới hạn ở:
+- Quản trị
+- Console cung cấp sau khi đăng ký gói Standard
 
-[オーナーズストア](https://www.ec-cube.net/owners/){:target="_blank"} より外部サービス連携プラグインをインストールしていただくほか、スタンダードプランをご契約いただいた後はカスタマイズ領域使用や独自プラグイン・独自デザインテンプレートで実現が可能です。
+Nếu muốn upload ảnh hàng loạt, dùng [Plugin upload ảnh sản phẩm hàng loạt](https://www.ec-cube.net/products/detail.php?product_id=1957){:target="_blank"}.
+Không thể kết nối trực tiếp qua SSH/telnet/SFTP/FTP.
 
-ただし以下の点にご注意ください。
-- 決済機能につきましては、オーナーズストアでダウンロードできる決済のみ使用可能となります。
-- 独自プラグインや独自デザインテンプレートに関連する不具合対応等はサポート外となります。
+## Giám sát
 
-オーナーズストア以外でダウンロードした決済プラグインを使用した場合、 [ec-cube.co利用規約](https://www.ec-cube.co/pdf/term.pdf){:target="_blank"} に基づきサイトを停止することがございます。ご了承ください。
+### Có giám sát tài nguyên không?
 
-## 環境への接続
+Có giám sát tài nguyên. Xem thêm tại [Giám sát & Monitoring](http://localhost:4000/co/co_security#%E7%9B%A3%E8%A6%96%E3%83%A2%E3%83%8B%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0){:target="_blank"}.
 
-### 本番環境へ直接接続して操作はできますか？
+## Chức năng
 
-操作可能なものは以下に限定させていただいております。
-- 管理画面
-- スタンダードプランをご契約いただいた後にお渡しするコンソール
+### EC-CUBE có những chức năng gì?
 
-画像を一括でアップロードしたい場合は、 [商品画像一括アップロードプラグイン](https://www.ec-cube.net/products/detail.php?product_id=1957){:target="_blank"} を利用すれば可能です。
+Xem tại:
+- [Danh sách chức năng EC-CUBE4](https://www.ec-cube.net/product/functions.php){:target="_blank"}
+- [Hướng dẫn quản trị EC-CUBE4](https://www.ec-cube.net/manual/ec-cube4/){:target="_blank"}
 
-※SSH/telnet/SFTP/FTPなどを使用して環境へ直接接続することは不可となります。ご了承ください。
+## Thanh toán
 
-## 監視
+### Muốn cho phép thanh toán toàn bộ bằng điểm thì làm thế nào?
 
-### リソース監視は実施されていますか？
+Nếu cổng thanh toán không hỗ trợ thanh toán 0 đồng, hãy đăng ký phương thức thanh toán "0 đồng" hoặc "Thanh toán toàn bộ bằng điểm".
 
-リソースについてはモニタリングを実施しております。  
-その他実施しております監視につきましては、 [監視・モニタリング](http://localhost:4000/co/co_security#%E7%9B%A3%E8%A6%96%E3%83%A2%E3%83%8B%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0){:target="_blank"} をご参照ください。
+## Xử lý sự cố
 
-## 機能
+### Khi có sự cố, EC-CUBE sẽ hỗ trợ thế nào?
 
-### EC-CUBEの本体機能にはどんなものがありますか？
+Sau khi nhận được liên hệ hoặc phát hiện cảnh báo, EC-CUBE sẽ kiểm tra và phản hồi.
 
-以下のサイトをご参照ください。
+### Khi phát hiện sự cố, có gửi email cho khách hàng không?
 
-- [EC-CUBE4系・機能一覧](https://www.ec-cube.net/product/functions.php){:target="_blank"}
-- [EC-CUBE4 管理・運用 マニュアル](https://www.ec-cube.net/manual/ec-cube4/){:target="_blank"}
+Có thể cài đặt gửi email cho 1 địa chỉ email/site khi có yêu cầu. Không hỗ trợ nhiều email.
 
-## 決済
+## Upload video giới thiệu sản phẩm
 
-### 全額ポイント利用による決済を実現したいのですが、どうすればよいでしょうか？
+### Muốn upload video giới thiệu sản phẩm lên site thì làm thế nào?
 
-0円決済が不可の決済会社での実現方法でお問い合わせいただきました。  
-決済会社を通して0円決済をするのではなく、支払い方法として「0件決済」や「ポイント全額決済」を登録すると実現可能かと存じます。
+Có thể upload, nhưng mỗi file tối đa 10MB. Nên dùng dịch vụ ngoài như CDN nếu cần.
 
-## 障害対応
+## Cài đặt
 
-### 問題が発生した場合、どんな体制で対応をしていただけるのでしょうか？
+### Địa chỉ IP gửi đi có cố định không?
 
-お問い合わせをいただく、もしくはイーシーキューブ社でアラートを検知した後に調査・対応を行い回答いたします。
+Có, là IP cố định. Sau khi đăng ký gói Standard, có thể xem IP trên màn hình Console. Nếu cần biết IP sau khi đăng ký trial, liên hệ [Hỗ trợ ec-cube.co](https://www.ec-cube.net/product/co/support.php){:target="_blank"} và cung cấp:
+- URL site
+- Nội dung yêu cầu: Muốn biết IP
 
-### 障害検知時に契約者や運営者にメールでお知らせは来るのでしょうか？
+## Plugin/Template riêng
 
-個別にご要望いただいたタイミングでメール通知の設定をいたします。  
-メールの設定は1サイトで1メールアドレスとさせていただきます。  
-複数のメールアドレスの設定は不可となりますのでご了承ください。
+### Có thể tự làm plugin/template riêng không?
 
-## 商材説明動画のアップロード
+Có thể, nhưng các lỗi phát sinh sẽ không được hỗ trợ. Hãy cân nhắc sử dụng plugin/template trên Owner's Store.
 
-### 商材説明の動画をサイトにアップロードして商品詳細ページに埋め込みたいのですが、どうしたらよいでしょうか？
+#### Liên hệ
 
-可能です。ただし、1ファイル毎のファイルアップロード制限(10MB)があり、限界はございます。ご了承ください。  
-回避策として他のCDNなど外部サービスを利用することをお勧めします。
-
-## 設定
-
-### 決済プラグインの設定で必要なのですが、送信元のグローバルIPは固定でしょうか？
-
-はい。固定です。  
-スタンダードプランにお申し込みいただきますと、IPはコンソール画面からご確認いただけます。  
-
-トライアル申込後、 [ec-cube.coに関するお問い合わせ](https://www.ec-cube.net/product/co/support.php){:target="_blank"} お問い合わせください。  
-その際、以下の状況を共有いただけますとスムーズになります。ご協力お願いいたします。
-- 対象のサイトのURL
-- 問い合わせ内容：IPを教えて欲しい
-
-## 独自プラグイン/デザインテンプレート
-
-### 独自にプラグインや独自デザインテンプレートを作ってインストールしたいのですが良いでしょうか？
-
-はい、可能です。  
-ですが、独自プラグインや独自テンプレートに関連する不具合対応等はサポート外となります。ご了承ください。
-
-[オーナーズストア](https://www.ec-cube.net/owners/){:target="_blank"} に多種多様なプラグインやデザインテンプレートがございます。  
-こちらのご利用もぜひご検討ください。  
-
-#### 問合わせ
-
-[ec-cube.coに関するお問い合わせ](https://www.ec-cube.net/product/co/support.php){:target="_blank"} 以外にも、目的に合わせてご活用ください。
-- ちょっとした不具合解消や工夫を相談したい
-  - [EC-CUBE開発コミュニティ](https://xoops.ec-cube.net/){:target="_blank"}
-- ec-cube.coやEC-CUBE本体の技術情報を詳しく知りたい
-  - [EC-CUBE 4 開発者向けドキュメント](https://doc4.ec-cube.net/){:target="_blank"}
-- EC-CUBEに詳しい技術者に直接相談にのって欲しい  
-  各ユーザーグループやイベント・セミナーに参加してみてはいかがでしょうか。
-  - [ニュース・イベント・コミュニティコンテンツ](https://www.ec-cube.net/news/#events_information){:target="_blank"}
-- サイト構築をお願いしたい
-  - [EC-CUBE インテグレートパートナー](https://www.ec-cube.net/integrate/partner/){:target="_blank"}
-- サイト構築をお願いしたいが、どのパートナーに依頼すればよいか迷う
-  - [EC-CUBEアドバイザー](https://www.ec-cube.net/advisor/){:target="_blank"}{:target="_blank"}
+Ngoài [Hỗ trợ ec-cube.co](https://www.ec-cube.net/product/co/support.php){:target="_blank"}, bạn có thể tham khảo:
+- Muốn hỏi đáp nhanh về lỗi nhỏ: [Cộng đồng phát triển EC-CUBE](https://xoops.ec-cube.net/){:target="_blank"}
+- Muốn tìm hiểu kỹ thuật về ec-cube.co/EC-CUBE: [Tài liệu phát triển EC-CUBE 4](https://doc4.ec-cube.net/){:target="_blank"}
+- Muốn hỏi trực tiếp chuyên gia: Tham gia các nhóm người dùng, sự kiện, seminar tại [Tin tức & Sự kiện & Cộng đồng](https://www.ec-cube.net/news/#events_information){:target="_blank"}
+- Muốn thuê xây dựng site: [Đối tác tích hợp EC-CUBE](https://www.ec-cube.net/integrate/partner/){:target="_blank"}
+- Không biết chọn đối tác nào: [EC-CUBE Advisor](https://www.ec-cube.net/advisor/){:target="_blank"}

@@ -1,88 +1,85 @@
 ---
-title: ec-cube.co カスタマイズディレクトリ利用方法
-keywords: co ec-cube.co クラウド版 カスタマイズディレクトリ利用方法
+title: Hướng dẫn sử dụng thư mục Customize trên ec-cube.co
+keywords: co ec-cube.co Cloud version Hướng dẫn sử dụng thư mục Customize
 tags: [co, ec-cube.co]
 permalink: co/co_customize_dir_usage
 folder: co
 ---
 
-
 ---
 
-.coで動作しているEC-CUBE本体のソースコードは、EC-CUBEリポジトリの 4.0の場合 co/master、 4.1の場合 co/4.1 ブランチのソースです。 
-各ブランチを利用してEC-CUBEを起動し、 app/Customize ディレクトリでのカスタマイズを行います。
+Mã nguồn EC-CUBE chính đang chạy trên .co là branch co/master (với 4.0), co/4.1 (với 4.1) của repository EC-CUBE.
+Khởi động EC-CUBE bằng các branch này và thực hiện tuỳ biến tại thư mục app/Customize.
 
-## ローカル環境のセットアップ手順
+## Các bước thiết lập môi trường local
 
-### 公開鍵の設定
+### Thiết lập khoá công khai (public key)
 
-[SSH認証鍵](https://source.cloud.google.com/user/ssh_keys?register=true){:target="_blank"} へアクセスし、登録してください。  
-その際、スタンダードプラン契約時もしくはアップグレード時にイーシーキューブへ共有いただいたGoogleアカウントでログインしていることをご確認ください。  
+Truy cập [SSH認証鍵](https://source.cloud.google.com/user/ssh_keys?register=true){:target="_blank"} để đăng ký khoá công khai.
+Khi đó, hãy đảm bảo bạn đăng nhập bằng tài khoản Google đã chia sẻ với EC-CUBE khi đăng ký hoặc nâng cấp gói Standard.
 
-※詳しい設定方法については、上記ページの「詳細」リンク、もしくは[こちら](https://cloud.google.com/source-repositories/docs/authentication#ssh){:target="_blank"}よりご確認をお願いします。
+※ Về cách thiết lập chi tiết, vui lòng xem liên kết "Chi tiết" trên trang trên hoặc [tại đây](https://cloud.google.com/source-repositories/docs/authentication#ssh){:target="_blank"}.
 
-#### Googleグループアカウントご利用の場合
+#### Trường hợp sử dụng tài khoản Google Group
 
-以下のメールアドレスを例に説明します。
-- google groupメールアドレス：example@googlegroups.com
-- グループ内ユーザのメールアドレス：user1@example.com
+Ví dụ với các địa chỉ email sau:
+- Địa chỉ Google group: example@googlegroups.com
+- Địa chỉ email của thành viên trong group: user1@example.com
 
-1. [SSH認証鍵](https://source.cloud.google.com/user/ssh_keys?register=true){:target="_blank"} へアクセスし、公開鍵を登録します。  
-  その際グループ内ユーザのメールアドレス「user1@example.com」でログインし、公開鍵を登録します。
-1. git cloneでは、「user1@example.com」を指定して実行します。
+1. Truy cập [SSH認証鍵](https://source.cloud.google.com/user/ssh_keys?register=true){:target="_blank"} và đăng ký khoá công khai bằng tài khoản "user1@example.com".
+1. Khi git clone, chỉ định "user1@example.com".
 
-### ec-cube.coのレポジトリをclone
+### Clone repository ec-cube.co
 
 ```
-$ git clone <リポジトリURL> eccube-co-customize
+$ git clone <URL repository> eccube-co-customize
 $ cd eccube-co-customize
 ```
 
-### 追従用のec-cubeレポジトリを追加
+### Thêm repository EC-CUBE để theo dõi
 
 ```
 $ git remote add ec-cube https://github.com/EC-CUBE/ec-cube.git
 $ git fetch ec-cube
 ```
 
-### 開発用ローカルブランチ作成
+### Tạo branch develop cho phát triển local
 
 ```
 $ git checkout -b develop origin/develop
 ```
 
-### coブランチに追従する
+### Theo dõi branch co
 
 ```
-$ git merge --allow-unrelated-histories ec-cube/<coブランチ名>
+$ git merge --allow-unrelated-histories ec-cube/<tên branch co>
 ```
 
-coブランチは、バージョンによって異なります。
+Branch co sẽ khác nhau tuỳ phiên bản:
 
 - 4.0 -> co/master
 - 4.1 -> co/4.1
 - 4.2 -> co/4.2
 
-例えば4.2環境をご利用の場合は、以下のようにマージしてください。
+Ví dụ sử dụng môi trường 4.2, merge như sau:
 
 ```
 $ git merge --allow-unrelated-histories ec-cube/co/4.2
 ```
 
-## テスト環境・本番環境への反映方法
+## Cách phản ánh lên môi trường test/production
 
-ブランチを.coのリポジトリにpushすることでサイトへ反映が行われます。  
-反映されるまで1分程度かかります。  
+Push branch lên repository .co sẽ tự động cập nhật lên site (mất khoảng 1 phút).
 
-※ app/Customize以外のファイルをpushすることは可能ですが、サイトへ反映される対象は、Git管理機能の仕様を参照してください。
+※ Có thể push các file ngoài app/Customize, nhưng chỉ các file được quy định trong chức năng quản lý Git mới được phản ánh lên site.
 
-### テスト環境に反映
+### Phản ánh lên môi trường test
 
 ```
 $ git push origin develop -u
 ```
 
-### 本番環境に反映
+### Phản ánh lên môi trường production
 
 ```
 $ git checkout master
@@ -90,9 +87,9 @@ $ git merge develop
 $ git push origin master -u
 ```
 
-## ローカル環境の立ち上げ
+## Khởi động môi trường local
 
-### ローカル環境の立ち上げ
+### Khởi động môi trường local
 
 ```
 $ docker-compose -f docker-compose.yml -f docker-compose.pgsql.yml -f docker-compose.dev.yml up
@@ -102,25 +99,25 @@ $ docker-compose exec -u www-data ec-cube bin/console doctrine:schema:update --f
 $ docker-compose exec -u www-data ec-cube bin/console doctrine:migrations:migrate
 ```
 
-### ブラウザで表示
+### Mở trên trình duyệt
 
 ```
 $ open http://127.0.0.1:8080/
 ```
 
-## プラグインが適用されている環境の、ローカル環境への反映方法
+## Cách phản ánh plugin đã cài đặt lên môi trường local
 
-プラグインが適用されている環境の場合、ローカル環境へは別途プラグインをインストールする必要があります。
+Nếu môi trường đã cài plugin, cần cài plugin đó lên local.
 
-### 認証キーの追加
-
-```
-$ docker exec <postgres container name> psql -U dbuser eccubedb -c "update dtb_base_info set authentication_key='<認証キー>' "
-```
-
-### プラグインのインストール・有効化
+### Thêm khoá xác thực
 
 ```
-$ docker-compose exec -u www-data ec-cube bin/console eccube:composer:require ec-cube/<プラグインコード>
-$ docker-compose exec -u www-data ec-cube bin/console eccube:plugin:enable --code=<プラグインコード>
+$ docker exec <tên container postgres> psql -U dbuser eccubedb -c "update dtb_base_info set authentication_key='<khoá xác thực>' "
+```
+
+### Cài đặt và kích hoạt plugin
+
+```
+$ docker-compose exec -u www-data ec-cube bin/console eccube:composer:require ec-cube/<mã plugin>
+$ docker-compose exec -u www-data ec-cube bin/console eccube:plugin:enable --code=<mã plugin>
 ```

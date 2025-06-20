@@ -1,17 +1,17 @@
 ---
-title: 管理画面ナビの拡張
-keywords: plugin admin nav プラグイン 管理画面 ナビ
+title: Mở rộng thanh điều hướng quản trị
+keywords: plugin admin nav plugin quản trị điều hướng
 tags: [plugin, admin, nav]
 permalink: plugin_admin_nav
 
 ---
 
-管理画面にプラグインのメニューを追加します。
-以下のようにEccubeNavを実装すると, メニューの上書き/追加ができます。
-追加の場合は対象メニュー内の最下部に追加されます。
-構造は本体のナビ定義も参考にしてください。
-プラグインの場合、有効時のみ表示されます。
-本体の管理画面ナビは `/app/config/eccube/packages/eccube_nav.yaml` で定義されています。
+Thêm menu plugin vào màn hình quản trị.
+Bằng cách triển khai EccubeNav như bên dưới, bạn có thể ghi đè/thêm menu.
+Nếu thêm mới, menu sẽ được thêm vào cuối menu mục tiêu.
+Hãy tham khảo cấu trúc định nghĩa nav của hệ thống chính.
+Với plugin, menu chỉ hiển thị khi plugin được kích hoạt.
+Thanh điều hướng quản trị của hệ thống chính được định nghĩa tại `/app/config/eccube/packages/eccube_nav.yaml`.
 
 ```php
 class Nav implements EccubeNav
@@ -22,28 +22,28 @@ class Nav implements EccubeNav
             'product' => [
                 'children' => [
                     'hoge' => [
-                        'name' => '商品管理の子（追加）',
+                        'name' => 'Thêm con vào Quản lý sản phẩm',
                         'url' => 'admin_homepage',
                     ],
                 ],
             ],
             'piyo' => [
-                'name' => '1階層メニュー（追加）',
+                'name' => 'Menu cấp 1 (thêm mới)',
                 'icon' => 'fa-cube',
                 'children' => [
                     'piyopiyo1' => [
-                        'name' => '2階層メニュー（子なし）',
+                        'name' => 'Menu cấp 2 (không có con)',
                         'url' => 'admin_homepage',
                     ],
                     'piyopiyo2' => [
-                        'name' => '2階層メニュー（子あり）',
+                        'name' => 'Menu cấp 2 (có con)',
                         'children' => [
                             'piyopiyopiyo1' => [
-                                'name' => '3階層メニュー1',
+                                'name' => 'Menu cấp 3 - 1',
                                 'url' => 'admin_homepage',
                             ],
                             'piyopiyopiyo2' => [
-                                'name' => '3階層メニュー2',
+                                'name' => 'Menu cấp 3 - 2',
                                 'url' => 'admin_homepage',
                             ],
                         ],

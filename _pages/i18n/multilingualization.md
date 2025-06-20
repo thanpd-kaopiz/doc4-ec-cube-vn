@@ -1,5 +1,5 @@
 ---
-title: 多言語化
+title: Đa ngôn ngữ
 keywords: multilingualization
 tags: [i18n, multilingualization]
 permalink: i18n_multilingualization
@@ -7,15 +7,15 @@ folder: i18n
 
 ---
 
-## 概要
+## Tổng quan
 
-初期設定では日本語で表示されますが、英語やその他の言語で表示するための機構が組み込まれています。表示言語は、環境変数でロケールを指定することで切り替えられ、現時点では日本語または英語が利用できます。
+Mặc định sẽ hiển thị bằng tiếng Nhật, nhưng EC-CUBE đã tích hợp sẵn cơ chế hiển thị bằng tiếng Anh hoặc ngôn ngữ khác. Bạn có thể chuyển đổi ngôn ngữ hiển thị bằng cách chỉ định locale trong biến môi trường, hiện tại hỗ trợ tiếng Nhật và tiếng Anh.
 
-## 言語の切り替え
+## Cách chuyển đổi ngôn ngữ
 
-環境変数でロケールを指定し、言語表示を切り替えることが出来ます。
+Chỉ định locale trong biến môi trường để chuyển đổi ngôn ngữ hiển thị.
 
-EC-CUBEのルートディレクトリ直下の`.env`ファイルの`ECCUBE_LOCALE`を設定します。初期状態ではコメントアウトされています。.envファイルで何も設定されていなければ日本語が利用されます。
+Thiết lập `ECCUBE_LOCALE` trong file `.env` ở thư mục gốc EC-CUBE. Mặc định biến này sẽ bị comment. Nếu không thiết lập gì, hệ thống sẽ dùng tiếng Nhật.
 
 ```bash
 //.env
@@ -25,12 +25,12 @@ ECCUBE_LOCALE=en
 
 ```
 
-環境変数設定後、画面をリロードすると、表示言語が切り替わります。
-キャッシュの削除を行う必要はありません。
+Sau khi thiết lập biến môi trường, chỉ cần reload trang là ngôn ngữ sẽ được chuyển đổi.
+Không cần xoá cache.
 
-## インストール時の言語指定
+## Chỉ định ngôn ngữ khi cài đặt
 
-インストール時に言語指定をするためには、EC-CUBEのルートディレクトリ直下の`.env.install`に`ECCUBE_LOCALE`を設定します。何も指定しなければ日本語でインストールされます。`/src/Eccube/Resource/doctrine/import_csv`配下に対象の言語の初期データが存在する場合はそのデータが利用され、マスタデータ等が指定した言語でインストールされます。
+Để chỉ định ngôn ngữ khi cài đặt, thiết lập `ECCUBE_LOCALE` trong file `.env.install` ở thư mục gốc EC-CUBE. Nếu không chỉ định, hệ thống sẽ cài đặt bằng tiếng Nhật. Nếu có dữ liệu khởi tạo cho ngôn ngữ đó trong `/src/Eccube/Resource/doctrine/import_csv`, dữ liệu master sẽ được cài đặt theo ngôn ngữ đã chọn.
 
 ```bash
 //.env.install
@@ -39,72 +39,70 @@ ECCUBE_LOCALE=en
 
 ```
 
-現状ではインストール直後は日本語が言語設定として指定されます。インストール後にEC-CUBEのルートディレクトリ直下の`.env.install`の`ECCUBE_LOCALE`の値を利用したい言語に設定します。
+Sau khi cài đặt, mặc định hệ thống sẽ dùng tiếng Nhật. Nếu muốn sử dụng ngôn ngữ khác, hãy chỉnh lại giá trị `ECCUBE_LOCALE` trong `.env.install`.
 
-※ 現時点では、データベースに保持されているデータは翻訳されません。
-※ ショップ画面/管理画面ともに表示言語が切り替わります。
+※ Hiện tại, dữ liệu lưu trong database sẽ không được dịch tự động.
+※ Cả trang shop và trang quản trị đều sẽ chuyển đổi ngôn ngữ hiển thị.
 
-## メッセージファイル(翻訳ファイル)
+## File message (file dịch)
 
-メッセージファイルは、`src/Eccube/Resouce/locale`以下に保存されています。
-`ECCUBE_LOCALE`の値に応じて、
+Các file message được lưu trong `src/Eccube/Resouce/locale`.
+Tùy theo giá trị `ECCUBE_LOCALE`, hệ thống sẽ đọc các file:
 
 - messages.xxx.yaml
 - validators.xxx.yaml
 
-のファイルが読み込まれます。
-
-メッセージファイルはハッシュのyamlファイルです。
-ハッシュのキーはメッセージのID、値は翻訳された文字列を表します。
+Các file message là file yaml dạng hash.
+Key là ID message, value là chuỗi đã dịch.
 
 ```yaml
 #====================================================================================
-# 共通
+# Chung
 #====================================================================================
 
-common.select: 選択してください
-common.select__pref: 都道府県を選択
-common.select__unspecified: 指定なし
-common.select__all_products: 全ての商品
+common.select: Vui lòng chọn
+common.select__pref: Chọn tỉnh/thành phố
+common.select__unspecified: Không chỉ định
+common.select__all_products: Tất cả sản phẩm
     ...
 ```
 
-## trans関数とtransフィルタ
+## Hàm trans và filter trans
 
-trans関数やtransフィルタを使用することで、翻訳された文字列を表示することができます。
-php内で翻訳する場合はtrans関数を、twig内で翻訳する場合はtransフィルタを使用します。
+Bạn có thể sử dụng hàm trans hoặc filter trans để hiển thị chuỗi đã dịch.
+Dùng hàm trans trong PHP, dùng filter trans trong twig.
 
-## trans関数
+## Hàm trans
 
-trans関数にメッセージIDを指定することで、翻訳された文字列を取得できます。
-基本的な使い方は以下のとおりです。
+Chỉ định ID message cho hàm trans để lấy chuỗi đã dịch.
+Cách sử dụng cơ bản như sau:
 
 ```php
 <?php
 
-// 'common.label.add' => '新規作成',
+// 'common.label.add' => 'Tạo mới',
 
 $message = trans('common.label.edit');
 var_dump($message);
 
-// 編集
+// Sửa
 ```
 
-メッセージがパラメータ付きで定義されている場合は、以下のように使用します。
+Nếu message có tham số, sử dụng như sau:
 
 ```php
 <?php
 
-// 'admin.order.index.paginator_total_count' => '検索結果：%count%件が該当しました',
+// 'admin.order.index.paginator_total_count' => 'Kết quả tìm kiếm: %count% bản ghi',
 
 $message = trans('admin.order.index.paginator_total_count', ['%count%' => 10]);
 var_dump($message);
 
-// 検索結果：10件が該当しました
+// Kết quả tìm kiếm: 10 bản ghi
 
 ```
 
-※ FormTypeのラベルやエラーメッセージは自動で翻訳されるため、FormType内でtransする必要はありません。
+※ Label và message lỗi trong FormType sẽ tự động được dịch, không cần gọi trans trong FormType.
 
 ```php
 class TemplateType extends AbstractType
@@ -122,7 +120,7 @@ class TemplateType extends AbstractType
                 'mapped' => false,
                 'required' => true,
                 'constraints' => array(
-                    // メッセージIDのみ指定する
+                    // Chỉ cần chỉ định ID message
                     new Assert\NotBlank(array('message' => 'template.text.message.select_file')),
                     new Assert\File(array(
                         'mimeTypes' => array('application/zip', 'application/x-tar', 'application/x-gzip'),
@@ -134,20 +132,20 @@ class TemplateType extends AbstractType
 
 ```
 
-## transフィルタ
+## Filter trans
 
-twig内で翻訳する場合は、transフィルタを使用します。
-基本的な使い方は以下の通りです。
+Khi dịch trong twig, sử dụng filter trans.
+Cách sử dụng cơ bản như sau:
 
 ```twig
 {% raw %}
 {{ 'common.label.add'|trans }}
 
-{# 編集 #}
+{# Sửa #}
 {% endraw %}
 ```
 
-メッセージがパラメータ付きで定義されている場合は、以下のように使用します。
+Nếu message có tham số, sử dụng như sau:
 
 ```twig
 {% raw %}
@@ -155,13 +153,13 @@ twig内で翻訳する場合は、transフィルタを使用します。
     '%count%' : 10
 }) }}
 
-{# 検索結果：10件が該当しました #}
+{# Kết quả tìm kiếm: 10 bản ghi #}
 {% endraw %}
 ```
 
-# 参考
+# Tham khảo
 
-EC-CUBEの翻訳機構は、SymfonyのTranslationコンポーネントを利用しています。
-より詳しく知りたい場合は、Symfonyの公式ドキュメントを参照してみてください。
+Cơ chế dịch của EC-CUBE sử dụng component Translation của Symfony.
+Tham khảo thêm tại tài liệu chính thức của Symfony:
 
 [Translations](http://symfony.com/doc/current/translation.html){:target="_blank"}

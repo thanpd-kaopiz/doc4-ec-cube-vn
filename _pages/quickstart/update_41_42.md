@@ -1,38 +1,38 @@
 ---
 layout: single
-title: 4.1から4.2へのマイグレーション
-keywords: howto update
+title: Di chuyển từ 4.1 lên 4.2
+keywords: cách cập nhật
 tags: [quickstart, getting_started]
 permalink: update-41-42
-summary : EC-CUBE4.1から4.2へのマイグレーションについて記載します。
+summary : Mô tả về di chuyển từ EC-CUBE 4.1 lên 4.2.
 ---
 
-EC-CUBE4.1から4.2へのマイグレーションを解説します。
+Giải thích về di chuyển từ EC-CUBE 4.1 lên 4.2.
 
-EC-CUBE本体および一部公式プラグインをEC-CUBE4.2対応し、コードの移植が必要な箇所をまとめたものです。
+Tổng hợp các phần cần chuyển mã để EC-CUBE 4.2 tương thích với EC-CUBE bản chính và một số plugin chính thức.
 
-- [EC-CUBE 4.2 Roadmap](https://github.com/EC-CUBE/ec-cube/issues/5356){:target="_blank"}
-- [Symfony5 support](https://github.com/EC-CUBE/ec-cube/pull/5353){:target="_blank"}
-- [メルマガプラグイン](https://github.com/EC-CUBE/mail-magazine-plugin/compare/4.n){:target="_blank"}
+- [Lộ trình EC-CUBE 4.2](https://github.com/EC-CUBE/ec-cube/issues/5356){:target="_blank"}
+- [Hỗ trợ Symfony5](https://github.com/EC-CUBE/ec-cube/pull/5353){:target="_blank"}
+- [Plugin Mail Magazine](https://github.com/EC-CUBE/mail-magazine-plugin/compare/4.n){:target="_blank"}
 
-## プラグインコードの変更
+## Thay đổi mã plugin
 
-4.2は、4.1からの互換性がないバージョンになります。
+4.2 là phiên bản không tương thích với 4.1.
 
-ソースコードを共存させることができないため、4.0/4.1対応版プラグインとは別プラグインとして実装する必要があります。
+Do không thể đồng tồn tại mã nguồn, cần triển khai như một plugin riêng biệt so với plugin hỗ trợ 4.0/4.1.
 
 ### composer.json
 
-composer.jsonのプラグインコードを変更します。
+Thay đổi mã plugin trong composer.json.
 
-以下はメルマガプラグインの修正例です。
+Dưới đây là ví dụ sửa đổi của plugin Mail Magazine.
 
 ```diff
 {
 -  "name": "ec-cube/mailmagazine4",
 +  "name": "ec-cube/mailmagazine42",
   "version": "4.2.0",
-  "description": "メールマガジンプラグイン",
+  "description": "Plugin Mail Magazine",
   "type": "eccube-plugin",
   "require": {
     "ec-cube/plugin-installer": "~0.0.6 || ^2.0"
@@ -44,11 +44,11 @@ composer.jsonのプラグインコードを変更します。
 }
 ```
 
-### namespaceの変更
+### Thay đổi namespace
 
-namespaceをプラグインコードにあわせ、変更します。
+Thay đổi namespace để phù hợp với mã plugin.
 
-以下はメルマガプラグインの修正例です。
+Dưới đây là ví dụ sửa đổi của plugin Mail Magazine.
 
 ```diff
 <?php
@@ -62,17 +62,17 @@ class MailMagazineNav implements EccubeNav
 
 ```
 
-## Symfony5.4対応
+## Tương thích Symfony5.4
 
-Symfony5.4での変更をすべて網羅できているわけではないため、記載されていない問題があった場合は、SymfonyのUPGRADEドキュメントも合わせて参照してください。
+Không thể bao quát hết các thay đổi trong Symfony5.4, nếu có vấn đề không được đề cập, hãy tham khảo tài liệu UPGRADE của Symfony.
 
 - [UPGRADE-5.0.md](https://github.com/symfony/symfony/blob/5.4/UPGRADE-5.0.md){:target="_blank"}
 
-### Form関連
+### Liên quan đến Form
 
 #### FormExtension
 
-getExtendedTypesの戻り値の型を定義する必要があります。
+Cần định nghĩa kiểu trả về của getExtendedTypes.
 
 ```diff
     /**
@@ -85,13 +85,13 @@ getExtendedTypesの戻り値の型を定義する必要があります。
     }
 ```
 
-### Repository関連
+### Liên quan đến Repository
 
 #### ManagerRegistry
 
-ManagerRegistryのnamespaceが変更されました。
+Namespace của ManagerRegistry đã thay đổi.
 
-`Doctrine\Persistence\ManagerRegistry`へ変更します。
+Thay đổi thành `Doctrine\Persistence\ManagerRegistry`.
 
 ```diff
 <?php
@@ -105,11 +105,11 @@ use Plugin\MailMagazine4\Entity\MailMagazineSendHistory;
 use Eccube\Doctrine\Query\Queries;
 ```
 
-### twig関連
+### Liên quan đến twig
 
-#### forループでのifの利用
+#### Sử dụng if trong vòng lặp for
 
-forループでのifは利用できなくなります。filterを使用してください。
+Không thể sử dụng if trong vòng lặp for. Hãy sử dụng filter.
 
 ```diff
 {% raw %}
@@ -118,13 +118,13 @@ forループでのifは利用できなくなります。filterを使用してく
 {% endraw %}
 ```
 
-### SwiftMailer関連
+### Liên quan đến SwiftMailer
 
-#### SymfonyMailerへの移行
+#### Chuyển sang SymfonyMailer
 
-メール送信ライブラリがSwiftMailer から SymfonyMailer に変更されました。
+Thư viện gửi mail đã chuyển từ SwiftMailer sang SymfonyMailer.
 
-SwiftMailerを直接使用している場合は、SymfonyMailerでの実装に変更してください。
+Nếu sử dụng trực tiếp SwiftMailer, hãy chuyển sang triển khai với SymfonyMailer.
 
 ```diff
 -        $message = (new \Swift_Message())
@@ -145,17 +145,17 @@ SwiftMailerを直接使用している場合は、SymfonyMailerでの実装に�
 +            ->text($formData['tpl_data']);
 ```
 
-こちらの差分も合わせて参考にしてください。
+Tham khảo thêm sự khác biệt tại đây.
 
 https://github.com/EC-CUBE/ec-cube/pull/5353/commits/ff6a6962736c87fe8e9b7427ba2cbebbb3000c43
 
-### Event関連
+### Liên quan đến Event
 
-#### EventDispatcherのシグネチャ変更
+#### Thay đổi chữ ký của EventDispatcher
 
-$eventDispatcher->dispatch()の引数の順序が逆になりました。
+Thứ tự tham số của $eventDispatcher->dispatch() đã thay đổi.
 
-独自にフックポイントを定義している場合は、引数の順序を変更してください。
+Nếu tự định nghĩa hook point, hãy thay đổi thứ tự tham số.
 
 ```diff
 
@@ -164,13 +164,13 @@ $eventDispatcher->dispatch()の引数の順序が逆になりました。
 
 ```
 
-### パラメータ関連
+### Liên quan đến tham số
 
-#### envパラメータ
+#### Tham số env
 
-envパラメータで、boolや数値が利用できなくなりました。
+Không thể sử dụng bool hoặc số trong tham số env.
 
-services.yamlで、envパラメータを利用している場合は、文字列で記述するように変更してください。
+Nếu sử dụng tham số env trong services.yaml, hãy thay đổi thành chuỗi.
 
 ```diff
 parameters:
@@ -182,11 +182,11 @@ parameters:
 +    env(ECCUBE_2FA_EXPIRE): '14'
 ```
 
-### テストコード
+### Mã kiểm tra
 
 #### setUp/tearDown
 
-setUp/tearDownメソッドは、戻り値の型を定義する必要があります。
+Cần định nghĩa kiểu trả về cho phương thức setUp/tearDown.
 
 ```diff
 
@@ -198,17 +198,17 @@ setUp/tearDownメソッドは、戻り値の型を定義する必要がありま
 
 ```
 
-## Bootstrap5対応
+## Tương thích Bootstrap5
 
-Bootstrapを5.0に更新しました。
+Đã cập nhật Bootstrap lên 5.0.
 
-ここで記載した内容は一部です。変更点の詳細は以下のドキュメントをご確認ください。
+Dưới đây là một phần nội dung thay đổi. Xem chi tiết tại tài liệu dưới đây.
 
 https://getbootstrap.jp/docs/5.0/migration/
 
-### data変数のbsプレフィクス
+### Biến data có tiền tố bs
 
-モーダルなど、bootstrapで使われるdata変数にbsプレフィクスがつくようになりました。
+Các biến data sử dụng trong bootstrap như modal đã có tiền tố bs.
 
 ```diff
 
@@ -223,9 +223,9 @@ https://getbootstrap.jp/docs/5.0/migration/
 
 ```
 
-## Close buttton
+## Nút đóng
 
-閉じるボタンのクラス名が変更されました。
+Tên lớp của nút đóng đã thay đổi.
 
 ```diff
 
@@ -236,7 +236,7 @@ https://getbootstrap.jp/docs/5.0/migration/
 
 ### text-right, text-left
 
-右寄せ、左寄せのクラス名が変更されました。
+Tên lớp căn phải, căn trái đã thay đổi.
 
 ```diff
 
@@ -248,6 +248,6 @@ https://getbootstrap.jp/docs/5.0/migration/
 
 ```
 
-## その他の仕様変更
+## Các thay đổi khác
 
-### その他削除された関数・機能
+### Các hàm và tính năng bị xóa khác

@@ -6,36 +6,35 @@ permalink: /development-tools/mail-catcher
 folder: development-tools
 ---
 
-## 概要
+## Tổng quan
 
-EC-CUBEのローカル開発環境を構築する際、Webサーバーの他に別途メールサーバーが必要となります。
+Khi xây dựng môi trường phát triển EC-CUBE trên máy tính, ngoài Web server bạn còn cần một mail server.
 
-本記事ではDockerHubの公開イメージを利用した、メールサーバーを構築する手順について紹介します。
+Bài viết này hướng dẫn cách xây dựng mail server sử dụng image công khai trên DockerHub.
 
-## 前提条件
+## Điều kiện tiên quyết
 
-Docker for Mac、またはDocker for WindowsがPCにインストールされていることが条件です。
+Yêu cầu đã cài đặt Docker for Mac hoặc Docker for Windows trên máy tính.
 
-## MailCatcherの利用
+## Sử dụng MailCatcher
 
-<a href="https://mailcatcher.me/" target="_blank">MailCatcher</a>を利用することで、SMTPのメールサーバーを開発環境に導入することができます。
+Bằng cách sử dụng <a href="https://mailcatcher.me/" target="_blank">MailCatcher</a>, bạn có thể thêm mail server SMTP vào môi trường phát triển.
 
+Bạn có thể dễ dàng cài đặt mail server bằng cách lấy image MailCatcher từ <a href="https://hub.docker.com/r/schickling/mailcatcher/" target="_blank">DockerHub</a>.
 
-DockerHubのレジストリから<a href="https://hub.docker.com/r/schickling/mailcatcher/" target="_blank">MailCatcherの公開イメージ</a>を取得することで、手軽にメールサーバーを導入できます。
+## Cấu hình EC-CUBE
 
-## EC-CUBEの設定
-
-EC-CUBEの`.env`ファイルに以下の設定を行います。
+Thêm cấu hình sau vào file `.env` của EC-CUBE:
 
 ```
 MAILER_URL=smtp://127.0.0.1:1025
 ```
 
-## Dockerコンテナの起動
-以下２通りの方法があります。
+## Khởi động container Docker
+Có 2 cách sau:
 
-### Dockerコマンド
-以下のdockerコマンドでSMTPサーバーが利用できるようになります。
+### Sử dụng lệnh Docker
+Chạy lệnh sau để sử dụng SMTP server:
 
 ```bash
 $ docker run -d -p 1080:1080 -p 1025:1025 --name mailcatcher schickling/mailcatcher
@@ -45,20 +44,20 @@ CONTAINER ID        IMAGE                    COMMAND                  CREATED   
 41290748f3ab        schickling/mailcatcher   "mailcatcher --no-qu…"   About a minute ago   Up 58 seconds       0.0.0.0:1025->1025/tcp, 0.0.0.0:1080->1080/tcp   mailcatcher
 ```
 
-コンテナの停止、再起動は以下のコマンドです。
+Dừng hoặc khởi động lại container:
 
 ```bash
-# コンテナの停止
+# Dừng container
 $ docker stop mailcatcher
 
-# コンテナの再起動
+# Khởi động lại container
 $ docker start mailcatcher
 
 ```
 
-### Docker Compose
+### Sử dụng Docker Compose
 
-また、docker-composeを利用する場合、`docker-compose.yml`を作成してください。
+Nếu dùng docker-compose, hãy tạo file `docker-compose.yml` như sau:
 
 ```yml
 version: '3'
@@ -74,23 +73,23 @@ services:
 ```bash
 $ docker-compose up -d
 ```
-を実行することで、MailCatcherのコンテナが作成されます。
+Chạy lệnh trên để tạo container MailCatcher.
 
-終了する場合は以下のコマンドです。
+Để dừng, dùng lệnh sau:
 
 ```bash
 $ docker-compose down
 ```
 
-## メールクライアント
+## Mail client
 
-Google chrome 等のブラウザから　http://127.0.0.1:1080/ にアクセスすると以下の画面となります。
+Truy cập http://127.0.0.1:1080/ bằng trình duyệt (ví dụ Google Chrome) sẽ thấy giao diện như sau:
 
 ![mailcatcher-image](/images/development-tools/mailcatcher-client.png)
 
-ブラウザ上でメール送信結果を確認できます。
+Bạn có thể kiểm tra kết quả gửi mail ngay trên trình duyệt.
 
-## 参考
+## Tham khảo
 
 - <a href="https://mailcatcher.me/" target="_blank">https://mailcatcher.me/</a>
 - <a href="https://hub.docker.com/r/schickling/mailcatcher/" target="_blank">https://hub.docker.com/r/schickling/mailcatcher/</a>

@@ -1,25 +1,25 @@
 ---
-title: プラグインで推奨の命名規則
-keywords: plugin naming conventions プラグイン 命名規約
+title: Quy tắc đặt tên khuyến nghị cho plugin
+keywords: plugin quy tắc đặt tên plugin quy tắc đặt tên
 tags: [plugin, naming, conventions]
 permalink: plugin_naming_conventions
 
 ---
 
-### プラグインコード
+### Mã plugin
 
-重複を避けるため, `[ベンダー名][プラグイン]`の形式を推奨
-キャメルケースで記述する
+Để tránh trùng lặp, khuyến nghị đặt theo dạng `[TênVendor][TênPlugin]`
+Viết theo camelCase
 
 ```
 AcmeCategoryContent
 ```
 
-### テーブル名
+### Tên bảng
 
-※プラグイン固有のテーブルを作成する場合
+※ Nếu tạo bảng riêng cho plugin
 
-`plg_[プラグインコードのスネークケース]_xxx`
+`plg_[mã plugin dạng snake_case]_xxx`
 
 ```php
 use Doctrine\ORM\Mapping as ORM;
@@ -33,12 +33,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Config
 ```
 
-### テーブルのカラム名およびgetter/setter
+### Tên cột bảng và getter/setter
 
-※traitを使用してカラムを追加する場合
+※ Nếu dùng trait để thêm cột
 
-`[プラグインコードのスネークケース]_xxx`
-getter/setterはキャメルケースで記述する
+`[mã plugin dạng snake_case]_xxx`
+getter/setter viết theo camelCase
 
 ```php
 use Eccube\Annotation\EntityExtension;
@@ -64,11 +64,11 @@ trait CustomerTrait
 }
 ```
 
-### ルーティング
+### Routing
 
-#### フロント画面
+#### Màn hình front
 
-`[プラグインコードのスネークケース]_xxx`
+`[mã plugin dạng snake_case]_xxx`
 
 ```php
 class PageController extends AbstractController
@@ -80,11 +80,11 @@ class PageController extends AbstractController
     public function index(Request $request)
 ```
 
-#### 管理画面
+#### Màn hình quản trị
 
-管理画面は先頭に `admin_` をつける
+Thêm `admin_` ở đầu
 
-`admin_[プラグインコードのスネークケース]_xxx`
+`admin_[mã plugin dạng snake_case]_xxx`
 
 ```php
 class ConfigController extends AbstractController
@@ -98,7 +98,7 @@ class ConfigController extends AbstractController
 
 ### URL
 
-`/[プラグインコードのスネークケース]/xxx/xxx`
+`/[mã plugin dạng snake_case]/xxx/xxx`
 
 ```php
 class ConfigController extends AbstractController
@@ -110,9 +110,9 @@ class ConfigController extends AbstractController
     public function index(Request $request)
 ```
 
-### FormExtensionで追加するフィールド
+### Field thêm bằng FormExtension
 
-`[プラグインコードのスネークケース]_xxx`
+`[mã plugin dạng snake_case]_xxx`
 
 ```php
 class XxxExtention extends AbstractTypeExtension
@@ -123,17 +123,17 @@ class XxxExtention extends AbstractTypeExtension
 
 ```
 
-### htmlで使用するID, class
+### ID, class dùng trong html
 
-`[プラグインコードのスネークケース]_xxx`
+`[mã plugin dạng snake_case]_xxx`
 
 ```html
 <div id="acme_category_content_info" class="card rounded border-0 mb-4">
 ```
 
-### コマンド名
+### Tên command
 
-`[プラグインコードのスネークケース]:xxx:xxx`
+`[mã plugin dạng snake_case]:xxx:xxx`
 
 ```php
 class XxxCommand extends Command
@@ -141,24 +141,24 @@ class XxxCommand extends Command
     protected static $defaultName = 'acme_category_content:xxx:yyy';
 ```
 
-### 言語ファイル
+### File ngôn ngữ
 
-`[プラグインコードのスネークケース].xxx.xxx`
+`[mã plugin dạng snake_case].xxx.xxx`
 
 ```yaml
 # nav
-acme_category_content.admin.nav.category: カテゴリコンテンツ一覧
+acme_category_content.admin.nav.category: Danh sách nội dung danh mục
 
 # flash messages
-acme_category_content.admin.save.success: 登録しました。
-acme_category_content.admin.save.failed: 登録に失敗しました。
+acme_category_content.admin.save.success: Đã đăng ký.
+acme_category_content.admin.save.failed: Đăng ký thất bại.
 ```
 
-プラグインコード以降の命名規則は[EC-CUBE本体の命名規則](https://github.com/EC-CUBE/ec-cube/pull/3593)に従う
+Sau phần mã plugin, các quy tắc đặt tên khác tuân theo [quy tắc đặt tên của EC-CUBE](https://github.com/EC-CUBE/ec-cube/pull/3593)
 
-### パラメータ
+### Tham số
 
-`[プラグインコードのスネークケース].xxx.xxx`
+`[mã plugin dạng snake_case].xxx.xxx`
 
 ```yaml
 parameters:

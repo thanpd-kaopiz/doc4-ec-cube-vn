@@ -1,90 +1,72 @@
 ---
 layout: single
-title: Docker Composeを使用してインストールする(EC-CUBE4.0.5以下の場合)
-keywords: install
+title: Cài đặt bằng Docker Compose (dành cho EC-CUBE4.0.5 trở xuống)
+keywords: cài đặt
 tags: [quickstart, install, docker, docker-compose]
 permalink: quickstart/install_docker-compose_405orlower
 folder: quickstart
-description: Docker Composeを使用してインストールする場合(EC-CUBE4.0.5以下)の説明です。
+description: Hướng dẫn cài đặt EC-CUBE 4.0.5 trở xuống bằng Docker Compose.
 ---
 
-
 ---
 
-**開発環境として関連サービス(DB、メールデバッグ環境等)も含め手軽に一括構築したい場合におすすめの方法です**
+**Đây là phương pháp khuyến nghị nếu bạn muốn xây dựng nhanh môi trường phát triển kèm các dịch vụ liên quan (DB, môi trường debug mail, v.v.)**
 
-前提として、 [Docker Desktop のインストール](https://hub.docker.com){:target="_blank"} が必要です。
+Yêu cầu đã cài đặt [Docker Desktop](https://hub.docker.com){:target="_blank"}.
 
-+ 初期状態では SQLite3 を使用します
-+ ローカルディレクトリをマウントします
-
++ Mặc định sử dụng SQLite3
++ Mount thư mục local
 
 ```shell
 cd path/to/ec-cube
 
-# コンテナの起動 (初回のみビルド処理あり)
+# Khởi động container (lần đầu sẽ build)
 docker-compose up -d
 
-# 初回はインストールスクリプトを実行( **`www-data` ユーザで実行する点に注意！** )
+# Lần đầu cần chạy script cài đặt (LƯU Ý: chạy bằng user `www-data`!)
 docker-compose exec -u www-data ec-cube bin/console eccube:install
 ```
 
-2回目以降の起動時も同様のコマンドを使用します。
+Từ lần khởi động thứ 2 trở đi cũng dùng các lệnh sau.
 ```shell
-# コンテナの起動
+# Khởi động container
 docker-compose up -d
 
-# コンテナの停止
+# Dừng container
 docker-compose down
 ```
 
-#### 各種コンテナの使用
-EC-CUBE 4が動作するWebサーバを含め、以下のコンテナが簡単に起動できます。
+#### Sử dụng các container
+Bao gồm web server chạy EC-CUBE 4 và các container sau có thể khởi động dễ dàng:
 
-| コンテナ名  | 概要                             | ブラウザアクセス例 |
-| ----------- | -------------------------------- | -------------------------- |
-| ec-cube     | EC-CUBE 向けPHP Webサーバ        | [http://localhost:8080](http://localhost:8080){:target="_blank"}      |
-| postgres    | PostgreSQLデータベースサーバ     |                            |
-| mysql       | MySQLデータベースサーバ          |                            |
-| mailcatcher | MailCatcher デバッグ用SMTPサーバ | [http://localhost:1080](http://localhost:1080){:target="_blank"}      |
+| Tên container  | Mô tả                             | Truy cập trình duyệt |
+| -------------- | --------------------------------- | -------------------- |
+| ec-cube        | Web server PHP cho EC-CUBE        | [http://localhost:8080](http://localhost:8080){:target="_blank"} |
+| postgres       | PostgreSQL database server        |                      |
+| mysql          | MySQL database server             |                      |
+| mailcatcher    | SMTP server debug MailCatcher     | [http://localhost:1080](http://localhost:1080){:target="_blank"} |
 
-起動時にコンテナ名を列挙することで、各種コンテナを起動します。
+Khi khởi động, liệt kê tên container để chỉ khởi động các dịch vụ cần thiết.
 ```shell
-# 例：EC-CUBEとMySQLとphpMyAdminとMailCatcherを起動する
+# Ví dụ: Khởi động EC-CUBE, MySQL, phpMyAdmin và MailCatcher
 docker-compose up -d ec-cube mysql mailcatcher
 
-# 省略した場合はすべてのサービスが起動します
+# Nếu không chỉ định, tất cả dịch vụ sẽ được khởi động
 docker-compose up -d
 ```
-各種コンテナと連携させる場合は、以下の通り設定が必要です。
-##### メール送信を使用する場合
-`.env` にて `MAILER_URL=smtp://mailcatcher:1025` としておきます。
+Khi kết hợp với các container khác, cần thiết lập như sau.
+##### Sử dụng gửi mail
+Trong `.env` đặt `MAILER_URL=smtp://mailcatcher:1025`.
 
-##### PostgreSQL を使用する場合
-`.env` にて `DATABASE_URL=postgres://dbuser:secret@postgres/eccubedb` としておきます。
+##### Sử dụng PostgreSQL
+Trong `.env` đặt `DATABASE_URL=postgres://dbuser:secret@postgres/eccubedb`.
 
-データベーススキーマを初期化していない場合は、以下の実行が必要です。
+Nếu chưa khởi tạo schema database, cần chạy lệnh sau.
 ```
-# スキーマ作成+初期データ投入
+# Tạo schema + nạp dữ liệu mẫu
 docker-compose exec ec-cube composer run-script compile
 ```
 
-##### MySQL を使用する場合
-`.env` にて `DATABASE_URL=mysql://dbuser:secret@mysql/eccubedb` としておきます。
+##### Sử dụng MySQL
+Trong `.env`
 
-データベーススキーマを初期化していない場合は、以下の実行が必要です。
-```
-# スキーマ作成+初期データ投入
-docker-compose exec ec-cube composer run-script compile
-```
-
-
-#### ファイルの同期
-
-docker-composeを用いてインストールした場合、ホストのローカルディレクトリとコンテナ上のファイルは同期します。`.env`等の設定ファイルについても、ホスト上のファイルを直接編集します。
-
-なお、一部環境において著しいパフォーマンスの劣化が発生する場合があるため、以下のフォルダは同期の対象から除外しています。
- - /var
- - /vendor  
-
-上記除外対象のフォルダについてはDocker Volumeを用いて別途永続化を行っています。

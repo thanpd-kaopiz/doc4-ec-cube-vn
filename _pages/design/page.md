@@ -1,41 +1,41 @@
 ---
-title: 新規ページの作成
-keywords: design page
-tags: [design]
+title: Tạo trang mới
+keywords: thiết kế trang
+tags: [thiết kế]
 permalink: design_page
-summary: ページ管理を利用したデザイン変更について説明します。
+summary: Giải thích về việc thay đổi thiết kế sử dụng quản lý trang.
 
 ---
 
-## ページ管理について
-EC-CUBE 4.0では「ページ管理」はページの新規追加、編集のみとなっており、ブロックのページに対する配置は [レイアウト管理](design_layout) で行うようになりました。  
-ページ管理では2系、3系と同じくページの編集が可能です。
+## Về quản lý trang
+EC-CUBE 4.0, chức năng "Quản lý trang" chỉ dùng để thêm mới và chỉnh sửa trang, việc bố trí block cho từng trang sẽ thực hiện ở [Quản lý layout](design_layout).  
+Quản lý trang vẫn cho phép chỉnh sửa trang như các phiên bản 2.x, 3.x.
 
 
-### ページ管理の新規作成
+### Tạo mới trang trong quản lý trang
 
-管理画面にログイン後、  
-[コンテンツ管理] -> [ページ管理] 画面より「新規入力」ボタンを押してページを作成します。
+Sau khi đăng nhập vào trang quản trị,  
+Từ [Quản lý nội dung] -> [Quản lý trang], nhấn nút "Nhập mới" để tạo trang mới.
 
-![ブロック管理](./images/design/design-block-01.png)
+![Quản lý block](./images/design/design-block-01.png)
 
-ページ名称、URL、ファイル名には任意の一意となる名称を入力し、コード編集には表示するタグをを記述し、「登録」ボタンを押すとページが作成されます。  
-但し、既にあるファイル名と同じファイル名を設定すると既存のものに上書きされます。
+Nhập tên trang, URL, tên file (phải là duy nhất), nhập mã html muốn hiển thị vào phần chỉnh sửa mã, sau đó nhấn nút "Đăng ký" để tạo trang.  
+Lưu ý: Nếu đặt tên file trùng với file đã có, trang mới sẽ ghi đè lên trang cũ.
 
-ページを新たに作成する場合、
+Khi tạo trang mới, hãy viết như sau:
 
 {% highlight twig  %}
 {% raw %}
 {% extends 'default_frame.twig' %}
 
 {% block main %}
-    ここにタグを記述する
+    Viết mã html tại đây
 {% endblock %}{% endraw %}
 {% endhighlight %}
 
-`{% raw %}{% extends 'default_frame.twig' %}{% endraw %}` 、 `{% raw %}{% block main %}{% endraw %}` 、 `{% raw %}{% endblock %}{% endraw %}` を記述しておかないとヘッダーなどが表示されませんので必ず記述する必要があります。
+Nếu không viết `{% raw %}{% extends 'default_frame.twig' %}{% endraw %}`, `{% raw %}{% block main %}{% endraw %}`, `{% raw %}{% endblock %}{% endraw %}` thì header sẽ không hiển thị, vì vậy cần phải có các dòng này.
 
 
-### ページの削除
+### Xoá trang
 
-デフォルトで用意されているページについては削除できず、新規作成されたページのみ削除可能です。
+Các trang mặc định không thể xoá, chỉ có thể xoá các trang do bạn tự tạo mới.

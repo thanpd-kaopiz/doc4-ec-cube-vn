@@ -1,66 +1,60 @@
 ---
-title: コマンドラインからインストールする
-keywords: install Docker
+title: Cài đặt từ dòng lệnh
+keywords: cài đặt Docker
 tags: [quickstart, install, command]
 permalink: quickstart/command_install
 folder: quickstart
 ---
 
-
 ---
 
-**開発環境としておすすめの方法です。**  
-こちらはGitHub上にある最新のEC-CUBE4をインストールする方法になります。  
-※ 公式サイトのパッケージ版とは違いますので、ご注意ください。
+**Đây là phương pháp khuyến nghị cho môi trường phát triển.**  
+Phương pháp này sẽ cài đặt EC-CUBE4 mới nhất từ GitHub.  
+※ Khác với bản đóng gói trên trang chủ chính thức, vui lòng lưu ý.
 
-1.EC-CUBEをインストールしたいディレクトリへ移動
+1. Di chuyển đến thư mục bạn muốn cài đặt EC-CUBE
 
 ```shell
-cd ディレクトリのアドレス指定（もしくはディレクトリをドラック＆ドロップ）
+cd Địa chỉ thư mục (hoặc kéo & thả thư mục)
 ```
 
-※ 上記ディレクトリ内に ec-cube ディレクトリが生成されます。
+※ Thư mục ec-cube sẽ được tạo trong thư mục trên.
 
-2.ディレクトリ移動後にcomposer.pharファイルを生成  
-リンク先の [Composer のインストール](https://getcomposer.org/download/){:target="_blank"} の最初に登場するpreタグで囲まれているコマンドを実行しcomposer.pharファイルを生成します。  
+2. Sau khi di chuyển, tạo file composer.phar  
+Thực hiện lệnh trong phần [Cài đặt Composer](https://getcomposer.org/download/){:target="_blank"} để tạo file composer.phar.
 
-composer.phar のバージョンをEC-CUBE 4.0の対応しているバージョン（1.x）に変更します。
+Cập nhật composer.phar về phiên bản 1.x tương thích với EC-CUBE 4.0.
 
 ```shell
 php composer.phar selfupdate --1
 ```
 
-
-3.composer.pharが入っているディレクトリにコマンドラインで移動していることを確認し、以下のコマンドを実行します。
+3. Đảm bảo bạn đang ở đúng thư mục chứa composer.phar, sau đó chạy lệnh sau:
 
 ```shell
 php composer.phar create-project ec-cube/ec-cube ec-cube "4.1.x-dev" --keep-vcs
 ```
 
-※ 初期状態では SQLite3 を使用します。   
-※ MacのOSによってはphp-intlが入っておらず、エラーとなるケースがあります。homebrewなどで新しいPHPをインストールし、再度お試しください。
+※ Mặc định sử dụng SQLite3.   
+※ Một số phiên bản MacOS có thể thiếu php-intl, hãy cài đặt PHP mới qua homebrew nếu gặp lỗi.
 
-
-4.ec-cube ディレクトリが生成されますので、`cd ec-cube`で移動し、  
-`php bin/console server:run --env=dev` コマンドを実行すると、ビルトインウェブサーバが起動します。
+4. Thư mục ec-cube sẽ được tạo, di chuyển vào đó và chạy web server tích hợp:
 
 ```shell
 cd ec-cube
 php bin/console server:run --env=dev
 ```
 
-5.[http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin){:target='_blank'} にアクセスし、 EC-CUBE の管理ログイン画面が表示されればインストール成功です。  
-以下の ID/Password にてログインしてください。
+5. Truy cập [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin){:target='_blank'} để kiểm tra màn hình đăng nhập quản trị EC-CUBE.  
+Đăng nhập với:
 
 `ID: admin PW: password`
 
-*ビルトインウェブサーバを終了する場合は `Ctrl+C` を押してください*
+*Để dừng web server, nhấn `Ctrl+C`*
 
+#### Nếu muốn thay đổi loại database
 
-
-#### データベースの種類を変更したい場合
-
-インストール後、 `php bin/console eccube:install` コマンドを実行し、 `Database Url` を以下のように設定してください。
+Sau khi cài đặt, chạy lệnh sau và thiết lập `Database Url`:
 
 ```shell
 ## for MySQL
@@ -70,23 +64,23 @@ mysql://<user>:<password>@<host>/<database name>
 postgres://<user>:<password>@<host>/<database name>
 ```
 
-#### Windows 環境を使用する場合
+#### Nếu sử dụng môi trường Windows
 
-`php bin/console eccube:install` コマンドは使用できません。
-代替として、以下のコマンド使用して下さい。
+Không thể sử dụng lệnh `php bin/console eccube:install`.
+Thay vào đó, sử dụng các lệnh sau:
 
 ```shell
-# (optional) データベース削除
+# (tùy chọn) Xóa database
 php bin/console doctrine:database:drop --force
-# データベース作成
+# Tạo database
 php bin/console doctrine:database:create
-# (optional) スキーマ削除
+# (tùy chọn) Xóa schema
 php bin/console doctrine:schema:drop --force
-# スキーマ生成
+# Tạo schema
 php bin/console doctrine:schema:create
-# 初期データ生成
+# Nạp dữ liệu khởi tạo
 php bin/console eccube:fixtures:load
 ```
 
-- *`php bin/console eccube:install` コマンドでは、これらのコマンドを内部的に実行しています。*
-- Symfony と Windows 環境の相性があまり良くないため、動作が大変遅くなる可能性があります。 [Docker Composeを使用してインストールする](/quickstart/docker_compose_install) をおすすめします。
+- *Lệnh `php bin/console eccube:install` thực hiện các lệnh trên bên trong.*
+- Do Symfony không tương thích tốt với Windows, tốc độ có thể rất chậm. Khuyến nghị [Cài đặt bằng Docker Compose](/quickstart/docker_compose_install).

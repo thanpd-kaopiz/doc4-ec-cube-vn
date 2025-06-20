@@ -1,26 +1,25 @@
 ---
-Title: テスト戦略
+Title: Chiến lược kiểm thử
 permalink: /penetration-testing/planning/strategy
 ---
-## ターゲットを把握
+## Nắm rõ đối tượng kiểm thử
 
-ターゲットを把握し、どこをどのようにテストすれば、効果的に漏れなくテストできるか検討します。
+Nắm rõ đối tượng kiểm thử, xác định nên kiểm thử phần nào, kiểm thử như thế nào để đạt hiệu quả tối ưu, không bỏ sót.
 
+- Sơ đồ chuyển trang
+- [Danh sách URL](/penetration-testing/testing/manual_inspection_urls)
+- Tài liệu thiết kế form
 
-- 画面遷移図
-- [URL一覧](/penetration-testing/testing/manual_inspection_urls)
-- フォーム仕様書
+## Phân loại bối cảnh kiểm thử
 
-## コンテキストを分類
+Cơ bản sẽ phân loại theo session:
 
-基本はセッションの分類を基準として分類します
+- Màn hình quản trị
+- Frontend (login)
+- Frontend (guest)
 
-- 管理画面
-- フロント(ログイン)
-- フロント(ゲスト)
+## Xem xét phương pháp kiểm thử
 
-## テスト方法を検討
-
-- どのような手順でテストするか
-- テストに必要なアドオンを検討
-- テストしにくいページや、ファイルアップロードなど、特殊なケースを抽出
+- Kiểm thử theo trình tự nào
+- Xem xét các add-on cần thiết cho kiểm thử
+- Rút ra các trường hợp đặc biệt như trang khó kiểm thử, upload file, v.v.

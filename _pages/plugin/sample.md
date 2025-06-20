@@ -1,30 +1,30 @@
 ---
-title: プラグインサンプル
-keywords: plugin sample プラグイン サンプル
+title: Plugin mẫu
+keywords: plugin mẫu plugin sample
 tags: [quickstart, getting_started]
 permalink: plugin_sample
 
 ---
 
-## 商品レビュープラグイン(ProductReview)
+## Plugin đánh giá sản phẩm (ProductReview)
 
-商品レビューを投稿・表示するプラグインです。
+Đây là plugin cho phép đăng và hiển thị đánh giá sản phẩm.
 
-### カスタマイズ概要
+### Tổng quan tuỳ biến
 
-- フロントページへの表示の追加
-- 入力フォームのあるページの追加
-- データベースへのテーブルの追加と保存
+- Thêm hiển thị vào trang front
+- Thêm trang có form nhập liệu
+- Thêm bảng vào database và lưu dữ liệu
 
-### ダウンロード・詳細
+### Tải về & chi tiết
 
-- [商品レビュープラグイン](https://github.com/EC-CUBE/ProductReview-plugin/){:target="_blank"}
+- [Plugin đánh giá sản phẩm](https://github.com/EC-CUBE/ProductReview-plugin/){:target="_blank"}
 
-## 決済プラグインサンプル
+## Plugin mẫu thanh toán
 
-決済プラグインサンプルです。  
-リンク型クレジットカード決済とトークン型クレジットカード決済およびコンビニ決済の3種類の決済方法を追加できます。
+Đây là plugin mẫu cho thanh toán.  
+Có thể thêm 3 loại thanh toán: thanh toán thẻ tín dụng dạng link, thanh toán thẻ tín dụng dạng token và thanh toán cửa hàng tiện lợi.
 
-### ダウンロード・詳細
+### Tải về & chi tiết
 
-- [決済プラグインサンプル](https://github.com/EC-CUBE/sample-payment-plugin){:target="_blank"}
+- [Plugin mẫu thanh toán](https://github.com/EC-CUBE/sample-payment-plugin){:target="_blank"}

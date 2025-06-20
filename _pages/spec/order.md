@@ -1,178 +1,172 @@
 ---
-title: 受注関連
+title: Liên quan đến đơn hàng
 keywords: spec-order
 tags: [spec, getting_started]
 permalink: spec_order
-summary: 受注関連の機能仕様について解説します。
+summary: Giải thích về các chức năng liên quan đến đơn hàng.
 
 ---
 
-## 受注対応状況の流れ
+## Quy trình xử lý trạng thái đơn hàng
 
-![受注ステートマシーン図](./images/spec/order-statemachine.png)
+![Sơ đồ trạng thái đơn hàng](./images/spec/order-statemachine.png)
 
-[参考: 受注ステートマシンの実装 #3325](https://github.com/EC-CUBE/ec-cube/pull/3325)
+[Tham khảo: Triển khai State Machine cho đơn hàng #3325](https://github.com/EC-CUBE/ec-cube/pull/3325)
 
-### 3系との比較
+### So sánh với phiên bản 3
 
-| ID | 3系<br> mtb_order_status<br>(管理画面側表示) | 3系<br> mtb_customer_order_status<br>(フロント側表示) | 4系<br> mtb_order_status<br>(管理画面側表示) | 4系<br>mtb_customer_order_status<br>(フロント側表示) |
+| ID | 3.x<br> mtb_order_status<br>(Hiển thị phía quản trị) | 3.x<br> mtb_customer_order_status<br>(Hiển thị phía khách) | 4.x<br> mtb_order_status<br>(Hiển thị phía quản trị) | 4.x<br>mtb_customer_order_status<br>(Hiển thị phía khách) |
 |----|----------------------------------------------|-------------------------------------------------------|----------------------------------------------|------------------------------------------------------|
-|  1 | 新規受付                                     | 注文受付                                              | 新規受付                                     | 注文受付                                             |
-|  2 | 入金待ち                                     | 入金待ち                                              | (欠番)                                       | (欠番)                                               |
-|  3 | キャンセル                                   | キャンセル                                            | 注文取り消し                                 | 注文取り消し                                         |
-|  4 | 取り寄せ中                                   | 注文受付                                              | 対応中                                       | 注文受付                                             |
-|  5 | 発送済み                                     | 発送済み                                              | 発送済み                                     | 発送済み                                             |
-|  6 | 入金済み                                     | 注文受付                                              | 入金済み                                     | 注文受付                                             |
-|  7 | 決済処理中                                   | 注文未完了                                            | 決済処理中                                   | 注文受付                                             |
-|  8 | 購入処理中                                   | 注文未完了                                            | 購入処理中                                   | 注文未完了                                           |
-|  9 | (無し)                                       | (無し)                                                | 返品                                         | 返品                                                 |
+|  1 | Tiếp nhận mới                                 | Đã nhận đơn hàng                                     | Tiếp nhận mới                                 | Đã nhận đơn hàng                                    |
+|  2 | Chờ thanh toán                               | Chờ thanh toán                                       | (Bỏ qua)                                     | (Bỏ qua)                                            |
+|  3 | Huỷ đơn                                      | Huỷ đơn                                              | Huỷ đơn hàng                                 | Huỷ đơn hàng                                        |
+|  4 | Đang đặt hàng                                | Đã nhận đơn hàng                                     | Đang xử lý                                    | Đã nhận đơn hàng                                   |
+|  5 | Đã giao hàng                                 | Đã giao hàng                                         | Đã giao hàng                                 | Đã giao hàng                                        |
+|  6 | Đã thanh toán                                | Đã nhận đơn hàng                                     | Đã thanh toán                                | Đã nhận đơn hàng                                   |
+|  7 | Đang xử lý thanh toán                        | Đơn chưa hoàn tất                                    | Đang xử lý thanh toán                        | Đã nhận đơn hàng                                   |
+|  8 | Đang xử lý mua hàng                          | Đơn chưa hoàn tất                                    | Đang xử lý mua hàng                          | Đơn chưa hoàn tất                                  |
+|  9 | (Không có)                                   | (Không có)                                           | Trả hàng                                     | Trả hàng                                            |
 
-- データ移行の事も踏まえて、IDは極力変更はしない。
-- **4: 取り寄せ中** を **4: 対応中** としてまとめる。
-- **2: 入金待ち** を削除。今までのリンク型決済時の入金確認待ち状態である。 **2: 入金待ち** については **7 : 決済処理中** で対応。銀行振込等発送前の入金待ちは **1：新規受付** にて対応するようにする。
-- **3: キャンセル** は **3: 注文取消し** に文言を変更。商品発送前の取り消しに使用する。（返品ステータスが追加されたことにより、分かりやすいよう注文取消しに変更。）
-- 新たに **9 : 返品** を追加する。
+- Để thuận tiện cho việc di chuyển dữ liệu, hạn chế thay đổi ID.
+- **4: Đang đặt hàng** được gộp thành **4: Đang xử lý**.
+- **2: Chờ thanh toán** bị xoá. Trạng thái này trước đây dùng cho các phương thức thanh toán liên kết chờ xác nhận thanh toán. Trạng thái này sẽ được xử lý bằng **7: Đang xử lý thanh toán**. Đối với chuyển khoản ngân hàng hoặc chờ thanh toán trước khi giao hàng sẽ xử lý ở **1: Tiếp nhận mới**.
+- **3: Huỷ đơn** đổi thành **3: Huỷ đơn hàng**. Dùng khi huỷ trước khi giao hàng (do có thêm trạng thái trả hàng nên đổi tên cho dễ hiểu).
+- Thêm mới **9: Trả hàng**.
 
-ステータスの流れとしては、
+Luồng trạng thái chính:
 
-「購入処理中」→「決済処理中」→「新規受付」→「入金済み」または「処理中」→「発送済み」→ 発送後キャンセルがあれば「返品」
+"Đang xử lý mua hàng" → "Đang xử lý thanh toán" → "Tiếp nhận mới" → "Đã thanh toán" hoặc "Đang xử lý" → "Đã giao hàng" → Nếu có huỷ sau khi giao thì chuyển sang "Trả hàng"
 
-が主なステータスの流れとなる。
+#### Xử lý trạng thái khi huỷ đơn/ trả hàng
 
-#### 注文取消し・返品時のステータス処理
+##### Huỷ đơn hàng
 
-##### 注文取消し
+Nếu huỷ trước khi giao hàng, chọn huỷ đơn sẽ hoàn lại tồn kho và điểm thưởng.
 
-発送前にキャンセルがあった場合、注文取消しを選択すると在庫、ポイントの戻しを行う。
+Khi đã chọn "Đã giao hàng" thì không thể chọn "Huỷ đơn hàng" nữa.
 
-「発送済み」が選択されたら「注文取消し」は選択できない。
+##### Trả hàng
 
-##### 返品
+Sau khi giao hàng, nếu có trả hàng thì chọn trả hàng. Khi trả hàng sẽ không hoàn lại tồn kho và điểm thưởng.
 
-発送後、商品の返品があった場合、返品を選択する。返品されても在庫やポイントの戻しを行わない。
+## Quy tắc tính phí
 
-## 料金計算の仕様
+### Sơ đồ ER các bảng liên quan đến đơn hàng
 
-### 受注関連テーブルのER図
+![Sơ đồ ER các bảng liên quan đến đơn hàng](./images/spec/order-erdiagram.png)
 
-![受注関連テーブルのER図](./images/spec/order-erdiagram.png)
+### Những thay đổi chính so với phiên bản 3
 
-### 3系からの主な変更点
+- dtb_shipment_item đổi thành dtb_order_item.
+- dtb_order_detail bị loại bỏ.
+- Quan hệ giữa các bảng đổi thành: dtb_order **1:N** dtb_order_item **N:1** dtb_shipping.
+- Ngoài sản phẩm, các mục như phí vận chuyển, phí xử lý, giảm giá... cũng được quản lý như một dòng chi tiết trong dtb_order_item.
 
-- dtb_shipment_item は dtb_order_item に変更されました。
-- dtb_order_detail は廃止されました。
-- dtb_order **1:N** dtb_order_item **N:1** dtb_shipping という関連に変更されました。
-- 商品以外でも、送料・手数料・値引き等の項目を明細として扱えるよう、 dtb_order_item に注文明細の属性が追加されました。
+### Cách tính toán
 
+Tính tổng số tiền thanh toán dựa trên thuộc tính của từng dòng chi tiết đơn hàng.
+Lưu ý cách tính sẽ khác nhau tuỳ thuộc vào thuộc tính, như ví dụ dưới đây.
 
-### 計算方法
-
-注文明細の属性に従い、お支払い金額を算出します。
-以下の例のように、属性により集計方法が異なりますので注意が必要です。
-
-商品明細は、**税抜価格**で登録されるため集計時に税額分を**加算する**
+Dòng sản phẩm được đăng ký với **giá chưa thuế**, nên khi tính tổng sẽ **cộng thêm phần thuế**.
 
 ```
-明細合計 = (商品単価 x 税率) x 数量
+Tổng dòng = (Đơn giá sản phẩm x Thuế suất) x Số lượng
 ```
 
-送料明細は、**税込価格**で登録されるため集計時に税額分を**加算しない**
+Dòng phí vận chuyển được đăng ký với **giá đã bao gồm thuế**, nên khi tính tổng **không cộng thêm thuế**.
 
 ```
-明細合計 = 送料単価 x 数量
+Tổng dòng = Đơn giá vận chuyển x Số lượng
 ```
 
-[参考: #3420 明細種別ごとの計算結果](https://github.com/EC-CUBE/ec-cube/pull/3420)
+[Tham khảo: #3420 Kết quả tính toán theo loại dòng chi tiết](https://github.com/EC-CUBE/ec-cube/pull/3420)
 
-### 注文明細の属性
+### Thuộc tính dòng chi tiết đơn hàng
 
-#### 注文明細区分
+#### Phân loại dòng chi tiết
 
-| ID | name           | 備考                                           |
+| ID | name           | Ghi chú                                         |
 |----|----------------|------------------------------------------------|
-|  1 | 商品           |                                                |
-|  2 | 送料           |                                                |
-|  3 | 手数料         |                                                |
-|  4 | 値引き         | 主に商品の値引きに使用する。課税値引き。       |
-|  5 | 税             | 注文全体に対して課税する場合などに使用する。   |
-|  6 | ポイント値引き | 利用ポイントの値引きに使用する。不課税値引き。 |
+|  1 | Sản phẩm       |                                                |
+|  2 | Phí vận chuyển |                                                |
+|  3 | Phí xử lý      |                                                |
+|  4 | Giảm giá       | Chủ yếu dùng cho giảm giá sản phẩm. Có tính thuế. |
+|  5 | Thuế           | Dùng khi đánh thuế cho toàn bộ đơn hàng.       |
+|  6 | Giảm giá điểm  | Dùng cho giảm giá bằng điểm thưởng. Không tính thuế. |
 
-#### 課税区分
+#### Phân loại thuế
 
-| ID | name   | 備考           |
-|----|--------|----------------|
-|  1 | 課税   |                |
-|  2 | 不課税 | ポイント値引等 |
-|  3 | 非課税 | 商品券の譲渡等 |
+| ID | name   | Ghi chú           |
+|----|--------|-------------------|
+|  1 | Có thuế |                   |
+|  2 | Không thuế | Giảm giá bằng điểm, v.v. |
+|  3 | Miễn thuế | Chuyển nhượng phiếu quà tặng, v.v. |
 
-#### 税表示区分
+#### Phân loại hiển thị thuế
 
-| ID | name | 備考                               |
-|----|------|------------------------------------|
-|  1 | 税抜 | 商品明細等、税抜価格で登録するもの |
-|  2 | 税込 | 送料等、税込価格で登録するもの     |
+| ID | name | Ghi chú                               |
+|----|------|--------------------------------------|
+|  1 | Chưa thuế | Đăng ký với giá chưa thuế (sản phẩm, v.v.) |
+|  2 | Đã bao gồm thuế | Đăng ký với giá đã bao gồm thuế (phí vận chuyển, v.v.) |
 
-### ポイントの計算
+### Tính điểm thưởng
 
-#### ポイント利用時の計算
-
-```
-ポイント値引き額 = 利用ポイント * ポイント換算レート
-```
-
-端数は切り捨てられます。課税区分は不課税です。
-
-
-#### ポイント加算時の計算
-
-商品明細に対して加算ポイントが計算されます。
+#### Tính toán khi sử dụng điểm thưởng
 
 ```
-加算ポイント = 商品単価(税抜) * ポイント付与率 * 数量
+Số tiền giảm giá bằng điểm = Số điểm sử dụng * Tỷ lệ quy đổi điểm
 ```
 
-利用ポイントがある場合は、ポイント値引き額分が控除されます。
+Làm tròn xuống phần lẻ. Phân loại thuế là không thuế.
+
+#### Tính toán khi cộng điểm thưởng
+
+Điểm thưởng được tính trên dòng sản phẩm.
 
 ```
-控除ポイント = ポイント値引き額 * ポイント付与率 * 数量
+Điểm cộng = Đơn giá sản phẩm (chưa thuế) * Tỷ lệ cộng điểm * Số lượng
 ```
 
-加算ポイントと、控除ポイントの合計が、該当の注文で加算される最終的なポイント合計となります。
+Nếu có sử dụng điểm thưởng, số điểm giảm giá sẽ bị trừ đi.
 
-### 送料無料条件の計算
+```
+Điểm trừ = Số tiền giảm giá bằng điểm * Tỷ lệ cộng điểm * Số lượng
+```
 
-送料無料条件を設定した場合、お届け先ごとに商品合計金額(税込)の集計を行ない、送料無料条件の判定をします。
+Tổng điểm cộng và điểm trừ là tổng điểm cuối cùng được cộng cho đơn hàng đó.
 
-例) 送料無料条件:3,000円の場合
+### Tính điều kiện miễn phí vận chuyển
 
-| お届け先  | 商品合計金額 | 送料無料判定 |
-|-----------|--------------|--------------|
-| お届け先A | 2,900        | ×           |
-| お届け先B | 3,200        | ○           |
+Khi thiết lập điều kiện miễn phí vận chuyển, hệ thống sẽ tính tổng giá trị sản phẩm (đã bao gồm thuế) cho từng địa chỉ nhận hàng để xác định điều kiện miễn phí vận chuyển.
 
+Ví dụ: Điều kiện miễn phí vận chuyển: 3,000 yên
 
-### 消費税の設定
+| Địa chỉ nhận hàng | Tổng giá trị sản phẩm | Được miễn phí vận chuyển |
+|-------------------|----------------------|-------------------------|
+| Địa chỉ A         | 2,900                | ×                       |
+| Địa chỉ B         | 3,200                | ○                       |
 
-### 商品別税率設定について
+### Thiết lập thuế tiêu thụ
 
-商品別税率設定は、以下の設定が可能です。
+### Về thiết lập thuế suất theo sản phẩm
 
-- 商品登録画面で税率を設定できる(規格なし商品)
-- 商品規格登録画面で、税率を設定できる(規格あり商品)
-- 空を登録した場合はdtb_tax_ruleの税率を削除する
+Có thể thiết lập các tuỳ chọn sau:
 
-以下の制限事項があります。
+- Thiết lập thuế suất trên màn hình đăng ký sản phẩm (sản phẩm không có phân loại)
+- Thiết lập thuế suất trên màn hình đăng ký phân loại sản phẩm (sản phẩm có phân loại)
+- Nếu để trống sẽ xoá thuế suất trong dtb_tax_rule
 
-- 共通税率のように、履歴は保持されません。
-- 商品登録・編集時は個別税率は常に更新されます。
-- 受注編集時は、
-   - 個別税率が適用された商品明細は、常に最新の値で更新されます。
-   - 商品に登録されている税率が削除された場合、基本税率が適用されます。
+Một số lưu ý:
 
-### 販売種別について
+- Không lưu lịch sử như thuế suất chung.
+- Khi đăng ký/chỉnh sửa sản phẩm, thuế suất riêng luôn được cập nhật.
+- Khi chỉnh sửa đơn hàng:
+   - Dòng chi tiết có thuế suất riêng luôn được cập nhật với giá trị mới nhất.
+   - Nếu thuế suất trên sản phẩm bị xoá, sẽ áp dụng thuế suất cơ bản.
 
-販売種別を設定することにより、販売種別ごとに決済手段を分けることが可能です。
+### Về loại hình bán hàng
 
-異なる販売種別の商品を同時にカートへ投入すると、販売種別ごとにカートが分割されます。
-カートごとに、ご注文手続きを進めることができます。
+Có thể thiết lập loại hình bán hàng để phân tách phương thức thanh toán theo từng loại hình.
+
+Nếu thêm các sản phẩm thuộc loại hình bán hàng khác nhau vào giỏ cùng lúc, giỏ sẽ được tách riêng theo từng loại hình. Người dùng sẽ tiến hành đặt hàng cho từng giỏ riêng biệt.
 

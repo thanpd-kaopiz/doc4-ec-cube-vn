@@ -1,111 +1,106 @@
 ---
-title: 商品別税率設定が適用されない不具合について
+title: Về lỗi không áp dụng được thuế suất riêng cho từng sản phẩm
 tags: [spec, getting_started]
 permalink: workaround-product-tax-rule
-summary: 一定条件下で商品別税率設定が適用されない不具合の原因と対策。
+summary: Nguyên nhân và cách khắc phục lỗi không áp dụng được thuế suất riêng cho từng sản phẩm trong một số điều kiện nhất định.
 ---
 
-## 商品別税率設定が適用されない不具合について
+## Về lỗi không áp dụng được thuế suất riêng cho từng sản phẩm
 
-増税に伴い、基本税率設定に10%の設定追加や、軽減税率対応のため商品別税率設定を適用する際、特定の時系列で設定を行なった場合に、商品購入時の税率に商品別税率設定が適用されない不具合が発生しています。
+Khi tăng thuế, thêm thiết lập thuế suất cơ bản 10% hoặc áp dụng thuế suất giảm nhẹ, nếu thực hiện thiết lập thuế suất riêng cho từng sản phẩm theo một trình tự thời gian nhất định, có thể xảy ra lỗi không áp dụng được thuế suất riêng khi mua hàng.
 
-以下の「対象となるケース」から、不具合の発生する設定を行なっていないかご確認いただき、対象となる場合は「不具合の回避方法」にある手順を適用してください。
+Vui lòng kiểm tra lại các trường hợp trong mục "Trường hợp bị ảnh hưởng" bên dưới để xác định xem bạn có gặp phải lỗi này không, và nếu có, hãy áp dụng các bước trong mục "Cách khắc phục lỗi".
 
-## 不具合の内容と対策
+## Nội dung và đối sách của lỗi
 
-### 不具合の内容
+### Nội dung lỗi
 
-EC-CUBEの本体バージョンが４系または３系で、基本税率設定を設定する際の「適用日時」より前に、商品別税率設定作業をすると、商品の購入時に基本税率設定の税率が適用されます。
+Nếu bạn sử dụng EC-CUBE phiên bản 3 hoặc 4, khi thiết lập "Thời điểm áp dụng" cho thuế suất cơ bản, nếu thực hiện thiết lập thuế suất riêng cho từng sản phẩm trước thời điểm này, khi mua hàng sẽ áp dụng thuế suất cơ bản thay vì thuế suất riêng.
 
-### 対象となるケース
+### Trường hợp bị ảnh hưởng
 
-今回の商品別税率設定が適用されない不具合に関しては、以下の全てに該当している場合に問題が発生します。
+Lỗi này xảy ra khi đồng thời thoả mãn tất cả các điều kiện sau:
 
-- EC-CUBEの本体バージョンが４系または３系である
-- 基本税率設定で基本税率の設定を追加している
-- 基本税率設定で追加した税率設定の「適用日時」より前に、商品別税率設定の作業をされている
+- Sử dụng EC-CUBE phiên bản 3 hoặc 4
+- Đã thêm thiết lập thuế suất cơ bản
+- Đã thực hiện thiết lập thuế suất riêng cho từng sản phẩm trước "Thời điểm áp dụng" của thuế suất cơ bản vừa thêm
 
-例として、今回の不具合の対象となるケースは、以下の図のように基本税率設定で10%の税率の「適用日時」を `2019年10月1日 00:00:00` に設定されている状態で、商品別税率設定の作業を、`2019年10月1日 00:00:00` より前の日時に実施した場合に発生します。
+Ví dụ, nếu thiết lập "Thời điểm áp dụng" thuế suất cơ bản 10% là `2019-10-01 00:00:00`, nhưng thực hiện thiết lập thuế suất riêng cho từng sản phẩm trước thời điểm này, lỗi sẽ xảy ra như hình dưới.
 
 ![](./images/tax_setting_time_series.png)
 
-### 不具合の対策
+### Cách khắc phục lỗi
 
-商品の購入時、「dtb_tax_rule」テーブルの、「apply_date（適用日時）」を元にその商品に適用される税率を取得します。
+Khi mua hàng, hệ thống sẽ lấy thuế suất áp dụng cho sản phẩm dựa trên trường "apply_date (thời điểm áp dụng)" trong bảng "dtb_tax_rule".
 
-税率設定は、「apply_date（適用日時）」が最新かつ現在までの日時である方を優先します。
-商品別税率設定は、設定作業を行った日時で「apply_date（適用日時）」が登録されます。
-商品別税率設定の「apply_date（適用日時）」が、基本税率設定で設定されている「apply_date（適用日時）」より、新しい日時に設定すれば不具合を回避できます。
+Thuế suất có "apply_date" mới nhất và không vượt quá thời điểm hiện tại sẽ được ưu tiên.
+Thuế suất riêng cho từng sản phẩm sẽ được đăng ký với "apply_date" là thời điểm thực hiện thiết lập.
+Nếu "apply_date" của thuế suất riêng mới hơn "apply_date" của thuế suất cơ bản, lỗi sẽ được khắc phục.
 
-不具合の詳細に関しては、[こちら](https://github.com/EC-CUBE/ec-cube/issues/4330){:target="_blank"}からご確認ください。
+Xem chi tiết về lỗi tại [đây](https://github.com/EC-CUBE/ec-cube/issues/4330){:target="_blank"}.
 
+## Cách khắc phục lỗi
 
-## 不具合の回避方法
+※ Nếu bạn đang sử dụng phiên bản không phải mới nhất, vui lòng nâng cấp lên phiên bản mới nhất trước.
 
-※ 最新版でないバージョンをご利用の場合は、事前に最新版へバージョンアップをしてください。
+### Cách khắc phục bằng thao tác trên giao diện quản trị
 
-
-### 運用での回避方法
-
-#### 基本税率の設定を商品別税率設定作業前の日時に設定する方法
+#### Cách thiết lập thời điểm áp dụng thuế suất cơ bản trước khi thiết lập thuế suất riêng cho từng sản phẩm
 
 ![](./images/workaround-product-tax-rule_1.png)
 
-1. 管理画面「店舗設定/税率設定」を開き、登録した基本税率設定の「編集」ボタンをクリックします。
-1. 「適用日時」を、 `商品別税率の設定作業をした日時` 以前の値に変更します。
-1. 「決定」ボタンで設定を保存します。
+1. Mở màn hình quản trị "Cài đặt cửa hàng/Thiết lập thuế suất", nhấn nút "Chỉnh sửa" ở thuế suất cơ bản đã đăng ký.
+1. Đổi "Thời điểm áp dụng" thành giá trị trước thời điểm thực hiện thiết lập thuế suất riêng cho từng sản phẩm.
+1. Nhấn nút "Lưu" để lưu thiết lập.
 
-#### 商品別税率を基本税率の適用日時以降に設定する方法
+#### Cách thiết lập thuế suất riêng cho từng sản phẩm sau thời điểm áp dụng thuế suất cơ bản
 
-基本税率設定で追加した税率の「適用日時」が `2019年10月1日 00:00:00` に設定されている場合は、 `2019年10月1日 00:00:00` 以降に、以下の手順で商品別税率を設定し、不具合を回避してください。
+Nếu "Thời điểm áp dụng" của thuế suất cơ bản là `2019-10-01 00:00:00`, hãy thực hiện thiết lập thuế suất riêng cho từng sản phẩm sau thời điểm này theo các bước sau để tránh lỗi.
 
-商品別税率設定の適用日時が、基本税率設定の適用日時より新しい日時に設定されるので、商品別税率が優先して適用されます。
+Khi đó, "apply_date" của thuế suất riêng sẽ mới hơn "apply_date" của thuế suất cơ bản, nên thuế suất riêng sẽ được ưu tiên áp dụng.
 
 ![](./images/workaround-product-tax-rule_2.png)
 
-1. すでに商品別税率を設定されている場合は、一度設定を解除していただく必要がございます。適用する商品の編集画面を表示し、税率の入力フォームを、未入力の状態に変更してください。
-1. 「登録」ボタンをクリック（１回目）し設定を保存します。
+1. Nếu đã thiết lập thuế suất riêng cho từng sản phẩm, cần xoá thiết lập đó trước. Trên màn hình chỉnh sửa sản phẩm, xoá giá trị ở trường thuế suất.
+1. Nhấn nút "Đăng ký" (lần 1) để lưu thiết lập.
 
 ![](./images/workaround-product-tax-rule_3.png)
 
-3. 保存が完了したら、そのまま税率の入力フォームに、商品別税率の値を入力します。
-1. 「登録」ボタンをクリック（２回目）し設定を保存します。
+3. Sau khi lưu, nhập lại giá trị thuế suất riêng cho từng sản phẩm.
+1. Nhấn nút "Đăng ký" (lần 2) để lưu thiết lập.
 
-**※ EC-CUBE4.0.3では、商品別税率の設定対象の商品が多い場合は、「商品CSV登録」でも同様に商品別税率の初期化と再登録を行うことで更新を行えます。ただし、デフォルトでは商品CSVの税率項目が有効になっていないので、管理画面「店舗設定/CSV出力項目設定」で、「CSV種別」から `商品CSV` を選択し、 `税率` の項目を「出力する項目」に追加してください。**
+**※ Trên EC-CUBE4.0.3, nếu có nhiều sản phẩm cần thiết lập thuế suất riêng, bạn cũng có thể thực hiện khởi tạo và đăng ký lại thuế suất riêng bằng chức năng "Đăng ký CSV sản phẩm". Tuy nhiên, mặc định trường thuế suất trong CSV sản phẩm bị ẩn, nên cần vào "Cài đặt cửa hàng/Cài đặt trường xuất CSV", chọn loại CSV là `CSV sản phẩm` và thêm trường `Thuế suất` vào mục "Trường xuất".**
 
+### Cách khắc phục cho kỹ thuật viên
 
-### 技術者向けの回避方法
+#### Cập nhật dữ liệu bằng SQL
 
-#### SQLでデータベースを更新する方法
+Ví dụ dưới đây giả định "Thời điểm áp dụng" của thuế suất cơ bản là `2019-10-01 00:00:00`.
+Khi cập nhật bằng SQL, hãy kiểm tra kỹ giá trị và điều kiện trước khi thực hiện.
 
-以下の値の例は、基本税率設定で追加した税率の「適用日時」が `2019年10月1日 00:00:00` で設定されていることを前提としています。
-SQLで更新をする場合は、更新する値や条件をご確認の上更新してください。
+Nếu dùng MySQL, hãy thiết lập `time_zone` phù hợp với môi trường trước khi cập nhật.
 
-MySQLをご使用の場合は、環境に合わせて `time_zone` を設定し更新してください。
-
-例) MySQLでtime_zoneをJSTに変更する場合
+Ví dụ: Đổi time_zone sang JST trên MySQL
 
 ```SET time_zone = '+09:00';```
 
+###### ・Cập nhật theo ID tuỳ ý
 
-###### ・任意のIDに対して更新する場合
+```UPDATE dtb_tax_rule SET apply_date = '2019-10-01 00:00:01' WHERE id = [id tuỳ ý];```
 
-```UPDATE dtb_tax_rule SET apply_date = '2019-10-01 00:00:01' WHERE id = [任意のid];```
-
-###### ・「product_class_id」がNULLでないレコードを更新する場合
+###### ・Cập nhật các bản ghi có "product_class_id" khác NULL
 
 ```UPDATE dtb_tax_rule SET apply_date = '2019-10-01 00:00:01' WHERE product_class_id IS NOT NULL;```
 
-**※ EC-CUBEのデフォルトの仕様では、商品別率設定で登録されたレコードは、「product_class_id」に商品規格のIDが登録されます。**
+**※ Theo mặc định của EC-CUBE, các bản ghi thuế suất riêng cho từng sản phẩm sẽ có "product_class_id" là ID của phân loại sản phẩm.**
 
-### EC-CUBE 3.0.x系の場合の回避方法
+### Cách khắc phục cho EC-CUBE 3.0.x
 
-EC-CUBE3系においても同様の不具合が発生します。
-EC-CUBE3系では上記の回避対応に加えて、<u>ソースコードの修正も必要</u>となります。(ソースコードの修正を行わないと商品別税率が反映されません)
+Lỗi này cũng xảy ra trên EC-CUBE 3.x.
+Ngoài các cách khắc phục trên, <u>cần sửa mã nguồn</u> (nếu không sửa mã nguồn thì thuế suất riêng sẽ không được áp dụng).
 
-修正ファイル：  
+File cần sửa:  
 src/Eccube/Repository/TaxRuleRepository.php
-差分コード：  
+Diff code:  
 [https://github.com/EC-CUBE/ec-cube/pull/4310/files#diff-9ebf9d0c89cef624ee2648733e557603](https://github.com/EC-CUBE/ec-cube/pull/4310/files#diff-9ebf9d0c89cef624ee2648733e557603)
-修正後の動作確認：  
-商品別税率が購入時の価格に反映されていることを確認してください。
+Sau khi sửa, hãy xác nhận lại rằng thuế suất riêng đã được áp dụng đúng khi mua hàng.

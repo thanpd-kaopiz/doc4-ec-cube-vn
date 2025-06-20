@@ -1,108 +1,107 @@
 ---
-title: Docker Composeを使用してインストールする
-keywords: install Docker docker-composer
+title: Cài đặt bằng Docker Compose
+keywords: cài đặt Docker docker-composer
 tags: [quickstart, install, docker, docker-compose]
 permalink: quickstart/docker_compose_install
 folder: quickstart
 ---
 
-
 ---
 
-[EC-CUBE4.0.5以下のバージョンをお使いの場合はこちらをご覧ください。](/quickstart/install_docker-compose_405orlower)
+[Nếu bạn sử dụng EC-CUBE4.0.5 trở xuống, hãy xem tại đây.](/quickstart/install_docker-compose_405orlower)
 
-**開発環境として関連サービス(DB、メールデバッグ環境等)も含め手軽に一括構築したい場合におすすめの方法です**
+**Khuyến nghị cho môi trường phát triển khi muốn xây dựng nhanh chóng kèm các dịch vụ liên quan (DB, môi trường debug mail, ...)**
 
-+ 前提として、 [Docker Desktop のインストール](https://hub.docker.com){:target="_blank"} が必要です。
-  + Windowsの場合は [Docker Desktop WSL 2 バックエンド](https://docs.docker.jp/docker-for-windows/wsl.html#docker-desktop-wsl-2){:target="_blank"} モードで動作させ、Linuxファイルシステム上にワークスペースを作成することで良好なパフォーマンスが得られます。
-+ 初期状態では SQLite3 を使用します
++ Yêu cầu cài đặt trước [Docker Desktop](https://hub.docker.com){:target="_blank"}.
+  + Với Windows, nên sử dụng [Docker Desktop WSL 2 Backend](https://docs.docker.jp/docker-for-windows/wsl.html#docker-desktop-wsl-2){:target="_blank"} và tạo workspace trên hệ thống file Linux để đạt hiệu năng tốt.
++ Mặc định sử dụng SQLite3.
 
 ```shell
 cd path/to/ec-cube
 
-# コンテナの起動 (初回のみビルド処理あり)
+# Khởi động container (lần đầu sẽ build)
 docker-compose up -d
 
-# 初回はインストールスクリプトを実行( **`www-data` ユーザで実行する点、非対話モードを使用する点に注意！** )
+# Lần đầu cần chạy script cài đặt (LƯU Ý: chạy bằng user `www-data` và chế độ không tương tác!)
 docker-compose exec -u www-data ec-cube bin/console eccube:install -n
 ```
 
-2回目以降の起動時も同様のコマンドを使用します。
+Các lần khởi động sau cũng dùng lệnh tương tự.
 
 ```shell
-# コンテナの起動
+# Khởi động container
 docker-compose up -d
 
-# コンテナの停止
+# Dừng container
 docker-compose down
 ```
 
-docker-compose を使用したインストールでは、基本的な設定は `.env` ではなく、 `docker-compose.yml` の `environment` の項目で設定します。(詳細は[.env の使用について](#env-の使用について)の項目をご覧ください。)
-**また、 `eccube:install` コマンドの対話モードは使用できません。必ず非対話モード(`-n` オプション)を付与してください。**
+Khi cài đặt bằng docker-compose, các thiết lập cơ bản sẽ nằm trong mục `environment` của file `docker-compose.yml` (xem thêm ở phần [Sử dụng .env](#env-の使用について)).
+**Lưu ý: phải dùng chế độ không tương tác (`-n`) khi chạy lệnh `eccube:install`.**
 
-各種 `docker-compose.*.yml` を指定することで、ローカルディレクトリをマウントしたり、データベースを変更することができます。
+Có thể chỉ định các file `docker-compose.*.yml` để mount thư mục local hoặc thay đổi database.
 
-#### PostgreSQL を使用する場合
+#### Sử dụng PostgreSQL
 
-`docker-compose.pgsql.yml` を指定します。
+Chỉ định file `docker-compose.pgsql.yml`.
 
 ``` shell
 docker-compose -f docker-compose.yml -f docker-compose.pgsql.yml up -d
 ```
 
-データベーススキーマを初期化していない場合は、以下の実行が必要です。
+Nếu chưa khởi tạo schema database, chạy thêm:
 
 ```
-# スキーマ作成+初期データ投入
+# Tạo schema + nạp dữ liệu mẫu
 docker-compose -f docker-compose.yml -f docker-compose.pgsql.yml exec ec-cube composer run-script compile
 ```
 
-#### MySQL を使用する場合
+#### Sử dụng MySQL
 
-`docker-compose.mysql.yml` を指定します。
+Chỉ định file `docker-compose.mysql.yml`.
 
 ``` shell
 docker-compose -f docker-compose.yml -f docker-compose.mysql.yml up -d
 ```
 
-データベーススキーマを初期化していない場合は、以下の実行が必要です。
+Nếu chưa khởi tạo schema database, chạy thêm:
 
 ```
-# スキーマ作成+初期データ投入
+# Tạo schema + nạp dữ liệu mẫu
 docker-compose -f docker-compose.yml -f docker-compose.mysql.yml exec ec-cube composer run-script compile
 ```
 
-#### ローカルディレクトリをマウントする場合
+#### Mount thư mục local
 
-`docker-compose.dev.yml` を指定します。
+Chỉ định file `docker-compose.dev.yml`.
 
 ```
-## MySQL を使用する例
+## Ví dụ dùng MySQL
 docker-compose -f docker-compose.yml -f docker-compose.mysql.yml -f docker-compose.dev.yml up -d
 ```
 
-#### .env の使用について
+#### Sử dụng .env
 
-docker-compose を使用したインストールでは、 `DATABASE_URL` などの各種環境変数は `docker-compose.*.yml` の `environment` の項目で設定します。
+Khi cài đặt bằng docker-compose, các biến môi trường như `DATABASE_URL` nên được thiết lập trong mục `environment` của file `docker-compose.*.yml`.
 
-`.env` を使用したい場合は、以下のように設定し ec-cube コンテナを up することで利用できます。
+Nếu muốn sử dụng `.env`, hãy làm như sau:
 
-1. `docker-compose*.yml` で `APP_ENV: ~` とする
-1. ローカルディレクトリの `.env` の `APP_ENV` をコメントアウトする
+1. Trong `docker-compose*.yml`, đặt `APP_ENV: ~`
+2. Trong file `.env` local, comment dòng `APP_ENV`
 
-各種環境変数の設定される優先順位は以下の通りです。
+Thứ tự ưu tiên của các biến môi trường:
 
-1. `docker-compose*.yml` の `environment`
-1. ローカルディレクトリの `.env` (phpdotenv ではなく docker-compose 経由で設定される)
-1. ec-cube コンテナの `.env` (phpdotenv で設定される)
+1. `environment` trong `docker-compose*.yml`
+2. `.env` local (thiết lập qua docker-compose, không phải php dotenv)
+3. `.env` trong container ec-cube (thiết lập qua php dotenv)
 
-#### ファイルの同期
+#### Đồng bộ file
 
-docker-composeを用いてインストールした場合、ホストのローカルディレクトリとコンテナ上のファイルは同期します。`.env`等の設定ファイルについても、ホスト上のファイルを直接編集します。
+Khi cài đặt bằng docker-compose, thư mục local và file trong container sẽ được đồng bộ. Các file cấu hình như `.env` cũng chỉnh sửa trực tiếp trên host.
 
-なお、一部環境において著しいパフォーマンスの劣化が発生する場合があるため、以下のフォルダは同期の対象から除外しています。
+Lưu ý: một số thư mục sẽ bị loại khỏi đồng bộ để tránh giảm hiệu năng nghiêm trọng:
  - /var
  - /vendor
  - /node_modules
 
-上記除外対象のフォルダについてはDocker Volumeを用いて別途永続化を行っています。
+Các thư mục này sẽ được lưu trữ riêng bằng Docker Volume.

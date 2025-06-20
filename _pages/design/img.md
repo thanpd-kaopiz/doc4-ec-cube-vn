@@ -1,104 +1,102 @@
 ---
-title: 画像管理について
-keywords: design img customize
-tags: [design]
+title: Quản lý hình ảnh
+keywords: thiết kế hình ảnh tùy chỉnh
+tags: [thiết kế]
 permalink: design_img
-summary: 画像管理や呼び出し方などの説明
+summary: Giải thích về quản lý hình ảnh và cách gọi hình ảnh.
 ---
 
-## 画像について
-デザインカスタマイズの際に、画像を追加したい場合<br>
-ディレクトリに直接追加する方法と、管理画面からアップロードする方法があります。
+## Về hình ảnh
+Khi muốn thêm hình ảnh khi tùy chỉnh thiết kế<br>
+Có hai cách: thêm trực tiếp vào thư mục hoặc upload từ trang quản trị.
 
-## ディレクトリに直接追加する方法
+## Cách thêm trực tiếp vào thư mục hình ảnh
 
-### 画像ディレクトリのパス
+### Đường dẫn thư mục hình ảnh
 
-- 標準ディレクトリ<br>
+- Thư mục mặc định<br>
     `ECCUBEROOT/html/template/default/assets/img/`<br>
-    ※EC-CUBEがインストールされているディレクトリを ECCUBEROOT とします。
+    ※ ECCUBEROOT là thư mục cài đặt EC-CUBE.
 
-- オリジナルのデザインテンプレート配置時の標準ディレクトリ<br>
+- Thư mục mặc định khi sử dụng template thiết kế riêng<br>
     `ECCUBEROOT/html/template/[template_code]/assets/img/`<br>
-    → [template_code]とは、テンプレートを識別するためのコード。<br>
-    標準ではフロントの場合「default」
+    → [template_code] là mã nhận diện template.<br>
+    Mặc định với frontend là "default"
 
 
-## 画像へのリンク方法
-画像を呼び出したい場合は、twig形式で以下の様に書きます。
+## Cách liên kết tới hình ảnh
+Khi muốn gọi hình ảnh, hãy viết theo cú pháp twig như sau:
 ```twig
-{% raw %}{{ asset('assets/img/ディレクトリ名/画像名') }}{% endraw %}
+{% raw %}{{ asset('assets/img/tên_thư_mục/tên_hình_ảnh') }}{% endraw %}
 ```
 
-例）topディレクトリの中のhoge.jpgを表示したい場合
+Ví dụ: muốn hiển thị hình hoge.jpg trong thư mục top
 ```twig
 {% raw %}<img src="{{ asset('assets/img/top/hoge.jpg') }}" alt="hoge">{% endraw %}
 ```
 
-以下の書き方も可能です。※ただしデザインテンプレートを切り替えた際に表示されなくなります。
+Cũng có thể viết như sau, nhưng khi đổi template có thể không hiển thị:
 ```html
 <img src="html/template/defult/assets/img/top/hoge.jpg" alt="hoge">
 ```
 
-## 管理画面から画像追加する方法
-ec-cube.coやサーバーにアップロードする方法が難しい場合でも、<br>管理画面から画像ファイルを追加する事が可能です。
+## Cách thêm hình ảnh từ trang quản trị
+Ngay cả khi không thể upload lên ec-cube.co hoặc server, bạn vẫn có thể thêm file hình ảnh từ trang quản trị.
 
-### 画像のアップロード
-[コンテンツ管理] -> [ファイル管理]からアップロード可能です。
+### Upload hình ảnh
+Từ [Quản lý nội dung] -> [Quản lý file] có thể upload hình ảnh.
 
-画像以外のファイルもアップロードが可能となるので、<br>
-アップロードする際にはassetsフォルダ内にimgフォルダを追加することをお勧めします。
+Ngoài hình ảnh, bạn cũng có thể upload các file khác.<br>
+Khi upload, nên tạo thư mục img trong assets để quản lý dễ dàng hơn.
 
-![フォルダを追加してimgフォルダを表示した図](./images/design/design-img-01.png)
+![Thêm thư mục và hiển thị thư mục img](./images/design/design-img-01.png)
 
-ファイルを追加より、ファイル選択しアップロードボタンを押すと追加が可能です。<br>
-※ファイル選択時に、複数選択（ShiftキーやCtrlキー）すると、複数を同時にアップロードが可能です。
+Chọn file từ "Thêm file", sau đó nhấn nút upload để thêm file.<br>
+※ Có thể chọn nhiều file cùng lúc bằng Shift hoặc Ctrl khi chọn file.
 
-![ファイルを追加した図](./images/design/design-img-02.png)
-
-
-
-### 管理画面からアップした画像ディレクトリのパス
-アップロードした画像は、user_data内に格納されます。
-
-- アップした画像へのディレクトリ<br>
-    `ECCUBEROOT/html/user_data/assets/作成したフォルダ/アップした画像`<br>
-    ※EC-CUBEがインストールされているディレクトリを ECCUBEROOT とします。
-
-### 管理画面からアップした画像へのリンク方法
-アップロードした画像は、ファイル一覧に追加されています。<br>
-一覧の![ファイルを追加した図](./images/design/design-img-04.png)コピーアイコンをクリックすることで、画像へのリンクが表示され、同時にコピーされた状態となります。
-
-![ファイルを追加した図](./images/design/design-img-03.png)
+![Đã thêm file](./images/design/design-img-02.png)
 
 
-例）imgフォルダ内のhoge.pngを表示したい場合
+### Đường dẫn thư mục chứa hình ảnh upload từ trang quản trị
+Hình ảnh upload sẽ được lưu trong thư mục user_data.
+
+- Đường dẫn tới hình ảnh upload<br>
+    `ECCUBEROOT/html/user_data/assets/tên_thư_mục/tên_hình_ảnh`<br>
+    ※ ECCUBEROOT là thư mục cài đặt EC-CUBE.
+
+### Cách liên kết tới hình ảnh upload từ trang quản trị
+Hình ảnh upload sẽ xuất hiện trong danh sách file.<br>
+Nhấn vào icon copy để lấy link hình ảnh và tự động copy vào clipboard.
+
+![Đã thêm file](./images/design/design-img-04.png)
+
+Ví dụ: muốn hiển thị hình hoge.png trong thư mục img
 ```html
 <img src="/html/user_data/assets/img/hoge.png" alt="hoge">
 ```
 
-以下の書き方も可能です。
+Cũng có thể viết như sau:
 ```twig
 {% raw %}<img src="{{ asset('assets/img/hoge.png','user_data') }}" alt="hoge">{% endraw %}
 ```
 
 
-## 【番外】商品管理>商品登録よりアップした画像について
-管理画面より、商品登録の際にアップした画像については、また別のディレクトリに保存されます。<br>
-こちらについては、直接追加することはお勧めできません。
+## 【Bổ sung】Về hình ảnh upload từ Quản lý sản phẩm > Đăng ký sản phẩm
+Hình ảnh upload khi đăng ký sản phẩm sẽ được lưu ở thư mục khác.<br>
+Không nên thêm trực tiếp vào thư mục này.
 
- - 商品登録からアップした画像ディレクトリのパス<br>
+ - Đường dẫn tới hình ảnh upload từ đăng ký sản phẩm<br>
     `ECCUBEROOT/html/upload/save_image/`<br>
-    ※EC-CUBEがインストールされているディレクトリを ECCUBEROOT とします。
+    ※ ECCUBEROOT là thư mục cài đặt EC-CUBE.
 
-### 商品登録からアップした画像へのリンク方法
-画像を呼び出したい場合は、twig形式で以下の様に書きます。
+### Cách liên kết tới hình ảnh upload từ đăng ký sản phẩm
+Khi muốn gọi hình ảnh, hãy viết theo cú pháp twig như sau:
 ```twig
-{% raw %}{{ asset('画像名', 'save_image') }}{% endraw %}
+{% raw %}{{ asset('tên_hình_ảnh', 'save_image') }}{% endraw %}
 ```
-商品登録時にアップした画像は名前が変更されるので、商品詳細ページにて表示された画像名をソースコードより確認ください。
+Tên hình ảnh sẽ bị đổi khi upload, hãy kiểm tra tên hình ảnh hiển thị trên trang chi tiết sản phẩm.
 
-例）商品画像のhoge-1.jpgを表示したい場合
+Ví dụ: muốn hiển thị hình hoge-1.jpg
 ```twig
 {% raw %}<img src="{{ asset('hoge-1.jpg', 'save_image') }}" alt="hoge">{% endraw %}
 ```

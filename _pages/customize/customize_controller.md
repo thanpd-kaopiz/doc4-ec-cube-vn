@@ -1,23 +1,21 @@
 ---
 layout: single
-title: Controllerのカスタマイズ
-keywords: core カスタマイズ コントローラ
+title: Tuỳ biến Controller
+keywords: core tuỳ biến controller
 tags: [core, controller]
 permalink: customize_controller
 folder: customize
 ---
 
-
 ---
 
-## 新しいルーティングの追加
+## Thêm routing mới
 
-`@Route` アノテーションを付与したクラスファイルを `./app/Customize/Controller/` 以下に配置することで、サイトに新しいルーティングを追加することが可能です。  
+Bạn có thể thêm routing mới cho site bằng cách đặt file class có annotation `@Route` vào thư mục `./app/Customize/Controller/`.
 
-以下は最もシンプルなルーティング追加の例です。  
-`http://サイトURL/sample` にアクセスすると"Hello sample page !"と表示するルーティングを追加しています。
+Ví dụ đơn giản nhất dưới đây sẽ thêm routing để khi truy cập `http://siteURL/sample` sẽ hiển thị "Hello sample page !".
 
-### Controllerファイル
+### File Controller
 
 ./app/Customize/Controller/SamplePageController.php
 
@@ -43,12 +41,12 @@ class SamplePageController
 }
 ```
 
-## テンプレートファイルの利用
+## Sử dụng file template
 
-`@Template` を利用することで、Twigのテンプレートファイルを利用することができます。  
-以下のサンプルは、`http://サイトURL/sample` にアクセスすると"Hello EC-CUBE !"と表示します。
+Bạn có thể sử dụng file template Twig bằng annotation `@Template`.
+Ví dụ sau sẽ hiển thị "Hello EC-CUBE !" khi truy cập `http://siteURL/sample`.
 
-### Controllerファイル
+### File Controller
 
 ```php
 <?php
@@ -74,23 +72,19 @@ class SamplePageController
 }
 ```
 
-
-### Twigファイル
+### File Twig
 
 ./app/template/default/Sample/index.twig
 
 ```twig
-
 <h3>Hello {{ name }} !</h3>
-
 ```
 
-## カスタマイズのヒント
+## Một số mẹo tuỳ biến
 
-### URLからパラメータを受け取る
+### Nhận tham số từ URL
 
-`http://サイトURL/sample/1` のようにURLに含まれるパラメータを変数の値として受け取ることができます。  
-@Routeに含まれる `{id}` の部分を同名の変数 `$id` として受け取れます。
+Bạn có thể nhận tham số từ URL như `http://siteURL/sample/1` bằng cách khai báo `{id}` trong @Route và nhận biến `$id` cùng tên.
 
 ```php
     /**
@@ -103,10 +97,9 @@ class SamplePageController
     }
 ```
 
-### 追加したルーティングへのリンクをする
+### Tạo link đến routing vừa thêm
 
-他のページのテンプレートファイルから、追加したルーティングにリンクをするには、ルーティングに名前をつける必要があります。  
-@Routeアノテーションに `name` パラメータを追加することで名前をつけることができます。
+Để tạo link đến routing vừa thêm từ template khác, bạn cần đặt tên cho routing bằng tham số `name` trong @Route.
 
 ```php
     /**
@@ -119,19 +112,18 @@ class SamplePageController
     }
 ```
 
- 他のページのテンプレートファイルからリンクをする場合には、以下のように記述します。  
- パラメータを渡すことも出来ます。
+Từ file template khác, bạn có thể tạo link như sau (có thể truyền tham số):
 
 ```twig
 {% raw %}
-<a href="{{ url("sample_page", { id : 2}) }}">Sampleページへのリンク</a>
+<a href="{{ url('sample_page', { id : 2}) }}">Link đến trang Sample</a>
 {% endraw %}
 ```
 
-### EC-CUBE既存のルーティングを上書きする
+### Ghi đè routing sẵn có của EC-CUBE
 
-EC-CUBE既存のルーティングを上書きするには、同じパスと名前でルーティングを定義します。  
-下記のサンプルでは、「当サイトについて」のページを上書きしています。
+Để ghi đè routing sẵn có, chỉ cần định nghĩa routing mới với cùng path và name.
+Ví dụ sau sẽ ghi đè trang "Về chúng tôi".
 
 ```php
     /**
@@ -144,9 +136,9 @@ EC-CUBE既存のルーティングを上書きするには、同じパスと名�
     }
 ```
 
-### 管理画面のルーティングを追加する
+### Thêm routing cho trang quản trị
 
-管理画面にログインしているユーザーのみがアクセスできるルーティングを追加する場合には、パスに `/%eccube_admin_route%` を利用します。
+Để chỉ cho phép user đã đăng nhập admin truy cập, hãy dùng `/%eccube_admin_route%` trong path.
 
 ```php
     /**
@@ -159,12 +151,12 @@ EC-CUBE既存のルーティングを上書きするには、同じパスと名�
     }
 ```
 
-同様にUserDataへのルーティングは `/%eccube_user_data_route%` を指定します。
+Tương tự, routing cho UserData dùng `/%eccube_user_data_route%`.
 
-### リダイレクトを行う
+### Redirect
 
-AbstractControllerを継承して `redirectToRoute` 関数を利用することでリダイレクトが可能です。  
-下記のサンプルでは、アクセスがあると「当サイトについて」のページへリダイレクトしています。
+Kế thừa `AbstractController` và dùng hàm `redirectToRoute` để redirect.
+Ví dụ sau sẽ redirect về trang "Về chúng tôi" khi có truy cập.
 
 ```php
     /**
@@ -177,12 +169,11 @@ AbstractControllerを継承して `redirectToRoute` 関数を利用すること�
     }
 ```
 
-また `forwardToRoute` 関数を利用することで、リダイレクトではなく他のコントローラに処理を渡すことができます。
+Dùng `forwardToRoute` để chuyển xử lý sang controller khác mà không redirect.
 
-### Controller内でサービスを利用する
+### Sử dụng service trong Controller
 
-`AbstractController` を継承することで、よく利用するサービスのインスタンスを利用することができます。  
-以下のサンプルでは、EntityManagerを利用して商品のEntityを取得しています。
+Kế thừa `AbstractController` để sử dụng các service thường dùng. Ví dụ sau dùng EntityManager để lấy Entity sản phẩm.
 
 ```php
 <?php
@@ -211,12 +202,11 @@ class SamplePageController extends AbstractController
 }
 ```
 
-EntityManger以外に、AbstractControllerを継承することで利用できるサービスは `./src/Eccube/Controller/AbstractController.php` を確認してください。  
+Các service khác có thể dùng khi kế thừa AbstractController, xem tại `./src/Eccube/Controller/AbstractController.php`.
 
-#### AbstractControllerに無いサービスを利用する
+#### Sử dụng service không có trong AbstractController
 
-インジェクションを利用することで、AbstractControllerに無いサービスのインスタンスも利用する事ができます。  
-以下のサンプルでは、BaseInfoからショップ名を取得しています。
+Bạn có thể inject service vào constructor. Ví dụ sau lấy tên shop từ BaseInfo.
 
 ```php
 <?php
@@ -252,12 +242,11 @@ class SamplePageController
 }
 ```
 
-### 画面を表示する必要がないコントローラーを作成する
+### Tạo controller không cần hiển thị màn hình
 
-画面を表示する必要のないコントローラの場合も必ずResponseオブジェクトを返してください。  
-(`exit()` で処理を終了するとEC-CUBEが正常な動作を行えなくなります)  
+Ngay cả khi controller không trả về view, bạn vẫn phải trả về đối tượng Response (không dùng `exit()`).
 
-Responseのレスポンスコードやヘッダーを指定することも可能です。
+Bạn cũng có thể chỉ định mã response và header.
 
 ```php
     /**
@@ -275,14 +264,14 @@ Responseのレスポンスコードやヘッダーを指定することも可能
 ```
 
 ```
-$ curl -D - http://サイトURL/sample
+$ curl -D - http://siteURL/sample
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=utf-8
 ```
 
-## 参考情報
+## Tham khảo
 
-EC-CUBE 4 ではSymfonyのController機構を利用しています。  
-その他のカスタマイズ方法についてはSymfonyのドキュメントを参照してください。
+EC-CUBE 4 sử dụng cơ chế Controller của Symfony.
+Tham khảo thêm các cách tuỳ biến khác tại tài liệu Symfony:
 
 [Controller](https://symfony.com/doc/current/controller.html){:target="_blank"}

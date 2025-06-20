@@ -1,5 +1,5 @@
 ---
-title: 通貨
+title: Tiền tệ
 keywords: currency
 tags: [i18n, currency]
 permalink: i18n_currency
@@ -7,16 +7,16 @@ folder: i18n
 
 ---
 
-## 概要
+## Tổng quan
 
-初期設定では、通貨は日本円で表示されます。
-環境変数で指定することにより、任意の通貨記号・フォーマットで表示することができます。
+Mặc định, tiền tệ sẽ hiển thị là Yên Nhật.
+Bạn có thể chỉ định ký hiệu/định dạng tiền tệ tuỳ ý bằng cách thiết lập biến môi trường.
 
-## 通貨表示の切り替え
+## Cách chuyển đổi hiển thị tiền tệ
 
-環境変数でロケール/通貨コードを指定し、通貨表示を切り替えることができます。
+Bạn có thể chuyển đổi hiển thị tiền tệ bằng cách chỉ định locale/mã tiền tệ trong biến môi trường.
 
-EC-CUBEのルートディレクトリ直下に、`.env`ファイルを作成し、`ECCUBE_LOCALE`および`ECCUBE_CURRENCY`を設定します。
+Tạo file `.env` ở thư mục gốc của EC-CUBE, thiết lập `ECCUBE_LOCALE` và `ECCUBE_CURRENCY` như sau:
 
 ```bash
 //.env
@@ -25,40 +25,40 @@ ECCUBE_LOCALE=en
 ECCUBE_CURRENCY=USD
 ```
 
-環境変数設定後、画面をリロードすると、通貨表示が切り替わります。
-キャッシュの削除を行う必要はありません。
+Sau khi thiết lập biến môi trường, chỉ cần reload trang là tiền tệ sẽ được chuyển đổi.
+Không cần xoá cache.
 
-※ 通貨記号・フォーマットを切り替える機能であり、為替レートの計算は行いません。
+※ Chức năng này chỉ chuyển đổi ký hiệu/định dạng tiền tệ, không thực hiện quy đổi tỷ giá.
 
 ## PriceType
 
-金額の入力項目について、`MoneyType`を拡張した、`PriceType`を実装しています。
-`PriceType`は`ECCUBE_CURRENCY`の設定値にもとづいて、scaleを動的に判定します。
+Đối với các trường nhập số tiền, EC-CUBE cung cấp `PriceType` mở rộng từ `MoneyType`.
+`PriceType` sẽ tự động xác định scale dựa trên giá trị của `ECCUBE_CURRENCY`.
 
-例えば、JPYが指定されている場合はscaleは0です。
-USDであればscaleは2が設定され、小数点2桁まで入力が可能になります。
-※scaleを超える値を入力した場合は四捨五入されます。
+Ví dụ, nếu chọn JPY thì scale là 0.
+Nếu chọn USD thì scale là 2, cho phép nhập đến 2 chữ số thập phân.
+※ Nếu nhập quá scale, giá trị sẽ được làm tròn.
 
-以下は、`ECCUBE_LOCALE: en`, `ECCUBE_CURRENCY: USD`の設定時の表示です。
-
-
-![通貨の入力フォーム](/images/i18n_currency/sample_scale.png)
+Dưới đây là ví dụ hiển thị khi thiết lập `ECCUBE_LOCALE: en`, `ECCUBE_CURRENCY: USD`:
 
 
-## priceフィルタ
+![Form nhập tiền tệ](/images/i18n_currency/sample_scale.png)
 
-twig上で金額を表示する際は、priceフィルタを利用することができます。
-通貨の表示文字や表示方向を制御してくれます。
 
-以下のように使用します。
+## price filter
+
+Khi hiển thị số tiền trên twig, bạn có thể sử dụng filter price.
+Filter này sẽ tự động điều chỉnh ký hiệu và vị trí hiển thị tiền tệ.
+
+Cách sử dụng như sau:
 
 ```
 {{ 123|price }}
 ```
 
-![通貨の表示](https://user-images.githubusercontent.com/8196725/28563890-5e370800-7162-11e7-9015-b2eab14ab726.png)
+![Hiển thị tiền tệ](https://user-images.githubusercontent.com/8196725/28563890-5e370800-7162-11e7-9015-b2eab14ab726.png)
 
 
-## 参考
+## Tham khảo
 
-[通貨の切り替え機構を追加](https://github.com/EC-CUBE/ec-cube/pull/2431){:target="_blank"}
+[Thêm chức năng chuyển đổi tiền tệ](https://github.com/EC-CUBE/ec-cube/pull/2431){:target="_blank"}

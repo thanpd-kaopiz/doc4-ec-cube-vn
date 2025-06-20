@@ -1,28 +1,27 @@
 ---
-title: 支払方法設定
+title: Thiết lập phương thức thanh toán
 keywords: payment
 tags: [spec, getting_started]
 permalink: spec_payment
-summary: EC-CUBEでは、支払方法について、手数料と利用条件を設定することができます。
+summary: Trong EC-CUBE, bạn có thể thiết lập phí và điều kiện sử dụng cho từng phương thức thanh toán.
 
 ---
 
-`設定 -> 店舗設定 -> 支払方法設定` で支払方法ごとの手数料と利用条件の設定が可能です。
-利用条件金額は決済の手数料込みで判定されるので手数料分込みで条件を設定する必要があります。
+Tại `Cài đặt -> Cài đặt cửa hàng -> Thiết lập phương thức thanh toán`, bạn có thể thiết lập phí và điều kiện sử dụng cho từng phương thức thanh toán.
+Số tiền điều kiện sử dụng được xác định đã bao gồm phí thanh toán, nên cần thiết lập điều kiện bao gồm cả phí.
 
-## 金額に対して段階的に手数料を引き上げる場合の設定例
+## Ví dụ thiết lập tăng phí theo từng mức tiền
 
-![段階的に手数料を引き上げる場合](./images/spec/payment-01.png)
+![Ví dụ tăng phí theo từng mức tiền](./images/spec/payment-01.png)
 
-例えば
-10,000円の商品を買った場合は、1番目の330円の手数料が適応されて支払い金額は10,330円となります。
-10,001円の商品を買った場合は、2番目の440円の手数料が適応されて支払い金額は10,441円となります。
+Ví dụ:
+Khi mua sản phẩm giá 10,000 yên, phí 330 yên ở mức 1 sẽ được áp dụng, tổng số tiền thanh toán là 10,330 yên.
+Khi mua sản phẩm giá 10,001 yên, phí 440 yên ở mức 2 sẽ được áp dụng, tổng số tiền thanh toán là 10,441 yên.
 
+## Ví dụ thiết lập giảm phí khi vượt quá một mức tiền nhất định
 
-## 一定金額以上で手数料を減額する場合の設定例
+![Ví dụ giảm phí khi vượt quá một mức tiền nhất định](./images/spec/payment-02.png)
 
-![一定金額以上で手数料を減額する場合](./images/spec/payment-02.png)
-
-例えば
-10,000円の商品を買った場合は、1番目の330円の手数料が適応されて支払い金額は10,330円となります。
-10,001円の商品を買った場合は、2番目の0円の手数料が適応されて支払い金額は10,001円となります。
+Ví dụ:
+Khi mua sản phẩm giá 10,000 yên, phí 330 yên ở mức 1 sẽ được áp dụng, tổng số tiền thanh toán là 10,330 yên.
+Khi mua sản phẩm giá 10,001 yên, phí 0 yên ở mức 2 sẽ được áp dụng, tổng số tiền thanh toán là 10,001 yên.
