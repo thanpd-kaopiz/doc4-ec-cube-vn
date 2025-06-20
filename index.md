@@ -6,7 +6,7 @@ description: "Đây là trang tài liệu dành cho nhà phát triển EC-CUBE 4
 keywords: Về trang này, QuickStart
 sidebar:
   nav: "docs"
-permalink: /vn
+permalink: /
 ---
 
 Đây là trang tài liệu dành cho nhà phát triển EC-CUBE 4.
