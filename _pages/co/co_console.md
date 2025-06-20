@@ -18,4 +18,4 @@ Nếu bạn sử dụng gói Standard, bạn sẽ có thể xem và sử dụng 
 - Hiển thị các mục "Môi trường kiểm thử", "Kho Git"
 - Sử dụng các mục "Log", "Môi trường kiểm thử" trong menu bên
 
-![console_standard](/images/co/console_standard.png)
+![console_standard](/doc4-ec-cube-vn/images/co/console_standard.png)
