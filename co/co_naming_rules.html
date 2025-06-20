@@ -1,0 +1,1676 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.5 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="vi" class="no-js">
+<head>
+    <meta charset="utf-8">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MKP69WF');</script>
+<!-- End Google Tag Manager -->
+
+<!-- begin _includes/seo.html --><title>ec-cube.co Quy tắc đặt tên - &lt; for EC-CUBE 4 Developers /&gt;</title>
+<meta name="description" content="">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="EC-CUBE 4 開発者向けドキュメントサイト">
+<meta property="og:title" content="ec-cube.co Quy tắc đặt tên">
+<meta property="og:url" content="https://thanpd-ptit.github.io/doc4-ec-cube-vn/co/co_naming_rules">
+
+
+  <meta property="og:description" content="">
+
+
+
+  <meta property="og:image" content="https://thanpd-ptit.github.io/doc4-ec-cube-vn/assets/images/site-logo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-06-20T09:30:51+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://thanpd-ptit.github.io/doc4-ec-cube-vn/co/co_naming_rules">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://thanpd-ptit.github.io/doc4-ec-cube-vn",
+      "logo": "https://thanpd-ptit.github.io/doc4-ec-cube-vn/assets/images/site-logo.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "EC-CUBE",
+      "url": "https://thanpd-ptit.github.io/doc4-ec-cube-vn",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<!-- Google Search Console -->
+<meta name="google-site-verification" content="RaTQVaBvAuWi45pAV3ydq19nxTrbyV1vooYDZqFA5kQ" />
+
+
+<link href="/doc4-ec-cube-vn/feed.xml" type="application/atom+xml" rel="alternate" title="< for EC-CUBE 4 Developers /> Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/doc4-ec-cube-vn/assets/css/main.css">
+<link rel="stylesheet" href="/doc4-ec-cube-vn/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+<!-- end custom head snippets -->
+
+</head>
+
+<body class="layout--single">
+<nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+<!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/doc4-ec-cube-vn/">
+          < for EC-CUBE 4 Developers />
+          <span class="site-subtitle">EC-CUBE 4 開発者向けドキュメントサイト</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://www.ec-cube.net/" target="_blank" >Về EC-CUBE</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://xoops.ec-cube.net/" target="_blank" >Cộng đồng phát triển</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+<div class="initial-content">
+    
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">ec-cube.co</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/co" class="">ec-cube.co là gì</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/co/co_security" class="">Về các biện pháp bảo mật</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/co/co_update_guidelines" class="">Hướng dẫn cập nhật</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/co/co_console" class="">Console</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/co/co_naming_rules" class="active">Quy tắc đặt tên</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/co/co_git" class="">Đặc tả chức năng quản lý Git</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/co/co_customize_dir_usage" class="">Cách sử dụng thư mục tùy chỉnh</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/co/co_staging" class="">Xây dựng môi trường thử nghiệm</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/co/co_log" class="">Cách lấy log</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/co/co_faq" class="">FAQ</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Giới thiệu</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/quickstart/latest_version" class="">Phiên bản mới nhất</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/quickstart/requirement" class="">Yêu cầu hệ thống</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/quickstart/cautions_of_prod" class="">Lưu ý khi sử dụng trong môi trường sản xuất</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Thông tin cho người mới bắt đầu</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/learning/learning_step" class="">Các bước học tập</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Cài đặt</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/quickstart/install" class="">Các phương pháp cài đặt khác nhau</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/quickstart/cli" class="">Giao diện dòng lệnh</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Nâng cấp phiên bản</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/update43" class="">Nâng cấp phiên bản chính từ 4.2 lên 4.3</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/update-42-43" class="">Di chuyển từ 4.2 lên 4.3</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/update-41-42" class="">Di chuyển từ 4.1 lên 4.2</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/update41" class="">Nâng cấp phiên bản chính từ 4.0 lên 4.1</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/update-40-41" class="">Di chuyển từ 4.0 lên 4.1</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/update42x" class="">Nâng cấp phiên bản chính 4.2</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/update41x" class="">Nâng cấp phiên bản chính 4.1</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/update" class="">Nâng cấp phiên bản chính 4.0</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/update/4_0_3" class="">Lưu ý trong phiên bản 4.0.3</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/hotfix_samesite_cookie" class="">Hỗ trợ Cookie SameSite</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Đặc tả chức năng</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="https://www.ec-cube.net/product/functions.php" target="_blank" class="">Danh sách chức năng</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/spec_order" class="">Liên quan đến đơn hàng</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/spec_tax" class="">Cài đặt thuế suất</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/spec_payment" class="">Cài đặt phương thức thanh toán</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Tùy chỉnh hệ thống</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/spec_directory-structure" class="">Cấu trúc thư mục</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/customize_controller" class="">Tùy chỉnh Controller</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/customize_entity" class="">Tùy chỉnh Entity</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/customize_repository" class="">Tùy chỉnh Repository</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/customize_formtype" class="">Tùy chỉnh FormType</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/customize_service" class="">Tùy chỉnh quy trình mua hàng</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/customize_order_state_machine" class="">Tùy chỉnh trạng thái đơn hàng</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/customize_template" class="">Tùy chỉnh mẫu giao diện</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/customize_throttling" class="">Tùy chỉnh chức năng throttling</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/customize_twig_sandbox" class="">Kiểm soát danh sách cho phép bằng Twig Sandbox</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/customize_symfony" class="">Mở rộng bằng chức năng của Symfony</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/customize_symfony#command" class="">Phát triển Command</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Tùy chỉnh thiết kế</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/design_template" class="">Cơ bản về mẫu thiết kế</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/design_block" class="">Sử dụng block</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/design_layout" class="">Sử dụng quản lý bố cục</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/design_img" class="">Về quản lý hình ảnh</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/design_css" class="">Sử dụng CSS</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/design_sass" class="">Sử dụng Sass(scss)</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/design_form" class="">Thay đổi bố cục form</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/design_messages" class="">Tùy chỉnh thông điệp</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="https://eccube4-styleguide.herokuapp.com" target="_blank" class="">Tài liệu tham khảo thiết kế giao diện người dùng (hướng dẫn phong cách)</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="https://thanpd-ptit.github.io/doc4-ec-cube-vn/pdf/ec-cube4_design-guide180930.pdf" target="_blank" class="">Tài liệu tham khảo thiết kế giao diện quản trị (hướng dẫn thiết kế)</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="http://downloads.ec-cube.net/manual/documents/eccube4_xd_front_template.zip?argument=2qpV46CP&dmai=a5bf51b05bacc5" target="_blank" class="">Mẫu giao diện người dùng cho Adobe XD</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="http://downloads.ec-cube.net/manual/documents/eccube4_xd_admin_template.zip?argument=2qpV46CP&dmai=a5bf51b05bacc5" target="_blank" class="">Mẫu giao diện quản trị cho Adobe XD</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Phát triển plugin</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/plugin_spec" class="">Đặc tả plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/plugin_install" class="">Cài đặt plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/plugin_error" class="">Cách xử lý sự cố plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/plugin_sample" class="">Mẫu plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/plugin_development" class="">Phát triển plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/plugin_mock_package_api" class="">Kiểm tra cài đặt qua Owner's Store</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/plugin_naming_conventions" class="">Quy tắc đặt tên khuyến nghị cho plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/plugin_admin_nav" class="">Mở rộng điều hướng quản trị</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/plugin_eccube40" class="">Lưu ý khi sử dụng EC-CUBE4.0 (Composer v1)</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Thay đổi cài đặt</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/i18n_multilingualization" class="">Đa ngôn ngữ</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/i18n_currency" class="">Tiền tệ</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/i18n_timezone" class="">Múi giờ</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/environmental_setting" class="">Cài đặt môi trường</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/debug_mode" class="">Chế độ gỡ lỗi</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/session_handler_settings" class="">Phương pháp lưu trữ phiên</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Công cụ phát triển</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/development-tools/mail-catcher" class="">MailCatcher</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Thực hiện kiểm tra bảo mật</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/penetration-testing" class="">Giới thiệu</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/penetration-testing/quick_start" class="">Bắt đầu nhanh</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/penetration-testing/introduction" class="">Giới thiệu</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/penetration-testing/about_owaspzap" class="">Về OWASP ZAP</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/penetration-testing/planning" class="">Lập kế hoạch kiểm tra</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/penetration-testing/testing" class="">Thực hiện kiểm tra</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/penetration-testing/review" class="">Đánh giá kiểm tra</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/penetration-testing/improvement" class="">Cải thiện bảo mật</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Hướng dẫn bảo mật</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/security-guideline/coding" class="">Về mã hóa</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/security-guideline/plugin" class="">Tăng cường bảo mật trong phát triển plugin</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Tham khảo ngược</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/reverse-lookup/tips" class="">Mẹo</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/reverse-lookup/sample-code" class="">Bộ sưu tập mẫu tùy chỉnh</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Tham gia phát triển</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="https://www.ec-cube.net/committer/" target="_blank" class="">Làm thế nào để tham gia phát triển EC-CUBE? (Trang web chính thức)</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/contribution-guide/overview" class="">Tổng quan về phát triển</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/contribution-guide/pull-request" class="">Cách tạo pull request</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Khi không tìm thấy tài liệu</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/documents/request" class="">Yêu cầu tài liệu</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/documents/writing-and-formatting" class="">Thêm và viết tài liệu</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/doc4-ec-cube-vn/documents/contribute" class="">Đóng góp tài liệu</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="ec-cube.co Quy tắc đặt tên">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="June 20, 2025">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">ec-cube.co Quy tắc đặt tên
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+<!--
+            <a href="#disqus_thread" style="font-size:21px;margin-bottom:3px;">
+              <img src="//c.disquscdn.com/next/current/publisher-admin/assets/img/emoji/love-512x512.png" style="height: 24px;width: 24px;">
+              ページを評価/質問する
+              <img src="//c.disquscdn.com/next/current/publisher-admin/assets/img/emoji/sad-512x512.png" style="height: 24px;width: 24px;">
+            </a>
+-->
+            <a href="https://github.com/thanpd-ptit/doc4-ec-cube-vn/edit/gh-pages/_pages/co/co_naming_rules.md"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chỉnh sửa trang</a>
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Mục lục</h4></header>
+              
+            </nav>
+          </aside>
+        
+        <hr />
+
+<p>※ [shopid]: Là Shop ID bạn chỉ định khi đăng ký (phần xxx trong xxx.ec-cube.co).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tên repository</td>
+      <td>eccube.co-[shopid]-customize</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Branch</td>
+      <td>master-&gt; môi trường production, develop-&gt; môi trường test</td>
+      <td>※ Chỉ áp dụng cho gói Standard</td>
+    </tr>
+    <tr>
+      <td>URL shop (production)</td>
+      <td>[shopid].ec-cuube.shop</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>URL shop (test)</td>
+      <td>stg-[shopid].ec-cuube.shop</td>
+      <td>※ Chỉ áp dụng cho gói Standard</td>
+    </tr>
+  </tbody>
+</table>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Ngày cập nhật:</strong> <time datetime="2025-06-20T09:30:51+00:00">June 20, 2025</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Chia sẻ trang</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=ec-cube.co+Quy+t%E1%BA%AFc+%C4%91%E1%BA%B7t+t%C3%AAn%20https%3A%2F%2Fthanpd-ptit.github.io%2Fdoc4-ec-cube-vn%2Fco%2Fco_naming_rules" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Chia sẻ trang Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthanpd-ptit.github.io%2Fdoc4-ec-cube-vn%2Fco%2Fco_naming_rules" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Chia sẻ trang Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+</section>
+
+
+<!--
+      <div style="font-size: 15pt;margin-top:20px;margin-bottom:-30px;">
+        <div>　</div>
+        <div>　</div>
+        <div style="font-weight:bold;">■質問、書いてほしい情報など、気軽にコメントしてみましょう！</div>
+        <div>コメント例：</div>
+        <div>　「手順通りやったけど、◯◯の部分でうまくいかない」</div>
+        <div>　「◯◯の部分について、もう少し手順を詳細に記載してよ」</div>
+        <div>　「最初から、こういう情報があればわかりやすかった」</div>
+      </div>
+-->
+
+      <!--
+  <nav class="pagination">
+    
+      <a href="/doc4-ec-cube-vn/co/co_log" class="pagination--pager" title="ec-cube.co Cách lấy log
+">Trước</a>
+    
+    
+      <a href="/doc4-ec-cube-vn/co/co_security" class="pagination--pager" title="ec-cube.co Về các biện pháp bảo mật
+">Sau</a>
+    
+  </nav>
+-->
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+</div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+</div>
+
+
+<div class="search-content">
+    <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Nhập từ khóa tìm kiếm..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+</div>
+
+
+<div id="footer" class="page__footer">
+    <footer>
+        <!-- start custom footer snippets -->
+
+<!-- Navメニュー -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $('.nav__sub-title').on('click',function(){
+        $(this).toggleClass('active');
+        $(this).next('ul').slideToggle();
+    });
+    $(function(){
+        $("a.active").parents('ul').css("display", "block");
+    });
+</script>
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Theo dõi</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/doc4-ec-cube-vn/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 EC-CUBE. Phát triển bởi <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+    </footer>
+</div>
+
+
+  <script src="/doc4-ec-cube-vn/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/doc4-ec-cube-vn/assets/js/lunr/lunr.min.js"></script>
+<script src="/doc4-ec-cube-vn/assets/js/lunr/lunr-store.js"></script>
+<script src="/doc4-ec-cube-vn/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
