@@ -1,0 +1,2004 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.5 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="vi" class="no-js">
+<head>
+    <meta charset="utf-8">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MKP69WF');</script>
+<!-- End Google Tag Manager -->
+
+<!-- begin _includes/seo.html --><title>Di chuyển từ 4.0 lên 4.1 - &lt; for EC-CUBE 4 Developers /&gt;</title>
+<meta name="description" content="Giải thích về di chuyển từ EC-CUBE 4.0 lên 4.1.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="EC-CUBE 4 開発者向けドキュメントサイト">
+<meta property="og:title" content="Di chuyển từ 4.0 lên 4.1">
+<meta property="og:url" content="http://0.0.0.0:4000/update-40-41">
+
+
+  <meta property="og:description" content="Giải thích về di chuyển từ EC-CUBE 4.0 lên 4.1.">
+
+
+
+  <meta property="og:image" content="http://0.0.0.0:4000/assets/images/site-logo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-06-20T09:12:05+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/update-40-41">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "http://0.0.0.0:4000",
+      "logo": "http://0.0.0.0:4000/assets/images/site-logo.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "EC-CUBE",
+      "url": "http://0.0.0.0:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<!-- Google Search Console -->
+<meta name="google-site-verification" content="RaTQVaBvAuWi45pAV3ydq19nxTrbyV1vooYDZqFA5kQ" />
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="< for EC-CUBE 4 Developers /> Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+<!-- end custom head snippets -->
+
+</head>
+
+<body class="layout--single">
+<nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+<!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          < for EC-CUBE 4 Developers />
+          <span class="site-subtitle">EC-CUBE 4 開発者向けドキュメントサイト</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://www.ec-cube.net/" target="_blank" >Về EC-CUBE</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://xoops.ec-cube.net/" target="_blank" >Cộng đồng phát triển</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+<div class="initial-content">
+    
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">ec-cube.co</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co" class="">ec-cube.co là gì</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_security" class="">Về các biện pháp bảo mật</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_update_guidelines" class="">Hướng dẫn cập nhật</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_console" class="">Console</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_naming_rules" class="">Quy tắc đặt tên</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_git" class="">Đặc tả chức năng quản lý Git</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_customize_dir_usage" class="">Cách sử dụng thư mục tùy chỉnh</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_staging" class="">Xây dựng môi trường thử nghiệm</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_log" class="">Cách lấy log</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_faq" class="">FAQ</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Giới thiệu</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/quickstart/latest_version" class="">Phiên bản mới nhất</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/quickstart/requirement" class="">Yêu cầu hệ thống</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/quickstart/cautions_of_prod" class="">Lưu ý khi sử dụng trong môi trường sản xuất</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Thông tin cho người mới bắt đầu</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/learning/learning_step" class="">Các bước học tập</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Cài đặt</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/quickstart/install" class="">Các phương pháp cài đặt khác nhau</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/quickstart/cli" class="">Giao diện dòng lệnh</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Nâng cấp phiên bản</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update43" class="">Nâng cấp phiên bản chính từ 4.2 lên 4.3</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update-42-43" class="">Di chuyển từ 4.2 lên 4.3</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update-41-42" class="">Di chuyển từ 4.1 lên 4.2</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update41" class="">Nâng cấp phiên bản chính từ 4.0 lên 4.1</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update-40-41" class="active">Di chuyển từ 4.0 lên 4.1</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update42x" class="">Nâng cấp phiên bản chính 4.2</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update41x" class="">Nâng cấp phiên bản chính 4.1</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update" class="">Nâng cấp phiên bản chính 4.0</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update/4_0_3" class="">Lưu ý trong phiên bản 4.0.3</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/hotfix_samesite_cookie" class="">Hỗ trợ Cookie SameSite</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Đặc tả chức năng</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="https://www.ec-cube.net/product/functions.php" target="_blank" class="">Danh sách chức năng</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/spec_order" class="">Liên quan đến đơn hàng</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/spec_tax" class="">Cài đặt thuế suất</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/spec_payment" class="">Cài đặt phương thức thanh toán</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Tùy chỉnh hệ thống</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/spec_directory-structure" class="">Cấu trúc thư mục</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_controller" class="">Tùy chỉnh Controller</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_entity" class="">Tùy chỉnh Entity</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_repository" class="">Tùy chỉnh Repository</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_formtype" class="">Tùy chỉnh FormType</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_service" class="">Tùy chỉnh quy trình mua hàng</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_order_state_machine" class="">Tùy chỉnh trạng thái đơn hàng</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_template" class="">Tùy chỉnh mẫu giao diện</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_throttling" class="">Tùy chỉnh chức năng throttling</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_twig_sandbox" class="">Kiểm soát danh sách cho phép bằng Twig Sandbox</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_symfony" class="">Mở rộng bằng chức năng của Symfony</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_symfony#command" class="">Phát triển Command</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Tùy chỉnh thiết kế</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_template" class="">Cơ bản về mẫu thiết kế</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_block" class="">Sử dụng block</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_layout" class="">Sử dụng quản lý bố cục</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_img" class="">Về quản lý hình ảnh</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_css" class="">Sử dụng CSS</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_sass" class="">Sử dụng Sass(scss)</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_form" class="">Thay đổi bố cục form</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_messages" class="">Tùy chỉnh thông điệp</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="https://eccube4-styleguide.herokuapp.com" target="_blank" class="">Tài liệu tham khảo thiết kế giao diện người dùng (hướng dẫn phong cách)</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="https://doc4.ec-cube.net/pdf/ec-cube4_design-guide180930.pdf" target="_blank" class="">Tài liệu tham khảo thiết kế giao diện quản trị (hướng dẫn thiết kế)</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="http://downloads.ec-cube.net/manual/documents/eccube4_xd_front_template.zip?argument=2qpV46CP&dmai=a5bf51b05bacc5" target="_blank" class="">Mẫu giao diện người dùng cho Adobe XD</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="http://downloads.ec-cube.net/manual/documents/eccube4_xd_admin_template.zip?argument=2qpV46CP&dmai=a5bf51b05bacc5" target="_blank" class="">Mẫu giao diện quản trị cho Adobe XD</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Phát triển plugin</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_spec" class="">Đặc tả plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_install" class="">Cài đặt plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_error" class="">Cách xử lý sự cố plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_sample" class="">Mẫu plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_development" class="">Phát triển plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_mock_package_api" class="">Kiểm tra cài đặt qua Owner's Store</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_naming_conventions" class="">Quy tắc đặt tên khuyến nghị cho plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_admin_nav" class="">Mở rộng điều hướng quản trị</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_eccube40" class="">Lưu ý khi sử dụng EC-CUBE4.0 (Composer v1)</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Thay đổi cài đặt</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/i18n_multilingualization" class="">Đa ngôn ngữ</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/i18n_currency" class="">Tiền tệ</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/i18n_timezone" class="">Múi giờ</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/environmental_setting" class="">Cài đặt môi trường</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/debug_mode" class="">Chế độ gỡ lỗi</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/session_handler_settings" class="">Phương pháp lưu trữ phiên</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Công cụ phát triển</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/development-tools/mail-catcher" class="">MailCatcher</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Thực hiện kiểm tra bảo mật</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing" class="">Giới thiệu</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/quick_start" class="">Bắt đầu nhanh</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/introduction" class="">Giới thiệu</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/about_owaspzap" class="">Về OWASP ZAP</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/planning" class="">Lập kế hoạch kiểm tra</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/testing" class="">Thực hiện kiểm tra</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/review" class="">Đánh giá kiểm tra</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/improvement" class="">Cải thiện bảo mật</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Hướng dẫn bảo mật</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/security-guideline/coding" class="">Về mã hóa</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/security-guideline/plugin" class="">Tăng cường bảo mật trong phát triển plugin</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Tham khảo ngược</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/reverse-lookup/tips" class="">Mẹo</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/reverse-lookup/sample-code" class="">Bộ sưu tập mẫu tùy chỉnh</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Tham gia phát triển</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="https://www.ec-cube.net/committer/" target="_blank" class="">Làm thế nào để tham gia phát triển EC-CUBE? (Trang web chính thức)</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/contribution-guide/overview" class="">Tổng quan về phát triển</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/contribution-guide/pull-request" class="">Cách tạo pull request</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Khi không tìm thấy tài liệu</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/documents/request" class="">Yêu cầu tài liệu</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/documents/writing-and-formatting" class="">Thêm và viết tài liệu</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/documents/contribute" class="">Đóng góp tài liệu</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Di chuyển từ 4.0 lên 4.1">
+    <meta itemprop="description" content="Giải thích về di chuyển từ EC-CUBE 4.0 lên 4.1.">
+    <meta itemprop="datePublished" content="June 20, 2025">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Di chuyển từ 4.0 lên 4.1
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+<!--
+            <a href="#disqus_thread" style="font-size:21px;margin-bottom:3px;">
+              <img src="//c.disquscdn.com/next/current/publisher-admin/assets/img/emoji/love-512x512.png" style="height: 24px;width: 24px;">
+              ページを評価/質問する
+              <img src="//c.disquscdn.com/next/current/publisher-admin/assets/img/emoji/sad-512x512.png" style="height: 24px;width: 24px;">
+            </a>
+-->
+            <a href="https://github.com/EC-CUBE/doc4.ec-cube.net/edit/gh-pages/_pages/quickstart/update_40_41.md"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chỉnh sửa trang</a>
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Mục lục</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#tương-thích-composer20">Tương thích Composer2.0</a>
+    <ul>
+      <li><a href="#name">name</a></li>
+      <li><a href="#require">require</a></li>
+      <li><a href="#ví-dụ-thay-đổi-composerjson">Ví dụ thay đổi composer.json</a></li>
+    </ul>
+  </li>
+  <li><a href="#tương-thích-symfony44">Tương thích Symfony4.4</a>
+    <ul>
+      <li><a href="#liên-quan-đến-form">Liên quan đến Form</a>
+        <ul>
+          <li><a href="#xác-thực-form">Xác thực Form</a></li>
+          <li><a href="#formextension">FormExtension</a></li>
+        </ul>
+      </li>
+      <li><a href="#liên-quan-đến-translator">Liên quan đến Translator</a>
+        <ul>
+          <li><a href="#messagelocaleyaml">message.[locale].yaml</a></li>
+        </ul>
+      </li>
+      <li><a href="#liên-quan-đến-log">Liên quan đến Log</a>
+        <ul>
+          <li><a href="#cài-đặt-monolog">Cài đặt monolog</a></li>
+        </ul>
+      </li>
+      <li><a href="#liên-quan-đến-container">Liên quan đến Container</a>
+        <ul>
+          <li><a href="#chỉ-định-interface-khi-injection">Chỉ định interface khi injection</a></li>
+          <li><a href="#hạn-chế-lấy-dịch-vụ-từ-container">Hạn chế lấy dịch vụ từ container</a></li>
+        </ul>
+      </li>
+      <li><a href="#mã-kiểm-tra">Mã kiểm tra</a>
+        <ul>
+          <li><a href="#lấy-container">Lấy container</a></li>
+          <li><a href="#thông-điệp-xác-thực">Thông điệp xác thực</a></li>
+        </ul>
+      </li>
+      <li><a href="#các-thay-đổi-khác">Các thay đổi khác</a>
+        <ul>
+          <li><a href="#thay-đổi-cách-lấy-thông-tin-khách-hàng-khi-mua-hàng-không-đăng-ký">Thay đổi cách lấy thông tin khách hàng khi mua hàng không đăng ký</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#tương-thích-webapi">Tương thích WebAPI</a>
+    <ul>
+      <li><a href="#các-hàm-và-tính-năng-bị-xóa-khác">Các hàm và tính năng bị xóa khác</a>
+        <ul>
+          <li><a href="#applicationphp">Application.php</a>
+            <ul>
+              <li><a href="#ví-dụ-thay-đổi-khi-lấy-session-bằng-appsession">Ví dụ thay đổi khi lấy session bằng app[‘session’]</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#kiểm-tra-cài-đặt-plugin-qua-owners-store">Kiểm tra cài đặt plugin qua Owner’s Store</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>Giải thích về di chuyển từ EC-CUBE 4.0 lên 4.1.</p>
+
+<p>Tổng hợp các phần cần chuyển mã để EC-CUBE 4.1 tương thích với EC-CUBE bản chính và một số plugin chính thức.</p>
+
+<ul>
+  <li><a href="https://github.com/EC-CUBE/ec-cube/issues/4603" target="_blank">Lộ trình EC-CUBE 4.1</a></li>
+  <li><a href="https://github.com/EC-CUBE/ec-cube/tree/4.1" target="_blank">Nhánh GitHub 4.1</a></li>
+  <li><a href="https://github.com/EC-CUBE/eccube-api4/pull/106" target="_blank">Plugin Web API: Tương thích Symfony 4.4</a></li>
+  <li><a href="https://github.com/EC-CUBE/ProductReview-plugin/pull/55" target="_blank">Plugin Đánh giá sản phẩm: Tương thích Symfony 4.4</a></li>
+</ul>
+
+<h2 id="tương-thích-composer20">Tương thích Composer2.0</h2>
+
+<p>Cần thay đổi composer.json của plugin để tương thích với Composer 2.0.</p>
+
+<h3 id="name">name</h3>
+
+<p><code class="language-plaintext highlighter-rouge">ec-cube/&lt;PluginCode viết thường&gt;</code></p>
+
+<p>PluginCode cần tương ứng với namespace của plugin và phải viết thường.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="kn">namespace</span> <span class="nn">Plugin\ExamplePlugin</span><span class="p">;</span>
+
+<span class="c1">// Với namespace trên, name trong composer.json sẽ là ec-cube/exampleplugin.</span>
+</code></pre></div></div>
+
+<h3 id="require">require</h3>
+
+<p>Cần bao gồm <code class="language-plaintext highlighter-rouge">ec-cube/plugin-installer: "~0.0.6 || ^2.0"</code></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="nl">"require"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"ec-cube/plugin-installer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~0.0.6 || ^2.0"</span><span class="w">
+  </span><span class="p">}</span><span class="err">,</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="ví-dụ-thay-đổi-composerjson">Ví dụ thay đổi composer.json</h3>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">{</span>
+-   "name": "ec-cube/ExamplePlugin",
+<span class="gi">+   "name": "ec-cube/exampleplugin",
+</span><span class="gd">-  "version": "1.0.0",
+</span><span class="gi">+  "version": "2.0.0",
+</span>  "description": "Plugin mẫu",
+  "type": "eccube-plugin",
+  "require": {
+<span class="gd">-     "ec-cube/plugin-installer": "~0.0.6"
+</span><span class="gi">+     "ec-cube/plugin-installer": "~0.0.6 || ^2.0"
+</span>   },
+  "extra": {
+    "code": "ExamplePlugin"
+  }
+<span class="err">}</span>
+</code></pre></div></div>
+
+<p>Xem chi tiết về nội dung sửa đổi tại <a href="https://github.com/EC-CUBE/ec-cube/issues/4737" target="_blank">Issue trên GitHub</a>.</p>
+
+<p>Tính đến ngày 09/12/2020, phía package-api của Owner’s Store mà EC-CUBE giao tiếp chưa hỗ trợ 4.1.</p>
+
+<p>Việc kiểm tra cài đặt plugin trên 4.1 có thể thực hiện tương tự như trên 4.0 thông qua <a href="plugin_mock_package_api">kiểm tra cài đặt qua Owner’s Store</a>.</p>
+
+<h2 id="tương-thích-symfony44">Tương thích Symfony4.4</h2>
+
+<p>Không thể bao quát hết các thay đổi trong Symfony4.4, nếu có vấn đề không được đề cập, hãy tham khảo tài liệu UPGRADE của Symfony.</p>
+
+<ul>
+  <li><a href="https://github.com/symfony/symfony/blob/4.4/UPGRADE-4.0.md" target="_blank">UPGRADE-4.0.md</a></li>
+</ul>
+
+<p>Ngoài ra, để duy trì tính tương thích giữa EC-CUBE4.0 và EC-CUBE4.1, có một số phần không sửa đổi các thông báo deprecation.</p>
+
+<p>※ Có thể xuất hiện thông báo <code class="language-plaintext highlighter-rouge">User Deprecated: xxx</code> trong log, nhưng không ảnh hưởng đến hoạt động.</p>
+
+<p>Dù thực hiện sửa đổi này, EC-CUBE vẫn hoạt động trên cả Symfony3.4/4.4, ngoại trừ mục <a href="#コンテナの取得">Lấy container trong mã kiểm tra</a>.</p>
+
+<h3 id="liên-quan-đến-form">Liên quan đến Form</h3>
+
+<h4 id="xác-thực-form">Xác thực Form</h4>
+
+<p>Không thể gọi <code class="language-plaintext highlighter-rouge">isValid()</code> một mình. Hãy kiểm tra bằng <code class="language-plaintext highlighter-rouge">isSubmitted() &amp;&amp; isValid()</code>.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- if ($form-&gt;isValid()) {
+</span><span class="gi">+ if ($form-&gt;isSubmitted() &amp;&amp; $form-&gt;isValid()) {
+</span>     // do something...
+ }
+</code></pre></div></div>
+
+<h4 id="formextension">FormExtension</h4>
+
+<p>Thêm phương thức <code class="language-plaintext highlighter-rouge">getExtendedTypes</code>.</p>
+
+<p>Để duy trì tính tương thích với EC-CUBE4.0.x(Symfony3.4), cần giữ lại phương thức <code class="language-plaintext highlighter-rouge">getExtendedType</code>.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    /**
+     * {@inheritdoc}
+     */
+    public function getExtendedType()
+    {
+        return EntryType::class;
+    }
+<span class="gi">+
++    /**
++     * Return the class of the type being extended.
++     */
++    public static function getExtendedTypes(): iterable
++    {
++        return [EntryType::class];
++    }
+</span></code></pre></div></div>
+
+<h3 id="liên-quan-đến-translator">Liên quan đến Translator</h3>
+
+<h4 id="messagelocaleyaml">message.[locale].yaml</h4>
+
+<p>Nếu sử dụng biến, cần đặt trong dấu nháy đơn.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- common.password_sample: 半角英数記号%min%〜%max%文字
+</span><span class="gi">+ common.password_sample: '半角英数記号%min%〜%max%文字'
+</span></code></pre></div></div>
+
+<h3 id="liên-quan-đến-log">Liên quan đến Log</h3>
+
+<h4 id="cài-đặt-monolog">Cài đặt monolog</h4>
+
+<p>Nếu có ghi đè <code class="language-plaintext highlighter-rouge">channels</code>, hãy xóa.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">monolog:
+</span>    channels: ['sample_payment']
+    handlers:
+        sample_payment:
+            type: fingers_crossed
+            action_level: info
+            passthru_level: info
+            handler: sample_payment_rotating_file
+            channels: ['sample_payment']
+<span class="gd">-            channels: ['!event', '!doctrine']
+</span>        sample_payment_rotating_file:
+            type: rotating_file
+            max_files: 60
+            path: '%kernel.logs_dir%/%kernel.environment%/sample_payment.log'
+            formatter: eccube.log.formatter.line
+            level: debug
+</code></pre></div></div>
+
+<h3 id="liên-quan-đến-container">Liên quan đến Container</h3>
+
+<h4 id="chỉ-định-interface-khi-injection">Chỉ định interface khi injection</h4>
+
+<p>Khi sử dụng constructor injection hoặc method injection, nếu chỉ định class cụ thể, hãy chỉ định interface.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- public function __construct(Session $session)
+</span><span class="gi">+ public function __construct(SessionInterface $session)
+</span>
+- public function index(Request $request, $page_no = 1, Paginator $paginator)
+<span class="gi">+ public function index(Request $request, $page_no = 1, PaginatorInterface $paginator)
+</span></code></pre></div></div>
+
+<h4 id="hạn-chế-lấy-dịch-vụ-từ-container">Hạn chế lấy dịch vụ từ container</h4>
+
+<p>Ngoại trừ một số dịch vụ (như doctrine), không thể lấy dịch vụ bằng <code class="language-plaintext highlighter-rouge">$container-&gt;get(Hoge::class)</code>.</p>
+
+<p>Hãy sử dụng injection hoặc thiết lập dịch vụ là public trong services.yaml.</p>
+
+<p>※ Tuy nhiên, nếu thay đổi thành public, sẽ ảnh hưởng đến hiệu suất. Nên sử dụng injection.</p>
+
+<p>Ví dụ về sử dụng injection:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">-
+- public function index()
+- {
+-     $customerRepository = $this-&gt;container-&gt;get(CustomerRepository::class);
+-     $customerRepository-&gt;find(1);
+- }
+</span>
++
+<span class="gi">+ public function __construct(CustomerRepository $customerRepository)
++ {
++     $this-&gt;customerRepository = $customerRepository;
++ }
++
++ public function index()
++ {
++     $this-&gt;customerRepository-&gt;find(1);
++ }
+</span></code></pre></div></div>
+
+<p>Ví dụ về services.yaml:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gi">+ services:
++      Plugin\SamplePayment\Service\HogeService
++          public: true
+</span></code></pre></div></div>
+
+<p>Trong PluginManager, không thể sử dụng injection. Khi lấy Repository, hãy sử dụng mã sau.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- $pageRepository = $container-&gt;get(PageRepository::class);
+</span><span class="gi">+ $entityManager = $container-&gt;get('doctrine')-&gt;getManager();
++ $pageRepository = $entityManager-&gt;getRepository(Page::class);
+</span></code></pre></div></div>
+
+<h3 id="mã-kiểm-tra">Mã kiểm tra</h3>
+
+<h4 id="lấy-container">Lấy container</h4>
+
+<p>Container đã được thay đổi từ biến thành viên sang biến lớp.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public function setUp()
+    {
+        parent::setUp();
+
+-       $this-&gt;helper = $this-&gt;container-&gt;get(OrderHelper::class);
+<span class="gi">+       $this-&gt;helper = self::$container-&gt;get(OrderHelper::class);
+</span>    }
+</code></pre></div></div>
+
+<h4 id="thông-điệp-xác-thực">Thông điệp xác thực</h4>
+
+<p>Một số thông điệp xác thực đã thay đổi. Các bài kiểm tra tự động kiểm tra thông điệp xác thực có thể cần sửa đổi. Không cần sửa mã sản phẩm.</p>
+
+<h3 id="các-thay-đổi-khác">Các thay đổi khác</h3>
+
+<h4 id="thay-đổi-cách-lấy-thông-tin-khách-hàng-khi-mua-hàng-không-đăng-ký">Thay đổi cách lấy thông tin khách hàng khi mua hàng không đăng ký</h4>
+
+<p>Khi mua hàng không đăng ký, thông tin khách hàng được lưu trong session, nhưng định dạng lưu trữ đã thay đổi từ entity sang mảng. Nếu có tùy chỉnh để lấy hoặc thay đổi thông tin khách hàng khi mua hàng không đăng ký, cần sửa đổi.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- $NonMember = $this-&gt;session-&gt;get('eccube.front.shopping.nonmember')
+</span><span class="gi">+ $NonMember = $this-&gt;orderHelper-&gt;getNonMember('eccube.front.shopping.nonmember')
+</span></code></pre></div></div>
+
+<p><a href="https://github.com/EC-CUBE/ec-cube/commit/9a84daf16d92a5129eb169ac14f9b219e81c5d90" target="_blank">Xem chi tiết về sửa đổi do Serializable của Customer</a></p>
+
+<h2 id="tương-thích-webapi">Tương thích WebAPI</h2>
+
+<p>EC-CUBE 4.1 đóng gói Plugin Web API, cho phép sử dụng Web API khi cài đặt EC-CUBE.</p>
+
+<p>Dữ liệu có thể lấy qua Web API theo danh sách cho phép, do đó, Entity được thêm bởi plugin không thể lấy mặc định.</p>
+
+<p>Để cho phép lấy Entity được thêm, hãy định nghĩa component với tag <code class="language-plaintext highlighter-rouge">eccube.api.allow_list</code>.</p>
+
+<p>ID dịch vụ nên có dạng <code class="language-plaintext highlighter-rouge">[PluginCode].api.allow_list</code>.</p>
+
+<p>Ví dụ, trong plugin quản lý nhà sản xuất, thêm định nghĩa ArrayObject sau vào services.yaml của plugin.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+    <span class="na">maker4.api.allow_list</span><span class="pi">:</span>
+        <span class="na">class</span><span class="pi">:</span> <span class="s">ArrayObject</span>
+        <span class="na">tags</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">eccube.api.allow_list'</span><span class="pi">]</span>
+        <span class="na">arguments</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="c1">#</span>
+                <span class="na">Eccube\Entity\Product</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">maker_url'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">Maker'</span><span class="pi">]</span>
+                <span class="na">Plugin\Maker4\Entity\Maker</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">id'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">name'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">sort_no'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">create_date'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">update_date'</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>Xem chi tiết tại <a href="https://doc.ec-cube.net/eccube-api4/customize/allow_list" target="_blank">tài liệu plugin Web API</a>.</p>
+
+<h3 id="các-hàm-và-tính-năng-bị-xóa-khác">Các hàm và tính năng bị xóa khác</h3>
+
+<h4 id="applicationphp">Application.php</h4>
+
+<p>Eccube\Application đã bị xóa. Do đó, ServiceProvider cũng bị loại bỏ. Hãy sử dụng Container của Symfony.</p>
+
+<h5 id="ví-dụ-thay-đổi-khi-lấy-session-bằng-appsession">Ví dụ thay đổi khi lấy session bằng app[‘session’]</h5>
+
+<p><strong>Đến 4.0</strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">public</span> <span class="k">function</span> <span class="n">index</span><span class="p">(</span><span class="kt">Application</span> <span class="nv">$app</span><span class="p">,</span> <span class="kt">Request</span> <span class="nv">$request</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Lấy session từ SessionServiceProvider</span>
+        <span class="nv">$session</span> <span class="o">=</span> <span class="nv">$app</span><span class="p">[</span><span class="s1">'session'</span><span class="p">];</span>
+    <span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><strong>Từ 4.1 trở đi</strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">use</span> <span class="nc">Symfony\Component\HttpFoundation\Session\SessionInterface</span><span class="p">;</span>
+
+    <span class="cd">/** @var SessionInterface */</span>
+    <span class="k">protected</span> <span class="nv">$session</span>
+
+    <span class="cd">/**
+     * @param SessionInterface $session
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="kt">SessionInterface</span> <span class="nv">$session</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">session</span> <span class="o">=</span> <span class="nv">$session</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">index</span><span class="p">(</span><span class="kt">Request</span> <span class="nv">$request</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Lấy session qua constructor injection</span>
+        <span class="nv">$session</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">session</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="kiểm-tra-cài-đặt-plugin-qua-owners-store">Kiểm tra cài đặt plugin qua Owner’s Store</h2>
+
+<p>EC-CUBE 4.1 yêu cầu tương thích với Composer2.
+Do đó, endpoint khi cài đặt plugin qua Owner’s Store đã thay đổi.
+Nếu muốn kiểm tra trên EC-CUBE 4.1 beta3 trở về trước, có thể chuyển sang endpoint tương thích với Composer2 bằng cách thiết lập biến môi trường sau trong EC-CUBE.
+Nhánh 4.1 mới nhất trên GitHub không cần thực hiện điều này.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ECCUBE_PACKAGE_API_URL=https://package-api-c2.ec-cube.net
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Ngày cập nhật:</strong> <time datetime="2025-06-20T09:12:05+00:00">June 20, 2025</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Chia sẻ trang</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Di+chuy%E1%BB%83n+t%E1%BB%AB+4.0+l%C3%AAn+4.1%20http%3A%2F%2F0.0.0.0%3A4000%2Fupdate-40-41" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Chia sẻ trang Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F0.0.0.0%3A4000%2Fupdate-40-41" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Chia sẻ trang Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+</section>
+
+
+<!--
+      <div style="font-size: 15pt;margin-top:20px;margin-bottom:-30px;">
+        <div>　</div>
+        <div>　</div>
+        <div style="font-weight:bold;">■質問、書いてほしい情報など、気軽にコメントしてみましょう！</div>
+        <div>コメント例：</div>
+        <div>　「手順通りやったけど、◯◯の部分でうまくいかない」</div>
+        <div>　「◯◯の部分について、もう少し手順を詳細に記載してよ」</div>
+        <div>　「最初から、こういう情報があればわかりやすかった」</div>
+      </div>
+-->
+
+      <!--
+  <nav class="pagination">
+    
+      <a href="/update43" class="pagination--pager" title="Nâng cấp từ 4.2 lên 4.3
+">Trước</a>
+    
+    
+      <a href="/update-41-42" class="pagination--pager" title="Di chuyển từ 4.1 lên 4.2
+">Sau</a>
+    
+  </nav>
+-->
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+</div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+</div>
+
+
+<div class="search-content">
+    <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Nhập từ khóa tìm kiếm..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+</div>
+
+
+<div id="footer" class="page__footer">
+    <footer>
+        <!-- start custom footer snippets -->
+
+<!-- Navメニュー -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $('.nav__sub-title').on('click',function(){
+        $(this).toggleClass('active');
+        $(this).next('ul').slideToggle();
+    });
+    $(function(){
+        $("a.active").parents('ul').css("display", "block");
+    });
+</script>
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Theo dõi</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 EC-CUBE. Phát triển bởi <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+    </footer>
+</div>
+
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

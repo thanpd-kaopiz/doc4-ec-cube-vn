@@ -1,0 +1,1754 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.5 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="vi" class="no-js">
+<head>
+    <meta charset="utf-8">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MKP69WF');</script>
+<!-- End Google Tag Manager -->
+
+<!-- begin _includes/seo.html --><title>Quản lý hình ảnh - &lt; for EC-CUBE 4 Developers /&gt;</title>
+<meta name="description" content="Về hình ảnhKhi muốn thêm hình ảnh khi tùy chỉnh thiết kếCó hai cách: thêm trực tiếp vào thư mục hoặc upload từ trang quản trị.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="EC-CUBE 4 開発者向けドキュメントサイト">
+<meta property="og:title" content="Quản lý hình ảnh">
+<meta property="og:url" content="http://0.0.0.0:4000/design_img">
+
+
+  <meta property="og:description" content="Về hình ảnhKhi muốn thêm hình ảnh khi tùy chỉnh thiết kếCó hai cách: thêm trực tiếp vào thư mục hoặc upload từ trang quản trị.">
+
+
+
+  <meta property="og:image" content="http://0.0.0.0:4000/assets/images/site-logo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-06-20T09:12:05+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/design_img">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "http://0.0.0.0:4000",
+      "logo": "http://0.0.0.0:4000/assets/images/site-logo.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "EC-CUBE",
+      "url": "http://0.0.0.0:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<!-- Google Search Console -->
+<meta name="google-site-verification" content="RaTQVaBvAuWi45pAV3ydq19nxTrbyV1vooYDZqFA5kQ" />
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="< for EC-CUBE 4 Developers /> Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+<!-- end custom head snippets -->
+
+</head>
+
+<body class="layout--single">
+<nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+<!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          < for EC-CUBE 4 Developers />
+          <span class="site-subtitle">EC-CUBE 4 開発者向けドキュメントサイト</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://www.ec-cube.net/" target="_blank" >Về EC-CUBE</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://xoops.ec-cube.net/" target="_blank" >Cộng đồng phát triển</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+<div class="initial-content">
+    
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">ec-cube.co</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co" class="">ec-cube.co là gì</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_security" class="">Về các biện pháp bảo mật</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_update_guidelines" class="">Hướng dẫn cập nhật</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_console" class="">Console</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_naming_rules" class="">Quy tắc đặt tên</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_git" class="">Đặc tả chức năng quản lý Git</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_customize_dir_usage" class="">Cách sử dụng thư mục tùy chỉnh</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_staging" class="">Xây dựng môi trường thử nghiệm</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_log" class="">Cách lấy log</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/co/co_faq" class="">FAQ</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Giới thiệu</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/quickstart/latest_version" class="">Phiên bản mới nhất</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/quickstart/requirement" class="">Yêu cầu hệ thống</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/quickstart/cautions_of_prod" class="">Lưu ý khi sử dụng trong môi trường sản xuất</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Thông tin cho người mới bắt đầu</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/learning/learning_step" class="">Các bước học tập</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Cài đặt</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/quickstart/install" class="">Các phương pháp cài đặt khác nhau</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/quickstart/cli" class="">Giao diện dòng lệnh</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Nâng cấp phiên bản</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update43" class="">Nâng cấp phiên bản chính từ 4.2 lên 4.3</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update-42-43" class="">Di chuyển từ 4.2 lên 4.3</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update-41-42" class="">Di chuyển từ 4.1 lên 4.2</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update41" class="">Nâng cấp phiên bản chính từ 4.0 lên 4.1</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update-40-41" class="">Di chuyển từ 4.0 lên 4.1</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update42x" class="">Nâng cấp phiên bản chính 4.2</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update41x" class="">Nâng cấp phiên bản chính 4.1</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update" class="">Nâng cấp phiên bản chính 4.0</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/update/4_0_3" class="">Lưu ý trong phiên bản 4.0.3</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/hotfix_samesite_cookie" class="">Hỗ trợ Cookie SameSite</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Đặc tả chức năng</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="https://www.ec-cube.net/product/functions.php" target="_blank" class="">Danh sách chức năng</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/spec_order" class="">Liên quan đến đơn hàng</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/spec_tax" class="">Cài đặt thuế suất</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/spec_payment" class="">Cài đặt phương thức thanh toán</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Tùy chỉnh hệ thống</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/spec_directory-structure" class="">Cấu trúc thư mục</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_controller" class="">Tùy chỉnh Controller</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_entity" class="">Tùy chỉnh Entity</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_repository" class="">Tùy chỉnh Repository</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_formtype" class="">Tùy chỉnh FormType</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_service" class="">Tùy chỉnh quy trình mua hàng</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_order_state_machine" class="">Tùy chỉnh trạng thái đơn hàng</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_template" class="">Tùy chỉnh mẫu giao diện</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_throttling" class="">Tùy chỉnh chức năng throttling</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_twig_sandbox" class="">Kiểm soát danh sách cho phép bằng Twig Sandbox</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_symfony" class="">Mở rộng bằng chức năng của Symfony</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/customize_symfony#command" class="">Phát triển Command</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Tùy chỉnh thiết kế</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_template" class="">Cơ bản về mẫu thiết kế</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_block" class="">Sử dụng block</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_layout" class="">Sử dụng quản lý bố cục</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_img" class="active">Về quản lý hình ảnh</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_css" class="">Sử dụng CSS</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_sass" class="">Sử dụng Sass(scss)</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_form" class="">Thay đổi bố cục form</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/design_messages" class="">Tùy chỉnh thông điệp</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="https://eccube4-styleguide.herokuapp.com" target="_blank" class="">Tài liệu tham khảo thiết kế giao diện người dùng (hướng dẫn phong cách)</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="https://doc4.ec-cube.net/pdf/ec-cube4_design-guide180930.pdf" target="_blank" class="">Tài liệu tham khảo thiết kế giao diện quản trị (hướng dẫn thiết kế)</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="http://downloads.ec-cube.net/manual/documents/eccube4_xd_front_template.zip?argument=2qpV46CP&dmai=a5bf51b05bacc5" target="_blank" class="">Mẫu giao diện người dùng cho Adobe XD</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="http://downloads.ec-cube.net/manual/documents/eccube4_xd_admin_template.zip?argument=2qpV46CP&dmai=a5bf51b05bacc5" target="_blank" class="">Mẫu giao diện quản trị cho Adobe XD</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Phát triển plugin</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_spec" class="">Đặc tả plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_install" class="">Cài đặt plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_error" class="">Cách xử lý sự cố plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_sample" class="">Mẫu plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_development" class="">Phát triển plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_mock_package_api" class="">Kiểm tra cài đặt qua Owner's Store</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_naming_conventions" class="">Quy tắc đặt tên khuyến nghị cho plugin</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_admin_nav" class="">Mở rộng điều hướng quản trị</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/plugin_eccube40" class="">Lưu ý khi sử dụng EC-CUBE4.0 (Composer v1)</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Thay đổi cài đặt</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/i18n_multilingualization" class="">Đa ngôn ngữ</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/i18n_currency" class="">Tiền tệ</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/i18n_timezone" class="">Múi giờ</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/environmental_setting" class="">Cài đặt môi trường</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/debug_mode" class="">Chế độ gỡ lỗi</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/session_handler_settings" class="">Phương pháp lưu trữ phiên</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Công cụ phát triển</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/development-tools/mail-catcher" class="">MailCatcher</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Thực hiện kiểm tra bảo mật</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing" class="">Giới thiệu</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/quick_start" class="">Bắt đầu nhanh</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/introduction" class="">Giới thiệu</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/about_owaspzap" class="">Về OWASP ZAP</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/planning" class="">Lập kế hoạch kiểm tra</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/testing" class="">Thực hiện kiểm tra</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/review" class="">Đánh giá kiểm tra</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/penetration-testing/improvement" class="">Cải thiện bảo mật</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Hướng dẫn bảo mật</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/security-guideline/coding" class="">Về mã hóa</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/security-guideline/plugin" class="">Tăng cường bảo mật trong phát triển plugin</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Tham khảo ngược</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/reverse-lookup/tips" class="">Mẹo</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/reverse-lookup/sample-code" class="">Bộ sưu tập mẫu tùy chỉnh</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Tham gia phát triển</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="https://www.ec-cube.net/committer/" target="_blank" class="">Làm thế nào để tham gia phát triển EC-CUBE? (Trang web chính thức)</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/contribution-guide/overview" class="">Tổng quan về phát triển</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/contribution-guide/pull-request" class="">Cách tạo pull request</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Khi không tìm thấy tài liệu</span>
+        
+
+        
+        <ul>
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/documents/request" class="">Yêu cầu tài liệu</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/documents/writing-and-formatting" class="">Thêm và viết tài liệu</a></li>
+              
+          
+          
+            
+              
+              
+
+              
+              
+
+              
+                <li><a href="/documents/contribute" class="">Đóng góp tài liệu</a></li>
+              
+          
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Quản lý hình ảnh">
+    <meta itemprop="description" content="Về hình ảnhKhi muốn thêm hình ảnh khi tùy chỉnh thiết kếCó hai cách: thêm trực tiếp vào thư mục hoặc upload từ trang quản trị.">
+    <meta itemprop="datePublished" content="June 20, 2025">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Quản lý hình ảnh
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+<!--
+            <a href="#disqus_thread" style="font-size:21px;margin-bottom:3px;">
+              <img src="//c.disquscdn.com/next/current/publisher-admin/assets/img/emoji/love-512x512.png" style="height: 24px;width: 24px;">
+              ページを評価/質問する
+              <img src="//c.disquscdn.com/next/current/publisher-admin/assets/img/emoji/sad-512x512.png" style="height: 24px;width: 24px;">
+            </a>
+-->
+            <a href="https://github.com/EC-CUBE/doc4.ec-cube.net/edit/gh-pages/_pages/design/img.md"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chỉnh sửa trang</a>
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Mục lục</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#về-hình-ảnh">Về hình ảnh</a></li>
+  <li><a href="#cách-thêm-trực-tiếp-vào-thư-mục-hình-ảnh">Cách thêm trực tiếp vào thư mục hình ảnh</a>
+    <ul>
+      <li><a href="#đường-dẫn-thư-mục-hình-ảnh">Đường dẫn thư mục hình ảnh</a></li>
+    </ul>
+  </li>
+  <li><a href="#cách-liên-kết-tới-hình-ảnh">Cách liên kết tới hình ảnh</a></li>
+  <li><a href="#cách-thêm-hình-ảnh-từ-trang-quản-trị">Cách thêm hình ảnh từ trang quản trị</a>
+    <ul>
+      <li><a href="#upload-hình-ảnh">Upload hình ảnh</a></li>
+      <li><a href="#đường-dẫn-thư-mục-chứa-hình-ảnh-upload-từ-trang-quản-trị">Đường dẫn thư mục chứa hình ảnh upload từ trang quản trị</a></li>
+      <li><a href="#cách-liên-kết-tới-hình-ảnh-upload-từ-trang-quản-trị">Cách liên kết tới hình ảnh upload từ trang quản trị</a></li>
+    </ul>
+  </li>
+  <li><a href="#bổ-sungvề-hình-ảnh-upload-từ-quản-lý-sản-phẩm--đăng-ký-sản-phẩm">【Bổ sung】Về hình ảnh upload từ Quản lý sản phẩm &gt; Đăng ký sản phẩm</a>
+    <ul>
+      <li><a href="#cách-liên-kết-tới-hình-ảnh-upload-từ-đăng-ký-sản-phẩm">Cách liên kết tới hình ảnh upload từ đăng ký sản phẩm</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </aside>
+        
+        <h2 id="về-hình-ảnh">Về hình ảnh</h2>
+<p>Khi muốn thêm hình ảnh khi tùy chỉnh thiết kế<br />
+Có hai cách: thêm trực tiếp vào thư mục hoặc upload từ trang quản trị.</p>
+
+<h2 id="cách-thêm-trực-tiếp-vào-thư-mục-hình-ảnh">Cách thêm trực tiếp vào thư mục hình ảnh</h2>
+
+<h3 id="đường-dẫn-thư-mục-hình-ảnh">Đường dẫn thư mục hình ảnh</h3>
+
+<ul>
+  <li>
+    <p>Thư mục mặc định<br />
+  <code class="language-plaintext highlighter-rouge">ECCUBEROOT/html/template/default/assets/img/</code><br />
+  ※ ECCUBEROOT là thư mục cài đặt EC-CUBE.</p>
+  </li>
+  <li>
+    <p>Thư mục mặc định khi sử dụng template thiết kế riêng<br />
+  <code class="language-plaintext highlighter-rouge">ECCUBEROOT/html/template/[template_code]/assets/img/</code><br />
+  → [template_code] là mã nhận diện template.<br />
+  Mặc định với frontend là “default”</p>
+  </li>
+</ul>
+
+<h2 id="cách-liên-kết-tới-hình-ảnh">Cách liên kết tới hình ảnh</h2>
+<p>Khi muốn gọi hình ảnh, hãy viết theo cú pháp twig như sau:</p>
+<div class="language-twig highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{{</span> <span class="nv">asset</span><span class="p">(</span><span class="s1">'assets/img/tên_thư_mục/tên_hình_ảnh'</span><span class="p">)</span> <span class="cp">}}</span>
+</code></pre></div></div>
+
+<p>Ví dụ: muốn hiển thị hình hoge.jpg trong thư mục top</p>
+<div class="language-twig highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"</span><span class="cp">{{</span> <span class="nv">asset</span><span class="p">(</span><span class="s1">'assets/img/top/hoge.jpg'</span><span class="p">)</span> <span class="cp">}}</span><span class="s">"</span> <span class="na">alt=</span><span class="s">"hoge"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Cũng có thể viết như sau, nhưng khi đổi template có thể không hiển thị:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"html/template/defult/assets/img/top/hoge.jpg"</span> <span class="na">alt=</span><span class="s">"hoge"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h2 id="cách-thêm-hình-ảnh-từ-trang-quản-trị">Cách thêm hình ảnh từ trang quản trị</h2>
+<p>Ngay cả khi không thể upload lên ec-cube.co hoặc server, bạn vẫn có thể thêm file hình ảnh từ trang quản trị.</p>
+
+<h3 id="upload-hình-ảnh">Upload hình ảnh</h3>
+<p>Từ [Quản lý nội dung] -&gt; [Quản lý file] có thể upload hình ảnh.</p>
+
+<p>Ngoài hình ảnh, bạn cũng có thể upload các file khác.<br />
+Khi upload, nên tạo thư mục img trong assets để quản lý dễ dàng hơn.</p>
+
+<p><img src="./images/design/design-img-01.png" alt="Thêm thư mục và hiển thị thư mục img" /></p>
+
+<p>Chọn file từ “Thêm file”, sau đó nhấn nút upload để thêm file.<br />
+※ Có thể chọn nhiều file cùng lúc bằng Shift hoặc Ctrl khi chọn file.</p>
+
+<p><img src="./images/design/design-img-02.png" alt="Đã thêm file" /></p>
+
+<h3 id="đường-dẫn-thư-mục-chứa-hình-ảnh-upload-từ-trang-quản-trị">Đường dẫn thư mục chứa hình ảnh upload từ trang quản trị</h3>
+<p>Hình ảnh upload sẽ được lưu trong thư mục user_data.</p>
+
+<ul>
+  <li>Đường dẫn tới hình ảnh upload<br />
+  <code class="language-plaintext highlighter-rouge">ECCUBEROOT/html/user_data/assets/tên_thư_mục/tên_hình_ảnh</code><br />
+  ※ ECCUBEROOT là thư mục cài đặt EC-CUBE.</li>
+</ul>
+
+<h3 id="cách-liên-kết-tới-hình-ảnh-upload-từ-trang-quản-trị">Cách liên kết tới hình ảnh upload từ trang quản trị</h3>
+<p>Hình ảnh upload sẽ xuất hiện trong danh sách file.<br />
+Nhấn vào icon copy để lấy link hình ảnh và tự động copy vào clipboard.</p>
+
+<p><img src="./images/design/design-img-04.png" alt="Đã thêm file" /></p>
+
+<p>Ví dụ: muốn hiển thị hình hoge.png trong thư mục img</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/html/user_data/assets/img/hoge.png"</span> <span class="na">alt=</span><span class="s">"hoge"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Cũng có thể viết như sau:</p>
+<div class="language-twig highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"</span><span class="cp">{{</span> <span class="nv">asset</span><span class="p">(</span><span class="s1">'assets/img/hoge.png'</span><span class="p">,</span><span class="s1">'user_data'</span><span class="p">)</span> <span class="cp">}}</span><span class="s">"</span> <span class="na">alt=</span><span class="s">"hoge"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h2 id="bổ-sungvề-hình-ảnh-upload-từ-quản-lý-sản-phẩm--đăng-ký-sản-phẩm">【Bổ sung】Về hình ảnh upload từ Quản lý sản phẩm &gt; Đăng ký sản phẩm</h2>
+<p>Hình ảnh upload khi đăng ký sản phẩm sẽ được lưu ở thư mục khác.<br />
+Không nên thêm trực tiếp vào thư mục này.</p>
+
+<ul>
+  <li>Đường dẫn tới hình ảnh upload từ đăng ký sản phẩm<br />
+ <code class="language-plaintext highlighter-rouge">ECCUBEROOT/html/upload/save_image/</code><br />
+ ※ ECCUBEROOT là thư mục cài đặt EC-CUBE.</li>
+</ul>
+
+<h3 id="cách-liên-kết-tới-hình-ảnh-upload-từ-đăng-ký-sản-phẩm">Cách liên kết tới hình ảnh upload từ đăng ký sản phẩm</h3>
+<p>Khi muốn gọi hình ảnh, hãy viết theo cú pháp twig như sau:</p>
+<div class="language-twig highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{{</span> <span class="nv">asset</span><span class="p">(</span><span class="s1">'tên_hình_ảnh'</span><span class="p">,</span> <span class="s1">'save_image'</span><span class="p">)</span> <span class="cp">}}</span>
+</code></pre></div></div>
+<p>Tên hình ảnh sẽ bị đổi khi upload, hãy kiểm tra tên hình ảnh hiển thị trên trang chi tiết sản phẩm.</p>
+
+<p>Ví dụ: muốn hiển thị hình hoge-1.jpg</p>
+<div class="language-twig highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"</span><span class="cp">{{</span> <span class="nv">asset</span><span class="p">(</span><span class="s1">'hoge-1.jpg'</span><span class="p">,</span> <span class="s1">'save_image'</span><span class="p">)</span> <span class="cp">}}</span><span class="s">"</span> <span class="na">alt=</span><span class="s">"hoge"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Ngày cập nhật:</strong> <time datetime="2025-06-20T09:12:05+00:00">June 20, 2025</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Chia sẻ trang</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Qu%E1%BA%A3n+l%C3%BD+h%C3%ACnh+%E1%BA%A3nh%20http%3A%2F%2F0.0.0.0%3A4000%2Fdesign_img" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Chia sẻ trang Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F0.0.0.0%3A4000%2Fdesign_img" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Chia sẻ trang Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+</section>
+
+
+<!--
+      <div style="font-size: 15pt;margin-top:20px;margin-bottom:-30px;">
+        <div>　</div>
+        <div>　</div>
+        <div style="font-weight:bold;">■質問、書いてほしい情報など、気軽にコメントしてみましょう！</div>
+        <div>コメント例：</div>
+        <div>　「手順通りやったけど、◯◯の部分でうまくいかない」</div>
+        <div>　「◯◯の部分について、もう少し手順を詳細に記載してよ」</div>
+        <div>　「最初から、こういう情報があればわかりやすかった」</div>
+      </div>
+-->
+
+      <!--
+  <nav class="pagination">
+    
+      <a href="/design_form" class="pagination--pager" title="Thay đổi bố cục form
+">Trước</a>
+    
+    
+      <a href="/design_layout" class="pagination--pager" title="Sử dụng Layout
+">Sau</a>
+    
+  </nav>
+-->
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+</div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+</div>
+
+
+<div class="search-content">
+    <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Nhập từ khóa tìm kiếm..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+</div>
+
+
+<div id="footer" class="page__footer">
+    <footer>
+        <!-- start custom footer snippets -->
+
+<!-- Navメニュー -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $('.nav__sub-title').on('click',function(){
+        $(this).toggleClass('active');
+        $(this).next('ul').slideToggle();
+    });
+    $(function(){
+        $("a.active").parents('ul').css("display", "block");
+    });
+</script>
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Theo dõi</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 EC-CUBE. Phát triển bởi <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+    </footer>
+</div>
+
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
