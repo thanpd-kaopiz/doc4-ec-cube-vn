@@ -1,6 +1,6 @@
 # Tài liệu phát triển EC-CUBE 4
 
-Đây là kho lưu trữ của [Tài liệu phát triển EC-CUBE 4](https://thanpd-ptit.github.io/doc4-ec-cube-vn/).
+Đây là kho lưu trữ của [Tài liệu phát triển EC-CUBE 4](https://thanpd-kaopiz.github.io/doc4-ec-cube-vn/).
 
 Trang này cung cấp tài liệu về đặc tả, quy trình, và các mẹo phát triển liên quan đến EC-CUBE 4.
 

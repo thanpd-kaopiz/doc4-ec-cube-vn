@@ -124,7 +124,7 @@ Tổng hợp các phương pháp tuỳ biến giao diện.
 + [Sử dụng Sass(scss)](/design_sass)
 
 + [Tài liệu tham khảo thiết kế giao diện người dùng](http://eccube4-styleguide.herokuapp.com/){:target="_blank"}
-+ [Tài liệu tham khảo thiết kế quản trị](https://thanpd-ptit.github.io/doc4-ec-cube-vn/pdf/ec-cube4_design-guide180930.pdf){:target="_blank"}
++ [Tài liệu tham khảo thiết kế quản trị](https://thanpd-kaopiz.github.io/doc4-ec-cube-vn/pdf/ec-cube4_design-guide180930.pdf){:target="_blank"}
 
 + [Template giao diện người dùng cho Adobe XD](http://downloads.ec-cube.net/manual/documents/eccube4_xd_front_template.zip?argument=2qpV46CP&dmai=a5bf51b05bacc5){:target="_blank"}
 + [Template giao diện quản trị cho Adobe XD](http://downloads.ec-cube.net/manual/documents/eccube4_xd_admin_template.zip?argument=2qpV46CP&dmai=a5bf51b05bacc5){:target="_blank"}

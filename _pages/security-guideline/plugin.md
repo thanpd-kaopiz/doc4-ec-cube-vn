@@ -17,7 +17,7 @@ Khi phát triển plugin, khuyến nghị tích hợp các chức năng sau đ�
 
 ## Throttling cho các thao tác quan trọng
 
-Từ EC-CUBE 4.2.1, chức năng [throttling](https://thanpd-ptit.github.io/doc4-ec-cube-vn/customize_throttling){:target="_blank"} đã được tích hợp vào core EC-CUBE.
+Từ EC-CUBE 4.2.1, chức năng [throttling](https://thanpd-kaopiz.github.io/doc4-ec-cube-vn/customize_throttling){:target="_blank"} đã được tích hợp vào core EC-CUBE.
 
 Chức năng này cũng có thể mở rộng từ plugin hoặc Customize.
 
@@ -52,5 +52,5 @@ Như vậy là xong.
 
 Hãy thử truy cập vượt quá số lần cho phép để xác nhận bị từ chối truy cập.
 
-Tham khảo chi tiết tại [chức năng throttling](https://thanpd-ptit.github.io/doc4-ec-cube-vn/customize_throttling){:target="_blank"}.
+Tham khảo chi tiết tại [chức năng throttling](https://thanpd-kaopiz.github.io/doc4-ec-cube-vn/customize_throttling){:target="_blank"}.
 

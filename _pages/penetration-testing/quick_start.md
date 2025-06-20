@@ -7,7 +7,7 @@ permalink: /penetration-testing/quick_start
 ![Sử dụng chế độ Protect Mode](/doc4-ec-cube-vn/images/penetration-testing/quick_start_protect_mode.png)
 {: .notice--danger}
 
-1. [Cài đặt EC-CUBE bằng docker-compose](https://thanpd-ptit.github.io/doc4-ec-cube-vn/quickstart/docker_compose_install)
+1. [Cài đặt EC-CUBE bằng docker-compose](https://thanpd-kaopiz.github.io/doc4-ec-cube-vn/quickstart/docker_compose_install)
 1. Tạo dữ liệu test
     ```shell
     ## Đặt APP_ENV: dev

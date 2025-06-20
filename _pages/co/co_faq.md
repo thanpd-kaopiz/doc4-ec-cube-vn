@@ -76,7 +76,7 @@ Vì lý do bảo mật và vận hành, việc kết nối trực tiếp là kh�
 
 ### Có thể thay đổi schema DB không?
 
-Không thể trên môi trường trial. Sau khi đăng ký gói Standard, bạn có thể thực hiện thông qua vùng tuỳ biến. Xem thêm tại [Hướng dẫn mở rộng Entity](https://thanpd-ptit.github.io/doc4-ec-cube-vn/customize_entity#%E5%9F%BA%E6%9C%AC%E3%81%AE%E6%8B%A1%E5%BC%B5%E6%96%B9%E6%B3%95){:target="_blank"}.
+Không thể trên môi trường trial. Sau khi đăng ký gói Standard, bạn có thể thực hiện thông qua vùng tuỳ biến. Xem thêm tại [Hướng dẫn mở rộng Entity](https://thanpd-kaopiz.github.io/doc4-ec-cube-vn/customize_entity#%E5%9F%BA%E6%9C%AC%E3%81%AE%E6%8B%A1%E5%BC%B5%E6%96%B9%E6%B3%95){:target="_blank"}.
 
 ### Chỉ hỗ trợ PostgreSQL phải không?
 
@@ -452,7 +452,7 @@ Có thể, nhưng các lỗi phát sinh sẽ không được hỗ trợ. Hãy c�
 
 Ngoài [Hỗ trợ ec-cube.co](https://www.ec-cube.net/product/co/support.php){:target="_blank"}, bạn có thể tham khảo:
 - Muốn hỏi đáp nhanh về lỗi nhỏ: [Cộng đồng phát triển EC-CUBE](https://xoops.ec-cube.net/){:target="_blank"}
-- Muốn tìm hiểu kỹ thuật về ec-cube.co/EC-CUBE: [Tài liệu phát triển EC-CUBE 4](https://thanpd-ptit.github.io/doc4-ec-cube-vn/){:target="_blank"}
+- Muốn tìm hiểu kỹ thuật về ec-cube.co/EC-CUBE: [Tài liệu phát triển EC-CUBE 4](https://thanpd-kaopiz.github.io/doc4-ec-cube-vn/){:target="_blank"}
 - Muốn hỏi trực tiếp chuyên gia: Tham gia các nhóm người dùng, sự kiện, seminar tại [Tin tức & Sự kiện & Cộng đồng](https://www.ec-cube.net/news/#events_information){:target="_blank"}
 - Muốn thuê xây dựng site: [Đối tác tích hợp EC-CUBE](https://www.ec-cube.net/integrate/partner/){:target="_blank"}
 - Không biết chọn đối tác nào: [EC-CUBE Advisor](https://www.ec-cube.net/advisor/){:target="_blank"}
