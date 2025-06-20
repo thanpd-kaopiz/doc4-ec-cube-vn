@@ -4,7 +4,7 @@ permalink: /penetration-testing/quick_start
 ---
 
 **Chú ý!** Để tránh tấn công ngoài ý muốn đến các site bên ngoài, hãy luôn sử dụng OWASP ZAP ở **chế độ bảo vệ (Protect Mode)**
-![Sử dụng chế độ Protect Mode](/images/penetration-testing/quick_start_protect_mode.png)
+![Sử dụng chế độ Protect Mode](/doc4-ec-cube-vn/images/penetration-testing/quick_start_protect_mode.png)
 {: .notice--danger}
 
 1. [Cài đặt EC-CUBE bằng docker-compose](https://thanpd-ptit.github.io/doc4-ec-cube-vn/quickstart/docker_compose_install)
@@ -29,7 +29,7 @@ permalink: /penetration-testing/quick_start
     - Sau khi khởi động, truy cập `http://localhost:8081/zap/` bằng trình duyệt (trừ Firefox) để mở giao diện quản lý OWASP ZAP
 
     **Lưu ý:** Sau khi khởi động OWASP ZAP, giao diện sẽ nhỏ và một số nút toolbar bị ẩn. Hãy chuyển sang chế độ toàn màn hình để dễ sử dụng.
-    ![Toàn màn hình](/images/penetration-testing/quick_start_fullwindow.png)
+    ![Toàn màn hình](/doc4-ec-cube-vn/images/penetration-testing/quick_start_fullwindow.png)
     {: .notice--info}
 1. Mở Firefox, vào Cài đặt → Cài đặt mạng → Cài đặt kết nối proxy
    - Chọn **Thiết lập proxy thủ công**
@@ -53,7 +53,7 @@ permalink: /penetration-testing/quick_start
    **Lưu ý:** *Nếu import nhiều context cùng lúc, có thể bị xung đột session và không đăng nhập được*
    {: .notice--warning}
 1. Bật nút [Forced User Mode On/Off](https://www.zaproxy.org/docs/desktop/ui/tltoolbar/#--forced-user-mode-on--off){:target="_blank"} trên toolbar của OWASP ZAP để kích hoạt tự động đăng nhập khi test
-   ![Forced User Mode On/Off](/images/penetration-testing/quick_start_forceusermode.png)
+   ![Forced User Mode On/Off](/doc4-ec-cube-vn/images/penetration-testing/quick_start_forceusermode.png)
 1. Tiến hành test
    1. Duyệt các trang bằng Firefox (khám phá thủ công)
    1. Thực hiện dynamic scan với các URL đã phát hiện

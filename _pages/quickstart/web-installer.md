@@ -116,19 +116,19 @@ Hãy làm theo hướng dẫn cài đặt để hoàn thành cài đặt.
 
 *URL ví dụ của màn hình cài đặt: https://wwww.example.com/{EC-CUBE được tải lên thư mục/}/index.php/install/step1*
 
-![install step1](/images/install/step1.png)
+![install step1](/doc4-ec-cube-vn/images/install/step1.png)
 Nhấp vào *Tiếp tục* để tiếp tục.
 
 ### Kiểm tra quyền truy cập (quyền truy cập tệp)
 
-![install step2](/images/install/step2.png)
+![install step2](/doc4-ec-cube-vn/images/install/step2.png)
 Nhấp vào *Tiếp tục* để tiếp tục.
 
 ----
 
 ### Cấu hình trang web
 
-![install step3](/images/install/step3.png)
+![install step3](/doc4-ec-cube-vn/images/install/step3.png)
 
 #### Thông tin cơ bản của cửa hàng
 
@@ -166,7 +166,7 @@ Nhấp vào *Tiếp tục* để tiếp tục.
 ----
 
 ### Nhập thông tin cơ sở dữ liệu 
-![install step 4](/images/install/step5.png)
+![install step 4](/doc4-ec-cube-vn/images/install/step5.png)
 Nhập thông tin cơ sở dữ liệu đã chuẩn bị ở [Chuẩn bị cơ sở dữ liệu](#chuẩn bị cơ sở dữ liệu)
 
 - **Loại cơ sở dữ liệu**
@@ -190,7 +190,7 @@ Nhấp vào *Tiếp tục* để tiếp tục.
 ----
 
 ### Khởi tạo cơ sở dữ liệu
-![install step 6](/images/install/step6.png)
+![install step 6](/doc4-ec-cube-vn/images/install/step6.png)
 
 Đăng ký dữ liệu khởi tạo cơ sở dữ liệu.
 
@@ -202,7 +202,7 @@ Nhấp vào *Tiếp tục* để tiếp tục.
 ----
 
 ### Hoàn thành cài đặt
-![install step 6](/images/install/step7.png)
+![install step 6](/doc4-ec-cube-vn/images/install/step7.png)
 
 **Chúc mừng bạn!** Nếu màn hình này xuất hiện, cài đặt đã hoàn thành. Hãy đăng nhập vào trang quản lý để thêm thông tin cửa hàng và đăng ký hàng hóa, chuẩn bị mở cửa hàng của bạn.
 

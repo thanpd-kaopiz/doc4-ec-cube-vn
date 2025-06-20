@@ -14,7 +14,7 @@ Mọi yêu cầu, góp ý vui lòng đăng ISSUE trên GitHub.
 
 1. Mở [trang ISSUE của tài liệu phát triển EC-CUBE 4](https://github.com/EC-CUBE/doc4.ec-cube.net/issues){:target="_blank"}
 1. Nhấn New issue   
-![Tạo New issue](/images/github/img-github-issue.png)
+![Tạo New issue](/doc4-ec-cube-vn/images/github/img-github-issue.png)
 1. Nhập nội dung và nhấn Submit new issue
 
 

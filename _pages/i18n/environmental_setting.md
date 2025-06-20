@@ -56,12 +56,12 @@ Khi `APP_ENV=dev`,
 
 bạn có thể hiển thị thanh công cụ profiler của symfony.
 
-![Vị trí thanh debug toolbar](/images/environmental_setting/debug_toolbar1.png)
+![Vị trí thanh debug toolbar](/doc4-ec-cube-vn/images/environmental_setting/debug_toolbar1.png)
 
 Nhấn vào icon symfony,
 
 sẽ hiển thị thanh công cụ ở dưới cùng màn hình như sau:
 
-![Mở thanh debug toolbar](/images/environmental_setting/debug_toolbar2.png)
+![Mở thanh debug toolbar](/doc4-ec-cube-vn/images/environmental_setting/debug_toolbar2.png)
 
 Bạn có thể kiểm tra SQL đã thực thi, nội dung request, tốc độ hiển thị và nhiều thông tin khác ngay trên trình duyệt.

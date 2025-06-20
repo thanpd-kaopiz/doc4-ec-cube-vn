@@ -61,10 +61,10 @@ Thay đổi phiên bản php trong cấu hình môi trường của MAMP.
 Khởi động MAMP.  
 
 Nhấp vào "MAMP" ở góc trên bên trái của Mac và chọn "Preferences".  
-![MAMP](/images/install/gui-mac/02.png)  
+![MAMP](/doc4-ec-cube-vn/images/install/gui-mac/02.png)  
 
 
-![MAMP](/images/install/gui-mac/03.png)  
+![MAMP](/doc4-ec-cube-vn/images/install/gui-mac/03.png)  
   
 Màn hình cấu hình sẽ xuất hiện. Nhấp vào "PHP" trong mục "PHP" và kiểm tra "7.3.9", sau đó nhấp "OK".  
 
@@ -72,18 +72,18 @@ Màn hình cấu hình sẽ xuất hiện. Nhấp vào "PHP" trong mục "PHP" v
 ## Tạo cơ sở dữ liệu
 Khởi động máy chủ từ MAMP.  
 
-![MAMP](/images/install/gui-mac/07.png)  
+![MAMP](/doc4-ec-cube-vn/images/install/gui-mac/07.png)  
   
 Nhấp vào "Start Server".  
 
 Màn hình trang chủ của MAMP sẽ xuất hiện.  
-![MAMP](/images/install/gui-mac/04.png)  
+![MAMP](/doc4-ec-cube-vn/images/install/gui-mac/04.png)  
   
 Nhấp vào "TOOLS" ở thanh menu và chọn "PHPMYADMIN".  
 
 phpMyAdmin sẽ xuất hiện.  
   
-![phpMyAdmin](/images/install/gui-mac/05.png)  
+![phpMyAdmin](/doc4-ec-cube-vn/images/install/gui-mac/05.png)  
   
 Nhấp vào "New" và nhập tên cơ sở dữ liệu, sau đó tạo cơ sở dữ liệu.  
 ※ Hãy đảm bảo rằng tên cơ sở dữ liệu không dễ dàng được dự đoán từ bên ngoài.  
@@ -109,16 +109,16 @@ Nhấp vào URL sau từ trình duyệt:
 Ví dụ
 http://localhost:8888/shop/
 ``` 
-![install step2](/images/install/step1.png)  
+![install step2](/doc4-ec-cube-vn/images/install/step1.png)  
 Màn hình cài đặt sẽ xuất hiện. Nhấp vào "Tiếp theo" để tiếp tục.  
 
-![install step2](/images/install/step2.png)
+![install step2](/doc4-ec-cube-vn/images/install/step2.png)
 Nhấp vào "Tiếp theo" để tiếp tục.
 
 
 ### Cấu hình trang web
 
-![install step3](/images/install/step3.png)
+![install step3](/doc4-ec-cube-vn/images/install/step3.png)
 
 #### Thông tin cơ bản cửa hàng
 
@@ -152,7 +152,7 @@ Trong môi trường cục bộ, không cần chỉ định.
 
 
 ### Nhập thông tin cơ sở dữ liệu 
-![install step 4](/images/install/gui-win/step5.png)  
+![install step 4](/doc4-ec-cube-vn/images/install/gui-win/step5.png)  
   
 Nhập thông tin cơ sở dữ liệu.  
 **Trong bài này, chúng ta sẽ sử dụng tài khoản cơ sở dữ liệu mặc định của MAMP.**  
@@ -160,10 +160,10 @@ Nhập thông tin cơ sở dữ liệu.
 **Cách xác định thông tin tài khoản cơ sở dữ liệu của MAMP**
 
 Mở MAMP và nhấp vào "Open WebStart page" để khởi động trang chủ của MAMP.
-![Open WebStart page](/images/install/gui-mac/01.png)  
+![Open WebStart page](/doc4-ec-cube-vn/images/install/gui-mac/01.png)  
   
 Cuộn xuống, bạn sẽ thấy mục thông tin tài khoản cơ sở dữ liệu được ghi chú.  
-![MySQL account](/images/install/gui-mac/06.png)  
+![MySQL account](/doc4-ec-cube-vn/images/install/gui-mac/06.png)  
 
   
 Hãy nhập thông tin này theo hướng dẫn.
@@ -189,7 +189,7 @@ Sau khi nhập hết, nhấp vào "Tiếp theo" để tiếp tục.
 
 
 ### Khởi tạo cơ sở dữ liệu
-![install step 6](/images/install/step6.png)
+![install step 6](/doc4-ec-cube-vn/images/install/step6.png)
 
 Đăng ký dữ liệu khởi tạo cơ sở dữ liệu.
 
@@ -197,7 +197,7 @@ Nhấp vào "Tiếp theo" để tiếp tục.
 
 
 ### Hoàn thành cài đặt
-![install step 6](/images/install/step7.png)
+![install step 6](/doc4-ec-cube-vn/images/install/step7.png)
 
 **Chúc mừng bạn!**  
 Nếu bạn thấy màn hình này, cài đặt đã hoàn thành.  

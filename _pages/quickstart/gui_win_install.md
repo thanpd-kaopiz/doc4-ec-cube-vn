@@ -60,10 +60,10 @@ Nếu chỉ đặt eccube-4.0.4 vào htdocs mà không tạo test-shop, URL shop
 ## Tạo database
 Khởi động XAMPP.  
 Nhấn "Start" cho Apache và MySQL, sau đó nhấn "Admin" để mở phpMyAdmin.  
-![XAMPP](/images/install/gui-win/xampp1.png)
+![XAMPP](/doc4-ec-cube-vn/images/install/gui-win/xampp1.png)
 
 phpMyAdmin sẽ mở ra.
-![phpMyAdmin](/images/install/gui-win/mysql.png)
+![phpMyAdmin](/doc4-ec-cube-vn/images/install/gui-win/mysql.png)
 
 Nhấn "Tạo mới" và nhập tên database, sau đó tạo database.  
 ```
@@ -83,14 +83,14 @@ Nếu muốn tạo tài khoản mới, vào menu "Tài khoản người dùng" �
 
 Khởi động XAMPP.  
 Nhấn "Start" cho Apache và MySQL.  
-![XAMPP](/images/install/gui-win/xampp2.png)
+![XAMPP](/doc4-ec-cube-vn/images/install/gui-win/xampp2.png)
 
 Truy cập trình duyệt với URL:  
 `http://127.0.0.1/{tên thư mục chứa EC-CUBE}/`  
 
 Màn hình cài đặt sẽ xuất hiện.  
 
-![install step0](/images/install/gui-win/step0.png)
+![install step0](/doc4-ec-cube-vn/images/install/gui-win/step0.png)
 
 Nếu xuất hiện lỗi "intl extension chưa được bật".  
 
@@ -129,7 +129,7 @@ Nhấn "Stop" cho Apache và MySQL, đợi 10 giây rồi nhấn "Start" lại.
 Truy cập lại URL:  
 `http://127.0.0.1/{tên thư mục chứa EC-CUBE}/`  
 
-![install step1](/images/install/step1.png)
+![install step1](/doc4-ec-cube-vn/images/install/step1.png)
 
 Nếu không còn lỗi "intl extension chưa được bật" thì đã chỉnh xong php.ini.  
 
@@ -139,12 +139,12 @@ Nhấn "Tiếp theo" trên màn hình cài đặt.
 
 ## Cài đặt EC-CUBE
 
-![install step2](/images/install/step2.png)
+![install step2](/doc4-ec-cube-vn/images/install/step2.png)
 Nhấn "Tiếp theo".
 
 ### Thiết lập website
 
-![install step3](/images/install/step3.png)
+![install step3](/doc4-ec-cube-vn/images/install/step3.png)
 
 #### Thông tin cơ bản của cửa hàng
 
@@ -171,7 +171,7 @@ Nhấn "Tiếp theo".
 Ở local không cần thiết lập gì thêm.
 
 ### Thiết lập database
-![install step 4](/images/install/gui-win/step5.png)
+![install step 4](/doc4-ec-cube-vn/images/install/gui-win/step5.png)
 Nhập thông tin database.  
 **Ở đây dùng tài khoản mặc định của XAMPP.**
 
@@ -193,12 +193,12 @@ Nhập thông tin database.
 Nhập xong nhấn "Tiếp theo".  
 
 ### Khởi tạo database
-![install step 6](/images/install/step6.png)
+![install step 6](/doc4-ec-cube-vn/images/install/step6.png)
 
 Nhấn "Tiếp theo" để đăng ký dữ liệu khởi tạo vào database.
 
 ### Hoàn tất cài đặt
-![install step 6](/images/install/step7.png)
+![install step 6](/doc4-ec-cube-vn/images/install/step7.png)
 
 **Chúc mừng bạn!**  
 Nếu thấy màn hình này là đã cài đặt thành công.  

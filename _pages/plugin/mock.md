@@ -41,5 +41,5 @@ $ cp /path/to/SamplePlugin.tar.gz repos/SamplePlugin.tgz
 
 Sau khi thực hiện các bước trên, plugin đặt trong thư mục repos sẽ hiển thị khi tìm kiếm plugin.
 
-![Tìm plugin](/images/plugin/mock-server.png)
+![Tìm plugin](/doc4-ec-cube-vn/images/plugin/mock-server.png)
 

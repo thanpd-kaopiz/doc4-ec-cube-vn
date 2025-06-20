@@ -20,11 +20,11 @@ summary : Mô tả về thay đổi hiển thị thông tin đơn hàng khi cậ
 
 |Hiển thị tổng trên màn hình trước 4.0.2|Hiển thị tổng trên màn hình từ 4.0.3 trở đi|
 |---|---|
-|![Hiển thị tổng trước 4.0.2](/images/price_notation_4_0_2.png)|![Hiển thị tổng từ 4.0.3 trở đi](/images/price_notation_4_0_3.png)|
+|![Hiển thị tổng trước 4.0.2](/doc4-ec-cube-vn/images/price_notation_4_0_2.png)|![Hiển thị tổng từ 4.0.3 trở đi](/doc4-ec-cube-vn/images/price_notation_4_0_3.png)|
 
 |Hiển thị tổng trên màn hình quản lý/chi tiết đơn hàng trước 4.0.2|Hiển thị tổng trên màn hình quản lý/chi tiết đơn hàng từ 4.0.3 trở đi|
 |---|---|
-|![Hiển thị tổng trên màn hình quản lý/chi tiết đơn hàng trước 4.0.2](/images/admin_price_notation_4_0_2.png)|![Hiển thị tổng trên màn hình quản lý/chi tiết đơn hàng từ 4.0.3 trở đi](/images/admin_price_notation_4_0_3.png)|
+|![Hiển thị tổng trên màn hình quản lý/chi tiết đơn hàng trước 4.0.2](/doc4-ec-cube-vn/images/admin_price_notation_4_0_2.png)|![Hiển thị tổng trên màn hình quản lý/chi tiết đơn hàng từ 4.0.3 trở đi](/doc4-ec-cube-vn/images/admin_price_notation_4_0_3.png)|
 
 ### Về giảm giá bằng plugin coupon
 
@@ -34,7 +34,7 @@ summary : Mô tả về thay đổi hiển thị thông tin đơn hàng khi cậ
 
 |Hiển thị chi tiết đơn hàng với plugin coupon trước 4.0.4 trên màn hình quản lý|
 |---|
-|![Hiển thị chi tiết đơn hàng với plugin coupon trước 4.0.4 trên màn hình quản lý](/images/coupon_order_detail.png)|
+|![Hiển thị chi tiết đơn hàng với plugin coupon trước 4.0.4 trên màn hình quản lý](/doc4-ec-cube-vn/images/coupon_order_detail.png)|
 
 
 ## Cách sửa chi tiết đơn hàng đã đăng ký với plugin coupon (trước 4.0.4)
@@ -45,4 +45,4 @@ summary : Mô tả về thay đổi hiển thị thông tin đơn hàng khi cậ
 
 |Thêm chi tiết khác trong chi tiết đơn hàng trên màn hình quản lý|
 |---|
-|![Thêm chi tiết khác trong chi tiết đơn hàng trên màn hình quản lý](/images/coupon_order_detail_item.png)|
+|![Thêm chi tiết khác trong chi tiết đơn hàng trên màn hình quản lý](/doc4-ec-cube-vn/images/coupon_order_detail_item.png)|

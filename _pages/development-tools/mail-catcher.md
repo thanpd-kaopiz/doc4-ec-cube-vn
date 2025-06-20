@@ -85,7 +85,7 @@ $ docker-compose down
 
 Truy cập http://127.0.0.1:1080/ bằng trình duyệt (ví dụ Google Chrome) sẽ thấy giao diện như sau:
 
-![mailcatcher-image](/images/development-tools/mailcatcher-client.png)
+![mailcatcher-image](/doc4-ec-cube-vn/images/development-tools/mailcatcher-client.png)
 
 Bạn có thể kiểm tra kết quả gửi mail ngay trên trình duyệt.
 

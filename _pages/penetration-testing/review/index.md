@@ -36,5 +36,5 @@ Nguyên nhân cảnh báo sai có nhiều, nhưng thường do đặc thù của
 Nếu phân vân, nên hỏi ý kiến chuyên gia.
 
 Ví dụ cảnh báo XSS được phát hiện, gửi lại request cũng tái hiện nhưng thực tế không thực thi mã độc (cảnh báo sai):
-![XSS positive false](/images/penetration-testing/review_positive_false.png)
+![XSS positive false](/doc4-ec-cube-vn/images/penetration-testing/review_positive_false.png)
 {: .notice}

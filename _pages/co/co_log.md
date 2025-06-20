@@ -13,4 +13,4 @@ folder: co
 Bạn có thể lấy log từ màn hình Console > Log.
 Có thể lấy access log của web server, log PHP và log lỗi của database.
 
-![co_log](/images/co/co_log.png)
+![co_log](/doc4-ec-cube-vn/images/co/co_log.png)

@@ -27,7 +27,7 @@ Bật debug mode và chèn hàm dump vào source, có thể kiểm tra từ than
  dump([instance object muốn kiểm tra]);
 ```
 
-![Debug mode với dump](/images/reverse-lookup/dump.png)
+![Debug mode với dump](/doc4-ec-cube-vn/images/reverse-lookup/dump.png)
 
 ### Gặp lỗi trắng trang!
 
@@ -76,7 +76,7 @@ Hãy đọc tài liệu về cấu hình timezone của core và DB.
 Cần thêm file migration.  
 File migration cũng sẽ chạy khi cài mới, nên cần tránh trùng dữ liệu.
 
-![Bảng migration_versions](/images/reverse-lookup/migration_versions.png)
+![Bảng migration_versions](/doc4-ec-cube-vn/images/reverse-lookup/migration_versions.png)
 
 File migration được quản lý trong bảng migration_versions.  
 Cột version sẽ lưu tên file migration (phần ngày giờ).

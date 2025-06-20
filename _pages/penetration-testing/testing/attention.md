@@ -17,7 +17,7 @@ Nếu không nắm rõ các điểm này, quét động của OWASP ZAP sẽ kh�
 Sau khi khởi động OWASP ZAP, hãy chuyển sang **Protect Mode**.
 Chế độ này sẽ giới hạn kiểm tra lỗ hổng trong các URL được phép trong context.
 
-![Sử dụng Protect Mode](/images/penetration-testing/quick_start_protect_mode.png)
+![Sử dụng Protect Mode](/doc4-ec-cube-vn/images/penetration-testing/quick_start_protect_mode.png)
 
 **Chú ý!** Nếu dùng chế độ Standard hoặc Attack, có thể vô tình tấn công ra ngoài website.
 {: .notice--danger}

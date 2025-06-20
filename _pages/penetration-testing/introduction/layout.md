@@ -5,7 +5,7 @@ permalink: /penetration-testing/introduction/layout
 Sử dụng docker-compose để kết nối EC-CUBE và OWASP ZAP bản Docker.
 Với OWASP ZAP bản Docker, bạn có thể truy cập giao diện quản lý của OWASP ZAP thông qua Webswing.
 
-![Webswing](/images/penetration-testing/introduction_layout_webswing.png)
+![Webswing](/doc4-ec-cube-vn/images/penetration-testing/introduction_layout_webswing.png)
 
 Ưu điểm là không phụ thuộc vào môi trường, có thể chuẩn bị cấu hình cơ bản bằng docker-compose, giúp bất kỳ ai cũng dễ dàng xây dựng môi trường giống nhau.
 

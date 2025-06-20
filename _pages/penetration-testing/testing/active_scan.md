@@ -9,10 +9,10 @@ Quy trình cơ bản để thực hiện quét động như sau:
 1. Từ lịch sử hoặc danh sách URL trong tab site, chọn URL cần quét
 1. Chọn **Tấn công→Quét động** và thực thi
 
-![Thao tác cơ bản quét động](/images/penetration-testing/testing_active_scan.png)
+![Thao tác cơ bản quét động](/doc4-ec-cube-vn/images/penetration-testing/testing_active_scan.png)
 
 **Lưu ý:** Hãy đảm bảo token CSRF được thiết lập trong tham số POST trùng khớp với token của Firefox khi truy cập qua Local Proxes.
-![Xác nhận sự trùng khớp của token CSRF](/images/penetration-testing/testing_active_scan_csrftoken.png)
+![Xác nhận sự trùng khớp của token CSRF](/doc4-ec-cube-vn/images/penetration-testing/testing_active_scan_csrftoken.png)
 Nếu token CSRF không trùng khớp, quét động sẽ bị lỗi và không thể kiểm thử đầy đủ.
 {: .notice--warning}
 
@@ -29,7 +29,7 @@ Cần đăng ký từng lần một trong OWASP ZAP tại Công cụ→Tùy ch�
 
 Các URL có thể truy cập bằng GET không bị ảnh hưởng bởi token CSRF, do đó có thể chọn thư mục trong danh sách URL của tab site và thực hiện quét động cho toàn bộ các tầng con bên dưới.
 
-![Có thể quét động toàn bộ tầng con](/images/penetration-testing/testing_active_scan_get.png)
+![Có thể quét động toàn bộ tầng con](/doc4-ec-cube-vn/images/penetration-testing/testing_active_scan_get.png)
 
 ## Kiểm thử các pattern chuyển trang đặc biệt
 

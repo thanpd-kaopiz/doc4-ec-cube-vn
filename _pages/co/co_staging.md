@@ -14,7 +14,7 @@ Bạn có thể xây dựng môi trường test từ màn hình Console > Test e
 Tại mục môi trường test, bạn có thể kiểm tra URL shop test và địa chỉ trang đăng nhập quản trị.
 Tài khoản đăng nhập quản trị giống với môi trường production.
 
-![console_staging](/images/co/console_staging_01.png)
+![console_staging](/doc4-ec-cube-vn/images/co/console_staging_01.png)
 
 ## Nhân bản môi trường
 
@@ -22,4 +22,4 @@ Từ chức năng tạo/xoá môi trường test, bạn có thể nhân bản to
 Nếu đã có môi trường test cũ, môi trường cũ sẽ bị xoá khi nhân bản mới.
 Bạn có thể kiểm tra thời gian tạo môi trường test.
 
-![console_staging](/images/co/console_staging_02.png)
+![console_staging](/doc4-ec-cube-vn/images/co/console_staging_02.png)

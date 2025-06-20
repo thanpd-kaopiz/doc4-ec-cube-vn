@@ -27,7 +27,7 @@ Nếu `APP_DEBUG=1`, chế độ debug sẽ được bật.
 
 Khi có lỗi ở chế độ debug, màn hình sau sẽ hiển thị:
 
-![Màn hình lỗi](/images/debug_mode/debug_error.png)
+![Màn hình lỗi](/doc4-ec-cube-vn/images/debug_mode/debug_error.png)
 
 Thông thường, nên đặt `APP_DEBUG=1` khi `APP_ENV=dev` hoặc `APP_ENV=test`, và đặt `APP_DEBUG=0` khi `APP_ENV=prod`.
 

@@ -42,7 +42,7 @@ Nếu chọn USD thì scale là 2, cho phép nhập đến 2 chữ số thập p
 Dưới đây là ví dụ hiển thị khi thiết lập `ECCUBE_LOCALE: en`, `ECCUBE_CURRENCY: USD`:
 
 
-![Form nhập tiền tệ](/images/i18n_currency/sample_scale.png)
+![Form nhập tiền tệ](/doc4-ec-cube-vn/images/i18n_currency/sample_scale.png)
 
 
 ## price filter
